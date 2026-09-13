@@ -29,6 +29,7 @@ Disposable cleanup only for the three simulation athletes:
 
 - [x] All manifest IDs deleted
 - [x] Sim athletes/enrollments gone
+- [x] Paginated marker rescan — 0 `010724Z` / `SEASON-SIM|` hits across 11 transactional tables (2026-09-13T18:37:17Z)
 - [x] Submissions formulas Production-normal (no Season Sim branches)
 - [x] No email dispatched during cleanup
 - [x] `114448Z` and ordinary Production records intact

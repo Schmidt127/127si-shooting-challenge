@@ -1,11 +1,146 @@
 {
-  "verified_at": "2026-09-13T18:12:06.670924+00:00",
+  "verified_at": "2026-09-13T18:37:17.854301+00:00",
   "manifest_still_present": {},
   "sim_enrollment_still_present": [],
   "sim_athlete_still_present": [],
   "marker_hits_remaining": {
-    "Submissions": -1,
-    "XP Events": 0
+    "Submissions": 0,
+    "Submission Assets": 0,
+    "Homework Completions": 0,
+    "XP Events": 0,
+    "Athlete Achievement Unlocks": 0,
+    "Streak Occurrences": 0,
+    "Video Feedback": 0,
+    "Weekly Athlete Summary": 0,
+    "Zoom Attendance": 0,
+    "Zoom Meetings": 0,
+    "Email Handoff Queue": 0
+  },
+  "marker_scan": {
+    "run_id": "SEASON-SIM-2027-20260913T010724Z-threeathlete",
+    "marker": "010724Z",
+    "tables": {
+      "Submissions": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Video Upload Note",
+          "HW 1 - Parent Note",
+          "HW 2 - Parent Note"
+        ],
+        "pages": 1,
+        "records_scanned": 67,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Submission Assets": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [],
+        "pages": 1,
+        "records_scanned": 54,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Homework Completions": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Notes"
+        ],
+        "pages": 1,
+        "records_scanned": 20,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "XP Events": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "XP Reason Debug"
+        ],
+        "pages": 5,
+        "records_scanned": 459,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Athlete Achievement Unlocks": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Coach Note"
+        ],
+        "pages": 1,
+        "records_scanned": 16,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Streak Occurrences": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Notes"
+        ],
+        "pages": 1,
+        "records_scanned": 9,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Video Feedback": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Coach Feedback"
+        ],
+        "pages": 1,
+        "records_scanned": 30,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Weekly Athlete Summary": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [],
+        "pages": 1,
+        "records_scanned": 20,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Zoom Attendance": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [],
+        "pages": 1,
+        "records_scanned": 2,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Zoom Meetings": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Meeting Name"
+        ],
+        "pages": 1,
+        "records_scanned": 4,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Email Handoff Queue": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Handoff Key",
+          "Last Error",
+          "Payload JSON"
+        ],
+        "pages": 1,
+        "records_scanned": 91,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      }
+    },
+    "scan_errors": {}
   },
   "114448Z_and_production_preserved": {
     "114448Z_enrollment": "present",

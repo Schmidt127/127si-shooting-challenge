@@ -10,7 +10,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from season_simulation.airtable_client import AirtableClient
+from season_simulation.airtable_client import AirtableClient, fields_of, txt
+from season_simulation.constants import RUN_ID_FIELD_CANDIDATES, TRANSACTIONAL_TABLES
 
 RUN_ID = "SEASON-SIM-2027-20260913T010724Z-threeathlete"
 MARKER = "010724Z"
@@ -23,6 +24,85 @@ OTHER_ENROLL = "recNJaTAevEGQrbg9"
 CANONICAL_ZOOM = ["recMFP2x5LDqea9ax", "recb9EjQIJVzaRpZa"]
 FORMULA_FIELD_IDS = ["fldyFAjhbfaC4LlPb", "fldE7G8H1O7HPYuIi", "fldLo2GO5aac6tPX1"]
 EXEC_REPORT = Path(__file__).parent / "reports/cleanup-execute-010724Z-final.json"
+
+MARKER_SCAN_TABLES = [
+    t for t in TRANSACTIONAL_TABLES if t not in ("Athletes", "Enrollments")
+]
+EXTRA_MARKER_FIELDS: dict[str, tuple[str, ...]] = {
+    "Zoom Meetings": ("Meeting Name",),
+    "Email Handoff Queue": ("Handoff Key", "Last Error", "Payload JSON"),
+}
+
+
+def text_has_marker(text: str) -> bool:
+    if not text:
+        return False
+    full_marker = f"SEASON-SIM|{RUN_ID}"
+    return MARKER in text or full_marker in text or RUN_ID in text
+
+
+def resolve_scan_fields(client: AirtableClient, table: str) -> list[str]:
+    meta = client.meta_tables()
+    valid = {
+        f["name"]
+        for t in meta
+        if t["name"] == table
+        for f in t.get("fields", [])
+    }
+    requested = list(RUN_ID_FIELD_CANDIDATES.get(table, ()))
+    requested.extend(EXTRA_MARKER_FIELDS.get(table, ()))
+    return [name for name in dict.fromkeys(requested) if name in valid]
+
+
+def scan_table_markers(client: AirtableClient, table: str) -> dict:
+    fields = resolve_scan_fields(client, table)
+    hits: list[dict] = []
+    pages = 0
+    total = 0
+    offset_token: str | None = None
+    page_size = 100
+
+    while True:
+        params: dict = {"pageSize": page_size}
+        if fields:
+            for i, name in enumerate(fields):
+                params[f"fields[{i}]"] = name
+        if offset_token:
+            params["offset"] = offset_token
+
+        data = client._request("GET", client._url(table), params=params)
+        batch = data.get("records") or []
+        pages += 1
+        total += len(batch)
+
+        for rec in batch:
+            rid = rec.get("id") or ""
+            f = fields_of(rec)
+            for fname in fields:
+                val = txt(f.get(fname))
+                if text_has_marker(val):
+                    hits.append(
+                        {
+                            "record_id": rid,
+                            "field": fname,
+                            "preview": val[:160],
+                        }
+                    )
+                    break
+
+        offset_token = data.get("offset")
+        if not offset_token:
+            break
+
+    return {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": fields,
+        "pages": pages,
+        "records_scanned": total,
+        "hit_count": len(hits),
+        "matching_record_ids": [h["record_id"] for h in hits],
+        "hits": hits,
+    }
 
 
 def main() -> int:
@@ -57,15 +137,16 @@ def main() -> int:
         except Exception:
             pass
 
+    marker_scans: dict[str, dict] = {}
+    scan_errors: dict[str, str] = {}
     marker_hits: dict[str, int] = {}
-    for table, formula in [
-        ("Submissions", f"FIND('{MARKER}', {{Notes}} & '')"),
-        ("XP Events", f"FIND('{MARKER}', {{XP Reason Debug}} & '')"),
-    ]:
+    for table in MARKER_SCAN_TABLES:
         try:
-            rows = client.list_records(table, formula=formula, max_records=5)
-            marker_hits[table] = len(rows)
-        except Exception:
+            scan = scan_table_markers(client, table)
+            marker_scans[table] = scan
+            marker_hits[table] = scan["hit_count"]
+        except Exception as exc:  # noqa: BLE001
+            scan_errors[table] = str(exc)[:500]
             marker_hits[table] = -1
 
     other_preserved = {}
@@ -116,12 +197,23 @@ def main() -> int:
         if (r.get("fields") or {}).get("Enrollment Record ID") in SIM_ENROLL
     ]
 
+    marker_scan_ok = (
+        not scan_errors
+        and all(count == 0 for count in marker_hits.values())
+    )
+
     result = {
         "verified_at": datetime.now(timezone.utc).isoformat(),
         "manifest_still_present": still_present,
         "sim_enrollment_still_present": sim_gone["enrollments"],
         "sim_athlete_still_present": sim_gone["athletes"],
         "marker_hits_remaining": marker_hits,
+        "marker_scan": {
+            "run_id": RUN_ID,
+            "marker": MARKER,
+            "tables": marker_scans,
+            "scan_errors": scan_errors,
+        },
         "114448Z_and_production_preserved": other_preserved,
         "canonical_zoom": zoom_ok,
         "submission_formulas": formulas,
@@ -132,7 +224,7 @@ def main() -> int:
             not still_present
             and not sim_gone["enrollments"]
             and not sim_gone["athletes"]
-            and all(v == 0 for v in marker_hits.values() if v >= 0)
+            and marker_scan_ok
             and other_preserved.get("114448Z_enrollment") == "present"
             and all(v == "present" for v in zoom_ok.values())
             and all(not v.get("has_season_sim") for v in formulas.values())

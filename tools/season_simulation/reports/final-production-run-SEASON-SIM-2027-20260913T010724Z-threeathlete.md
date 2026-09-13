@@ -101,17 +101,37 @@
 
 ## Post-cleanup verification
 
+**Verified at:** `2026-09-13T18:37:17Z` (repair rescan — prior artifact had invalid `Submissions: -1` from unsupported `{Notes}` formula filter).
+
 | Check | Result |
 |---|---|
 | All 1,051 manifest IDs deleted | PASS |
 | Sim enrollments gone | PASS |
 | Sim athletes gone | PASS |
-| `010724Z` marker remaining | PASS (0 XP Events) |
+| `010724Z` marker scan (all transactional tables) | PASS — **0 hits** |
 | `114448Z` enrollment preserved | PASS |
 | Canonical Zoom Meetings preserved | PASS |
 | Submissions formulas Production-normal | PASS (no Season Sim branches) |
 | EHQ created during cleanup | PASS (0) |
 | Email dispatched during cleanup | PASS (none) |
+
+### Marker scan evidence (`paginated_client_side_field_scan`)
+
+| Table | Records scanned | Pages | Hits |
+|---|---:|---:|---:|
+| Submissions | 67 | 1 | 0 |
+| Submission Assets | 54 | 1 | 0 |
+| Homework Completions | 20 | 1 | 0 |
+| XP Events | 459 | 5 | 0 |
+| Athlete Achievement Unlocks | 16 | 1 | 0 |
+| Streak Occurrences | 9 | 1 | 0 |
+| Video Feedback | 30 | 1 | 0 |
+| Weekly Athlete Summary | 20 | 1 | 0 |
+| Zoom Attendance | 2 | 1 | 0 |
+| Zoom Meetings | 4 | 1 | 0 |
+| Email Handoff Queue | 91 | 1 | 0 |
+
+Submissions fields scanned: `Video Upload Note`, `HW 1 - Parent Note`, `HW 2 - Parent Note`. XP Events: `XP Reason Debug`. No matching record IDs in any table.
 
 ## Artifacts
 
