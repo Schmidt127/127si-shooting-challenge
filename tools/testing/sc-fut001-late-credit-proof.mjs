@@ -36,9 +36,9 @@ const MANIFEST_PATH = resolve(
   "docs/testing/evidence/fut-001-late-credit/_manifest-last.json"
 );
 
-/** Schmidt Athlete1 — disposable test enrollment (Testing3 wiped). */
-const ENROLLMENT_ID = "recZEwkkXTJanDlG6";
-const ATHLETE_ID = "recTfxT6WMsPvobAW";
+/** Testing Schmidt — canonical controlled identity (2026-09-08). */
+const ENROLLMENT_ID = "recn54wbxTjygydqa";
+const ATHLETE_ID = "recshWT5DQPUZXDvr";
 const EARLY_BIRD_WEEK = "recBrZ1sV8byWEHZU";
 const PHA_HW1 = "recrpWRmt0MntieCL";
 const LIBRARY_HW1 = "rechVLOeyEVIqmy2v";

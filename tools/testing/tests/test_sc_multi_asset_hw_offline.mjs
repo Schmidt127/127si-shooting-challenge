@@ -78,7 +78,7 @@ test("harness LIVE fixture IDs match 2026-08-30 audit", () => {
   ]) {
     assert.match(src, new RegExp(id), `harness missing live id ${id}`);
   }
-  assert.match(libSrc, /recNu6fcBpF1GG3u5/, "lib missing Testing3 enrollment id");
+  assert.match(libSrc, /recn54wbxTjygydqa/, "lib missing Testing Schmidt enrollment id");
   assert.match(src, /GATED_ENROLLMENT_ID/, "harness must use GATED_ENROLLMENT_ID from lib");
 });
 

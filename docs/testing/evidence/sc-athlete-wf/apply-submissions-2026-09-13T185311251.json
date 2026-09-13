@@ -1,0 +1,787 @@
+{
+  "harness": "SC-ATHLETE-WF-001",
+  "case": "submissions",
+  "mode": "apply",
+  "startedAt": "2026-09-13T18:51:42.416Z",
+  "created": {
+    "weekId": "recyfdhcZUetJL2X4",
+    "wasId": "recepCHCOXtQ71gzR",
+    "submissionIds": [
+      "recrYxcTMP5LJOReV",
+      "recEpvyjyu0hdeyha",
+      "recjGVsiJhBluQc85",
+      "recr2pgIr0kyPN2Z6",
+      "rec9LV7Eq00ug6xyL",
+      "rec48DRnjvJ4AG3qj",
+      "recd9jTdZJtni5yQv"
+    ],
+    "submissionMeta": [
+      {
+        "id": "recrYxcTMP5LJOReV",
+        "tag": "same-day-a",
+        "date": "2026-06-01",
+        "shots": 50,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "recEpvyjyu0hdeyha",
+        "tag": "same-day-b",
+        "date": "2026-06-01",
+        "shots": 25,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "recjGVsiJhBluQc85",
+        "tag": "day-2",
+        "date": "2026-06-02",
+        "shots": 100,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "recr2pgIr0kyPN2Z6",
+        "tag": "day-3",
+        "date": "2026-06-03",
+        "shots": 75,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "rec9LV7Eq00ug6xyL",
+        "tag": "miss-gap",
+        "date": "2026-06-05",
+        "shots": 40,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "rec48DRnjvJ4AG3qj",
+        "tag": "backdated",
+        "date": "2026-06-04",
+        "shots": 60,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "recd9jTdZJtni5yQv",
+        "tag": "day-6",
+        "date": "2026-06-06",
+        "shots": 80,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      }
+    ],
+    "videoId": "recHIF53d3GZbxFeQ",
+    "homeworkId": "rec1kjiXTTorU40sk",
+    "incompleteHomeworkId": "recGW7hIjQcbRBy75",
+    "batchKey": "ATHWF|2026-09-13|SC-ATHLETE-WF|submissions",
+    "weekName": "ATHWF|2026-09-13|submissions|WEEK",
+    "enrollmentId": "recn54wbxTjygydqa",
+    "homeworkEligibility": {
+      "expectXp": false,
+      "blockers": [
+        "Homework XP Reconciliation Needed? != 1",
+        "Total Homework XP Awarded <= 0",
+        "Program Homework Assignment not linked (PHA-first path)",
+        "Submission link missing for new XP create"
+      ],
+      "note": "065 expected skip/no award: Homework XP Reconciliation Needed? != 1; Total Homework XP Awarded <= 0; Program Homework Assignment not linked (PHA-first path); Submission link missing for new XP create"
+    }
+  },
+  "checks": [
+    {
+      "id": "submission_xp.recrYxcTMP5LJOReV",
+      "stage": 5,
+      "status": "PASS",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "sourceKey": "SUBMISSION_XP|recrYxcTMP5LJOReV",
+      "xpIds": [
+        "recW1oJ3F99rn3dZd"
+      ]
+    },
+    {
+      "id": "submission_xp.recEpvyjyu0hdeyha",
+      "stage": 5,
+      "status": "PASS",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "sourceKey": "SUBMISSION_XP|recEpvyjyu0hdeyha",
+      "xpIds": [
+        "receBteexTTxvgLkD"
+      ]
+    },
+    {
+      "id": "submission_xp.recjGVsiJhBluQc85",
+      "stage": 5,
+      "status": "PASS",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "sourceKey": "SUBMISSION_XP|recjGVsiJhBluQc85",
+      "xpIds": [
+        "recla9itpdd6pPIfx"
+      ]
+    },
+    {
+      "id": "submission_xp.recr2pgIr0kyPN2Z6",
+      "stage": 5,
+      "status": "PASS",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "sourceKey": "SUBMISSION_XP|recr2pgIr0kyPN2Z6",
+      "xpIds": [
+        "recB381MrsxK5Pzzk"
+      ]
+    },
+    {
+      "id": "submission_xp.rec9LV7Eq00ug6xyL",
+      "stage": 5,
+      "status": "PASS",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "sourceKey": "SUBMISSION_XP|rec9LV7Eq00ug6xyL",
+      "xpIds": [
+        "recX9Y5GLvJvyVWSy"
+      ]
+    },
+    {
+      "id": "submission_xp.rec48DRnjvJ4AG3qj",
+      "stage": 5,
+      "status": "PASS",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "sourceKey": "SUBMISSION_XP|rec48DRnjvJ4AG3qj",
+      "xpIds": [
+        "reciDnivYBS8NUPZx"
+      ]
+    },
+    {
+      "id": "submission_xp.recd9jTdZJtni5yQv",
+      "stage": 5,
+      "status": "PASS",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "sourceKey": "SUBMISSION_XP|recd9jTdZJtni5yQv",
+      "xpIds": [
+        "recSBBAmuaKANy15X"
+      ]
+    },
+    {
+      "id": "submission_xp.same_day_per_count_it",
+      "stage": 5,
+      "status": "PASS",
+      "pass": true,
+      "expected": "One SUBMISSION_XP per Count It submission (same-day multi allowed)",
+      "actual": "Multiple SUBMISSION_XP on same Denver day — EXPECTED (once per Count It submission; MRW-I13 closed)"
+    },
+    {
+      "id": "homework_xp.satisfactory_path",
+      "stage": 9,
+      "status": "PASS",
+      "pass": true,
+      "expected": 0,
+      "actual": 0,
+      "sourceKey": "HOMEWORK_XP|rec1kjiXTTorU40sk",
+      "notes": "065 expected skip/no award: Homework XP Reconciliation Needed? != 1; Total Homework XP Awarded <= 0; Program Homework Assignment not linked (PHA-first path); Submission link missing for new XP create"
+    },
+    {
+      "id": "homework_xp.065_satisfactory_alone_is_skip",
+      "stage": 9,
+      "status": "PASS",
+      "pass": true,
+      "expected": "no HOMEWORK_XP without reconcile/PHA/Total XP",
+      "actual": "065 expected skip/no award: Homework XP Reconciliation Needed? != 1; Total Homework XP Awarded <= 0; Program Homework Assignment not linked (PHA-first path); Submission link missing for new XP create"
+    },
+    {
+      "id": "homework_xp.incomplete_none",
+      "stage": 17,
+      "status": "PASS",
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "id": "video_xp.pending_none",
+      "stage": 10,
+      "status": "PASS",
+      "pass": true,
+      "expected": 0,
+      "actual": 0,
+      "notes": "Pending VF must not mint VIDEO_SUBMISSION XP"
+    },
+    {
+      "id": "dedupe.SUBMISSION_XP|recrYxcTMP5LJOReV",
+      "stage": 16,
+      "status": "PASS",
+      "pass": true,
+      "expected": "<=1",
+      "actual": 1
+    },
+    {
+      "id": "dedupe.SUBMISSION_XP|recEpvyjyu0hdeyha",
+      "stage": 16,
+      "status": "PASS",
+      "pass": true,
+      "expected": "<=1",
+      "actual": 1
+    },
+    {
+      "id": "dedupe.SUBMISSION_XP|recjGVsiJhBluQc85",
+      "stage": 16,
+      "status": "PASS",
+      "pass": true,
+      "expected": "<=1",
+      "actual": 1
+    },
+    {
+      "id": "dedupe.SUBMISSION_XP|recr2pgIr0kyPN2Z6",
+      "stage": 16,
+      "status": "PASS",
+      "pass": true,
+      "expected": "<=1",
+      "actual": 1
+    },
+    {
+      "id": "dedupe.SUBMISSION_XP|rec9LV7Eq00ug6xyL",
+      "stage": 16,
+      "status": "PASS",
+      "pass": true,
+      "expected": "<=1",
+      "actual": 1
+    },
+    {
+      "id": "dedupe.SUBMISSION_XP|rec48DRnjvJ4AG3qj",
+      "stage": 16,
+      "status": "PASS",
+      "pass": true,
+      "expected": "<=1",
+      "actual": 1
+    },
+    {
+      "id": "dedupe.SUBMISSION_XP|recd9jTdZJtni5yQv",
+      "stage": 16,
+      "status": "PASS",
+      "pass": true,
+      "expected": "<=1",
+      "actual": 1
+    },
+    {
+      "id": "dedupe.HOMEWORK_XP|rec1kjiXTTorU40sk",
+      "stage": 16,
+      "status": "PASS",
+      "pass": true,
+      "expected": "<=1",
+      "actual": 0
+    },
+    {
+      "id": "dedupe.VIDEO_SUBMISSION|recHIF53d3GZbxFeQ",
+      "stage": 16,
+      "status": "PASS",
+      "pass": true,
+      "expected": "<=1",
+      "actual": 0
+    },
+    {
+      "id": "was.days_logged",
+      "stage": 14,
+      "expected": 6,
+      "actual": 6,
+      "pass": true,
+      "status": "PASS",
+      "notes": null
+    },
+    {
+      "id": "was.shots_min",
+      "stage": 14,
+      "expected": ">= 430",
+      "actual": 430,
+      "pass": true,
+      "status": "PASS",
+      "notes": null
+    }
+  ],
+  "defects": [],
+  "negatives": [
+    {
+      "id": "NEG-01",
+      "name": "missing-enrollment",
+      "stage": 17,
+      "expected": "010/005 skip or error; no orphan XP",
+      "harnessAction": "plan-only",
+      "severityIfBroken": "P0"
+    },
+    {
+      "id": "NEG-02",
+      "name": "missing-week",
+      "stage": 17,
+      "expected": "031/005 fail closed or skip without inventing Week",
+      "harnessAction": "plan-only",
+      "severityIfBroken": "P0"
+    },
+    {
+      "id": "NEG-03",
+      "name": "invalid-asset-destination",
+      "stage": 17,
+      "expected": "020/112 skip or error; no HC/VF create",
+      "harnessAction": "plan-only",
+      "severityIfBroken": "P1"
+    },
+    {
+      "id": "NEG-04",
+      "name": "duplicate-submission-replay",
+      "stage": 17,
+      "expected": "010 skip/repair; same Source Key; no second XP",
+      "harnessAction": "apply-poll",
+      "severityIfBroken": "P0"
+    },
+    {
+      "id": "NEG-05",
+      "name": "incomplete-homework",
+      "stage": 17,
+      "expected": "065 does not award HOMEWORK_XP when not satisfactory",
+      "harnessAction": "apply-poll",
+      "severityIfBroken": "P1"
+    },
+    {
+      "id": "NEG-06",
+      "name": "ineligible-perfect-week",
+      "stage": 17,
+      "expected": "057 does not set Eligible; no 058/059 award",
+      "harnessAction": "plan-only (SC-PW-E2E owns live PW)",
+      "severityIfBroken": "P1"
+    },
+    {
+      "id": "NEG-07",
+      "name": "inactive-enrollment",
+      "stage": 17,
+      "expected": "writers skip; no XP against inactive enrollment",
+      "harnessAction": "plan-only (do not deactivate gated enrollment)",
+      "severityIfBroken": "P0"
+    },
+    {
+      "id": "NEG-08",
+      "name": "outside-season-window",
+      "stage": 17,
+      "expected": "future Activity Date → Count This Submission? = 0; no counted XP",
+      "harnessAction": "offline-eval",
+      "severityIfBroken": "P1"
+    }
+  ],
+  "cleanup": null,
+  "passed": true,
+  "blockers": [],
+  "enrollmentBefore": {
+    "id": "recn54wbxTjygydqa",
+    "active": true,
+    "lifetimeXp": 0,
+    "currentLevel": [
+      "rec1iGy92ZC0jwzD4"
+    ],
+    "nextLevel": [
+      "rec1EJLJLmfdJLtoF"
+    ],
+    "currentStreak": 0,
+    "gradeBand": [
+      "rec75ruo3XT5nSvaK"
+    ]
+  },
+  "submissionXp": {
+    "recrYxcTMP5LJOReV": {
+      "count": 1,
+      "ids": [
+        "recW1oJ3F99rn3dZd"
+      ],
+      "points": [
+        20
+      ],
+      "active": [
+        true
+      ]
+    },
+    "recEpvyjyu0hdeyha": {
+      "count": 1,
+      "ids": [
+        "receBteexTTxvgLkD"
+      ],
+      "points": [
+        20
+      ],
+      "active": [
+        true
+      ]
+    },
+    "recjGVsiJhBluQc85": {
+      "count": 1,
+      "ids": [
+        "recla9itpdd6pPIfx"
+      ],
+      "points": [
+        20
+      ],
+      "active": [
+        true
+      ]
+    },
+    "recr2pgIr0kyPN2Z6": {
+      "count": 1,
+      "ids": [
+        "recB381MrsxK5Pzzk"
+      ],
+      "points": [
+        20
+      ],
+      "active": [
+        true
+      ]
+    },
+    "rec9LV7Eq00ug6xyL": {
+      "count": 1,
+      "ids": [
+        "recX9Y5GLvJvyVWSy"
+      ],
+      "points": [
+        20
+      ],
+      "active": [
+        true
+      ]
+    },
+    "rec48DRnjvJ4AG3qj": {
+      "count": 1,
+      "ids": [
+        "reciDnivYBS8NUPZx"
+      ],
+      "points": [
+        20
+      ],
+      "active": [
+        true
+      ]
+    },
+    "recd9jTdZJtni5yQv": {
+      "count": 1,
+      "ids": [
+        "recSBBAmuaKANy15X"
+      ],
+      "points": [
+        20
+      ],
+      "active": [
+        true
+      ]
+    }
+  },
+  "sameDayPolicy": {
+    "submissionXpCount": 2,
+    "note": "Multiple SUBMISSION_XP on same Denver day — EXPECTED (once per Count It submission; MRW-I13 closed)",
+    "policyOpen": false,
+    "sameDayMultipleExpected": true
+  },
+  "homeworkEligibility": {
+    "expectXp": false,
+    "blockers": [
+      "Homework XP Reconciliation Needed? != 1",
+      "Total Homework XP Awarded <= 0",
+      "Program Homework Assignment not linked (PHA-first path)",
+      "Submission link missing for new XP create"
+    ],
+    "note": "065 expected skip/no award: Homework XP Reconciliation Needed? != 1; Total Homework XP Awarded <= 0; Program Homework Assignment not linked (PHA-first path); Submission link missing for new XP create"
+  },
+  "homeworkXp": {
+    "count": 0,
+    "ids": [],
+    "rows": []
+  },
+  "incompleteHomeworkXp": {
+    "count": 0,
+    "ids": [],
+    "rows": []
+  },
+  "videoXp": {
+    "count": 0,
+    "ids": []
+  },
+  "duplicateCheck": [
+    {
+      "sourceKey": "SUBMISSION_XP|recrYxcTMP5LJOReV",
+      "count": 1,
+      "pass": true,
+      "ids": [
+        "recW1oJ3F99rn3dZd"
+      ]
+    },
+    {
+      "sourceKey": "SUBMISSION_XP|recEpvyjyu0hdeyha",
+      "count": 1,
+      "pass": true,
+      "ids": [
+        "receBteexTTxvgLkD"
+      ]
+    },
+    {
+      "sourceKey": "SUBMISSION_XP|recjGVsiJhBluQc85",
+      "count": 1,
+      "pass": true,
+      "ids": [
+        "recla9itpdd6pPIfx"
+      ]
+    },
+    {
+      "sourceKey": "SUBMISSION_XP|recr2pgIr0kyPN2Z6",
+      "count": 1,
+      "pass": true,
+      "ids": [
+        "recB381MrsxK5Pzzk"
+      ]
+    },
+    {
+      "sourceKey": "SUBMISSION_XP|rec9LV7Eq00ug6xyL",
+      "count": 1,
+      "pass": true,
+      "ids": [
+        "recX9Y5GLvJvyVWSy"
+      ]
+    },
+    {
+      "sourceKey": "SUBMISSION_XP|rec48DRnjvJ4AG3qj",
+      "count": 1,
+      "pass": true,
+      "ids": [
+        "reciDnivYBS8NUPZx"
+      ]
+    },
+    {
+      "sourceKey": "SUBMISSION_XP|recd9jTdZJtni5yQv",
+      "count": 1,
+      "pass": true,
+      "ids": [
+        "recSBBAmuaKANy15X"
+      ]
+    },
+    {
+      "sourceKey": "HOMEWORK_XP|rec1kjiXTTorU40sk",
+      "count": 0,
+      "pass": true,
+      "ids": []
+    },
+    {
+      "sourceKey": "VIDEO_SUBMISSION|recHIF53d3GZbxFeQ",
+      "count": 0,
+      "pass": true,
+      "ids": []
+    }
+  ],
+  "was": {
+    "id": "recepCHCOXtQ71gzR",
+    "fields": {
+      "Athlete": [
+        "recshWT5DQPUZXDvr"
+      ],
+      "Perfect Week Eligible?": 0,
+      "Perfect Week Zoom Meeting Count": 0,
+      "Submissions": [
+        "recrYxcTMP5LJOReV",
+        "recEpvyjyu0hdeyha",
+        "recjGVsiJhBluQc85",
+        "recr2pgIr0kyPN2Z6",
+        "rec9LV7Eq00ug6xyL",
+        "rec48DRnjvJ4AG3qj",
+        "recd9jTdZJtni5yQv"
+      ],
+      "Email Subject": "Weekly Shooting Challenge Summary for Testing",
+      "XP Events": [
+        "recW1oJ3F99rn3dZd",
+        "recla9itpdd6pPIfx",
+        "recB381MrsxK5Pzzk",
+        "receBteexTTxvgLkD",
+        "reciDnivYBS8NUPZx",
+        "recX9Y5GLvJvyVWSy",
+        "recSBBAmuaKANy15X"
+      ],
+      "Perfect Week Video Minimum": [
+        3
+      ],
+      "Perfect Week Homework Completion %": 1,
+      "Grade Band": [
+        "rec75ruo3XT5nSvaK"
+      ],
+      "Weekly Goal Shots Target": 1253.7313432835822,
+      "Week Start Date (Lookup)": [
+        "2026-06-01"
+      ],
+      "Perfect Week Daily Requirement Met? Calculated": 0,
+      "Overall Awards Placeholder": {
+        "state": "empty",
+        "value": null,
+        "isStale": true
+      },
+      "Homework Satisfactory Count": 0,
+      "Zoom Meetings Summary": {
+        "state": "empty",
+        "value": null,
+        "isStale": true
+      },
+      "Weekly Email Record ID": "recepCHCOXtQ71gzR",
+      "Total XP After Week": 140,
+      "Week Key - Lkp": [
+        "|ATHWF|2026-09-13|submissions|WEEK"
+      ],
+      "Perfect Week Daily Check Status": "Fail",
+      "Grade Band - Display": "9-12",
+      "Full Name - From Enrollment - Display": [
+        "Schmidt, Testing - 2026-2027"
+      ],
+      "Activity Dates": [
+        "2026-06-01T00:00:00.000Z",
+        "2026-06-01T00:00:00.000Z",
+        "2026-06-02T00:00:00.000Z",
+        "2026-06-03T00:00:00.000Z",
+        "2026-06-05T00:00:00.000Z",
+        "2026-06-04T00:00:00.000Z",
+        "2026-06-06T00:00:00.000Z"
+      ],
+      "Perfect Week Homework Requirement Status": "Not Required - No Homework This Week",
+      "Level Number": 1,
+      "Total Makes This Week": 0,
+      "Perfect Week Automation Error": "058 skipped: Perfect Week Eligible? is not 1.",
+      "XP Earned This Week": 140,
+      "Enrollment Key - Lkp": [
+        "ATH-recshWT5DQPUZXDvr|2026-2027"
+      ],
+      "Grade": [
+        "12"
+      ],
+      "Perfect Week Homework Requirement Met?": 1,
+      "Parent Email - Cleaned": [
+        "mschmidt@fairfield.k12.mt.us"
+      ],
+      "Homework Display": "🚫 No Homework",
+      "Enrollment": [
+        "recn54wbxTjygydqa"
+      ],
+      "Met Minimum Days Requirement?": 1,
+      "Created": "2026-09-13T18:51:43.000Z",
+      "Week": [
+        "recyfdhcZUetJL2X4"
+      ],
+      "Perfect Week Calculation Queue?": 0,
+      "Goal Record": [
+        "recHE7FhreD1jqfXm"
+      ],
+      "Days Logged This Week": 6,
+      "Perfect Week Zoom Requirement Status": "No Zoom This Week",
+      "Momentum Status": "First Week",
+      "Total Shots This Week": 430,
+      "Weekly Athlete Summary - Display": "Schmidt, Testing - 2026-2027 - ATHWF|2026-09-13|submissions|WEEK - 9-12",
+      "Previous Total XP": 0,
+      "Perfect Week Zoom Attendance Count": 0,
+      "Perfect Week Zoom Requirement Met?": 1,
+      "Goal Shots Target": [
+        12000
+      ],
+      "Week End Date (Lookup)": [
+        "2026-06-08"
+      ],
+      "Perfect Week Homework Assigned Count": 0,
+      "Goal Completion %": 0.34297619047619043,
+      "Program Instance (from Enrollment)": [
+        "rec5mEM0YPqPqq0hZ"
+      ],
+      "Perfect Week Video Requirement Met?": 0,
+      "Summary Calculation Status": "Complete",
+      "Threshold XP Ready?": 0,
+      "Duplicate Prevention Key": "\"Schmidt, Testing - 2026-2027\"-ATHWF|2026-09-13|submissions|WEEK",
+      "Week - Display": "ATHWF|2026-09-13|submissions|WEEK",
+      "Combined Recipient Emails": "mschmidt@fairfield.k12.mt.us",
+      "RecordId": "recepCHCOXtQ71gzR",
+      "Summary Key": "ATH-recshWT5DQPUZXDvr|2026-2027||ATHWF|2026-09-13|submissions|WEEK",
+      "Weekly Summary Key": "\"Schmidt, Testing - 2026-2027\"|ATHWF|2026-09-13|submissions|WEEK",
+      "Perfect Week Homework Satisfactory Count": 0,
+      "Athlete First Name": [
+        "Testing"
+      ],
+      "Perfect Week Video Count": 1,
+      "Perfect Week Daily Check Detail": "Official week: 2026-06-01 through 2026-06-07\nWeekly goal: 1254\nDaily minimum: 180\nRequired qualifying videos: 3 (config_perfect_week_video_minimum)\nSubmission grace period (hours): 48\nPassing official days: 0/7\nTiming breakdown: on-time=0; grace-period=0; late=7; manual=0\nIgnored non-qualifying submissions: 7\nIgnored qualifying submissions outside official week: 0\nFAIL: Missing official week days: 2026-06-01; 2026-06-02; 2026-06-03; 2026-06-04; 2026-06-05; 2026-06-06; 2026-06-07\nPerfect Week evaluation window open (Denver today 2026-09-13 > Week End 2026-06-07).",
+      "Previous Week Shots": 0,
+      "Athlete Last Name": [
+        "Schmidt"
+      ],
+      "Homework Assigned Count": 0,
+      "Perfect Week Automation Status": "Ready"
+    }
+  },
+  "wasChecks": [
+    {
+      "id": "was.days_logged",
+      "stage": 14,
+      "expected": 6,
+      "actual": 6,
+      "pass": true,
+      "status": "PASS",
+      "notes": null
+    },
+    {
+      "id": "was.shots_min",
+      "stage": 14,
+      "expected": ">= 430",
+      "actual": 430,
+      "pass": true,
+      "status": "PASS",
+      "notes": null
+    }
+  ],
+  "streakOffline": {
+    "current": 6,
+    "longest": 6,
+    "segments": [
+      [
+        "2026-06-01",
+        "2026-06-02",
+        "2026-06-03",
+        "2026-06-04",
+        "2026-06-05",
+        "2026-06-06"
+      ]
+    ],
+    "dates": [
+      "2026-06-01",
+      "2026-06-02",
+      "2026-06-03",
+      "2026-06-04",
+      "2026-06-05",
+      "2026-06-06"
+    ]
+  },
+  "enrollmentAfter": {
+    "id": "recn54wbxTjygydqa",
+    "active": true,
+    "lifetimeXp": 140,
+    "currentLevel": [
+      "rec1iGy92ZC0jwzD4"
+    ],
+    "nextLevel": [
+      "rec1EJLJLmfdJLtoF"
+    ],
+    "currentStreak": 0,
+    "gradeBand": [
+      "rec75ruo3XT5nSvaK"
+    ]
+  },
+  "finishedAt": "2026-09-13T18:53:11.251Z"
+}

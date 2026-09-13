@@ -37,7 +37,7 @@ const DRY_RUN = !LIVE_CREATE && !CLEANUP;
 const ENROLLMENT_TARGETS = [
   { id: "rec93mAfo5jKqP3g5", label: "perfect_week_testing", slug: "perfect-week-testing" },
   { id: "recCrNNAdVmQ4Y8fL", label: "xavier_schmidt", slug: "xavier-schmidt" },
-  { id: "recNu6fcBpF1GG3u5", label: "testing3_schmidt", slug: "testing3-schmidt" },
+  { id: "recn54wbxTjygydqa", label: "testing_schmidt", slug: "testing-schmidt" },
   { id: "reclc46bQM8Wx0qWP", label: "curtis_schmidt", slug: "curtis-schmidt" },
 ];
 

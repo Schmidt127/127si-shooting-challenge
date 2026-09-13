@@ -45,7 +45,7 @@ test("ATHWF prefix guard rejects operational week names", () => {
 test("gated enrollment is Testing3 Schmidt only", () => {
   const ctx = buildRunContext("full");
   assert.equal(ctx.enrollmentId, GATED_ENROLLMENT_ID);
-  assert.equal(ctx.enrollmentId, "recNu6fcBpF1GG3u5");
+  assert.equal(ctx.enrollmentId, "recn54wbxTjygydqa");
   assert.match(ctx.weekName, new RegExp(`^${ATHWF_PREFIX.replace("|", "\\|")}`));
 });
 

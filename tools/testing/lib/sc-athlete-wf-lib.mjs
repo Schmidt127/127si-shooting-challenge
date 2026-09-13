@@ -20,11 +20,11 @@ import {
 const HERE = dirname(fileURLToPath(import.meta.url));
 
 export const ATHWF_PREFIX = "ATHWF|";
-/** Testing3 Schmidt — disposable; not Perfect Week Testing / Xavier / Curtis. */
-export const GATED_ENROLLMENT_ID = "recNu6fcBpF1GG3u5";
-export const GATED_ATHLETE_ID = "rec82GY2ECcbWaDpf";
+/** Testing Schmidt — canonical controlled identity (2026-09-08, post-purge). */
+export const GATED_ENROLLMENT_ID = "recn54wbxTjygydqa";
+export const GATED_ATHLETE_ID = "recshWT5DQPUZXDvr";
 export const PROGRAM_INSTANCE_ID = "rec5mEM0YPqPqq0hZ";
-export const GRADE_BAND_5_6_ID = "recv9aWnHanY2sRgk";
+export const GRADE_BAND_5_6_ID = "rec75ruo3XT5nSvaK";
 
 /** Past Sun–Sat week in June 2026 — avoids PWTEST July anchors and future-date Count? = 0. */
 export const WEEK_ANCHOR = "2026-06-01";

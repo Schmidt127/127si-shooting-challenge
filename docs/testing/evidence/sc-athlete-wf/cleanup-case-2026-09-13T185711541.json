@@ -1,0 +1,171 @@
+{
+  "harness": "SC-ATHLETE-WF-001",
+  "mode": "cleanup",
+  "startedAt": "2026-09-13T18:57:11.541Z",
+  "created": {
+    "harness": "SC-ATHLETE-WF-001",
+    "createdAt": "2026-09-13T18:51:42.416Z",
+    "weekId": "recyfdhcZUetJL2X4",
+    "wasId": "recepCHCOXtQ71gzR",
+    "submissionIds": [
+      "recrYxcTMP5LJOReV",
+      "recEpvyjyu0hdeyha",
+      "recjGVsiJhBluQc85",
+      "recr2pgIr0kyPN2Z6",
+      "rec9LV7Eq00ug6xyL",
+      "rec48DRnjvJ4AG3qj",
+      "recd9jTdZJtni5yQv"
+    ],
+    "submissionMeta": [
+      {
+        "id": "recrYxcTMP5LJOReV",
+        "tag": "same-day-a",
+        "date": "2026-06-01",
+        "shots": 50,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "recEpvyjyu0hdeyha",
+        "tag": "same-day-b",
+        "date": "2026-06-01",
+        "shots": 25,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "recjGVsiJhBluQc85",
+        "tag": "day-2",
+        "date": "2026-06-02",
+        "shots": 100,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "recr2pgIr0kyPN2Z6",
+        "tag": "day-3",
+        "date": "2026-06-03",
+        "shots": 75,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "rec9LV7Eq00ug6xyL",
+        "tag": "miss-gap",
+        "date": "2026-06-05",
+        "shots": 40,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "rec48DRnjvJ4AG3qj",
+        "tag": "backdated",
+        "date": "2026-06-04",
+        "shots": 60,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      },
+      {
+        "id": "recd9jTdZJtni5yQv",
+        "tag": "day-6",
+        "date": "2026-06-06",
+        "shots": 80,
+        "mode": "Simple Total",
+        "review": "Count It",
+        "modeImplied": "Simple Total (formula from Shot Total)"
+      }
+    ],
+    "videoId": "recHIF53d3GZbxFeQ",
+    "homeworkId": "rec1kjiXTTorU40sk",
+    "incompleteHomeworkId": "recGW7hIjQcbRBy75",
+    "batchKey": "ATHWF|2026-09-13|SC-ATHLETE-WF|submissions",
+    "weekName": "ATHWF|2026-09-13|submissions|WEEK",
+    "enrollmentId": "recn54wbxTjygydqa",
+    "homeworkEligibility": {
+      "expectXp": false,
+      "blockers": [
+        "Homework XP Reconciliation Needed? != 1",
+        "Total Homework XP Awarded <= 0",
+        "Program Homework Assignment not linked (PHA-first path)",
+        "Submission link missing for new XP create"
+      ],
+      "note": "065 expected skip/no award: Homework XP Reconciliation Needed? != 1; Total Homework XP Awarded <= 0; Program Homework Assignment not linked (PHA-first path); Submission link missing for new XP create"
+    }
+  },
+  "cleanup": {
+    "actions": [
+      {
+        "table": "XP Events",
+        "attempted": [
+          "recW1oJ3F99rn3dZd",
+          "receBteexTTxvgLkD",
+          "recla9itpdd6pPIfx",
+          "recB381MrsxK5Pzzk",
+          "recX9Y5GLvJvyVWSy",
+          "reciDnivYBS8NUPZx",
+          "recSBBAmuaKANy15X"
+        ],
+        "status": "failed",
+        "error": "DELETE XP%20Events?records[]=recW1oJ3F99rn3dZd&records[]=receBteexTTxvgLkD&records[]=recla9itpdd6pPIfx&records[]=recB381MrsxK5Pzzk&records[]=recX9Y5GLvJvyVWSy&records[]=reciDnivYBS8NUPZx&records[]=recSBBAmuaKANy15X 403: {\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+      },
+      {
+        "table": "Video Feedback",
+        "attempted": [
+          "recHIF53d3GZbxFeQ"
+        ],
+        "status": "failed",
+        "error": "DELETE Video%20Feedback?records[]=recHIF53d3GZbxFeQ 403: {\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+      },
+      {
+        "table": "Homework Completions",
+        "attempted": [
+          "rec1kjiXTTorU40sk",
+          "recGW7hIjQcbRBy75"
+        ],
+        "status": "failed",
+        "error": "DELETE Homework%20Completions?records[]=rec1kjiXTTorU40sk&records[]=recGW7hIjQcbRBy75 403: {\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+      },
+      {
+        "table": "Submissions",
+        "attempted": [
+          "recrYxcTMP5LJOReV",
+          "recEpvyjyu0hdeyha",
+          "recjGVsiJhBluQc85",
+          "recr2pgIr0kyPN2Z6",
+          "rec9LV7Eq00ug6xyL",
+          "rec48DRnjvJ4AG3qj",
+          "recd9jTdZJtni5yQv"
+        ],
+        "status": "failed",
+        "error": "DELETE Submissions?records[]=recrYxcTMP5LJOReV&records[]=recEpvyjyu0hdeyha&records[]=recjGVsiJhBluQc85&records[]=recr2pgIr0kyPN2Z6&records[]=rec9LV7Eq00ug6xyL&records[]=rec48DRnjvJ4AG3qj&records[]=recd9jTdZJtni5yQv 403: {\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+      },
+      {
+        "table": "Weekly Athlete Summary",
+        "attempted": [
+          "recepCHCOXtQ71gzR"
+        ],
+        "status": "failed",
+        "error": "DELETE Weekly%20Athlete%20Summary?records[]=recepCHCOXtQ71gzR 403: {\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+      },
+      {
+        "table": "Weeks",
+        "attempted": [
+          "recyfdhcZUetJL2X4"
+        ],
+        "status": "failed",
+        "error": "DELETE Weeks?records[]=recyfdhcZUetJL2X4 403: {\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+      }
+    ],
+    "cleanedAt": "2026-09-13T18:57:11.541Z",
+    "complete": false,
+    "refusedOrPartial": true,
+    "note": "Partial cleanup — use MCP or broader PAT for failed tables (often XP Events DELETE 403)"
+  },
+  "passed": true
+}

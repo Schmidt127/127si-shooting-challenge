@@ -1,0 +1,39 @@
+{
+  "harness": "family_campaign_pw_proof_complete",
+  "verified_at": "2026-09-13T19:12:00.000Z",
+  "automation_057": "v2.7 confirmed in Production Automations table (Week End Saturday homework gate)",
+  "automation_064": "Live — requires Coach Feedback + Satisfactory? + Review Complete before Total Homework XP Awarded",
+  "automation_065": "Live v10.9 — awards HOMEWORK_XP after 064 prepares points",
+  "pw_count_before": 1,
+  "pw_count_after": 1,
+  "paths": {
+    "on_time_evidence": "Existing HC recCGcgvS2c8vJsiZ on enrollment WAS recjp4P0C72YT9UHy",
+    "late_submission": "rec987NtYw7hj5jm8",
+    "late_asset": "recmrwzCnth3e3XD8",
+    "late_hc": "recfwzq5qfnuWcU08",
+    "late_submission_date": "2027-07-01",
+    "late_xp_id": "recxnjk99dURmf2RK",
+    "late_xp_points": 35
+  },
+  "checks": [
+    {
+      "id": "on_time_existing_hc",
+      "pass": true,
+      "expected": "PW satisfactory count >= 1 before late test",
+      "actual": 1
+    },
+    {
+      "id": "late_xp_awarded",
+      "pass": true,
+      "expected": "HOMEWORK_XP via 064→065 after Coach Feedback",
+      "actual": 1
+    },
+    {
+      "id": "late_excluded_from_pw_count",
+      "pass": true,
+      "expected": "PW count unchanged (late excluded by 057 v2.7)",
+      "actual": 1
+    }
+  ],
+  "pass": true
+}

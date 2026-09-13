@@ -159,7 +159,7 @@ function makeResult(caseId, status, reason, details = {}) {
   return { caseId, status, reason, ...details };
 }
 
-const GATED_ENROLLMENT_ID = "rec93mAfo5jKqP3g5";
+const GATED_ENROLLMENT_ID = "recn54wbxTjygydqa";
 
 function submissionUsesGatedTestFields(sub) {
   const checked = truthy(field(sub, "Perfect Week Test Record?"));
