@@ -110,12 +110,18 @@ const BUNDLES = [
   },
   {
     id: "073",
-    version: "v4.7",
+    version: "v4.9",
     source:
       "airtable/automations/shooting-challenge/073-email-notifications-and-external-handoffs-send-video-feedback-parent-email-webhook.js",
-    paste: "docs/deploy-checklists/073-v4.7-PASTE.txt",
+    paste: "docs/deploy-checklists/073-v4.9-PASTE.txt",
     extract: extractFromProductionDocblock,
-    mustInclude: ['version: "v4.7"', "athleteFirstName", "valid_lambda_viewer"],
+    mustInclude: [
+      'version: "v4.9"',
+      "athleteFirstName",
+      "valid_lambda_viewer",
+      "hasCanonicalVideo",
+      "No canonical video evidence",
+    ],
     mustExclude: ["fetch(", "makeWebhookUrl"],
   },
   {
@@ -130,17 +136,17 @@ const BUNDLES = [
   },
   {
     id: "076",
-    version: "v8.14",
+    version: "v8.15",
     source:
       "airtable/automations/shooting-challenge/076-email-notifications-and-external-handoffs-build-daily-submission-email-package.js",
-    paste: "docs/deploy-checklists/076-v8.14-PASTE.txt",
+    paste: "docs/deploy-checklists/076-v8.15-PASTE.txt",
     extract: extractFromProductionDocblock,
     mustInclude: [
-      'version: "v8.14"',
+      'version: "v8.15"',
       "athleteFirstName",
       "currentStreak",
       "DAILY_SUBMISSION",
-      "Removes xpExtraCredit",
+      "duplicate Handoff Keys",
     ],
   },
   {
