@@ -3,6 +3,7 @@
 **Date:** 2026-09-11  
 **Production base:** `appn84sqPw03zEbTT` (Production only — no DEV base)  
 **Git tip when written:** `8590c9ec` (includes FUT-043 #516 @ `3703ffdc` + paste bundles #517)  
+**Git tip after Tier-1 closeout (2026-09-13):** Production-aligned producers **076 v8.15**, **073 v4.9** — see PR for Tier-1 email closeout.  
 **Disposable proof email:** `schmidt@fairfieldbasketballclub.com` only
 
 This packet combines the highest-impact launch ops from CURRENT-TRUTH into **one ordered checklist**. Cursor cannot paste Airtable automations or set Vercel env vars — Mike UI only for execution steps.
@@ -35,14 +36,16 @@ node tools/testing/tests/test_paste_bundle_integrity.mjs
 
 ### Paste order (recommended)
 
-| Order | Slot | GitHub version | Live (expected behind) | Paste file | What changes |
-|---|---|---|---|---|---|
-| 1 | **076** | **v8.14** | v8.12 | [`076-v8.14-PASTE.txt`](./076-v8.14-PASTE.txt) | SC-171 streak from counted days; `athleteFirstName`; no Extra Credit / Shooting % in payload |
-| 2 | **071** | **v4.5** | v4.3 | [`071-v4.5-PASTE.txt`](./071-v4.5-PASTE.txt) | SC-171 dates + athlete profile URL; v4.5 Structured Curriculum HC-only asset path |
-| 3 | **072** | **v4.9.2** | v4.9.1 | [`072-v4.9.2-PASTE.txt`](./072-v4.9.2-PASTE.txt) | Weekly package + `athleteFirstName` |
-| 4 | **074** | **v3.6** | v3.3 | [`074-v3.6-PASTE.txt`](./074-v3.6-PASTE.txt) | Weekly Hub handoff + `athleteFirstName` |
-| 5 | **073** | **v4.7** | v4.6 | [`073-v4.7-PASTE.txt`](./073-v4.7-PASTE.txt) | Video Hub handoff + `athleteFirstName` |
-| 6 | **117** | **v2.2** | v2.1 | [`117-v2.2-PASTE.txt`](./117-v2.2-PASTE.txt) | Zoom recording approval Hub handoff; meeting display + timestamps |
+| Order | Slot | GitHub / Production version | Paste file | What changed |
+|---|---|---|---|---|
+| 1 | **076** | **v8.15** | [`076-v8.15-PASTE.txt`](./076-v8.15-PASTE.txt) | SC-171 streak + `athleteFirstName`; v8.15 closes concurrent EHQ create race |
+| 2 | **071** | **v4.5** | [`071-v4.5-PASTE.txt`](./071-v4.5-PASTE.txt) | SC-171 dates + athlete profile URL; Structured Curriculum HC-only asset path |
+| 3 | **072** | **v4.9.2** | [`072-v4.9.2-PASTE.txt`](./072-v4.9.2-PASTE.txt) | Weekly package + `athleteFirstName` |
+| 4 | **074** | **v3.6** | [`074-v3.6-PASTE.txt`](./074-v3.6-PASTE.txt) | Weekly Hub handoff + `athleteFirstName` |
+| 5 | **073** | **v4.9** | [`073-v4.9-PASTE.txt`](./073-v4.9-PASTE.txt) | Canonical Submission Asset / Video Feedback evidence (v4.8) + `athleteFirstName` |
+| 6 | **117** | **v2.2** | [`117-v2.2-PASTE.txt`](./117-v2.2-PASTE.txt) | Zoom recording approval Hub handoff; meeting display + timestamps |
+
+**2026-09-13 status:** Production **matches** GitHub for all six producers above. **Do not re-paste** unless Live drifts behind GitHub. Superseded bundles: `076-v8.14-PASTE.txt`, `073-v4.7-PASTE.txt`.
 
 ### After each paste
 
@@ -54,10 +57,10 @@ node tools/testing/tests/test_paste_bundle_integrity.mjs
 
 | Slot | GitHub | Notes |
 |---|---|---|
-| **078A** | v1.6 | Welcome handoff — paste if Live < GitHub |
+| **078A** | v1.7 | Welcome handoff — Live matches GitHub (2026-09-13) |
 | **079** | v2.5 | Dispatcher — confirm `ingressSecret` input configured |
-| **118** | v2.0 | Weekly arm — confirm `dryRun` / `sendMode` before Live |
-| **119** | v1.7 | Weekly send — confirm `dryRun` before Live |
+| **118** | v2.1 | Weekly arm — confirm `dryRun` / `sendMode` before Live |
+| **119** | v1.8 | Weekly send — confirm `dryRun` before Live |
 
 Detail: [`parent-email-live-cutover-2026-09-02.md`](./parent-email-live-cutover-2026-09-02.md) · SC-171: [`SC-171-email-homework-presentation.md`](./SC-171-email-homework-presentation.md)
 

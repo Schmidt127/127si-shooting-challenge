@@ -69,8 +69,8 @@ SPECS: list[tuple[str, str, str, str]] = [
     ),
     (
         "073-email-notifications-and-external-handoffs-send-video-feedback-parent-email-webhook.js",
-        "073-v4.7-PASTE.txt",
-        "v4.7",
+        "073-v4.9-PASTE.txt",
+        "v4.9",
         "docblock",
     ),
     (
@@ -81,8 +81,8 @@ SPECS: list[tuple[str, str, str, str]] = [
     ),
     (
         "076-email-notifications-and-external-handoffs-build-daily-submission-email-package.js",
-        "076-v8.14-PASTE.txt",
-        "v8.14",
+        "076-v8.15-PASTE.txt",
+        "v8.15",
         "docblock",
     ),
     (
