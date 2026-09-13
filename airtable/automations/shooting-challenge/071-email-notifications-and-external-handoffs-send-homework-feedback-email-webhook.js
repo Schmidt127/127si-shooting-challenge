@@ -380,6 +380,14 @@ async function main() {
   const hc = await hcT.selectRecordAsync(recordId);
   if (!hc) throw new Error(`Homework Completion not found: ${recordId}`);
 
+  // SC-SEASON-SIM-001 — suppress handoff when Notes carry SEASON-SIM| marker.
+  if (String(hc.getCellValue("Notes") || "").includes("SEASON-SIM|")) {
+    setOutputSafe("statusOut", "skipped");
+    setOutputSafe("actionOut", "skipped_season_sim_email_suppressed");
+    setOutputSafe("errorOut", "");
+    return;
+  }
+
   const handoffKey = `${CONFIG.values.eventType}|${CONFIG.values.sourceTableToken}|${recordId}`;
 
   debug("02 - Validate readiness gates");

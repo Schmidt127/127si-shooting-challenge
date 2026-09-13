@@ -541,6 +541,14 @@ async function main() {
   const vf = await vfTable.selectRecordAsync(recordId);
   if (!vf) throw new Error(`Video Feedback not found: ${recordId}`);
 
+  // SC-SEASON-SIM-001 — suppress handoff when Coach Feedback carries SEASON-SIM| marker.
+  if (String(vf.getCellValue("Coach Feedback") || "").includes("SEASON-SIM|")) {
+    setOutputSafe("statusOut", "skipped");
+    setOutputSafe("actionOut", "skipped_season_sim_email_suppressed");
+    setOutputSafe("errorOut", "");
+    return;
+  }
+
   const handoffKey = `${CONFIG.values.eventType}|${CONFIG.values.sourceTableToken}|${recordId}`;
 
   step("02 - Validate readiness gates");

@@ -811,6 +811,17 @@ async function main() {
   const sub = await subT.selectRecordAsync(recordId);
   if (!sub) throw new Error(`Submission not found: ${recordId}`);
 
+  // SC-SEASON-SIM-001 — dual gate: suppress handoff for disposable sim rows only.
+  if (
+    sub.getCellValue("Season Sim Test Record?") === true &&
+    String(sub.getCellValue("Video Upload Note") || "").includes("SEASON-SIM|")
+  ) {
+    setOutputSafe("statusOut", "skipped");
+    setOutputSafe("actionOut", "skipped_season_sim_email_suppressed");
+    setOutputSafe("errorOut", "");
+    return;
+  }
+
   const handoffKey = `DAILY_SUBMISSION|SUBMISSIONS|${recordId}`;
 
   step("01 - Validate Submission readiness");

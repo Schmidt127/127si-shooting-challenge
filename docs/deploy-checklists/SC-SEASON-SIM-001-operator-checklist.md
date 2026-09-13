@@ -75,6 +75,27 @@ Run before live execute (`tools/season_simulation/safety_gates.py`):
 
 Email **OFF** by default. Allowlist only: `schmidt@fairfieldbasketballclub.com`.
 
+### C3. No-email simulation guard (Athletes 2–3 / resume runs)
+
+For **`SEASON-SIM-2027-20260913T010724Z-threeathlete`** and later three-athlete runs where
+email must stay at zero new queue rows:
+
+1. **Writer** (`suppress_simulation_email=True`, default when `--enable-email-delivery` is off):
+   - Does not arm `Build Daily Email Now?`
+   - Sets `Parent Feedback Sent?=true` on Homework Completions at create
+   - Arms Video Feedback with `Parent Feedback Sent?=true` (skips Ready path)
+   - Omits Parent/Athlete Email on Enrollments (blocks 078A welcome handoff)
+2. **Automation guards** (GitHub — paste to Production when changed):
+   `076`, `071`, `073`, `074`, `078A`, `079`, `117` — early
+   `skipped_season_sim_email_suppressed` when dual-gate / marker / Sim Perfect|Recovery|Edge names match.
+3. **Monitor**: capture Email Handoff Queue baseline before Athlete 2; **any new row id** during
+   suppressed runs = hard stop (`handoff_monitor.py`, strict mode).
+4. Offline contract: `season_simulation/tests/test_season_sim_email_suppression.py`
+
+**Stage Z correction:** `execute_three` Stage 0 snapshots **live** formulas (often already gated).
+Restore Production-normal text from `tools/season_simulation/production_formula_rollback.py`
+(or `FORMULAS-TO-PASTE.txt` ROLLBACK sections) via Meta API `options.formula` PATCH — not the gated snapshot.
+
 ---
 
 ## D. Authorization gates (all required)

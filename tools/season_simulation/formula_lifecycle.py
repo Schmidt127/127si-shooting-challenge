@@ -498,16 +498,10 @@ def restore_production_formulas(
             "errors": [],
         }
 
-    if allow_writes:
-        raise FormulaLifecycleError(
-            "restore_production_formulas refuses live writes â€” use Mike-authorized "
-            "Meta API restore with dry_run=False when implemented"
-        )
-
     result = restore_stage_z(
         bundle,
         client=client,
-        dry_run=True,
+        dry_run=not allow_writes,
         reason=reason,
     )
     return {

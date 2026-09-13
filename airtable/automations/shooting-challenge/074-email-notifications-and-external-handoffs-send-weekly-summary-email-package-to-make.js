@@ -442,6 +442,19 @@ async function main() {
     weeksTable.selectRecordAsync(weekId),
   ]);
   if (!enrollment || !week) throw new Error("WAS source Enrollment/Week not found.");
+  // SC-SEASON-SIM-001 — suppress weekly handoff for disposable sim enrollments only.
+  const simFirst = String(getText(enrollment, enrollmentsTable, CONFIG.fields.enr.athleteFirst) || "").trim();
+  const simAthlete = String(getText(enrollment, enrollmentsTable, CONFIG.fields.enr.athlete) || "").trim();
+  const simLast = simAthlete.startsWith("Sim ") ? simAthlete.slice(4).trim() : "";
+  if (
+    ["Sim Perfect", "Sim Recovery", "Sim Edge"].includes(simAthlete) ||
+    (simFirst === "Sim" && ["Perfect", "Recovery", "Edge"].includes(simLast))
+  ) {
+    setOutputSafe("statusOut", "skipped");
+    setOutputSafe("actionOut", "skipped_season_sim_email_suppressed");
+    setOutputSafe("errorOut", "");
+    return;
+  }
   if (fieldExists(enrollmentsTable, CONFIG.fields.enr.active) && !checked(enrollment, enrollmentsTable, CONFIG.fields.enr.active)) {
     throw new Error("Enrollment is inactive. Handoff blocked.");
   }

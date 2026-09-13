@@ -283,6 +283,20 @@ async function main() {
   if (!enr) throw new Error(`Enrollment not found: ${enrollmentRid}`);
   if (!zm) throw new Error(`Zoom Meeting not found: ${zoomMeetingRid}`);
 
+  // SC-SEASON-SIM-001 — suppress Zoom recording email for disposable sim meetings/enrollments.
+  const meetingName = String(zm.getCellValue("Meeting Name") || "");
+  const simFirst = String(enr.getCellValue("Athlete First Name") || "").trim();
+  const simLast = String(enr.getCellValue("Athlete Last Name") || "").trim();
+  if (
+    meetingName.includes("SEASON-SIM|") ||
+    (simFirst === "Sim" && ["Perfect", "Recovery", "Edge"].includes(simLast))
+  ) {
+    setOutput("statusOut", "skipped");
+    setOutput("actionOut", "skipped_season_sim_email_suppressed");
+    setOutput("errorOut", "");
+    return;
+  }
+
   const handoffKey = `${CONFIG.values.eventType}|${CONFIG.values.sourceTableToken}|${zoomAttendanceId}`;
 
   debug("02 - Validate links and readiness");

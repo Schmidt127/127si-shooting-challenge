@@ -594,6 +594,24 @@ async function main() {
     step("3 - Load queue record");
     const row = await queueTable.selectRecordAsync(recordId);
     if (!row) throw new Error(`Email Handoff Queue record not found: ${recordId}`);
+    // SC-SEASON-SIM-001 — never dispatch Hub sends for disposable season-sim handoffs.
+    const simBlob = [
+      getText(row, CONFIG.fields.handoffKey),
+      getText(row, CONFIG.fields.payloadJson),
+      getText(row, CONFIG.fields.recipientsJson),
+    ].join(" ");
+    if (
+      simBlob.includes("SEASON-SIM|") ||
+      simBlob.includes("Sim Perfect") ||
+      simBlob.includes("Sim Recovery") ||
+      simBlob.includes("Sim Edge")
+    ) {
+      setOutputSafe("statusOut", "skipped");
+      setOutputSafe("actionOut", "skipped_season_sim_email_suppressed");
+      setOutputSafe("errorOut", "");
+      log("079 result", { queueRecordId: recordId, statusOut: "skipped", actionOut: "skipped_season_sim_email_suppressed" });
+      return;
+    }
     const status = getText(row, CONFIG.fields.status);
     if (normalizeText(status) !== normalizeText(CONFIG.values.statusReady)) {
       setOutputSafe("statusOut", "skipped");

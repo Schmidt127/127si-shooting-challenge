@@ -492,6 +492,17 @@ async function main() {
         const athlete = await athletesTable.selectRecordAsync(context.athleteRecordId);
         if (!athlete) throw new Error(`Athlete record not found: ${context.athleteRecordId}`);
         const athleteName = buildAthleteName(enrollment, athlete);
+        // SC-SEASON-SIM-001 — suppress welcome handoff for disposable sim athletes only.
+        const simFirst = String(getText(enrollment, CONFIG.enrollmentFields.athleteFirstName) || getText(athlete, CONFIG.athleteFields.firstName) || "").trim();
+        const simLast = String(getText(enrollment, CONFIG.enrollmentFields.athleteLastName) || getText(athlete, CONFIG.athleteFields.lastName) || "").trim();
+        if (
+            ["Sim Perfect", "Sim Recovery", "Sim Edge"].includes(athleteName) ||
+            (simFirst === "Sim" && ["Perfect", "Recovery", "Edge"].includes(simLast))
+        ) {
+            setDomainOutputs(context, "season-sim-suppressed", "skipped", "skipped_season_sim_email_suppressed", "");
+            log("078A result", { ...context, result: "season-sim-suppressed" });
+            return;
+        }
         const gradeBandLinks = getRaw(enrollment, CONFIG.enrollmentFields.gradeBand);
         const gradeBandName = Array.isArray(gradeBandLinks) && gradeBandLinks[0]?.name
             ? String(gradeBandLinks[0].name).trim()

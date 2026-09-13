@@ -6,6 +6,11 @@ Notable changes to scripts, schema documentation, Make.com blueprints, audit too
 
 ## [Unreleased]
 
+### Airtable
+
+#### Added
+- **SC-SEASON-SIM-001 no-email simulation guard (2026-09-13)** — Writer `suppress_simulation_email` plus early skip in **076**, **071**, **073**, **074**, **078A**, **079**, **117** for dual-gate / `SEASON-SIM|` / Sim Perfect|Recovery|Edge rows only. Campaign `SEASON-SIM-2027-20260913T010724Z-threeathlete`: Athletes 2–3 executed with **zero** new Email Handoff Queue rows. Stage Z restore uses `production_formula_rollback.py` (not gated Stage 0 snapshot). Closeout: `tools/season_simulation/reports/campaign-closeout-SEASON-SIM-2027-20260913T010724Z-threeathlete-FINAL.md`.
+
 ### Docs
 
 #### Changed

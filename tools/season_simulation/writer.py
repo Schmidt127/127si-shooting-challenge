@@ -272,6 +272,7 @@ class SeasonSimWriter:
         registry: RunRegistry,
         registry_dir: Path,
         enable_email_delivery: bool = False,
+        suppress_simulation_email: bool = True,
     ) -> None:
         self.client = client
         self.scenario = scenario
@@ -280,6 +281,7 @@ class SeasonSimWriter:
         self.reg = registry
         self.registry_dir = registry_dir
         self.enable_email_delivery = enable_email_delivery
+        self.suppress_simulation_email = bool(suppress_simulation_email)
         self.marker = run_marker(scenario.run_id)
         self.created: list[dict[str, Any]] = []
         self.reused: list[dict[str, Any]] = []
@@ -356,7 +358,7 @@ class SeasonSimWriter:
             # Re-enter 057 after submissions + HC→WAS links + Zoom attendees settle.
             self._requeue_perfect_week_calculations()
             self._register_email_intents()
-            if self.enable_email_delivery:
+            if self.enable_email_delivery and not self.suppress_simulation_email:
                 self._arm_was_email_flags(enrollment_id)
         except Exception as exc:  # noqa: BLE001 — pause + persist
             return self._pause(self.reg.last_completed_step or "unknown", exc)
@@ -398,14 +400,17 @@ class SeasonSimWriter:
             "Athlete": [athlete_id],
             "Athlete First Name": self.scenario.athlete["first_name"],
             "Athlete Last Name": self.scenario.athlete["last_name"],
-            "Parent Email": SAFE_EMAIL_RECIPIENT,
-            "Athlete Email": SAFE_EMAIL_RECIPIENT,
             "School Year": self.ctx.school_year,
             "Grade": self.scenario.athlete["grade"],
             "Grade Band": [self.ctx.grade_band_id],
             "Program Instance": [self.ctx.program_instance_id],
             "Active?": True,
         }
+        # Omit parent/athlete emails when suppressing — blocks 078A welcome handoff
+        # (Parent Email - Cleaned blank → requireEmail fails closed, no queue row).
+        if not self.suppress_simulation_email:
+            fields["Parent Email"] = SAFE_EMAIL_RECIPIENT
+            fields["Athlete Email"] = SAFE_EMAIL_RECIPIENT
         rid = self._ensure(
             table="Enrollments",
             dedupe_key=f"{self.marker}|ENROLLMENT",
@@ -718,7 +723,8 @@ class SeasonSimWriter:
             # 071 structural gates (do NOT force Award Status=Awarded — 064 owns that).
             "Item Slot": slot,
             "Submission Assets": asset_ids,
-            "Parent Feedback Sent?": False,
+            # When suppressing email, mark sent preemptively so 071/078 cannot hand off.
+            "Parent Feedback Sent?": bool(self.suppress_simulation_email),
         }
         if was_id:
             hc_fields["Weekly Athlete Summary Link"] = [was_id]
@@ -858,7 +864,13 @@ class SeasonSimWriter:
                 }
             )
             return
-        arm_fields: dict[str, Any] = dict(build_video_feedback_arm_fields())
+        if self.suppress_simulation_email:
+            arm_fields = {
+                "Feedback Posted?": True,
+                "Parent Feedback Sent?": True,
+            }
+        else:
+            arm_fields = dict(build_video_feedback_arm_fields())
         # Do not set Ready for XP Automation? — 113 owns that after Base XP.
         self._update_records(
             "Video Feedback",
@@ -1177,41 +1189,53 @@ class SeasonSimWriter:
         streak_step = f"submission_streak_arm|D{day_number:02d}"
         done = set(self.reg.meta.get("completed_dedupe_keys") or [])
 
-        if daily_dedupe not in done and not self.reg.has_dedupe_key(daily_dedupe):
-            daily_fields = {"Build Daily Email Now?": True}
-            self._update_records(
-                "Submissions",
-                [{"id": submission_id, "fields": daily_fields}],
-            )
+        if not self.suppress_simulation_email:
+            if daily_dedupe not in done and not self.reg.has_dedupe_key(daily_dedupe):
+                daily_fields = {"Build Daily Email Now?": True}
+                self._update_records(
+                    "Submissions",
+                    [{"id": submission_id, "fields": daily_fields}],
+                )
+                self.reg.add(
+                    "Submissions",
+                    submission_id,
+                    dedupe_key=daily_dedupe,
+                    notes="arm_076_build_daily_email_now",
+                    fields_snapshot=dict(daily_fields),
+                )
+                self.reg.meta.setdefault("completed_dedupe_keys", [])
+                self.reg.meta["completed_dedupe_keys"].append(daily_dedupe)
+                self.created.append(
+                    {
+                        "table": "Submissions",
+                        "id": submission_id,
+                        "dedupe_key": daily_dedupe,
+                        "step": daily_step,
+                        "op": "submission_post_create_arm",
+                    }
+                )
+                self.reg.last_completed_step = daily_step
+                self._save()
+            else:
+                self.reused.append(
+                    {
+                        "table": "Submissions",
+                        "id": submission_id,
+                        "dedupe_key": daily_dedupe,
+                        "step": daily_step,
+                    }
+                )
+        elif daily_dedupe not in done and not self.reg.has_dedupe_key(daily_dedupe):
             self.reg.add(
                 "Submissions",
                 submission_id,
                 dedupe_key=daily_dedupe,
-                notes="arm_076_build_daily_email_now",
-                fields_snapshot=dict(daily_fields),
+                notes="skipped_076_build_daily_email_suppressed",
+                fields_snapshot={"Build Daily Email Now?": False},
             )
             self.reg.meta.setdefault("completed_dedupe_keys", [])
             self.reg.meta["completed_dedupe_keys"].append(daily_dedupe)
-            self.created.append(
-                {
-                    "table": "Submissions",
-                    "id": submission_id,
-                    "dedupe_key": daily_dedupe,
-                    "step": daily_step,
-                    "op": "submission_post_create_arm",
-                }
-            )
-            self.reg.last_completed_step = daily_step
             self._save()
-        else:
-            self.reused.append(
-                {
-                    "table": "Submissions",
-                    "id": submission_id,
-                    "dedupe_key": daily_dedupe,
-                    "step": daily_step,
-                }
-            )
 
         if streak_dedupe in done or self.reg.has_dedupe_key(streak_dedupe):
             self.reused.append(
@@ -1342,8 +1366,11 @@ class SeasonSimWriter:
         for ev in self.scenario.intended_emails:
             event = {
                 **ev,
-                "send": bool(self.enable_email_delivery),
+                "send": bool(
+                    self.enable_email_delivery and not self.suppress_simulation_email
+                ),
                 "recipient": SAFE_EMAIL_RECIPIENT,
+                "suppressed": bool(self.suppress_simulation_email),
             }
             self.reg.email_events.append(event)
         self._save()

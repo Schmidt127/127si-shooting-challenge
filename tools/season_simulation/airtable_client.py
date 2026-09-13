@@ -122,6 +122,40 @@ class AirtableClient:
         data = self._request("GET", url)
         return list(data.get("tables") or [])
 
+    def update_formula_field(
+        self,
+        table_name: str,
+        field_name: str,
+        formula_text: str,
+    ) -> dict[str, Any]:
+        """Restore or update a formula field via Meta API (Stage Z)."""
+        self._require_writes(f"meta:{table_name}.{field_name}")
+        tables = self.meta_tables()
+        table_id = ""
+        field_id = ""
+        for table in tables:
+            if table.get("name") != table_name:
+                continue
+            table_id = str(table.get("id") or "")
+            for fld in table.get("fields") or []:
+                if fld.get("name") == field_name:
+                    field_id = str(fld.get("id") or "")
+                    break
+            break
+        if not table_id or not field_id:
+            raise RuntimeError(
+                f"Meta lookup failed for formula field {table_name}.{field_name}"
+            )
+        url = (
+            f"https://api.airtable.com/v0/meta/bases/{self.base_id}/tables/"
+            f"{table_id}/fields/{field_id}"
+        )
+        return self._request(
+            "PATCH",
+            url,
+            json_body={"options": {"formula": formula_text}},
+        )
+
     def create_records(self, table: str, records: list[dict[str, Any]]) -> list[dict]:
         self._require_writes(table)
         out: list[dict] = []
@@ -190,10 +224,15 @@ class AirtableClient:
 
 def load_token() -> str:
     _load_env_files()
-    token = os.getenv("AIRTABLE_TOKEN") or os.getenv("AIRTABLE_API_TOKEN") or ""
+    token = (
+        os.getenv("CURRICULUM_AIRTABLE_TOKEN")
+        or os.getenv("AIRTABLE_TOKEN")
+        or os.getenv("AIRTABLE_API_TOKEN")
+        or ""
+    )
     if not token:
         raise SystemExit(
-            "Missing AIRTABLE_TOKEN / AIRTABLE_API_TOKEN "
+            "Missing CURRICULUM_AIRTABLE_TOKEN / AIRTABLE_TOKEN / AIRTABLE_API_TOKEN "
             "(tools/airtable/.env or web/.env.local)"
         )
     return token
@@ -201,8 +240,12 @@ def load_token() -> str:
 
 def load_base_id() -> str:
     _load_env_files()
+    # Season sim targets Shooting Challenge Production (DEFAULT_BASE_ID).
+    # CURRICULUM_AIRTABLE_BASE_ID is a different workspace base — do not use here.
     return (
-        os.getenv("BASE_ID")
+        os.getenv("SEASON_SIM_AIRTABLE_BASE_ID")
+        or os.getenv("SHOOTING_CHALLENGE_AIRTABLE_BASE_ID")
+        or os.getenv("BASE_ID")
         or os.getenv("AIRTABLE_BASE_ID")
         or DEFAULT_BASE_ID
     )

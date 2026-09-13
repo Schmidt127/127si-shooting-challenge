@@ -675,6 +675,7 @@ def run_execute(
     out_dir: Path,
     client: Any | None = None,
     enable_email_delivery: bool = False,
+    suppress_simulation_email: bool = True,
     acknowledge_clock_override: bool = False,
     submission_field_names: set[str] | None = None,
     formula_text: str | None = None,
@@ -702,6 +703,7 @@ def run_execute(
         "simulation_id": simulation_id or scenario.run_id,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "enable_email_delivery": enable_email_delivery,
+        "suppress_simulation_email": suppress_simulation_email,
         "intended_write_count": len(intended),
         "intended_writes": intended,
         "write_readiness": readiness,
@@ -790,6 +792,7 @@ def run_execute(
         registry=reg,
         registry_dir=registry_dir,
         enable_email_delivery=enable_email_delivery,
+        suppress_simulation_email=suppress_simulation_email,
     )
     result = writer.run()
     payload["writer_status"] = result.status

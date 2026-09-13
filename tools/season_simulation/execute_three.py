@@ -49,6 +49,7 @@ from .business_reconciliation import stage_e2_business_success_hook
 from .expectations_matrix import build_athlete_expectation_matrix
 from .rearm_submission_xp import run_rearm_submission_xp
 from .run_registry import save_registry
+from .handoff_monitor import capture_handoff_baseline, verify_no_new_run_handoffs
 from .writer import (
     build_execute_context_from_reference,
     field_names_for_table,
@@ -74,6 +75,10 @@ class ExecuteThreeAborted(RuntimeError):
     pass
 
 
+class ExecuteThreeSafetyStop(RuntimeError):
+    """Hard stop — email handoff leak or other safety failure."""
+
+
 def profile_registry_run_id(run_id: str, profile: str) -> str:
     """Per-profile registry file key under a shared three-athlete run_id."""
     slug = profile.replace("_", "-")
@@ -83,6 +88,29 @@ def profile_registry_run_id(run_id: str, profile: str) -> str:
 def profile_ownership_namespace(run_id: str, profile: str) -> str:
     """Text namespace stamped into dedupe keys / registry rows for one profile."""
     return athlete_marker(run_id, profile)
+
+
+def profile_is_complete_for_resume(
+    reg: Any,
+    *,
+    client: Any | None = None,
+) -> bool:
+    """True when a profile registry shows a finished writer run with live enrollment."""
+    if str(getattr(reg, "status", "") or "") != "complete":
+        return False
+    step = str(getattr(reg, "last_completed_step", "") or "")
+    if step not in {"H_post_cascade_hooks", "complete", "E_reconcile", "C_activity"}:
+        return False
+    enrollment_id = str(getattr(reg, "enrollment_id", "") or "")
+    if not enrollment_id.startswith("rec"):
+        return False
+    if client is None:
+        return True
+    try:
+        client.get_record("Enrollments", enrollment_id)
+        return True
+    except Exception:  # noqa: BLE001
+        return False
 
 
 def _count_client_writes(client: Any | None) -> int:
@@ -136,6 +164,7 @@ def _run_profile_writer(
     confirm: str | None,
     confirm_disposable: str | None,
     enable_email_delivery: bool,
+    suppress_simulation_email: bool,
     acknowledge_clock_override: bool,
     execute_context: Any | None,
 ) -> dict[str, Any]:
@@ -172,6 +201,7 @@ def _run_profile_writer(
         out_dir=registry_dir.parent / "reports",
         client=client,
         enable_email_delivery=enable_email_delivery,
+        suppress_simulation_email=suppress_simulation_email,
         acknowledge_clock_override=acknowledge_clock_override,
         execute_context=execute_context,
     )
@@ -196,9 +226,14 @@ def run_execute_three(
     offline_fixture: bool = False,
     allow_writes: bool | None = None,
     enable_email_delivery: bool = False,
+    suppress_simulation_email: bool = True,
     acknowledge_clock_override: bool = False,
     execute_context: Any | None = None,
     confirm_for_formula: str | None = None,
+    defer_formula_restore: bool = False,
+    resume_complete_profiles: bool = True,
+    continue_on_business_fail: bool = False,
+    handoff_baseline: Any | None = None,
 ) -> dict[str, Any]:
     """Three-athlete execute orchestration — gates first, then staged profiles."""
     simulation_id = run_id
@@ -227,15 +262,26 @@ def run_execute_three(
         "stages": {},
         "profile_results": {},
         "airtable_writes_performed": 0,
+        "suppress_simulation_email": suppress_simulation_email,
+        "defer_formula_restore": defer_formula_restore,
+        "handoff_monitor": {},
         "errors": [],
     }
 
     writes_before = _count_client_writes(client)
     snapshot_result: dict[str, Any] | None = None
     # When --execute is requested, temporary formulas may already be live (operator
-    # paste). Stage Z must run on every exit path after that, including gate refusal,
-    # assemble failure, profile abort, and interrupt.
-    stage_z_required = bool(execute)
+    # paste). Stage Z runs on exit unless defer_formula_restore (campaign closeout).
+    stage_z_required = bool(execute) and not defer_formula_restore
+    baseline = handoff_baseline
+    if execute and client is not None and baseline is None:
+        baseline = capture_handoff_baseline(client, run_id=run_id)
+        payload["handoff_monitor"]["baseline"] = {
+            "run_id": baseline.run_id,
+            "total_queue_rows": baseline.total_queue_rows,
+            "run_attributable_rows": baseline.run_attributable_rows,
+            "captured_at": baseline.captured_at,
+        }
 
     try:
         # Stage 0 — snapshot first (read-only), then auth gates before any mutation.
@@ -383,6 +429,21 @@ def run_execute_three(
                 },
             )
 
+            if (
+                resume_complete_profiles
+                and writes_allowed
+                and execute
+                and profile_is_complete_for_resume(reg, client=client)
+            ):
+                profile_payload["status"] = "skipped_resume_complete"
+                profile_payload["resume"] = {
+                    "enrollment_id": reg.enrollment_id,
+                    "athlete_id": reg.athlete_id,
+                    "last_completed_step": reg.last_completed_step,
+                }
+                payload["profile_results"][profile] = profile_payload
+                continue
+
             # Stage B + C — writer path (dry-plan when writes_allowed is False).
             # Per-profile SC-002 writer reuse is intentional — not CLI fall-through.
             try:
@@ -406,10 +467,23 @@ def run_execute_three(
                     confirm=confirm,
                     confirm_disposable=confirm_disposable,
                     enable_email_delivery=enable_email_delivery,
+                    suppress_simulation_email=suppress_simulation_email,
                     acknowledge_clock_override=acknowledge_clock_override,
                     execute_context=profile_ctx,
                 )
                 profile_payload["B_create"] = writer_result
+                if baseline is not None and client is not None and writes_allowed and execute:
+                    handoff_check = verify_no_new_run_handoffs(
+                        client,
+                        baseline=baseline,
+                        run_id=run_id,
+                        strict_any_new_row=suppress_simulation_email,
+                    )
+                    profile_payload["handoff_check_after_writer"] = handoff_check.to_dict()
+                    if not handoff_check.ok:
+                        payload["errors"].extend(handoff_check.errors)
+                        payload["profile_results"][profile] = profile_payload
+                        raise ExecuteThreeSafetyStop(handoff_check.errors[0])
                 profile_payload["C_activity"] = {
                     "status": "delegated_to_writer" if writes_allowed and execute else "planned",
                     "writer_status": writer_result.get("writer_status"),
@@ -588,7 +662,9 @@ def run_execute_three(
                 payload["stages"]["failure_cleanup_preview"] = profile_payload[
                     "H_post_cascade_hooks"
                 ]
-                # Stop before the next profile floods Automations 010/053 further.
+                if continue_on_business_fail:
+                    profile_payload["continued_after_business_fail"] = True
+                    continue
                 break
 
             profile_payload["F_formula_verify"] = stage_f_formula_verify_hook(
@@ -610,8 +686,29 @@ def run_execute_three(
                 reg.last_completed_step = "H_post_cascade_hooks"
             save_registry(reg, registry_dir)
             payload["profile_results"][profile] = profile_payload
+            if baseline is not None and client is not None and writes_allowed and execute:
+                handoff_check = verify_no_new_run_handoffs(
+                    client,
+                    baseline=baseline,
+                    run_id=run_id,
+                    strict_any_new_row=suppress_simulation_email,
+                )
+                profile_payload["handoff_check_after_profile"] = handoff_check.to_dict()
+                if not handoff_check.ok:
+                    payload["errors"].extend(handoff_check.errors)
+                    raise ExecuteThreeSafetyStop(handoff_check.errors[0])
 
+    except ExecuteThreeSafetyStop as exc:
+        payload["errors"].append(str(exc))
+        payload["stages"]["safety_stop"] = {"status": "stopped", "error": str(exc)}
     finally:
+        if baseline is not None and client is not None:
+            payload["handoff_monitor"]["final"] = verify_no_new_run_handoffs(
+                client,
+                baseline=baseline,
+                run_id=run_id,
+                strict_any_new_row=suppress_simulation_email,
+            ).to_dict()
         # Stage Z — guaranteed after --execute (success, refusal, failure, interrupt).
         if stage_z_required:
             payload["stages"]["Z_formula_restore"] = restore_production_formulas(
