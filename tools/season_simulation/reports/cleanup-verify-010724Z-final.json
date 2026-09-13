@@ -1,0 +1,36 @@
+{
+  "verified_at": "2026-09-13T18:12:06.670924+00:00",
+  "manifest_still_present": {},
+  "sim_enrollment_still_present": [],
+  "sim_athlete_still_present": [],
+  "marker_hits_remaining": {
+    "Submissions": -1,
+    "XP Events": 0
+  },
+  "114448Z_and_production_preserved": {
+    "114448Z_enrollment": "present",
+    "114448Z_ehq_sample_count": 25
+  },
+  "canonical_zoom": {
+    "recMFP2x5LDqea9ax": "present",
+    "recb9EjQIJVzaRpZa": "present"
+  },
+  "submission_formulas": {
+    "Activity Date Is Future?": {
+      "has_season_sim": false,
+      "formula_preview": "IF(\n  {fldpkkSBsx8kQRZos},\n  IF({fldpkkSBsx8kQRZos} > NOW(), 1, 0),\n  BLANK()\n)"
+    },
+    "Submitted Same Day?": {
+      "has_season_sim": false,
+      "formula_preview": "IF(\n  AND(\n    {fld7JJ7neI0YYmB7i},\n    {fldpkkSBsx8kQRZos}\n  ),\n  IF(\n    DATETIME_FORMAT(\n      SET_TIMEZONE({fld7JJ7n"
+    },
+    "Perfect Week Grace Eligible?": {
+      "has_season_sim": false,
+      "formula_preview": "IF(\n  OR(\n    {fldIb6nJu5TBkUUrD},\n    AND(\n      {fld1gQ2c04pndnTKe} = 1,\n      {fldpkkSBsx8kQRZos},\n      {fld7JJ7neI0"
+    }
+  },
+  "ehq_created_during_cleanup": 0,
+  "ehq_sim_created_during_cleanup": 0,
+  "cleanup_window_start": "2026-09-13T18:08:09.630482+00:00",
+  "pass": true
+}
