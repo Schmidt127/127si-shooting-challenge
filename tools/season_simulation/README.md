@@ -246,6 +246,14 @@ Three-athlete cleanup (merges `__athlete*-` registries; dry-run default):
 python -m season_simulation cleanup-three --simulation-id "SEASON-SIM-2027-<utc>-threeathlete"
 ```
 
+### SC-SEASON-SIM-001 `010724Z` closeout (2026-09-13)
+
+**Status: `SIMULATION CLOSED`** — run `SEASON-SIM-2027-20260913T010724Z-threeathlete` executed all three athletes (Perfect / Recovery / Edge), was root-caused, and **1,051** disposable Production records were deleted with zero failures. No outbound email was sent. Production Submissions formulas remain Production-normal.
+
+- Closeout report: [`reports/final-production-run-SEASON-SIM-2027-20260913T010724Z-threeathlete.md`](reports/final-production-run-SEASON-SIM-2027-20260913T010724Z-threeathlete.md)
+- Operator checklist: [`docs/deploy-checklists/SC-SEASON-SIM-001-closeout-010724Z.md`](../../docs/deploy-checklists/SC-SEASON-SIM-001-closeout-010724Z.md)
+- Manifest / execute / verify: `reports/cleanup-manifest-010724Z-final.json`, `cleanup-execute-010724Z-final.json`, `cleanup-verify-010724Z-final.json`
+
 Safe 010 re-arm preview (owned sim submissions only; dry-run default):
 
 ```powershell

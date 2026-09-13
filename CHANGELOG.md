@@ -8,7 +8,11 @@ Notable changes to scripts, schema documentation, Make.com blueprints, audit too
 
 ### Docs
 
+#### Added
+- **SC-SEASON-SIM-001 three-athlete closeout `010724Z` (2026-09-13)** — Production execute for Perfect / Recovery / Edge completed; root-cause and cleanup manifest reconciled (**1,051** disposable IDs); cleanup executed with zero failures; post-verify PASS. Closeout: [`tools/season_simulation/reports/final-production-run-SEASON-SIM-2027-20260913T010724Z-threeathlete.md`](./tools/season_simulation/reports/final-production-run-SEASON-SIM-2027-20260913T010724Z-threeathlete.md) · checklist [`docs/deploy-checklists/SC-SEASON-SIM-001-closeout-010724Z.md`](./docs/deploy-checklists/SC-SEASON-SIM-001-closeout-010724Z.md). **No email sent.** Production formulas remain Production-normal.
+
 #### Changed
+- **SC-SEASON-SIM-001 `010724Z` verification repair (2026-09-13)** — Replaced invalid post-cleanup evidence (`Submissions: -1` from unsupported `{Notes}` formula) with paginated client-side marker rescan across 11 transactional tables; all tables **0 hits** at `2026-09-13T18:37:17Z`. Artifact: `cleanup-verify-010724Z-final.json`.
 - **SC-SEASON-SIM-001 oracle correction (2026-09-13)** — Perfect-season expected XP **4910** (Zoom XP **90** = 1 live + 1 recording; Bonus 2/3 = 0). Retires obsolete 7-live **5340** oracle in manifest, scenario matrix, readiness audit, and Completion Master PKG-045. Evidence: `tools/season_simulation/reports/final-production-run-SEASON-SIM-2027-20260913T010724Z-threeathlete.md`. Harness adds `business_reconciliation`, `downstream_settlement`, and `live_write_contract` gates (HW / streak 50–60 / weekly threshold / schema) for the next authorized execute.
 - **Living docs sync (2026-09-11)** — Tip **`8590c9ec`** (#517 Tier 1 runbook + #516 FUT-043). CURRENT-TRUTH / PROJECT_STATE / email-send-plane / Master List SC-171 + SC-172 / parent-email cutover / docs README aligned to GitHub email producer versions (**076 v8.14**, **071 v4.5**, **072 v4.9.2**, **073 v4.7**, **074 v3.6**, **117 v2.2**) with paste-pending Live overlays; Tier 1 runbook git tip corrected; Section G regenerated.
 

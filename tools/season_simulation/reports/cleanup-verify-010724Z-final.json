@@ -1,0 +1,171 @@
+{
+  "verified_at": "2026-09-13T18:37:17.854301+00:00",
+  "manifest_still_present": {},
+  "sim_enrollment_still_present": [],
+  "sim_athlete_still_present": [],
+  "marker_hits_remaining": {
+    "Submissions": 0,
+    "Submission Assets": 0,
+    "Homework Completions": 0,
+    "XP Events": 0,
+    "Athlete Achievement Unlocks": 0,
+    "Streak Occurrences": 0,
+    "Video Feedback": 0,
+    "Weekly Athlete Summary": 0,
+    "Zoom Attendance": 0,
+    "Zoom Meetings": 0,
+    "Email Handoff Queue": 0
+  },
+  "marker_scan": {
+    "run_id": "SEASON-SIM-2027-20260913T010724Z-threeathlete",
+    "marker": "010724Z",
+    "tables": {
+      "Submissions": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Video Upload Note",
+          "HW 1 - Parent Note",
+          "HW 2 - Parent Note"
+        ],
+        "pages": 1,
+        "records_scanned": 67,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Submission Assets": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [],
+        "pages": 1,
+        "records_scanned": 54,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Homework Completions": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Notes"
+        ],
+        "pages": 1,
+        "records_scanned": 20,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "XP Events": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "XP Reason Debug"
+        ],
+        "pages": 5,
+        "records_scanned": 459,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Athlete Achievement Unlocks": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Coach Note"
+        ],
+        "pages": 1,
+        "records_scanned": 16,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Streak Occurrences": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Notes"
+        ],
+        "pages": 1,
+        "records_scanned": 9,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Video Feedback": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Coach Feedback"
+        ],
+        "pages": 1,
+        "records_scanned": 30,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Weekly Athlete Summary": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [],
+        "pages": 1,
+        "records_scanned": 20,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Zoom Attendance": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [],
+        "pages": 1,
+        "records_scanned": 2,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Zoom Meetings": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Meeting Name"
+        ],
+        "pages": 1,
+        "records_scanned": 4,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      },
+      "Email Handoff Queue": {
+        "scan_method": "paginated_client_side_field_scan",
+        "fields_scanned": [
+          "Handoff Key",
+          "Last Error",
+          "Payload JSON"
+        ],
+        "pages": 1,
+        "records_scanned": 91,
+        "hit_count": 0,
+        "matching_record_ids": [],
+        "hits": []
+      }
+    },
+    "scan_errors": {}
+  },
+  "114448Z_and_production_preserved": {
+    "114448Z_enrollment": "present",
+    "114448Z_ehq_sample_count": 25
+  },
+  "canonical_zoom": {
+    "recMFP2x5LDqea9ax": "present",
+    "recb9EjQIJVzaRpZa": "present"
+  },
+  "submission_formulas": {
+    "Activity Date Is Future?": {
+      "has_season_sim": false,
+      "formula_preview": "IF(\n  {fldpkkSBsx8kQRZos},\n  IF({fldpkkSBsx8kQRZos} > NOW(), 1, 0),\n  BLANK()\n)"
+    },
+    "Submitted Same Day?": {
+      "has_season_sim": false,
+      "formula_preview": "IF(\n  AND(\n    {fld7JJ7neI0YYmB7i},\n    {fldpkkSBsx8kQRZos}\n  ),\n  IF(\n    DATETIME_FORMAT(\n      SET_TIMEZONE({fld7JJ7n"
+    },
+    "Perfect Week Grace Eligible?": {
+      "has_season_sim": false,
+      "formula_preview": "IF(\n  OR(\n    {fldIb6nJu5TBkUUrD},\n    AND(\n      {fld1gQ2c04pndnTKe} = 1,\n      {fldpkkSBsx8kQRZos},\n      {fld7JJ7neI0"
+    }
+  },
+  "ehq_created_during_cleanup": 0,
+  "ehq_sim_created_during_cleanup": 0,
+  "cleanup_window_start": "2026-09-13T18:08:09.630482+00:00",
+  "pass": true
+}

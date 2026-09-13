@@ -136,7 +136,7 @@ RUN_ID_FIELD_CANDIDATES: dict[str, tuple[str, ...]] = {
     "Homework Completions": ("Notes",),
     "XP Events": ("XP Reason Debug",),
     "Streak Occurrences": ("Notes",),
-    "Athlete Achievement Unlocks": ("Coach Note", "Internal Notes"),
+    "Athlete Achievement Unlocks": ("Coach Note",),
     "Video Feedback": ("Coach Feedback",),
     "Weekly Athlete Summary": (),  # prefer registry + enrollment filter
     "Email Handoff Queue": ("Handoff Key", "Last Error"),
