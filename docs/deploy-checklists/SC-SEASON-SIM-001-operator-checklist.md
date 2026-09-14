@@ -66,14 +66,20 @@ Run before live execute (`tools/season_simulation/safety_gates.py`):
 | Formula | OMNI failure text, verify fail, wrong mode |
 | Email | Any enrollment/parent email ≠ allowlist |
 | Transactional | Non-zero Athletes/Enrollments/Submissions pre-run |
-| Weeks / PHA | Weeks missing; PHA ≠ 18 |
-| Competing run | Another registry `status=running` |
+| Weeks / PHA | Weeks missing; PHA ≠ **20** (Week 9 HW1+HW2 active) |
+| Competing run | Another registry `status=running` **or** execute process lock held |
+| Single process | Only one simulation process may run |
+| Email allowlist | Sole recipient `schmidt@fairfieldbasketballclub.com` |
+| EHQ / Hub backlog | Must be **0** before email-enabled execute |
+| 079 / producer attest | Visual UI attestation flags required when `--enable-email-delivery` |
 | Profiles | Three-athlete run ≠ 3 profiles |
 | Descendants | Unresolved automation orphans flagged pre-cleanup |
 | Real athletes | Unexpected `Athlete 1` / `2` / `3` names |
 | Payment | Registration/payment rows in sim scope |
 
 Email **OFF** by default. Allowlist only: `schmidt@fairfieldbasketballclub.com`.
+
+**Formula Stage Z:** restore only from `tools/season_simulation/production_normal_formulas.json` after settlement (900s) completes, or `recover-formula-restore`. Never use Stage-0 snapshots as restore source.
 
 ---
 

@@ -2,6 +2,11 @@
 
 Runs ONLY the Perfect scenario with Mike Schmidt identity. Reuses
 execute_three writer / settlement / cleanup gates for one profile.
+
+Formula lifecycle: Season Sim gates stay active through settlement.
+Stage Z restores Production-normal formulas only after settlement completes
+(or via ``recover-formula-restore``). Restore source is the committed
+Production-normal bundle — never a Stage-0 snapshot.
 """
 
 from __future__ import annotations
@@ -26,12 +31,13 @@ from .execute_three import (
     DEFAULT_PROFILE_SETTLEMENT_TIMEOUT_S,
     _count_client_writes,
     _run_profile_writer,
-    _stage_stub,
     profile_ownership_namespace,
     profile_registry_run_id,
 )
 from .expectations_matrix import build_athlete_expectation_matrix
 from .formula_lifecycle import (
+    default_formula_lifecycle_state,
+    merge_formula_lifecycle,
     restore_production_formulas,
     snapshot_formulas,
     stage_f_formula_verify_hook,
@@ -40,6 +46,7 @@ from .live_write_contract import (
     assert_live_write_contract_pass,
     build_contract_validation_for_client,
 )
+from .pre_execute_checklist import run_pre_execute_email_hub_checklist
 from .rearm_submission_xp import run_rearm_submission_xp
 from .reference_data import load_reference_snapshot
 from .run_registry import (
@@ -50,6 +57,11 @@ from .run_registry import (
 )
 from .scenarios_sc001 import build_athlete1_perfect_scenario
 from .simulation_clock import SimulationClock
+from .simulation_process_lock import (
+    SimulationProcessLockError,
+    acquire_simulation_lock,
+    release_simulation_lock,
+)
 from .writer import build_execute_context_from_reference
 
 PERFECT_PROFILE = "athlete1_perfect"
@@ -97,6 +109,14 @@ def _offline_homework_20() -> list[dict[str, Any]]:
     return out
 
 
+def _set_registry_lifecycle(reg: Any, **updates: bool) -> dict[str, bool]:
+    meta = dict(reg.meta or {})
+    lifecycle = merge_formula_lifecycle(meta.get("formula_lifecycle"), **updates)
+    meta["formula_lifecycle"] = lifecycle
+    reg.meta = meta
+    return lifecycle
+
+
 def run_execute_perfect(
     *,
     run_id: str | None = None,
@@ -110,16 +130,24 @@ def run_execute_perfect(
     allow_writes: bool = False,
     enable_email_delivery: bool = False,
     acknowledge_clock_override: bool = False,
+    attest_079_ingress_secret: bool = False,
+    attest_producer_input_modes: bool = False,
+    ehq_backlog_count: int = 0,
+    hub_transactional_backlog_count: int = 0,
 ) -> dict[str, Any]:
     """Gated single-profile Perfect Mike Schmidt execute.
 
     Requires ``--execute``, confirm tokens, and ``--simulation-id``
     (prefer ``SEASON-SIM-PERFECT-<UTC>-mike-schmidt`` via ``new_perfect_run_id``).
     Marker format remains ``SEASON-SIM|<run_id>``.
+
+    Settlement timeout is ``DEFAULT_PROFILE_SETTLEMENT_TIMEOUT_S`` (900s).
+    Stage Z runs only after settlement completes (gates stay active until then).
     """
     rid = validate_run_id(run_id or new_perfect_run_id())
     writes_allowed = bool(execute and allow_writes)
     profile = PERFECT_PROFILE
+    lifecycle = default_formula_lifecycle_state()
     payload: dict[str, Any] = {
         "backlog_id": "SC-SEASON-SIM-001",
         "command": "execute-perfect",
@@ -134,8 +162,26 @@ def run_execute_perfect(
         "gates_passed": False,
         "errors": [],
         "stages": {},
+        "formula_lifecycle": dict(lifecycle),
+        "settlement_timeout_s": DEFAULT_PROFILE_SETTLEMENT_TIMEOUT_S,
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
+
+    checklist = run_pre_execute_email_hub_checklist(
+        registry_dir=registry_dir,
+        run_id=rid,
+        allowlist_recipient=SAFE_EMAIL_RECIPIENT,
+        ehq_backlog_count=ehq_backlog_count,
+        hub_transactional_backlog_count=hub_transactional_backlog_count,
+        enable_email_delivery=enable_email_delivery,
+        attest_079_ingress_secret=attest_079_ingress_secret,
+        attest_producer_input_modes=attest_producer_input_modes,
+        single_process_ok=True,
+    )
+    payload["pre_execute_checklist"] = checklist.to_dict()
+    if execute and not checklist.ok:
+        payload["errors"].extend(checklist.stop_reasons)
+        return payload
 
     if execute:
         try:
@@ -148,6 +194,15 @@ def run_execute_perfect(
             )
             payload["gates_passed"] = True
         except ConfirmationError as exc:
+            payload["errors"].append(str(exc))
+            return payload
+
+    lock_held = False
+    if writes_allowed:
+        try:
+            acquire_simulation_lock(registry_dir=registry_dir, run_id=rid)
+            lock_held = True
+        except SimulationProcessLockError as exc:
             payload["errors"].append(str(exc))
             return payload
 
@@ -168,10 +223,14 @@ def run_execute_perfect(
     else:
         if client is None:
             payload["errors"].append("client required when not --offline-fixture")
+            if lock_held:
+                release_simulation_lock(registry_dir=registry_dir, run_id=rid)
             return payload
         snap = load_reference_snapshot(client)
         if snap.errors or not snap.grade_band or not snap.highest_goal:
             payload["errors"].extend(snap.errors or ["missing grade band / goal"])
+            if lock_held:
+                release_simulation_lock(registry_dir=registry_dir, run_id=rid)
             return payload
         scenario = build_mike_schmidt_perfect_scenario(
             run_id=rid,
@@ -185,9 +244,13 @@ def run_execute_perfect(
 
     if scenario.athlete.get("display_name") != f"{MIKE_FIRST} {MIKE_LAST}":
         payload["errors"].append("athlete identity override failed")
+        if lock_held:
+            release_simulation_lock(registry_dir=registry_dir, run_id=rid)
         return payload
     if str(scenario.athlete.get("parent_email") or "") != SAFE_EMAIL_RECIPIENT:
         payload["errors"].append(f"parent email must be {SAFE_EMAIL_RECIPIENT}")
+        if lock_held:
+            release_simulation_lock(registry_dir=registry_dir, run_id=rid)
         return payload
 
     profile_payload: dict[str, Any] = {
@@ -198,11 +261,29 @@ def run_execute_perfect(
     }
     snapshot_result: dict[str, Any] | None = None
     clock = SimulationClock(enabled=True, current_date=SIM_START, run_id=rid)
+    settlement_complete = False
+    stage_z: dict[str, Any] = {
+        "stage": "Z_formula_restore",
+        "status": "not_started",
+        "production_formulas_restored": False,
+        "formula_restore_pending": False,
+        "restore_source": "production_normal_bundle",
+    }
 
     try:
         if writes_allowed and client is not None:
-            snapshot_result = snapshot_formulas(client)
+            # Read-only Stage-0 snapshot for evidence only — NEVER used as restore source.
+            snapshot_result = snapshot_formulas(
+                client,
+                allow_writes=False,
+                confirm=confirm,
+                run_id=rid,
+            )
             profile_payload["A_formula_snapshot"] = snapshot_result
+            profile_payload["A_formula_snapshot_note"] = (
+                "Stage-0 snapshot is evidence only; Stage Z restores from "
+                "production_normal_formulas.json"
+            )
             contract = build_contract_validation_for_client(client)
             assert_live_write_contract_pass(contract)
 
@@ -238,6 +319,18 @@ def run_execute_perfect(
             reg = None
 
         if writes_allowed and execute and reg is not None:
+            # Gates are active for the full settlement window.
+            lifecycle = _set_registry_lifecycle(
+                reg,
+                gates_applied=True,
+                formula_restore_pending=True,
+                settlement_complete=False,
+                production_formulas_restored=False,
+                formula_restore_failed=False,
+            )
+            save_registry(reg, registry_dir)
+            payload["formula_lifecycle"] = dict(lifecycle)
+
             settlement = stage_d_settlement_hook(
                 client,
                 reg,
@@ -289,6 +382,15 @@ def run_execute_perfect(
                     downstream.get("errors") or ["downstream settlement failed"]
                 )
             profile_payload["D_settlement"] = settlement
+            settlement_complete = bool(settlement.get("complete"))
+            lifecycle = _set_registry_lifecycle(
+                reg,
+                gates_applied=True,
+                settlement_complete=settlement_complete,
+                formula_restore_pending=True,
+            )
+            save_registry(reg, registry_dir)
+            payload["formula_lifecycle"] = dict(lifecycle)
         else:
             profile_payload["D_settlement"] = {
                 "stage": "D_settlement",
@@ -338,10 +440,13 @@ def run_execute_perfect(
             )
         profile_payload["E2_business_success"] = business
 
+        # Still gated during F verify when clock override was acknowledged.
         profile_payload["F_formula_verify"] = stage_f_formula_verify_hook(
             client,
-            expect_gated=acknowledge_clock_override,
-            snapshot_bundle=(snapshot_result or {}).get("bundle") if snapshot_result else None,
+            expect_gated=bool(acknowledge_clock_override and not settlement_complete),
+            snapshot_bundle=(snapshot_result or {}).get("bundle")
+            if snapshot_result
+            else None,
         )
         profile_payload["H_post_cascade_hooks"] = stage_h_post_cascade_hooks(
             run_id=rid,
@@ -349,6 +454,68 @@ def run_execute_perfect(
             client=client,
             profile=profile,
         )
+
+        # Stage Z — only after settlement completes; Production-normal bundle only.
+        if writes_allowed and execute and client is not None:
+            if settlement_complete:
+                try:
+                    stage_z = restore_production_formulas(
+                        client,
+                        allow_writes=True,
+                        confirm=confirm,
+                        reason="stage_z_after_settlement",
+                        dry_run=False,
+                    )
+                except Exception as exc:  # noqa: BLE001
+                    stage_z = {
+                        "status": "failed",
+                        "stage": "Z_formula_restore",
+                        "restored": False,
+                        "production_formulas_restored": False,
+                        "formula_restore_failed": True,
+                        "formula_restore_pending": True,
+                        "errors": [str(exc)],
+                        "restore_source": "production_normal_bundle",
+                    }
+                if reg is not None:
+                    lifecycle = _set_registry_lifecycle(
+                        reg,
+                        gates_applied=True,
+                        settlement_complete=True,
+                        formula_restore_pending=not bool(
+                            stage_z.get("production_formulas_restored")
+                        ),
+                        production_formulas_restored=bool(
+                            stage_z.get("production_formulas_restored")
+                        ),
+                        formula_restore_failed=bool(
+                            stage_z.get("formula_restore_failed")
+                        ),
+                    )
+                    payload["formula_lifecycle"] = dict(lifecycle)
+            else:
+                stage_z = {
+                    "stage": "Z_formula_restore",
+                    "status": "deferred_pending_settlement",
+                    "production_formulas_restored": False,
+                    "formula_restore_pending": True,
+                    "formula_restore_failed": False,
+                    "restore_source": "production_normal_bundle",
+                    "note": (
+                        "Season Sim gates remain active until settlement completes. "
+                        "Use recover-formula-restore if the process was interrupted "
+                        "after gates_applied."
+                    ),
+                }
+                if reg is not None:
+                    lifecycle = _set_registry_lifecycle(
+                        reg,
+                        gates_applied=True,
+                        settlement_complete=False,
+                        formula_restore_pending=True,
+                        production_formulas_restored=False,
+                    )
+                    payload["formula_lifecycle"] = dict(lifecycle)
 
         if writes_allowed and execute and reg is not None:
             if not reconcile.get("complete") or not business.get("pass"):
@@ -367,18 +534,45 @@ def run_execute_perfect(
 
     except Exception as exc:  # noqa: BLE001
         payload["errors"].append(f"execute-perfect failed: {exc}")
+        # Do not restore here — leave formula_restore_pending for recovery.
+        stage_z = {
+            "stage": "Z_formula_restore",
+            "status": "deferred_on_interrupt",
+            "production_formulas_restored": False,
+            "formula_restore_pending": True,
+            "restore_source": "production_normal_bundle",
+            "note": (
+                "Process interrupted before Stage Z. Run recover-formula-restore "
+                "with explicit confirmation; do not use Stage-0 snapshots."
+            ),
+        }
+        try:
+            reg = load_registry(registry_dir, profile_registry_run_id(rid, profile))
+            lifecycle = _set_registry_lifecycle(
+                reg,
+                gates_applied=True,
+                formula_restore_pending=True,
+                production_formulas_restored=False,
+            )
+            reg.status = "paused"
+            reg.pause_reason = f"execute-perfect failed: {exc}"
+            save_registry(reg, registry_dir)
+            payload["formula_lifecycle"] = dict(lifecycle)
+        except Exception:  # noqa: BLE001
+            pass
     finally:
-        if writes_allowed and client is not None and snapshot_result:
-            try:
-                restore_production_formulas(client, snapshot_result.get("bundle"))
-            except Exception as exc:  # noqa: BLE001
-                payload["errors"].append(f"formula restore: {exc}")
+        if lock_held:
+            release_simulation_lock(registry_dir=registry_dir, run_id=rid)
+
+    # Never report restored unless post-write verification passed.
+    if not stage_z.get("production_formulas_restored"):
+        stage_z["restored"] = False
+        stage_z["production_formulas_restored"] = False
 
     payload["profile_result"] = profile_payload
     payload["client_writes"] = _count_client_writes(client)
-    payload["stages"]["Z_formula_restore"] = _stage_stub(
-        "Z_formula_restore", allow_writes=writes_allowed, profile=profile
-    )
+    payload["stages"]["Z_formula_restore"] = stage_z
+    payload["formula_lifecycle"] = payload.get("formula_lifecycle") or dict(lifecycle)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     report_path = out_dir / f"execute-perfect-{rid}.json"
@@ -392,6 +586,7 @@ def run_execute_perfect(
 __all__ = [
     "MIKE_FIRST",
     "MIKE_LAST",
+    "DEFAULT_PROFILE_SETTLEMENT_TIMEOUT_S",
     "build_mike_schmidt_perfect_scenario",
     "run_execute_perfect",
 ]

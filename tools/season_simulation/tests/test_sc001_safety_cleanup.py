@@ -121,12 +121,14 @@ class TestFormulaLifecycle(unittest.TestCase):
         self.assertFalse(result.get("snapshotted") and result["status"] == "stub")
         self.assertTrue(result.get("prohibit_omni_formula_generation"))
 
-    def test_restore_production_formulas_skips_without_bundle(self):
+    def test_restore_production_formulas_dry_run_uses_production_bundle(self):
         from season_simulation.formula_lifecycle import restore_production_formulas
 
         result = restore_production_formulas(None, allow_writes=False)
-        self.assertEqual(result["status"], "skipped")
+        self.assertEqual(result["status"], "planned")
         self.assertFalse(result["restored"])
+        self.assertFalse(result["production_formulas_restored"])
+        self.assertEqual(result["restore_source"], "production_normal_bundle")
 
     def test_install_hooks_never_executes(self):
         hooks = install_formula_hooks(target_mode="gated")
