@@ -9,7 +9,7 @@ Notable changes to scripts, schema documentation, Make.com blueprints, audit too
 ### Tools
 
 #### Changed
-- **Season sim formula lifecycle Stage Z (2026-09-14)** — Production-normal immutable bundle is the sole restore source; live Meta restore with confirm + hash verify; `execute-perfect` restores only after settlement (900s); `recover-formula-restore` for interrupted runs; pre-execute Email/Hub checklist + single-process lock. Docs supersede 4910/18-PHA and Stage-0 snapshot restore. **No simulation executed.**
+- **Season sim formula lifecycle Stage Z (2026-09-14)** — Production-normal immutable bundle is the sole restore source; live Meta restore with confirm + hash verify; `execute-perfect` restores only after settlement (900s); `recover-formula-restore` for interrupted runs; pre-execute Email/Hub checklist + single-process lock. **Active-XP Source Key integrity** shared validator (blank/whitespace, exact duplicates, HOMEWORK_XP| + HOMEWORK_COMPLETION| dual-key) enforced by business reconciliation and read-only reconciliation checker. Docs supersede 4910/18-PHA and Stage-0 snapshot restore. **No simulation executed.**
 
 ### Docs
 

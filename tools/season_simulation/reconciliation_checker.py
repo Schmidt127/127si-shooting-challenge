@@ -9,10 +9,10 @@ Does not write Airtable. Does not lower production gates.
 
 from __future__ import annotations
 
-from collections import Counter
 from dataclasses import asdict, dataclass, field
 from typing import Any, Sequence
 
+from .active_xp_source_key_integrity import validate_active_xp_source_keys
 from .business_reconciliation import (
     STREAK,
     actual_xp_buckets_from_events,
@@ -92,6 +92,7 @@ def _active_events(events: Sequence[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def _source_keys(events: Sequence[dict[str, Any]]) -> list[str]:
+    """Non-blank stripped Source Keys from events (for streak parse best-effort)."""
     keys = []
     for ev in events:
         f = ev.get("fields") or ev
@@ -99,6 +100,60 @@ def _source_keys(events: Sequence[dict[str, Any]]) -> list[str]:
         if k:
             keys.append(k)
     return keys
+
+
+def _append_source_key_integrity_rows(
+    rows: list[CheckRow],
+    all_events: Sequence[dict[str, Any]],
+) -> None:
+    """Route active Source Key integrity through the shared validator."""
+    result = validate_active_xp_source_keys(all_events)
+
+    blank = [i for i in result.issues if i.code == "blank_or_whitespace_source_key"]
+    rows.append(
+        CheckRow(
+            check="Active Source Key non-blank",
+            expected={},
+            actual={i.event_ids[0]: i.evidence for i in blank if i.event_ids},
+            pass_fail="PASS" if not blank else "FAIL",
+            evidence=(
+                "ok"
+                if not blank
+                else "; ".join(i.to_error_string() for i in blank)
+            ),
+        )
+    )
+
+    dups = [i for i in result.issues if i.code == "duplicate_source_key"]
+    dup_actual = {i.source_key: i.event_ids for i in dups}
+    rows.append(
+        CheckRow(
+            check="Duplicate Source Key prevention (active)",
+            expected={},
+            actual=dup_actual if dups else {},
+            pass_fail="PASS" if not dups else "FAIL",
+            evidence=(
+                f"active source-key integrity ok; issues={len(result.issues)}"
+                if not dups
+                else "; ".join(i.to_error_string() for i in dups)
+            ),
+        )
+    )
+
+    hw = [i for i in result.issues if i.code == "homework_legacy_plus_canonical"]
+    rows.append(
+        CheckRow(
+            check="Homework XP canonical-only (no legacy dual-key)",
+            expected={},
+            actual={i.evidence: i.event_ids for i in hw},
+            pass_fail="PASS" if not hw else "FAIL",
+            evidence=(
+                "ok"
+                if not hw
+                else "; ".join(i.to_error_string() for i in hw)
+            ),
+        )
+    )
 
 
 def _row(check: str, expected: Any, actual: Any, evidence: str) -> CheckRow:
@@ -223,17 +278,7 @@ def build_enrollment_reconciliation(
         )
     )
 
-    keys = _source_keys(active)
-    dup = {k: n for k, n in Counter(keys).items() if n > 1}
-    rows.append(
-        CheckRow(
-            check="Duplicate Source Key prevention (active)",
-            expected={},
-            actual=dup,
-            pass_fail="PASS" if not dup else "FAIL",
-            evidence=f"active source keys={len(keys)}; duplicates={dup}",
-        )
-    )
+    _append_source_key_integrity_rows(rows, all_events)
 
     exp_level = level_for(expected_total)
     rows.append(
