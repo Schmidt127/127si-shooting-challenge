@@ -31,11 +31,12 @@ Filename may still say webhook; current path is Hub queue create only.
  * 073 - EMAIL, NOTIFICATIONS, AND EXTERNAL HANDOFFS
  * Create Video Feedback Communications Hub Handoff
  *
- * Version: v4.9
+ * Version: v4.10
  * Date Written: 2026-06-17
- * Last Updated: 2026-09-13
+ * Last Updated: 2026-09-14
  *
  * VERSION HISTORY
+ * - v4.10 (2026-09-14): Strict parseAutomationBoolean for Airtable text inputs ("false" is false; missing keeps safe default).
  * - v4.9 (2026-09-13): SC-SEASON-SIM-001-DEPLOY-20260913B — version bump for
  *   Airtable draft verification only. Canonical asset evidence check unchanged from v4.8.
  * - v4.8 (2026-09-13): Replace obsolete required Submissions."Video Upload"
@@ -140,10 +141,10 @@ Filename may still say webhook; current path is Hub queue create only.
 
 const SCRIPT = {
   scriptName: "073 - Email, Notifications, and External Handoffs - Create Video Feedback Communications Hub Handoff",
-  version: "v4.9",
-  versionDate: "2026-09-13",
+  version: "v4.10",
+  versionDate: "2026-09-14",
   originalWrittenDate: "2026-06-17",
-  lastUpdated: "2026-09-13",
+  lastUpdated: "2026-09-14",
   folder: "07 - Email, Notifications, and External Handoffs",
   automationName: "073 - Email, Notifications, and External Handoffs - Create Video Feedback Communications Hub Handoff",
 };
@@ -528,6 +529,22 @@ function parentVideoUrl(vf, vfTable) {
    SECTION 4: MAIN
 ========================================================= */
 
+function parseAutomationBoolean(raw, defaultWhenMissing) {
+  if (raw === undefined || raw === null || raw === "") {
+    return defaultWhenMissing === true;
+  }
+  if (typeof raw === "boolean") return raw;
+  if (typeof raw === "number") {
+    if (raw === 0) return false;
+    if (raw === 1) return true;
+    return defaultWhenMissing === true;
+  }
+  const s = String(raw).trim().toLowerCase();
+  if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
+  if (s === "false" || s === "0" || s === "no" || s === "n") return false;
+  return defaultWhenMissing === true;
+}
+
 async function main() {
   step("1 - Validate recordId");
   const cfg = typeof input !== "undefined" && input?.config ? input.config() : {};
@@ -535,7 +552,7 @@ async function main() {
   if (!/^rec[A-Za-z0-9]{14}$/.test(recordId)) {
     throw new Error("recordId must be a valid Airtable record ID.");
   }
-  const testMode = cfg.testMode === undefined ? true : Boolean(cfg.testMode);
+  const testMode = parseAutomationBoolean(cfg.testMode, true);
 
   step("2 - Load tables");
   const vfTable = base.getTable(CONFIG.tables.videoFeedback);

@@ -34,9 +34,9 @@ Paste target for this release: v8.15.
  * 076 - EMAIL, NOTIFICATIONS, AND EXTERNAL HANDOFFS
  * Daily Submission Communications Hub Handoff
  *
- * Version: v8.15
+ * Version: v8.16
  * Date Written: 2026-05-29
- * Last Updated: 2026-09-12
+ * Last Updated: 2026-09-14
  * Updated Reason: Close concurrent Email Handoff Queue create race that
  * produced duplicate Handoff Keys (season-sim Edge forensic: 6 Needs Review
  * rows = 3 keys × 2). Pre-create recheck immediately before create; on
@@ -44,6 +44,7 @@ Paste target for this release: v8.15.
  * allowlist / email safety and normal eligibility logic unchanged.
  *
  * VERSION HISTORY
+ * - v8.16 (2026-09-14): Strict parseAutomationBoolean for Airtable text inputs ("false" is false; missing keeps safe default).
  * - v8.15 (2026-09-12): Concurrent/idempotent handoff create — pre-create
  *   recheck; collapse duplicate Handoff Keys (oldest Ready, extras Needs
  *   Review). Does not change recipient allowlist or eligibility gates.
@@ -163,10 +164,10 @@ Paste target for this release: v8.15.
 
 const SCRIPT = {
   scriptName: "076 - Daily Submission Communications Hub Handoff",
-  version: "v8.15",
-  versionDate: "2026-09-12",
+  version: "v8.16",
+  versionDate: "2026-09-14",
   originalWrittenDate: "2026-05-29",
-  lastUpdated: "2026-09-12",
+  lastUpdated: "2026-09-14",
   folder: "07 - Email, Notifications, and External Handoffs",
   automationName: "076 - Daily Submission Communications Hub Handoff",
 };
@@ -789,6 +790,22 @@ const loadRowsByHandoffKey = async (queueTable, handoffKey) => {
    SECTION 4: MAIN
 ========================================================= */
 
+function parseAutomationBoolean(raw, defaultWhenMissing) {
+  if (raw === undefined || raw === null || raw === "") {
+    return defaultWhenMissing === true;
+  }
+  if (typeof raw === "boolean") return raw;
+  if (typeof raw === "number") {
+    if (raw === 0) return false;
+    if (raw === 1) return true;
+    return defaultWhenMissing === true;
+  }
+  const s = String(raw).trim().toLowerCase();
+  if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
+  if (s === "false" || s === "0" || s === "no" || s === "n") return false;
+  return defaultWhenMissing === true;
+}
+
 async function main() {
   step("0 - Validate recordId");
   const cfg = input.config();
@@ -1062,7 +1079,7 @@ async function main() {
     [CONFIG.fields.queue.pi]: programId,
     [CONFIG.fields.queue.recipients]: JSON.stringify(recipients),
     [CONFIG.fields.queue.payload]: JSON.stringify(payload),
-    [CONFIG.fields.queue.testMode]: cfg.testMode === undefined ? true : Boolean(cfg.testMode),
+    [CONFIG.fields.queue.testMode]: parseAutomationBoolean(cfg.testMode, true),
     [CONFIG.fields.queue.attempts]: 0,
   });
 

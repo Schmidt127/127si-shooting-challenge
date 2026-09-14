@@ -22,12 +22,13 @@ PROD season: dryRun=false + sendMode=Live (never Live+includeSchmidt).
 /************************************************************
  * 118 - Email - Schedule Weekly Summary Email Build
  *
- * Version: v2.1
+ * Version: v2.2
  * Date Written: 2026-07-16
- * Last Updated: 2026-09-08
+ * Last Updated: 2026-09-14
  *
  * VERSION HISTORY
  * - v2.1 (2026-09-08 / SC-121): Target the latest active non-Post-Challenge Week that has actually ended in America/Denver, instead of assuming every Week ends Saturday. This preserves normal Sunday behavior and correctly selects partial terminal Week 9 (Jun 27-Jun 30, 2027) on the Jul 4 scheduler run.
+ * - v2.2 (2026-09-14): Strict parseAutomationBoolean for Airtable text inputs ("false" is false; missing keeps safe default).
  * - v2.0 (2026-08-13): Requires a settled exact Summary Key as well as exact
  *   Enrollment + Week before arming an eligible WAS; formula lag now stops
  *   safely instead of permitting an email handoff.
@@ -112,7 +113,7 @@ PROD season: dryRun=false + sendMode=Live (never Live+includeSchmidt).
 
 const CONFIG = {
   scriptName: "118 - Email - Schedule Weekly Summary Email Build",
-  version: "v2.1",
+  version: "v2.2",
   timeZone: "America/Denver",
   // Exclude both historical and current Schmidt test enrollments by default.
   schmidtEnrollmentId: "recCyFEPeATOVNlr9",
@@ -224,11 +225,31 @@ function exactlyOneLinkedId(record, fieldName) {
   return ids.length === 1 ? ids[0] : "";
 }
 
-function parseBool(raw, fallback) {
+function parseAutomationBoolean(raw, defaultWhenMissing) {
+  if (raw === undefined || raw === null || raw === "") {
+    return defaultWhenMissing === true;
+  }
+  if (typeof raw === "boolean") return raw;
+  if (typeof raw === "number") {
+    if (raw === 0) return false;
+    if (raw === 1) return true;
+    return defaultWhenMissing === true;
+  }
+  const s = String(raw).trim().toLowerCase();
+  if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
+  if (s === "false" || s === "0" || s === "no" || s === "n") return false;
+  return defaultWhenMissing === true;
+}
+
+function parseAutomationSendMode(raw, defaultWhenMissing) {
+  const fallback =
+    String(defaultWhenMissing || "test").trim().toLowerCase() === "live"
+      ? "live"
+      : "test";
   if (raw === undefined || raw === null || raw === "") return fallback;
   const s = String(raw).trim().toLowerCase();
-  if (["1", "true", "yes", "y"].includes(s)) return true;
-  if (["0", "false", "no", "n"].includes(s)) return false;
+  if (["live", "l", "real", "send", "parent"].includes(s)) return "live";
+  if (["test", "t", "preview", "practice", "draft"].includes(s)) return "test";
   return fallback;
 }
 
@@ -315,10 +336,10 @@ async function main() {
   setOutputSafe("debugStep", debugStep);
 
   const inputConfig = input.config();
-  const dryRun = parseBool(inputConfig.dryRun, true);
-  const sendModeRaw = String(inputConfig.sendMode || "Test").trim().toLowerCase();
-  const sendMode = sendModeRaw === "live" ? "Live" : "Test";
-  const includeSchmidt = parseBool(inputConfig.includeSchmidt, false);
+  const dryRun = parseAutomationBoolean(inputConfig.dryRun, true);
+  const sendMode =
+    parseAutomationSendMode(inputConfig.sendMode, "test") === "live" ? "Live" : "Test";
+  const includeSchmidt = parseAutomationBoolean(inputConfig.includeSchmidt, false);
   const emptyWeekPolicyRaw = String(inputConfig.emptyWeekPolicy || "send_short")
     .trim()
     .toLowerCase();

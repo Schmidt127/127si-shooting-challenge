@@ -39,8 +39,8 @@ const s118 = read(
   "118-email-notifications-and-external-handoffs-schedule-weekly-summary-email-build.js"
 );
 
-test("072 v4.9.2 enforces empty-week policies and does not call Make/fetch webhook", () => {
-  assert.ok(/Version:\s*v4\.9\.2/.test(s072));
+test("072 v4.9.3 enforces empty-week policies and does not call Make/fetch webhook", () => {
+  assert.ok(/Version:\s*v4\.9\.3/.test(s072));
   assert.ok(/emptyWeekPolicy/.test(s072));
   assert.ok(/built_short_empty_week/.test(s072));
   assert.ok(/suppressed_empty_week/.test(s072));
@@ -49,8 +49,8 @@ test("072 v4.9.2 enforces empty-week policies and does not call Make/fetch webho
   assert.ok(!/makeWebhookUrl/.test(s072), "072 must not take Make webhook input");
 });
 
-test("119 v1.8 only arms Send to Make? and does not post webhook", () => {
-  assert.ok(/version:\s*"v1\.8"/.test(s119));
+test("119 v1.9 only arms Send to Make? and does not post webhook", () => {
+  assert.ok(/version:\s*"v1\.9"/.test(s119));
   assert.ok(/Send to Make\?/.test(s119) || /sendToMake/.test(s119));
   assert.ok(/Does not POST Make/.test(s119) || /Does not call Make itself/.test(s119));
   assert.ok(!/\bfetch\s*\(/.test(s119), "119 must not fetch/webhook");
@@ -61,8 +61,8 @@ test("119 v1.8 only arms Send to Make? and does not post webhook", () => {
   assert.ok(/!isPostChallengeWeek/.test(s119));
 });
 
-test("118 v2.1 does not create WAS, build HTML, or post webhook; arms sendMode from input", () => {
-  assert.ok(/version:\s*"v2\.1"/.test(s118));
+test("118 v2.2 does not create WAS, build HTML, or post webhook; arms sendMode from input", () => {
+  assert.ok(/version:\s*"v2\.2"/.test(s118));
   assert.ok(/Build Weekly Email Now\?/.test(s118) || /buildNow/.test(s118));
   assert.ok(!/\bfetch\s*\(/.test(s118));
   assert.ok(!/wasTable\.createRecordAsync/.test(s118), "118 must never create a WAS");
@@ -75,7 +75,7 @@ test("118 v2.1 does not create WAS, build HTML, or post webhook; arms sendMode f
 });
 
 test("074 owns Hub queue handoff; does not mark Sent?; blocks duplicate Sent?", () => {
-  assert.ok(/Version:\s*v3\.6/.test(s074));
+  assert.ok(/Version:\s*v3\.7/.test(s074));
   assert.ok(/Email Handoff Queue/.test(s074));
   assert.ok(/WEEKLY_ATHLETE_SUMMARY\|WEEKLY_ATHLETE_SUMMARY\|/.test(s074));
   assert.ok(/created_handoff/.test(s074));

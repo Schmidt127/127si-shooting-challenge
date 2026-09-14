@@ -23,7 +23,7 @@ t("073 syntax", () => checkSyntax(p073));
 t("074 syntax", () => checkSyntax(p074));
 t("079 syntax", () => checkSyntax(p079));
 t("117 syntax", () => checkSyntax(p117));
-t("071 v4.5 creates Communications Hub queue handoff (not Make webhook)", () => {
+t("071 v4.6 creates Communications Hub queue handoff (not Make webhook)", () => {
   assert.match(s071, /Version: v4\.5/);
   assert.match(s071, /Email Handoff Queue/);
   assert.match(s071, /HOMEWORK_FEEDBACK\|HOMEWORK_COMPLETIONS\|/);
@@ -31,7 +31,7 @@ t("071 v4.5 creates Communications Hub queue handoff (not Make webhook)", () => 
   assert.match(s071, /existing_handoff/);
   assert.doesNotMatch(s071, /makeWebhookUrl|hook\.us1\.make\.com|remoteFetchAsync|sendTag:"HOMEWORK_FEEDBACK_PARENT"|semanticFailure/);
 });
-t("071 v4.5 enriches homework feedback payload for parent-facing presentation", () => {
+t("071 v4.6 enriches homework feedback payload for parent-facing presentation", () => {
   assert.match(s071, /Version: v4\.5/);
   assert.match(s071, /landingPageUrl: CANONICAL_URLS\.landing/);
   assert.match(s071, /homeworkPageUrl: CANONICAL_URLS\.homework/);
@@ -115,7 +115,7 @@ t("073 does not write final Sent fields", () => {
   assert.doesNotMatch(s073, /\[["']Parent Feedback Sent On["']\]\s*:/);
   assert.doesNotMatch(s073, /\[["']Parent Feedback Sent\?["']\]\s*:/);
 });
-t("074 v3.6 creates Communications Hub queue handoff (not Make webhook)", () => {
+t("074 v3.7 creates Communications Hub queue handoff (not Make webhook)", () => {
   assert.match(s074, /Version: v3\.6/);
   assert.match(s074, /Email Handoff Queue/);
   assert.match(s074, /WEEKLY_ATHLETE_SUMMARY\|WEEKLY_ATHLETE_SUMMARY\|/);
@@ -128,7 +128,7 @@ t("074 clears Send to Make? and does not write Sent fields", () => {
   assert.doesNotMatch(s074, /\[["']Weekly Email Sent\?["']\]\s*:\s*true/);
   assert.doesNotMatch(s074, /\[["']Weekly Email Sent At["']\]\s*:/);
 });
-t("117 v2.2 creates Communications Hub queue handoff (not Make webhook)", () => {
+t("117 v2.3 creates Communications Hub queue handoff (not Make webhook)", () => {
   assert.match(s117, /version: "v2\.2"/);
   assert.match(s117, /Email Handoff Queue/);
   assert.match(s117, /eventType: "ZOOM_RECORDING_APPROVAL"/);

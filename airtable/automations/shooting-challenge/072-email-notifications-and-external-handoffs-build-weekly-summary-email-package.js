@@ -24,7 +24,7 @@ XP Earned This Week, Total Shots This Week, Homework Completions Link, XP Events
 
 Notes:
 GitHub is the source-of-truth copy. Airtable is the deployed/running copy.
-Send plane: 118 → 072 → 119 → 074 → 079 → Communications Hub → Resend.
+Send plane: 118 â†’ 072 â†’ 119 â†’ 074 â†’ 079 â†’ Communications Hub â†’ Resend.
 072 owns emptyWeekPolicy; 074 owns Hub handoff; 072 never fetches/webhooks.
 */
 
@@ -32,15 +32,16 @@ Send plane: 118 → 072 → 119 → 074 → 079 → Communications Hub → Resen
  * 072 - EMAIL, NOTIFICATIONS, AND EXTERNAL HANDOFFS
  * Build Weekly Summary Email Package
  *
- * Version: v4.9.2
+ * Version: v4.9.3
  * Date Written: 2026-06-20
- * Last Updated: 2026-09-06
+ * Last Updated: 2026-09-14
  *
  * VERSION HISTORY
+ * - v4.9.3 (2026-09-14): Strict parseAutomationBoolean for Airtable text inputs ("false" is false; missing keeps safe default).
  * - v4.9.2 (2026-09-06): Weekly package JSON adds athleteFirstName (mirrors firstName
  *   from Enrollment Athlete First Name) for Hub parent-email templates.
  * - v4.9.1 (2026-09-01): videoSubmissions payload and legacy lines use Custom Video File Name
- *   display precedence (custom → Video Asset File Name → "Video submission"); preserve both
+ *   display precedence (custom â†’ Video Asset File Name â†’ "Video submission"); preserve both
  *   filename fields in payload for Hub/audit.
  * - v4.9 (2026-09-01): Hub payload adds videosSubmittedThisWeek (Activity Date + Custom Video
  *   File Name with original upload fallback); deterministic sort/dedupe; official week bounds.
@@ -63,10 +64,10 @@ Send plane: 118 → 072 → 119 → 074 → 079 → Communications Hub → Resen
  *   active XP only; fails with explicit unlinked canonical XP when enrollment+week
  *   events exist but are not on the summary (fixes false disagreement when rollup
  *   matched linked XP but milestone XP was not yet linked to WAS).
- * - v4.2 (2026-08-20): V2 Automation Standard structure — GitHub header,
+ * - v4.2 (2026-08-20): V2 Automation Standard structure â€” GitHub header,
  *   production docblock, SCRIPT metadata, readable CONFIG, numbered sections,
  *   debugStep, outer run wrapper. Business logic unchanged from v4.1.
- * - v4.1 (2026-08-08): Issue #104 repair — active XP only; shots/XP disagreement
+ * - v4.1 (2026-08-08): Issue #104 repair â€” active XP only; shots/XP disagreement
  *   fail closed; PHA-first homework schedule with legacy Curriculum fallback;
  *   SC-035 empty-week policy; preserves 074 send ownership.
  *
@@ -85,7 +86,7 @@ Send plane: 118 → 072 → 119 → 074 → 079 → Communications Hub → Resen
  *   against the current PHA schedule.
  * - Missing source XP is shown as pending/not awarded; configured XP amounts are never
  *   presented as earned.
- * - This automation BUILDS only — it does not send (074 / 079 own send).
+ * - This automation BUILDS only â€” it does not send (074 / 079 own send).
  * - Preserves SC-035 empty-week policy (send_short | send_normal | suppress).
  *
  * THIS IS NOT
@@ -126,7 +127,7 @@ Send plane: 118 → 072 → 119 → 074 → 079 → Communications Hub → Resen
  *   XP Events, Program Homework Assignments, Homework Library
  *
  * OUTPUT / WRITEBACK FIELDS
- * - Weekly Athlete Summary → Weekly Email Subject/HTML/Text/Payload/Recipients,
+ * - Weekly Athlete Summary â†’ Weekly Email Subject/HTML/Text/Payload/Recipients,
  *   Ready?, Build?, Send?, Error, Revision, Week Label, Last Built At
  ************************************************************/
 
@@ -138,10 +139,10 @@ Send plane: 118 → 072 → 119 → 074 → 079 → Communications Hub → Resen
 
 const SCRIPT = {
   scriptName: "072 - Email, Notifications, and External Handoffs - Build Weekly Summary Email Package",
-  version: "v4.9.2",
-  versionDate: "2026-09-06",
+  version: "v4.9.3",
+  versionDate: "2026-09-14",
   originalWrittenDate: "2026-06-20",
-  lastUpdated: "2026-09-06",
+  lastUpdated: "2026-09-14",
   folder: "07 - Email, Notifications, and External Handoffs",
   automationName: "072 - Email, Notifications, and External Handoffs - Build Weekly Summary Email Package",
 };
@@ -503,7 +504,7 @@ function goalCompletionPercentFromShotsAndGoal(shots, goal, ratioFromWas) {
 
 function formatGoalCompletionDisplayForEmail(ratio) {
   const raw = Number(ratio);
-  if (!Number.isFinite(raw)) return "—";
+  if (!Number.isFinite(raw)) return "â€”";
   if (raw + 1e-9 >= 1.5) return "150%+";
   if (raw + 1e-9 >= 1.25) return "125%";
   if (raw + 1e-9 >= 1.0) return "100%";
@@ -589,16 +590,16 @@ function buildVideoSubmissionLines(entries) {
     const reviewedAt = String(entry.reviewedAt || "").trim();
     const secureUrl = isValidLambdaViewerUrl(entry.secureUrl) ? String(entry.secureUrl).trim() : "";
     const datePart = reviewedAt ? ` (${reviewedAt})` : "";
-    const urlPart = secureUrl ? ` — ${secureUrl}` : "";
+    const urlPart = secureUrl ? ` â€” ${secureUrl}` : "";
     return `${label}${datePart}${urlPart}`;
   });
 }
 
 function resolveVideoDisplayFileName(customVideoFileName, originalFileName) {
   const custom = String(customVideoFileName ?? "").trim();
-  if (custom && custom !== "—") return custom;
+  if (custom && custom !== "â€”") return custom;
   const original = String(originalFileName ?? "").trim();
-  if (original && original !== "—") return original;
+  if (original && original !== "â€”") return original;
   return "";
 }
 
@@ -610,7 +611,7 @@ function resolveWeeklyVideoSubmissionLabel(entry = {}) {
   const resolved = resolveVideoDisplayFileName(entry?.customVideoFileName, entry?.originalFileName);
   if (resolved) return resolved;
   const legacy = String(entry?.label ?? "").trim();
-  if (legacy && legacy !== "—") return legacy;
+  if (legacy && legacy !== "â€”") return legacy;
   return "Video submission";
 }
 
@@ -633,7 +634,7 @@ function buildVideosSubmittedThisWeek(entries, bounds = {}) {
       entry?.customVideoFileName,
       entry?.originalFileName,
     );
-    rows.push({ activityDate: activityDateKey || "—", fileName });
+    rows.push({ activityDate: activityDateKey || "â€”", fileName });
   }
   rows.sort((left, right) => {
     const dateCompare = String(left.activityDate).localeCompare(String(right.activityDate));
@@ -794,12 +795,12 @@ function listHtml(items) {
 function fullHtml(data) {
   const goalCompletion =
     data.goalCompletionDisplay ||
-    (data.goalCompletionPercent != null ? `${formatNumber(data.goalCompletionPercent)}%` : "—");
+    (data.goalCompletionPercent != null ? `${formatNumber(data.goalCompletionPercent)}%` : "â€”");
   const shootingPct =
-    data.shootingPercentage != null ? `${formatNumber(data.shootingPercentage)}%` : "—";
+    data.shootingPercentage != null ? `${formatNumber(data.shootingPercentage)}%` : "â€”";
   const shootingDaysLine = escapeHtml(
     data.shootingDaysDisplay ||
-      (data.shootingDaysLogged != null ? formatNumber(data.shootingDaysLogged) : "—")
+      (data.shootingDaysLogged != null ? formatNumber(data.shootingDaysLogged) : "â€”")
   );
   const perfectWeekDaysLine = escapeHtml(
     data.perfectWeekDaysDisplay ||
@@ -807,7 +808,7 @@ function fullHtml(data) {
       data.daysLoggedDisplay ||
       formatNumber(data.perfectWeekDaysLogged || data.days)
   );
-  return `<!doctype html><html><body style="margin:0;background:#F2F2F2;font-family:Arial,sans-serif;color:#262626"><div style="max-width:700px;margin:auto;background:#fff"><div style="background:#0034B7;color:#fff;padding:22px;border-bottom:6px solid #FF8B00"><h2 style="margin:0">Weekly Shooting Challenge Summary</h2><p style="margin:6px 0 0">${escapeHtml(data.weekLabel)}</p></div><div style="padding:22px"><p>Hi ${escapeHtml(data.firstName || data.athleteName)}, here is your weekly progress.</p><h3>Shooting</h3><p>Shooting Days Logged: <strong>${shootingDaysLine}</strong><br>Shots: <strong>${formatNumber(data.shots)}</strong><br>Makes: <strong>${formatNumber(data.makes)}</strong><br>Shooting %: <strong>${shootingPct}</strong><br>Weekly Goal: <strong>${data.goal ? formatNumber(data.goal) : "—"}</strong><br>Goal Completion: <strong>${goalCompletion}</strong></p><h3>Perfect Week Progress</h3><p>Perfect Week Qualifying Days: <strong>${perfectWeekDaysLine}</strong><br>Daily minimum: <strong>${data.perfectWeekDailyMinimum != null ? formatNumber(data.perfectWeekDailyMinimum) : "—"}</strong><br>Videos: <strong>${escapeHtml(data.perfectWeekVideoProgress || "—")}</strong><br>Zoom: <strong>${escapeHtml(data.zoomSummary)}</strong><br>Homework: <strong>${escapeHtml(data.perfectWeekHomeworkStatus || "—")}</strong><br>Eligible: <strong>${data.perfectWeekEligible ? "Yes" : "No"}</strong>${data.perfectWeekXpAmount != null ? `<br>Perfect Week XP: <strong>${formatNumber(data.perfectWeekXpAmount)}</strong>` : ""}</p><h3>Video Submissions</h3>${listHtml(data.videoLines)}<h3>Homework Assigned</h3>${listHtml(data.assignments)}<h3>Homework Progress</h3>${listHtml(data.homework)}<h3>XP Earned</h3><p><strong>${formatNumber(data.weekXp)} XP</strong></p>${listHtml(data.xpLines)}<h3>Progression</h3><p>Current Level: <strong>${escapeHtml(data.level || "Not yet assigned")}</strong><br>Current Streak: <strong>${formatNumber(data.streak)} days</strong>${data.streakStatus ? `<br>Streak Status: <strong>${escapeHtml(data.streakStatus)}</strong>` : ""}</p></div></div></body></html>`;
+  return `<!doctype html><html><body style="margin:0;background:#F2F2F2;font-family:Arial,sans-serif;color:#262626"><div style="max-width:700px;margin:auto;background:#fff"><div style="background:#0034B7;color:#fff;padding:22px;border-bottom:6px solid #FF8B00"><h2 style="margin:0">Weekly Shooting Challenge Summary</h2><p style="margin:6px 0 0">${escapeHtml(data.weekLabel)}</p></div><div style="padding:22px"><p>Hi ${escapeHtml(data.firstName || data.athleteName)}, here is your weekly progress.</p><h3>Shooting</h3><p>Shooting Days Logged: <strong>${shootingDaysLine}</strong><br>Shots: <strong>${formatNumber(data.shots)}</strong><br>Makes: <strong>${formatNumber(data.makes)}</strong><br>Shooting %: <strong>${shootingPct}</strong><br>Weekly Goal: <strong>${data.goal ? formatNumber(data.goal) : "â€”"}</strong><br>Goal Completion: <strong>${goalCompletion}</strong></p><h3>Perfect Week Progress</h3><p>Perfect Week Qualifying Days: <strong>${perfectWeekDaysLine}</strong><br>Daily minimum: <strong>${data.perfectWeekDailyMinimum != null ? formatNumber(data.perfectWeekDailyMinimum) : "â€”"}</strong><br>Videos: <strong>${escapeHtml(data.perfectWeekVideoProgress || "â€”")}</strong><br>Zoom: <strong>${escapeHtml(data.zoomSummary)}</strong><br>Homework: <strong>${escapeHtml(data.perfectWeekHomeworkStatus || "â€”")}</strong><br>Eligible: <strong>${data.perfectWeekEligible ? "Yes" : "No"}</strong>${data.perfectWeekXpAmount != null ? `<br>Perfect Week XP: <strong>${formatNumber(data.perfectWeekXpAmount)}</strong>` : ""}</p><h3>Video Submissions</h3>${listHtml(data.videoLines)}<h3>Homework Assigned</h3>${listHtml(data.assignments)}<h3>Homework Progress</h3>${listHtml(data.homework)}<h3>XP Earned</h3><p><strong>${formatNumber(data.weekXp)} XP</strong></p>${listHtml(data.xpLines)}<h3>Progression</h3><p>Current Level: <strong>${escapeHtml(data.level || "Not yet assigned")}</strong><br>Current Streak: <strong>${formatNumber(data.streak)} days</strong>${data.streakStatus ? `<br>Streak Status: <strong>${escapeHtml(data.streakStatus)}</strong>` : ""}</p></div></div></body></html>`;
 }
 
 function shortHtml(data) {
@@ -818,7 +819,7 @@ function plainText(data, short) {
   if (short) {
     return `Shooting Challenge Weekly Reminder\n${data.weekLabel}\n\nNo countable shooting activity was recorded this week.`;
   }
-  return `Weekly Shooting Challenge Summary\n${data.weekLabel}\nAthlete: ${data.athleteName}\nShooting Days Logged: ${data.shootingDaysDisplay || (data.shootingDaysLogged != null ? data.shootingDaysLogged : "—")}\nPerfect Week Qualifying Days: ${data.perfectWeekDaysDisplay || data.perfectWeekQualifyingDaysDisplay || data.daysLoggedDisplay || data.perfectWeekDaysLogged || data.days}\nShots: ${data.shots}\nMakes: ${data.makes}\nShooting %: ${data.shootingPercentage}\nWeekly Goal: ${data.goal}\nGoal Completion: ${data.goalCompletionDisplay || data.goalCompletionPercent}\nPerfect Week Videos: ${data.perfectWeekVideoProgress}\nPerfect Week Zoom: ${data.zoomSummary}\nPerfect Week Homework: ${data.perfectWeekHomeworkStatus}\nVideo: ${data.videoLines.join(" | ")}\nWeekly XP: ${data.weekXp}\nHomework: ${data.homework.join(" | ")}\nXP: ${data.xpLines.join(" | ")}`;
+  return `Weekly Shooting Challenge Summary\n${data.weekLabel}\nAthlete: ${data.athleteName}\nShooting Days Logged: ${data.shootingDaysDisplay || (data.shootingDaysLogged != null ? data.shootingDaysLogged : "â€”")}\nPerfect Week Qualifying Days: ${data.perfectWeekDaysDisplay || data.perfectWeekQualifyingDaysDisplay || data.daysLoggedDisplay || data.perfectWeekDaysLogged || data.days}\nShots: ${data.shots}\nMakes: ${data.makes}\nShooting %: ${data.shootingPercentage}\nWeekly Goal: ${data.goal}\nGoal Completion: ${data.goalCompletionDisplay || data.goalCompletionPercent}\nPerfect Week Videos: ${data.perfectWeekVideoProgress}\nPerfect Week Zoom: ${data.zoomSummary}\nPerfect Week Homework: ${data.perfectWeekHomeworkStatus}\nVideo: ${data.videoLines.join(" | ")}\nWeekly XP: ${data.weekXp}\nHomework: ${data.homework.join(" | ")}\nXP: ${data.xpLines.join(" | ")}`;
 }
 
 async function skipBuild(recordId, action, message) {
@@ -848,13 +849,41 @@ async function suppressEmptyWeek(recordId, message) {
    SECTION 4: MAIN
 ========================================================= */
 
+function parseAutomationBoolean(raw, defaultWhenMissing) {
+  if (raw === undefined || raw === null || raw === "") {
+    return defaultWhenMissing === true;
+  }
+  if (typeof raw === "boolean") return raw;
+  if (typeof raw === "number") {
+    if (raw === 0) return false;
+    if (raw === 1) return true;
+    return defaultWhenMissing === true;
+  }
+  const s = String(raw).trim().toLowerCase();
+  if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
+  if (s === "false" || s === "0" || s === "no" || s === "n") return false;
+  return defaultWhenMissing === true;
+}
+
+function parseAutomationSendMode(raw, defaultWhenMissing) {
+  const fallback =
+    String(defaultWhenMissing || "test").trim().toLowerCase() === "live"
+      ? "live"
+      : "test";
+  if (raw === undefined || raw === null || raw === "") return fallback;
+  const s = String(raw).trim().toLowerCase();
+  if (["live", "l", "real", "send", "parent"].includes(s)) return "live";
+  if (["test", "t", "preview", "practice", "draft"].includes(s)) return "test";
+  return fallback;
+}
+
 async function main() {
   step("1 - Validate inputs");
   const cfg = typeof input !== "undefined" && input?.config ? input.config() : {};
   const recordId = String(cfg.recordId || "").trim();
   const allowSchmidt = String(cfg.allowSchmidtInput || "").trim().toLowerCase() === "true";
   const emptyWeekPolicy = normalizeEmptyWeekPolicy(cfg.emptyWeekPolicy);
-  const inputMode = normalizeMode(cfg.sendModeInput || cfg.sendMode);
+  const inputMode = parseAutomationSendMode(cfg.sendModeInput || cfg.sendMode, "test");
   if (!recordId) throw new Error("Missing required input: recordId");
 
   step("2 - Load tables and summary");
