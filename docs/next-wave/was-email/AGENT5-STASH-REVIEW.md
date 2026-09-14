@@ -1,5 +1,7 @@
 # Agent 5 stash review — `agent5-118-wip-preserve`
 
+> **HISTORICAL / REFERENCE ONLY.** This dated review is not current operating guidance. Use [`../../ACTIVE-DOCS-INDEX.md`](../../ACTIVE-DOCS-INDEX.md) and [`../../integrations/email-send-plane.md`](../../integrations/email-send-plane.md) for current routing.
+
 **Agent:** 12 · **Date:** 2026-07-24  
 **Stash:** `stash@{0}` on master tip at review time  
 **Disposition:** **DO NOT APPLY AS A WHOLE** — integrate one documentation correction only (already applied as 118/119 v1.3 docblock/history note).
