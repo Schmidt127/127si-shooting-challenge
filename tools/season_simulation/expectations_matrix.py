@@ -121,18 +121,8 @@ def _milestone_defs(grade_band_id: str = "recSIMGB912") -> list[ShotMilestoneDef
     ]
 
 
-def _streaks_from_submit_days(
-    submit_day_numbers: Sequence[int],
-    *,
-    thresholds: Sequence[int] = DEFAULT_STREAK_XP_THRESHOLDS,
-) -> list[int]:
-    """Streak thresholds crossed via 053 multi-segment contiguous blocks.
-
-    Mirrors automation 053 ``buildStreakBlocks``: split submit days into
-    contiguous day blocks; for each block award each threshold when
-    ``block.length >= threshold``. Returns sorted unique thresholds (Perfect
-    continuous season awards every XP threshold 3→60 once).
-    """
+def _streak_blocks(submit_day_numbers: Sequence[int]) -> list[list[int]]:
+    """Split unique submit day numbers into contiguous blocks (053 semantics)."""
     if not submit_day_numbers:
         return []
     days = sorted(set(int(d) for d in submit_day_numbers))
@@ -145,14 +135,37 @@ def _streaks_from_submit_days(
             blocks.append(current)
             current = [days[i]]
     blocks.append(current)
+    return blocks
 
-    awarded: set[int] = set()
-    for block in blocks:
+
+def _streak_award_multiset(
+    submit_day_numbers: Sequence[int],
+    *,
+    thresholds: Sequence[int] = DEFAULT_STREAK_XP_THRESHOLDS,
+) -> list[int]:
+    """Per-segment streak XP awards mirroring automation 053.
+
+    Each contiguous submit-day block can award each threshold when
+    ``block.length >= threshold``. Awards are **not** unique across the season —
+    Recovery athletes with many short segments correctly earn threshold 3/5/…
+    multiple times (one XP Event per segment crossing).
+    """
+    awards: list[int] = []
+    for block in _streak_blocks(submit_day_numbers):
         length = len(block)
         for t in thresholds:
             if length >= int(t):
-                awarded.add(int(t))
-    return sorted(awarded)
+                awards.append(int(t))
+    return awards
+
+
+def _streaks_from_submit_days(
+    submit_day_numbers: Sequence[int],
+    *,
+    thresholds: Sequence[int] = DEFAULT_STREAK_XP_THRESHOLDS,
+) -> list[int]:
+    """Unique streak thresholds crossed in any 053 contiguous block (sorted)."""
+    return sorted(set(_streak_award_multiset(submit_day_numbers, thresholds=thresholds)))
 
 
 def _homework_summary(scenario: AthleteScenario, week_label: str) -> tuple[str, str]:
@@ -196,9 +209,11 @@ def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpect
     streak_gates = _streaks_from_submit_days(
         submit_nums, thresholds=DEFAULT_STREAK_GATE_THRESHOLDS
     )
-    streak_xp = _streaks_from_submit_days(
+    # XP expectations use the per-segment multiset (053), not unique thresholds.
+    streak_xp_awards = _streak_award_multiset(
         submit_nums, thresholds=DEFAULT_STREAK_XP_THRESHOLDS
     )
+    streak_xp = sorted(set(streak_xp_awards))
     milestones = _milestone_defs(scenario.grade_band_id or "recSIMGB912")
     total_shots = sum(d.shot_total for d in scenario.days if d.action == "submit")
     crossed = select_crossed_shot_milestones(
@@ -282,7 +297,7 @@ def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpect
         )
 
     xp_by_cat = _estimate_xp_buckets(
-        scenario, threshold_awards, crossed, streak_xp, pw_pass
+        scenario, threshold_awards, crossed, streak_xp_awards, pw_pass
     )
 
     level_notes = {
@@ -302,7 +317,7 @@ def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpect
         miss_days=sum(1 for d in scenario.days if d.action == "miss"),
         weekly_rows=rows,
         expected_perfect_week_count=pw_pass,
-        expected_streak_achievements=streak_xp,
+        expected_streak_achievements=list(streak_xp_awards),
         expected_shot_milestones=[m.shot_count for m in crossed],
         expected_weekly_threshold_awards=threshold_awards,
         expected_xp_by_category=xp_by_cat,
@@ -314,7 +329,8 @@ def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpect
         expected_email_handoffs=build_email_handoff_expectations(scenario),
         notes=list(scenario.gate_notes) + [
             f"Streak gate thresholds crossed: {streak_gates}",
-            f"Streak XP thresholds crossed: {streak_xp}",
+            f"Streak XP unique thresholds: {streak_xp}",
+            f"Streak XP award multiset (n={len(streak_xp_awards)}): {streak_xp_awards}",
         ],
     )
 

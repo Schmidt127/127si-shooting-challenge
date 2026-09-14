@@ -154,10 +154,14 @@ def classify_streak_settlement(
         occ = occurrence_by_threshold.get(thr) or []
         xp = xp_by_threshold.get(thr) or []
         problems: list[str] = []
-        if len(occ) != 1:
+        # 053 awards one occurrence/XP per contiguous segment that crosses the
+        # threshold — Recovery athletes correctly have count > 1 globally.
+        if len(occ) < 1:
             problems.append(f"occurrence_count={len(occ)}")
-        if len(xp) != 1:
+        if len(xp) < 1:
             problems.append(f"xp_count={len(xp)}")
+        if len(occ) >= 1 and len(xp) >= 1 and len(occ) != len(xp):
+            problems.append(f"occurrence_xp_mismatch occ={len(occ)} xp={len(xp)}")
         checks.append(
             SettlementCheck(
                 name=f"streak|{thr}",

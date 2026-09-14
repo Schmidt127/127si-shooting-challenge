@@ -200,8 +200,10 @@ class TestRecoveryEdgeOracle(unittest.TestCase):
         matrix = build_athlete_expectation_matrix(scenario)
         pts = expected_points_from_matrix(matrix)
         self.assertEqual(matrix.expected_perfect_week_count, 1)
-        self.assertEqual(sum_points(pts), 2375)
+        self.assertEqual(sum_points(pts), 2565)
         self.assertEqual(pts["Perfect Week XP"], 100)
+        self.assertEqual(pts["Streak XP"], 265)
+        self.assertEqual(matrix.expected_xp_by_category.get("STREAK_XP"), 19)
 
     def test_edge_perfect_week_five_and_xp(self):
         rid = new_run_id(suffix="edge")

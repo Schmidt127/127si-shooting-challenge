@@ -138,19 +138,23 @@ Future simulation emails must continue to force the allowlist; execute remains g
 
 | Capability | Status |
 |------------|--------|
-| Active vs raw XP | Supported via `Active?` / status filters in `business_reconciliation.actual_xp_buckets_from_events` + new checker |
-| Lifetime XP vs active sum | Checker row + business gate |
+| Active vs raw XP | **`Active? is True` required** (`event_is_active`) — null/missing excluded to match Production Active XP Points |
+| Lifetime XP vs active sum | Checker row + business gate (`assert_lifetime_matches_active_xp`) |
 | Daily / HW / Video / Threshold / PW / Zoom / Milestone buckets | `business_reconciliation` + STREAK map includes **50→90, 60→105** |
-| Streak segments after missed days | Oracle uses contiguous blocks (`expectations_matrix._streaks_from_submit_days` mirrors 053) — do not assume one season-long segment |
+| Streak segments after missed days | **Per-segment award multiset** (`_streak_award_multiset`) mirrors 053 — Recovery earns threshold awards per contiguous block (19 events / 265 XP) |
 | Duplicate Source Key | Counted in business gate + checker |
-| Level/gates | `level_for` ladder; checker refuses lowering gates |
-| Read-only table output | **NEW** `tools/season_simulation/reconciliation_checker.py` → Expected \| Actual \| Pass/Fail \| Evidence |
+| Level/gates | `level_for` ladder ≠ gate-reachable level; do not claim G.O.A.T. from XP alone when gates block |
+| Stage E2 live wiring | `execute_three` loads enrollment XP via `try_load_enrollment_xp_for_reconcile` into `reconcile_with_live_events` |
+| Read-only table output | `tools/season_simulation/reconciliation_checker.py` → Expected \| Actual \| Pass/Fail \| Evidence |
 | Perfect-season oracle | Rebuilt **4980** (20 HW × 35; 10 Perfect Weeks; Zoom 90 = 1 live + 1 recording) — prior 4910 retired with 18-PHA model |
+| Recovery oracle | **2565** total (Streak XP **265** / 19 awards) after multiset fix |
 
 **Go for dry-run validation tooling:** YES  
 **Go for claiming execute success:** NO until authorized execute + checker PASS on all enrollments
 
-Tests: `tools/season_simulation/tests/test_reconciliation_checker.py`
+Agent follow-up (2026-09-14): findings from [Agent A](8e7cce53-34ac-45ed-9153-267ef1de162d), [Agent C](ba038293-709a-4de3-9daa-8c8373167822), and [Agent E](898a9476-e49c-4f70-b77c-54ab90b4af89) reconciled — Active?/multiset streak settlement fixes applied on this PR after Agent E NO-GO.
+
+Tests: `tools/season_simulation/tests/test_reconciliation_checker.py` · `test_orchestration_corrections.py`
 
 ---
 
@@ -159,10 +163,10 @@ Tests: `tools/season_simulation/tests/test_reconciliation_checker.py`
 | Area | Status | Blocking Issue | Required Action |
 |------|--------|----------------|-----------------|
 | Shooting Challenge data cleanup | **GO** | None | None |
-| Curriculum data cleanup | **GO** | None | None |
-| Formulas and automation versions | **CONDITIONAL GO** | Prod ahead of GitHub on **035 / 053 / 065**; **022** GitHub ahead of Prod | Sync GitHub←Prod for 035/053/065; decide 022 paste; do not paste older GitHub over Prod |
+| Curriculum data cleanup | **GO** | None | Hub draft/outbox table **IDs** still Meta-API optional confirm ([Agent C](ba038293-709a-4de3-9daa-8c8373167822)); names verified live empty |
+| Formulas and automation versions | **CONDITIONAL GO** | Prod ahead of GitHub on **035 / 053 / 065**; **022** GitHub ahead of Prod; PENDING-CUTOVERS may still list 057/118/119 | Sync GitHub←Prod for 035/053/065; decide 022; refresh PENDING-CUTOVERS vs live |
 | Email safety | **GO** | None for queue backlog | Keep allowlist; do not change live Hub settings without separate approval |
-| XP reconciliation/oracle | **GO (tooling)** | Execute not run | Use `reconciliation_checker` on next sim; require exact PASS |
+| XP reconciliation/oracle | **CONDITIONAL GO** | Level/gate reachability still separate from XP ladder; keep Season Sim formula gates active through reconcile if validating streak Active XP | Use `reconciliation_checker` + E2 on next sim; require exact PASS; do not assert G.O.A.T. from XP alone |
 | Dry-run readiness | **GO** | None | `python -m season_simulation dry-run-three` (read-only default) |
 | Execute readiness | **NO-GO** | Explicit Mike phrase + confirm tokens + fresh run ID + paste sync for 035/053/065 recommended | Wait for `RUN 3-ATHLETE SEASON SIMULATION` + gates; **do not** merge PR #530 |
 

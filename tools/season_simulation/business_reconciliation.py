@@ -138,6 +138,19 @@ def sum_points(pts: dict[str, int]) -> int:
     return int(sum(pts.values()))
 
 
+def event_is_active(fields: dict[str, Any]) -> bool:
+    """Production Active XP Points only when Active? is truthy (True).
+
+    ``Active?=null`` / missing must **not** count — matches Airtable formula
+    behavior documented in the 010724Z closeout (streak rows with null Active?
+    contribute 0 Active XP Points).
+    """
+    status = str(fields.get("Status") or "").lower()
+    if status in {"void", "inactive", "duplicate", "superseded"}:
+        return False
+    return fields.get("Active?") is True
+
+
 def actual_xp_buckets_from_events(events: Sequence[dict[str, Any]]) -> dict[str, int]:
     """Sum XP Points by coarse bucket from live XP Event rows."""
     buckets = {
@@ -152,6 +165,8 @@ def actual_xp_buckets_from_events(events: Sequence[dict[str, Any]]) -> dict[str,
     }
     for ev in events:
         f = ev.get("fields") or ev
+        if not event_is_active(f):
+            continue
         key = str(f.get("Source Key") or "").upper()
         pts = f.get("XP Points")
         if pts is None:
@@ -160,11 +175,6 @@ def actual_xp_buckets_from_events(events: Sequence[dict[str, Any]]) -> dict[str,
             amount = int(float(pts or 0))
         except (TypeError, ValueError):
             amount = 0
-        status = str(f.get("Status") or "").lower()
-        if status in {"void", "inactive", "duplicate", "superseded"}:
-            continue
-        if f.get("Active?") is False:
-            continue
         if key.startswith("SUBMISSION_XP") or ("SHOOTING" in key and "BASE" in key):
             buckets["Submission XP"] += amount
         elif key.startswith("HOMEWORK"):
@@ -189,10 +199,7 @@ def sum_active_xp_points(events: Sequence[dict[str, Any]]) -> int:
     total = 0
     for ev in events:
         f = ev.get("fields") or ev
-        status = str(f.get("Status") or "").lower()
-        if status in {"void", "inactive", "duplicate", "superseded"}:
-            continue
-        if f.get("Active?") is False:
+        if not event_is_active(f):
             continue
         pts = f.get("Active XP Points")
         if pts is None:
@@ -520,6 +527,8 @@ __all__ = [
     "SAFE_ALLOWLIST",
     "BusinessReconciliationResult",
     "assert_lifetime_matches_active_xp",
+    "actual_xp_buckets_from_events",
+    "event_is_active",
     "expected_points_from_matrix",
     "reconcile_business_success",
     "reconcile_with_live_events",

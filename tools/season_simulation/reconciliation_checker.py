@@ -78,9 +78,8 @@ def _is_active_event(f: dict[str, Any]) -> bool:
     status = str(f.get("Status") or "").lower()
     if status in {"void", "inactive", "duplicate", "superseded"}:
         return False
-    if f.get("Active?") is False:
-        return False
-    return True
+    # Match Production Active XP Points: only truthy Active? counts.
+    return f.get("Active?") is True
 
 
 def _active_events(events: Sequence[dict[str, Any]]) -> list[dict[str, Any]]:
