@@ -1,5 +1,7 @@
 # WAS / weekly email — Agent 12 + verified PROD close (2026-07-24)
 
+> **HISTORICAL / REFERENCE ONLY.** This report documents the former Make/Gmail path. Current delivery is Communications Hub → Resend; see [`../../integrations/email-send-plane.md`](../../integrations/email-send-plane.md).
+
 **Status:** Controlled Schmidt E2E **PASS** for empty-week `send_short` + schedules **ON**  
 **Canonical:** [`WAS-WEEKLY-EMAIL-ARCHITECTURE.md`](./WAS-WEEKLY-EMAIL-ARCHITECTURE.md)
 
