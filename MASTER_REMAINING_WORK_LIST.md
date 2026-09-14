@@ -20,7 +20,7 @@
 | Formulas after Stage Z | Production-normal bundle restored; no `SEASON-SIM` branches |
 | Post-restore XP snapshot | **4,525** is **expected** under Production `NOW()` (future-dated streaks inactive) — **not** a failed season |
 | Active PHA | **20** including **Week 9 × 2** |
-| Automation version authority | **Airtable Automation editor** (script header / UI) — Automations tracking table is **not** authoritative for script versions |
+| Automation version authority | **Published Airtable Automation editor / workflow deployment** (published script header/body + UI) — Automations tracking table is **not** authoritative for script versions |
 | SC transactional sim residue | Cleaned to zero after exact-ID cleanup (verify packet on Perfect closeout branch / PR) |
 | Three-athlete SC-SEASON-SIM-001 | Still **not executed** as a full three-athlete campaign (distinct from Perfect Mike path) |
 

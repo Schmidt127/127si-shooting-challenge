@@ -1,5 +1,7 @@
 # Mike Actions — WAS / weekly email
 
+> **HISTORICAL / REFERENCE ONLY.** These dated Make/Gmail actions are complete or superseded. Use [`../../ACTIVE-DOCS-INDEX.md`](../../ACTIVE-DOCS-INDEX.md) for current operator references.
+
 **Updated:** 2026-07-24 (schedules ON; Live writeback verified)
 
 ## Done

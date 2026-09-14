@@ -1,5 +1,7 @@
 # SC-SEASON-SIM-002 — Cleanup plan for failed run
 
+> **HISTORICAL — CLEANUP ALREADY COMPLETE.** This exact-ID manifest is retained as failure evidence for the 2026-09-02 SC-002 run. Do not reuse its IDs or command sequence for a future run. Use the current [Perfect operator guide](./SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md) and generate a fresh manifest.
+
 | Item | Value |
 |------|--------|
 | **Backlog** | SC-SEASON-SIM-002 |

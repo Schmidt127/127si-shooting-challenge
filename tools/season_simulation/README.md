@@ -1,33 +1,32 @@
-# Season simulation — SC-SEASON-SIM-001 (three-athlete) + SC-SEASON-SIM-002 (historical)
+# Season simulation — current Perfect operator path + historical packages
 
 Infrastructure for full-season disposable simulations of the Shooting Challenge.
 **Default mode is dry-run / read-only.** Do not run execute until authorized.
 
 | | |
 |---|---|
-| **SC-SEASON-SIM-001** | Three-athlete package (Perfect / Recovery / Edge) — **READY FOR EXECUTE** pending gates below; **NOT executed** |
-| **SC-SEASON-SIM-002** | Single-athlete historical package — **COMPLETE** (T122531Z); do not rerun |
+| **Current Perfect path** | Historical Perfect Mike run **PASSED** pre-restore acceptance at **4,980 active XP / 170 events**, then was cleaned. See the [current operator guide](../../docs/deploy-checklists/SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md). |
+| **SC-SEASON-SIM-001** | Three-athlete package (Perfect / Recovery / Edge) — separate future scenario; do not use it as the Perfect Mike operator path. |
+| **SC-SEASON-SIM-002** | Historical single-athlete package — complete; do not rerun historical IDs. |
 | **Window** | 2027-04-25 → 2027-06-30 11:59 PM America/Denver inclusive (**67** days) |
 | **Challenge weeks** | **10** — Early Bird + Week 1–9 (Week 9 = 10th ordinal, **4 days**, partial **4/7** shot target) |
-| **PHA** | **20** active = Early Bird + Weeks 1–9 (2 each); Week 9 HW1 Active in Production; HW2 modeled as expected once activated |
+| **PHA** | **20** active = Early Bird + Weeks 1–9 (2 each), including Week 9 ×2 |
 | **Oracle** | Perfect-season XP **4980** → Level **G.O.A.T.** (Zoom XP **90** = 1 live + 1 recording; no Bonus 2/3; +2 Week-9 HW × 35 vs prior 4910) → `expected_perfect_season_xp.json` |
 | **Environment** | Production `appn84sqPw03zEbTT` only — **no DEV environment** |
 | **SC-001 manifest** | [`docs/deploy-checklists/SC-SEASON-SIM-001-EXECUTION-MANIFEST.md`](../../docs/deploy-checklists/SC-SEASON-SIM-001-EXECUTION-MANIFEST.md) |
 | **SC-002 manifest** | [`docs/deploy-checklists/SC-SEASON-SIM-002-EXECUTION-MANIFEST.md`](../../docs/deploy-checklists/SC-SEASON-SIM-002-EXECUTION-MANIFEST.md) |
-| **Readiness audit** | [`docs/audits/SEASON-SIM-READINESS-20260912.md`](../../docs/audits/SEASON-SIM-READINESS-20260912.md) |
+| **Current acceptance evidence** | [`FINAL-PASS-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.md`](../../docs/audits/readiness-20260914/FINAL-PASS-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.md) |
 
 ### Late Homework
 
 - **Normal Homework XP:** always if Satisfactory (lateness does not block XP).
 - **Perfect Week homework:** must be on/before **Week End** cutoff (Sat 11:59 PM Denver; **Week 9 = Wed Jun 30**). PHA Due Date is display-only.
 
-### NEXT REQUIRED ACTION
+### Current operator direction
 
-1. Mike authorization phrase (Perfect or three-athlete) before any live execute
-2. Production **057 v2.7** — **verified live 2026-09-14** (header + SHA-256 match GitHub); no paste required unless re-verified stale
-3. Formula Stage Z / recovery path ready (`production_normal_formulas.json`)
+The Perfect Mike path has executed successfully and been cleaned. For a future run, start with the [current Perfect operator guide](../../docs/deploy-checklists/SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md), not a historical SC-002 manifest or readiness snapshot.
 
-Simulation **NOT executed**. Do not treat Stage-0 snapshots as Production restore sources. Prior **4910 / 18-PHA / paste-required 057** claims are superseded.
+Do not treat Stage-0 snapshots as Production restore sources. Prior **4910 / 18-PHA / paste-required 057** claims are superseded.
 
 ## Can it run today?
 
@@ -35,8 +34,8 @@ Simulation **NOT executed**. Do not treat Stage-0 snapshots as Production restor
 |---|---|
 | Offline tests / dry-run / preflight | Yes |
 | SC-001 three-athlete dry-run | **Yes** — `python -m season_simulation dry-run-three` (Independent Oracle XP == Dry-run Expected XP) |
-| Full execute writer (idempotent) | **Code ready** — blocked on Mike authorization phrase (057 v2.7 live verified 2026-09-14) |
-| Complete countable E2E on wall-clock 2026 | Season Sim gates **currently ACTIVE** on Production (restore after run). Hub allowlist includes `schmidt@fairfieldbasketballclub.com`. |
+| Full execute writer (idempotent) | Available only after a new explicit Mike authorization and current preflight |
+| Complete countable E2E on wall-clock 2026 | Apply row-scoped gates only for an authorized run. Keep them active through pre-restore acceptance; restore only after the 4,980 / 170 hard gate passes. |
 
 `CREATED_TIME()` / `Submitted At` **cannot** be API-backdated. Same-day / Perfect Week timing uses gated `Season Sim Test Submitted At` and/or `Perfect Week Manual Exception?` on disposable rows only.
 
@@ -127,7 +126,7 @@ Count This Submission? = 0 when Activity Date Is Future? = 1
 2. Temporarily gate `Activity Date Is Future?` so override applies **only** when
    checkbox is checked **and** `Video Upload Note` contains `SEASON-SIM|`
 3. Harness stamps those fields on every disposable Submission
-4. Restore Production `NOW()` formula immediately after the run
+4. Restore the exact Production-normal formula bundle **only after** pre-restore acceptance passes; never restore on writer completion alone
 
 Normal athletes never match the gate → unchanged Production behavior.
 
@@ -149,7 +148,7 @@ Gate conditions (all required for sim branch):
 
 Ordinary athletes stay on NOW() / CREATED_TIME / TODAY() branches.
 
-**Rollback** for `Activity Date Is Future?` after the run:
+**Rollback** for `Activity Date Is Future?` after a passing pre-restore acceptance:
 
 ```text
 IF(
@@ -236,6 +235,8 @@ python -m season_simulation execute-perfect `
 ```
 
 (Omit `--simulation-id` to auto-generate via `new_perfect_run_id()`.)
+
+Before using this command, follow the [current Perfect operator guide](../../docs/deploy-checklists/SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md). It defines the required 4,980 active XP / 170 event pre-restore acceptance and separate cleanup approval.
 
 ### SC-SEASON-SIM-001 three-athlete execute (gated)
 
@@ -352,13 +353,13 @@ python -m season_simulation cleanup `
 - Cleanup never targets Weeks / reference tables; registry-only `rec…` IDs
 - Every created Submission is stamped `SEASON-SIM|<run_id>` for cleanup targeting
 
-## Before the final authorized run
+## Before a future authorized run
 
 1. Confirm **Program Homework Assignments** = **20** active (Early Bird + Weeks 1–9); Week 9 HW2 activated when required for Perfect
 2. Ensure **Weeks** cover April 25 – June 30, 2027 (10 challenge weeks)
-3. Paste Production **057 v2.7** if still on v2.6; Season Sim formula gates already ACTIVE — keep restore formulas ready
+3. Confirm the current published automation versions and Production-normal formula bundle. Do not assume gates are active between runs.
 4. Verify Resend sender already used by live Hub pipeline
 5. Confirm enrollment Parent Email is the allowlist address
 6. Run `preflight` until `sufficient_for_final_run` (or knowingly accept warnings)
 7. Run `dry-run-three` and confirm Independent Oracle XP == Dry-run Expected XP
-8. Only then run `execute-three` with Mike phrase + all confirm tokens (+ optional `--enable-email-delivery`)
+8. Only then run the specifically authorized path with its required phrase and confirm tokens (+ optional `--enable-email-delivery`)

@@ -83,7 +83,7 @@ Trigger map (downstream effects): [../airtable/schema/current/automation-trigger
 | **031** | Weekly Summary — Find or Create WAS from Submission | Submissions when formula-backed count readiness evaluates checked and formula-backed stat mode evaluates `Simple Total` or `Detailed Shooting`; reuses or creates the canonical WAS | `031-weekly-summary-and-goal-logic-find-or-create-weekly-athlete-summary-from-submission.js` (**v4.1** — authoritative find-or-create owner; exact Enrollment/Week cardinality, formula-backed readiness inputs, writable email-readiness checkbox) |
 | 032 | Weekly Summary — Link Challenge Goal to WAS | WAS with one Enrollment + Grade Band and no Goal Record | `032-weekly-summary-and-goal-logic-link-challenge-goal-record-to-weekly-athlete-summary.js` (**v3.4** — exactly one active explicit-numeric Target Goal Shots match by Program Instance record ID + Grade Band record ID; zero is valid only when configured) |
 | 033 | Weekly Summary — Assign Homework to WAS | **paste v4.1 pending** — PHA-only, exact PI required | `033-weekly-summary-and-goal-logic-assign-homework-to-weekly-athlete-summary.js` (**v4.1**) |
-| **035** | Weekly Summary — Create Weekly Threshold XP Events | WAS when `Threshold XP Ready? = 1` — **GitHub v1.7** (marker `SC-SEASON-SIM-001-DEPLOY-20260914D`; ASCII/comment hash consistency; executable behavior unchanged from v1.6). Paste [`035-v1.7-PASTE.txt`](../deploy-checklists/035-v1.7-PASTE.txt) only after Mike approval. Do not paste older GitHub over Production. | `035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js` (**v1.7**) |
+| **035** | Weekly Summary — Create Weekly Threshold XP Events | WAS when `Threshold XP Ready? = 1` — **GitHub v1.7** (marker `SC-SEASON-SIM-001-DEPLOY-20260914D`; ASCII/comment hash consistency; executable behavior unchanged from v1.6). Paste [`035-v1.7-PASTE.txt`](./deploy-checklists/035-v1.7-PASTE.txt) only after Mike approval. Do not paste older GitHub over Production. | `035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js` (**v1.7**) |
 | 034 | Weekly Summary — Set Previous Week Helper Values | *confirm in Airtable* | `034-weekly-summary-and-goal-logic-set-previous-week-helper-values.js` |
 
 ## Levels and progression (041–043)
@@ -175,7 +175,7 @@ Current parent/athlete **email delivery** is Communications Hub → **Resend**. 
 
 Live attendance XP remains **101**. **SC-147** recording half-XP is **Production-complete on 101 v6.8** (no slot **121**). Recording approval email remains **117** (email only). Closeout: [`audits/SC-147-101-V68-PRODUCTION-CLOSEOUT-20260904.md`](./audits/SC-147-101-V68-PRODUCTION-CLOSEOUT-20260904.md).
 
-C-025 historical Stage 17 packets: [deploy-checklists/C-025-stage17-zoom-recording-production-installation-packet.md](./deploy-checklists/C-025-stage17-zoom-recording-production-installation-packet.md). Architecture history: [v2/C025_ARCHITECTURE_RECONCILIATION.md](./v2/C025_ARCHITECTURE_RECONCILIATION.md). Historical Make approval-email path (not current): [C-025-117f-prod-zoom-recording-approval-email.md](./deploy-checklists/C-025-117f-prod-zoom-recording-approval-email.md). Current email delivery: [integrations/email-send-plane.md](./integrations/email-send-plane.md).
+C-025 historical Stage 17 packets are retained as historical repository context; see [ARCHIVED-AND-SUPERSEDED-FILES.md](./ARCHIVED-AND-SUPERSEDED-FILES.md). Architecture history: [v2/C025_ARCHITECTURE_RECONCILIATION.md](./v2/C025_ARCHITECTURE_RECONCILIATION.md). Historical Make approval-email path (not current): [C-025-117f-prod-zoom-recording-approval-email.md](./deploy-checklists/C-025-117f-prod-zoom-recording-approval-email.md). Current email delivery: [integrations/email-send-plane.md](./integrations/email-send-plane.md).
 
 ---
 
@@ -185,7 +185,7 @@ C-025 historical Stage 17 packets: [deploy-checklists/C-025-stage17-zoom-recordi
 |---|--------------------------|---------|------|
 | **116** | Submission Assets — Apply Asset Reuse Decision Consequences | Submission Assets · **When record updated** · watched field **`Asset Reuse Decision`** · input `recordId` | `116-submission-assets-apply-asset-reuse-decision-consequences.js` |
 
-**Production (2026-07-10):** **Deployed and validated** on `appn84sqPw03zEbTT` · script `992677d` · v1.0.1 · matrix **S5A–S5L 12/12 PASS** · live **Confirmed Duplicate PASS** + **Approved Reuse reversal PASS** on asset `recF86pJTIMFoEypJ` → VF `rec20xfx0hKCCwPw2` → XP `recx2MvUh2WP0tbjO` (Source Key `VIDEO_SUBMISSION|rec20xfx0hKCCwPw2`; same row deactivated then reactivated; no duplicate XP Event). Replaced retired **008** (slot-neutral; count unchanged). [Stage 5 report](./deploy-checklists/C-023-production-stage5-duplicate-consequences.md).
+**Production (2026-07-10):** **Deployed and validated** on `appn84sqPw03zEbTT` · script `992677d` · v1.0.1 · matrix **S5A–S5L 12/12 PASS** · live **Confirmed Duplicate PASS** + **Approved Reuse reversal PASS** on asset `recF86pJTIMFoEypJ` → VF `rec20xfx0hKCCwPw2` → XP `recx2MvUh2WP0tbjO` (Source Key `VIDEO_SUBMISSION|rec20xfx0hKCCwPw2`; same row deactivated then reactivated; no duplicate XP Event). Replaced retired **008** (slot-neutral; count unchanged). [Production validation](./deploy-checklists/C-023-prod-automation-116-validation-2026-07-10.md).
 
 ---
 
@@ -243,7 +243,7 @@ Full audit order: [../airtable/extension-scripts/audits/README.md](../airtable/e
 5. Paste same script into **production** automation
 6. Update `CHANGELOG.md` and this index if trigger/name changed
 
-Runbook: [production-base-setup.md](./production-base-setup.md) (V2-015).
+V2-015 production-base setup is historical planning material; consult [ACTIVE-DOCS-INDEX.md](./ACTIVE-DOCS-INDEX.md) for current production authority.
 
 ---
 

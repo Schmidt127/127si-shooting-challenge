@@ -1,5 +1,7 @@
 # Empty-week weekly email — decision packet
 
+> **HISTORICAL / REFERENCE ONLY.** The delivery implementation described here predates the current Communications Hub → Resend send plane. Current routing: [`../../integrations/email-send-plane.md`](../../integrations/email-send-plane.md).
+
 **Agent:** 12 · **Date:** 2026-07-24  
 **Status:** APPROVED + **PROD verified** (2026-07-24) · **Policy:** `send_short`  
 **Related:** SC-035 · [`WAS-WEEKLY-EMAIL-ARCHITECTURE.md`](./WAS-WEEKLY-EMAIL-ARCHITECTURE.md)  

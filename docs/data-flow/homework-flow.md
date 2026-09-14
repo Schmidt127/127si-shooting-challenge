@@ -55,7 +55,7 @@ Homework **parent feedback** scenario (Make after **071**):
 2. Send Gmail
 3. On Gmail success only: check `Parent Feedback Sent?` and set `Parent Feedback Sent On`
 
-Test with [homework-submitted sample payload](../../make/test-payloads/README.md).
+For the current integration reference, see [Make blueprint documentation](../../make/blueprints/README.md).
 
 ## XP on Completion
 

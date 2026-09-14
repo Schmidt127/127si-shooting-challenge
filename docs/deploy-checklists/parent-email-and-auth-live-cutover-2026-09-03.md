@@ -1,5 +1,8 @@
 # Parent-email + magic-link Live cutover — Mike operator checklist
 
+> **HISTORICAL OPERATOR PACKET — DO NOT USE THIS FILE TO CHOOSE VERSIONS, PASTE SCRIPTS, OR PROMOTE EMAIL.**
+> It preserves the 2026-09-03 cutover state. Current email operations are in [`TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md`](./TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md).
+
 **Date:** 2026-09-03  
 **Mode:** Mike UI only — Cursor does **not** change secrets, Airtable inputs, or Vercel env through code.  
 **Do not** run season simulation. **Do not** modify 003 / 067 / 101 / 117 / SC-147 / create 121.

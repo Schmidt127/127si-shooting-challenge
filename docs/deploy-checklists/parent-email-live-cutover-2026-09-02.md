@@ -1,5 +1,8 @@
 # Parent-email Live cutover — Production operator packet
 
+> **HISTORICAL OPERATOR PACKET — DO NOT USE THIS FILE TO CHOOSE VERSIONS, PASTE SCRIPTS, OR PROMOTE EMAIL.**
+> It preserves the 2026-09-02/13 cutover context. Use [`TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md`](./TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md) and [`EMAIL-PRODUCER-BOOLEAN-INPUT-PARSING.md`](./EMAIL-PRODUCER-BOOLEAN-INPUT-PARSING.md) instead.
+
 **Status:** GitHub ready (2026-09-03) — Mike Airtable UI steps pending  
 **Base:** Production only (`appn84sqPw03zEbTT`)  
 **Disposable proof recipient:** `schmidt@fairfieldbasketballclub.com` only  

@@ -70,5 +70,14 @@ docs/testing/evidence/**/_*
 docs/testing/evidence/parent-email-live-cutover/*.json
 duplicate-enrollment-guard-*.patch
 
-node_modules/
+# Season-simulation runtime state and ad-hoc helpers.  Curated evidence is
+# intentionally committed only through the documented evidence index; do not
+# add raw registries, locks, logs, or one-off helpers by accident.
+tools/season_simulation/run_registries/*
+!tools/season_simulation/run_registries/.gitignore
+tools/season_simulation/.season-sim-execute.lock
+tools/season_simulation/_*.py
+docs/audits/readiness-*/_scratch*/
+docs/audits/readiness-*/*-live.log
 
+node_modules/

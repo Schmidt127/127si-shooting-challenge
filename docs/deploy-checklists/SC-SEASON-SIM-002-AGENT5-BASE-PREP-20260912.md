@@ -1,5 +1,7 @@
 # SC-SEASON-SIM-002 — Agent 5 Production base prep (2026-09-12)
 
+> **HISTORICAL — DO NOT USE FOR CURRENT OPERATIONS.** This preflight records a temporary formula-gate state and an incomplete 2026-09 PHA graph. It must not be treated as a current Production configuration or runbook. See [`SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md`](./SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md).
+
 | | |
 |---|---|
 | **Agent** | AGENT 5 — Production base simulation settings / reversible configuration |

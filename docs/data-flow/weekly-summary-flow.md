@@ -3,6 +3,8 @@
 How **Weekly Athlete Summary** rows are ensured, packaged, and emailed to parents.
 
 **Authoritative architecture (verified PROD 2026-07-24):**  
+> **Historical-reference notice:** the linked `next-wave/was-email` material records the former Make/Gmail path. For current delivery, use [`integrations/email-send-plane.md`](../integrations/email-send-plane.md).
+
 [`docs/next-wave/was-email/WAS-WEEKLY-EMAIL-ARCHITECTURE.md`](../next-wave/was-email/WAS-WEEKLY-EMAIL-ARCHITECTURE.md)
 
 ## Final flow

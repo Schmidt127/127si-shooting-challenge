@@ -9,7 +9,7 @@ current live configuration.
 
 ## Automation version authority (2026-09-14)
 
-> **Script / version authority:** The live **Airtable Automation editor** (script body + SCRIPT header / UI Mike attests) is authoritative for which automation code is running.
+> **Script / version authority:** The live, **published Airtable Automation editor / workflow deployment** (published script body + `SCRIPT` header, with UI configuration Mike attests) is authoritative for the automation code running.
 >
 > The Production `Automations` **tracking table is not authoritative for script versions**.
 
@@ -35,7 +35,7 @@ current live configuration.
 | Human-readable release status | [`SHOOTING_CHALLENGE_COMPLETION_MASTER.md`](./SHOOTING_CHALLENGE_COMPLETION_MASTER.md) | Cursor; update when release evidence or blockers change |
 | Repository integrity / security registers | [`REPOSITORY-INTEGRITY-AUDIT.md`](./REPOSITORY-INTEGRITY-AUDIT.md) · [`SECURITY-AND-SENSITIVE-FILES.md`](./SECURITY-AND-SENSITIVE-FILES.md) · [`ARCHIVED-AND-SUPERSEDED-FILES.md`](./ARCHIVED-AND-SUPERSEDED-FILES.md) | Cursor; refresh after integrity passes |
 | Machine-readable run control | [`agent-runs/CONTROL.json`](./agent-runs/CONTROL.json) | Lead / Integrator; update when a controlled agent package starts, completes, or changes state |
-| Live Airtable **automation script version** | **Airtable Automation editor / UI** | Mike; dated UI attestation |
+| Live Airtable **automation script version and code** | **Published Airtable Automation editor / workflow deployment** | Mike; dated UI attestation |
 | Live Airtable **automation Name / Status / Code labels** | Production `Automations` table (**those three columns only** — not version truth) | Mike refresh 2026-08-20; Cursor may use for inventory labels only |
 | Live Airtable **automation triggers / UI wiring** | **Airtable Automations UI** (not other Automations-table columns) | Mike; dated UI attestation |
 | Live Airtable **records** (athletes, submissions, XP, etc.) | Airtable UI / named base, not repository text | Mike; verify with a dated read-only export or controlled UI evidence |

@@ -1,5 +1,7 @@
 # SC-SEASON-SIM-002 — Automation paste (010 / 114 / 073 Season Sim date gate)
 
+> **HISTORICAL — DO NOT PASTE.** This 2026-09 packet contains superseded automation versions and preparation assumptions. It remains evidence only. Future simulation gates and Stage Z restore behavior are governed by [`SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md`](./SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md) and the committed Production-normal formula bundle.
+
 | | |
 |---|---|
 | **Backlog** | SC-SEASON-SIM-002 |

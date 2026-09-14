@@ -59,7 +59,7 @@ Set submission `{XP Awarded}` = true after successful create.
 
 ### 6. Optional Make Webhook
 
-If configured, payload includes `eventId`, athlete, points, challenge type for parent/coach notifications. See [make/test-payloads/](../../make/test-payloads/).
+If configured, payload includes `eventId`, athlete, points, challenge type for parent/coach notifications. See the maintained [Make blueprint documentation](../../make/blueprints/README.md).
 
 ## Failure Modes
 

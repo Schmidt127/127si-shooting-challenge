@@ -1,225 +1,30 @@
-# Documentation Index
+# Documentation index
 
-Central map for all documentation in this monorepo. **Start here** when you are not sure which file to open.
+This is the navigation entry point for the 127 SI Shooting Challenge repository.
 
-> **Repo:** `127-si-shooting-challenge` — public app at `/shoot` on fairfieldbasketballclub.com. Official landing: https://www.fairfieldbasketballclub.com.
+## Start with current authority
 
-**Current project truth?** Use [CURRENT-TRUTH.md](./CURRENT-TRUTH.md) first (branch/SHA, bases, email plane, automation overlays, pending/blocked work). Latest reconciliation: [audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md](./audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md). Integrity companions: [REPOSITORY-INTEGRITY-AUDIT.md](./REPOSITORY-INTEGRITY-AUDIT.md) · [ARCHIVED-AND-SUPERSEDED-FILES.md](./ARCHIVED-AND-SUPERSEDED-FILES.md) · [SECURITY-AND-SENSITIVE-FILES.md](./SECURITY-AND-SENSITIVE-FILES.md).
+| Need | Open |
+|---|---|
+| Current verified project state | [CURRENT-TRUTH.md](./CURRENT-TRUTH.md) |
+| Active implementation roadmap | [MASTER_REMAINING_WORK_LIST.md](../MASTER_REMAINING_WORK_LIST.md) |
+| Engineering and operating rules | [ENGINEERING_CONSTITUTION.md](./ENGINEERING_CONSTITUTION.md) |
+| System and ownership authority | [AUTHORITY-MAP.md](./AUTHORITY-MAP.md) |
+| Current operational snapshot | [PROJECT_STATE.md](./PROJECT_STATE.md) |
+| Current email delivery plane | [integrations/email-send-plane.md](./integrations/email-send-plane.md) |
+| Automation lookup | [automation-index.md](./automation-index.md) |
+| Active-document routing | [ACTIVE-DOCS-INDEX.md](./ACTIVE-DOCS-INDEX.md) |
 
-> **Authority:** The obsolete Production `Automations` data table is **not** a source of truth — see CURRENT-TRUTH Authority rule.
+## Important authority rules
 
-**Completion plan (controlling release narrative)?** Use [SHOOTING_CHALLENGE_COMPLETION_MASTER.md](./SHOOTING_CHALLENGE_COMPLETION_MASTER.md). Older backlog files remain evidence/history only.
+- The **Airtable Automation editor** is the authority for published automation code and its version header. The Automations tracking table is operational metadata only.
+- The passed Perfect Mike Schmidt simulation is historical evidence: pre-restore acceptance was **4,980 active XP / 170 events**; post-restore future-date deactivation is expected and does not change that result.
+- Historical plans, probes, prior runbooks, Foundation Reset material, `next-wave/`, and `chatgpt-sources/` are reference material unless the Active Docs Index explicitly routes to them.
 
-**Current reconciliation (2026-07-24):** [next-wave/agent5-lead-reconciliation-2026-07-24/](./next-wave/agent5-lead-reconciliation-2026-07-24/) · go-live [next-wave/go-live/](./next-wave/go-live/) · Mike actions [next-wave/final-reconciliation/MIKE-ACTIONS-NEXT.md](./next-wave/final-reconciliation/MIKE-ACTIONS-NEXT.md).
+## Working in this repository
 
-**Foundation Reset Pack (2026-07-23):** [foundation-reset/README.md](./foundation-reset/README.md).
+Read [AGENTS.md](../AGENTS.md) before making changes. For implementation work, keep the Master Remaining Work List and Current Truth aligned; do not use historical plans as a current instruction source.
 
-**New session?** Read [CURRENT-TRUTH.md](./CURRENT-TRUTH.md), [ENGINEERING_CONSTITUTION.md](./ENGINEERING_CONSTITUTION.md), and [PROJECT_STATE.md](./PROJECT_STATE.md), then [v2/04-ai-development-standards.md](./v2/04-ai-development-standards.md) for the permanent AI workflow.
+## Historical reference
 
-**ChatGPT handoff (latest session):** [handoffs/CHATGPT-SESSION-HANDOFF-2026-08-30.md](./handoffs/CHATGPT-SESSION-HANDOFF-2026-08-30.md) — paste into ChatGPT for Phase 4 review after 2026-08-30 Cursor merges (#279–#293).
-
-**Four-agent run?** Start at [agent-runs/00-START-HERE.md](./agent-runs/00-START-HERE.md) and [agent-runs/CONTROL.json](./agent-runs/CONTROL.json).
-
-**Shooting Challenge V2?** Start at [v2/README.md](./v2/README.md), then [127-SI-MASTER-FUTURE-WORK-LIST.md](./127-SI-MASTER-FUTURE-WORK-LIST.md) for consolidated planning, or import [chatgpt-sources/](./chatgpt-sources/) into ChatGPT Project Sources.
-
----
-
-## Engineering constitution
-
-| Doc | Purpose |
-|-----|---------|
-| [ENGINEERING_CONSTITUTION.md](./ENGINEERING_CONSTITUTION.md) | **Highest-level engineering law** — GitHub, production-only, promotion, testing, priorities |
-| [phase-2b-engineering-review-2026-07-06.md](./phase-2b-engineering-review-2026-07-06.md) | Phase 2B — V2-014 review, C-020 gaps, risks |
-
----
-
-**[v2/README.md](./v2/README.md)** — read order, Mike + ChatGPT + Cursor workflow.
-
-**[chatgpt-sources/](./chatgpt-sources/)** — **import this entire folder** into ChatGPT Project Sources (23 synced files + `00-START-HERE.md`).
-
-| — | [v2/04-ai-development-standards.md](./v2/04-ai-development-standards.md) | **Active** — permanent workflow (Mike / ChatGPT / Cursor) |
-| — | [127-SI-MASTER-FUTURE-WORK-LIST.md](./127-SI-MASTER-FUTURE-WORK-LIST.md) | **Consolidated backlog** — all C-/V2-/H- IDs, sub-system roadmaps, ChatGPT prompt |
-
-| # | File | Status |
-|---|------|--------|
-| 01 | [v2/01-constitution.md](./v2/01-constitution.md) | **Active** — configurable game engine + four layers |
-| 02 | [v2/02-master-direction.md](./v2/02-master-direction.md) | Shell |
-| 03 | [v2/03-business-rules.md](./v2/03-business-rules.md) | **Engine contract** — platform behavior only |
-| 04 | [v2/04-ai-development-standards.md](./v2/04-ai-development-standards.md) | **Active** — AI workflow, task classification, five phases |
-| — | [v2/season-configuration-design.md](./v2/season-configuration-design.md) | Season gate design (Layer 2, DRAFT) |
-| 05 | [v2/05-system-architecture.md](./v2/05-system-architecture.md) | Shell |
-| 06 | [v2/06-automation-standards.md](./v2/06-automation-standards.md) | **Active** — V2 rewrite pattern; **066** reference script (live paste **v3.8** per CURRENT-TRUTH) |
-| 07 | [v2/07-ui-standards.md](./v2/07-ui-standards.md) | Shell |
-| 08 | [v2/08-testing-standards.md](./v2/08-testing-standards.md) | **Active** — audit-first; **fix the audit, not the data** |
-| 09 | [v2/09-release-notes.md](./v2/09-release-notes.md) | Shell — points to CHANGELOG |
-
-Legacy long-form docs below remain canonical until each v2 file is fully expanded.
-
----
-
-## Shooting Challenge v2 (legacy paths — still valid)
-
-| Doc | Purpose |
-|-----|---------|
-| [shooting-challenge-v2-master-direction.md](./shooting-challenge-v2-master-direction.md) | **Season direction** — mission, locked 2026–27 decisions |
-| [v2/01-constitution.md](./v2/01-constitution.md) | **Constitution** — configurable game engine + four layers |
-| [v2/03-business-rules.md](./v2/03-business-rules.md) | **Engine contract** — how the system behaves (not season numbers) |
-| [shooting-challenge-v2-config-vs-code.md](./shooting-challenge-v2-config-vs-code.md) | **Config vs code** — what lives in Levels / Level Gate Rules / XP Reward Rules vs scripts |
-| [shooting-challenge-v2-base-cutover.md](./shooting-challenge-v2-base-cutover.md) | **Archive + clone** — scrub season data, keep config; GitHub tag (no fork) |
-| [asset-storage-migration.md](./asset-storage-migration.md) | **AWS S3 + canonical URLs** — retire Drive/Airtable attachments (C-013) |
-| [testing-and-intake-architecture.md](./testing-and-intake-architecture.md) | Fillout validation, flexible Weeks, test sandbox, Engineering Test Framework (C-017–C-020) |
-| [platform-config-improvements.md](./platform-config-improvements.md) | Grade bands + public display fields (C-021, C-022) |
-| [127-SI-MASTER-FUTURE-WORK-LIST.md](./127-SI-MASTER-FUTURE-WORK-LIST.md) | **Owner change list** — all requests, dependency waves, **V2-013 Program Instance** |
-| [v2-014-automation-modernization-roadmap.md](./v2-014-automation-modernization-roadmap.md) | **Phase 2 master doc** — automation inventory, disposition, capacity plan |
-| [production-base-setup.md](./production-base-setup.md) | **V2-015 ops runbook** — clone, PAT, webhook isolation, production-only deploy |
-| [v2-015-production-base-architecture.md](./v2-015-production-base-architecture.md) | **Approved** — production Airtable base + one prod + one repo |
-| [127-SI-MASTER-FUTURE-WORK-LIST.md](./127-SI-MASTER-FUTURE-WORK-LIST.md) | **Planning aggregate** — Wave 0 closed; H-001/H-002; session progress |
-| [v2/06-automation-standards.md](./v2/06-automation-standards.md) | **V2 automation rewrite pattern** — 066 reference (live **v3.8**) |
-| [v2/08-testing-standards.md](./v2/08-testing-standards.md) | **Audit-first testing** — fix the audit, not the data |
-
----
-
-## V2 release readiness
-
-| Doc | Purpose |
-|-----|---------|
-| [CURRENT-TRUTH.md](./CURRENT-TRUTH.md) | **Primary current-state document** — git identity, bases, email, overlays, work ledger |
-| [deploy-checklists/TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md](./deploy-checklists/TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md) | **Tier 1 Mike operator runbook** — email paste bundles, SC-172 token, Curriculum Hub cutover, Zoom primary, Live testMode flip |
-| [PROJECT_STATE.md](./PROJECT_STATE.md) | **Live ops snapshot** — must agree with CURRENT-TRUTH; routes, C-025/C-011, Softr obsolete |
-| [KNOWN_ISSUES.md](./KNOWN_ISSUES.md) | **Canonical known issues** — Critical / High / Medium / Low with owners |
-| [deploy-checklists/SOFTR-CUTOVER-READINESS.md](./deploy-checklists/SOFTR-CUTOVER-READINESS.md) | Softr → Next.js cutover checklist (no cutover until approved) |
-| [UNTRACKED-RECOVERY-TRIAGE.md](./UNTRACKED-RECOVERY-TRIAGE.md) | Triage plan for untracked recovery material (do not delete without approval) |
-| [V2_RELEASE_CHECKLIST.md](./V2_RELEASE_CHECKLIST.md) | **Go-live checklist** — pre-promotion, Production, smoke, rollback, sign-off |
-| [deploy-checklists/Production-release-readiness-verification-2026-07-16.md](./deploy-checklists/Production-release-readiness-verification-2026-07-16.md) | **Online Agent 2** Production verification package (2026-07-16) — offline PASS; live install pending |
-| [AUTOMATION_VERSION_INVENTORY.md](./AUTOMATION_VERSION_INVENTORY.md) | Automation # / version / trigger / Production·PROD status / evidence |
-| [V2_END_TO_END_TEST_MATRIX.md](./V2_END_TO_END_TEST_MATRIX.md) | Full athlete-scenario launch matrix |
-| [known-issues.md](./known-issues.md) | Legacy pointer → [KNOWN_ISSUES.md](./KNOWN_ISSUES.md) |
-| [status/C-025-stage17-current-prod-progress.md](./status/C-025-stage17-current-prod-progress.md) | **C-025 Stage 17 — authoritative current state** (Zoom Attendance credit COMPLETE; Automation **117** vs Make **117f**; four-part send key) |
-| [deploy-checklists/C-025-117f-prod-zoom-recording-approval-email.md](./deploy-checklists/C-025-117f-prod-zoom-recording-approval-email.md) | C-025 PROD Zoom Recording **Approval Email** workflow (Airtable **117** → Make **117f**) — tested, not fully live |
-| [v2/ZOOM_RECORDING_CREDIT_PROD_INSTALL.md](./v2/ZOOM_RECORDING_CREDIT_PROD_INSTALL.md) | C-025 / **117a–117b** Production install packet (**superseded S16 design** — Stage 17 is current) |
-| [v2/C011_AUTOMATIC_WEEKLY_EMAIL_PROD_INSTALL.md](./v2/C011_AUTOMATIC_WEEKLY_EMAIL_PROD_INSTALL.md) | C-011 weekly email Production install packet (historical) |
-| [next-wave/was-email/WAS-WEEKLY-EMAIL-ARCHITECTURE.md](./next-wave/was-email/WAS-WEEKLY-EMAIL-ARCHITECTURE.md) | **C-011 PROD verified** weekly email architecture (`118→072→119→074→Make`) |
-| [reliability-command-center/README.md](./reliability-command-center/README.md) | **Reliability Command Center** (SC-147) — workflow health model, offline audit CLI, retry policy (Interface **Designed**, not installed) |
-| [reliability-command-center/MVP-PRODUCTION-RELEASE.md](./reliability-command-center/MVP-PRODUCTION-RELEASE.md) | RCC minimum PROD release — existing fields, export format, exact views |
-| [deploy-checklists/RELIABILITY-COMMAND-CENTER-PRODUCTION-INSTALL.md](./deploy-checklists/RELIABILITY-COMMAND-CENTER-PRODUCTION-INSTALL.md) | RCC production installation packet (MVP views; no automation changes; 118/119 stay ON) |
-| [v2/AUTOMATION_070A_LAUNCH_DECISION.md](./v2/AUTOMATION_070A_LAUNCH_DECISION.md) | 070a PROD keep-OFF decision |
-| [deploy-checklists/066-production-omni-confirmation-packet.md](./deploy-checklists/066-production-omni-confirmation-packet.md) | 066 OMNI confirmation support |
-| [deploy-checklists/PROD-promotion-rollback-index-stage10.md](./deploy-checklists/PROD-promotion-rollback-index-stage10.md) | Track-level promotion / rollback index |
-| [challenge-year/README.md](./challenge-year/README.md) | **Challenge-Year Config + season rollover engine** (Built in Repository) |
-| [deploy-checklists/challenge-year-rollover-installation-packet.md](./deploy-checklists/challenge-year-rollover-installation-packet.md) | Annual rollover installation / usage packet |
-
-**Safe repo validation (no Airtable / no secrets printed):**
-
-```bash
-node tools/validate-v2-release-readiness.js
-```
-
-## Operations and architecture
-
-| Doc | Purpose |
-|-----|---------|
-| [PROJECT_STATE.md](./PROJECT_STATE.md) | **Live snapshot** — bases, audits, Vercel, Softr |
-| [KNOWN_ISSUES.md](./KNOWN_ISSUES.md) | Operational known issues with severity + ownership |
-| [deployment-notes.md](./deployment-notes.md) | Vercel env vars, health check, validation |
-| [../web/docs/admin-roadmap.md](../web/docs/admin-roadmap.md) | `/shoot/admin` roadmap (read-only first) |
-| [../AGENTS.md](../AGENTS.md) | AI assistant instructions |
-| [../README.md](../README.md) | Repo introduction and layout |
-| [../SYSTEM_OVERVIEW.md](../SYSTEM_OVERVIEW.md) | Modules, data flow, architecture goals |
-| [automation-index.md](./automation-index.md) | **All 46 production automations** — links to [V2-014 roadmap](./v2-014-automation-modernization-roadmap.md) |
-| [../CHANGELOG.md](../CHANGELOG.md) | Production-impacting changes (sections: Airtable / Web / Make) |
-| [architecture/architecture-review.md](./architecture/architecture-review.md) | Architecture review checklist |
-| [recovery/emergency-recovery.md](./recovery/emergency-recovery.md) | Incident recovery runbook |
-| [checklists/weekly-maintenance-checklist.md](./checklists/weekly-maintenance-checklist.md) | Weekly ops checklist |
-| [close-out-considerations.md](./close-out-considerations.md) | **Watchlist** — open items to consider during close-out / review |
-| [post-close-hygiene-2025-26.md](./post-close-hygiene-2025-26.md) | **Post-close backlog** — 2025–26 audit hygiene (unlock dedupe, 066, scope, catalog) |
-| [media-kits.md](./media-kits.md) | **End-of-season publicity** — `media/` layout, builders, V2-028 roadmap |
-| [xp-motivation-analysis-2025-26.md](./xp-motivation-analysis-2025-26.md) | V1 XP / levels / streak data; dual-track brainstorm **not** adopted — see V2 master direction |
-
-## Data flows
-
-| Doc | Purpose |
-|-----|---------|
-| [data-flow/submission-to-xp-flow.md](./data-flow/submission-to-xp-flow.md) | Submission → XP Event path |
-| [data-flow/homework-flow.md](./data-flow/homework-flow.md) | Homework upload and review |
-| [data-flow/weekly-summary-flow.md](./data-flow/weekly-summary-flow.md) | Weekly Athlete Summary chain (`118→072→119→074→Make`) |
-| [challenge-year/WEEK-CONTRACT.md](./challenge-year/WEEK-CONTRACT.md) | Week key format, Sunday–Saturday, Activity Date→Week |
-| [challenge-year/ACTIVATION-RUNBOOK.md](./challenge-year/ACTIVATION-RUNBOOK.md) | Annual activation + rollback checklist |
-
-## Airtable (backend)
-
-| Doc | Purpose |
-|-----|---------|
-| [../airtable/schema/snapshots/prod-20260706/](../airtable/schema/snapshots/prod-20260706/) | **Latest dated prod snapshot** (treat as current until Agent A refreshes) |
-| [../airtable/schema/current/table-map.md](../airtable/schema/current/table-map.md) | Table relationships — **stale**; prefer dated snapshots |
-| [../airtable/schema/current/field-map.md](../airtable/schema/current/field-map.md) | Canonical field names — **stale** until refreshed |
-| [../airtable/schema/current/automation-trigger-map.md](../airtable/schema/current/automation-trigger-map.md) | Automation triggers — **stale** until refreshed |
-| [../airtable/automations/AUTOMATION_SCRIPT_STANDARD.md](../airtable/automations/AUTOMATION_SCRIPT_STANDARD.md) | Production script standard |
-| [../airtable/extension-scripts/audits/README.md](../airtable/extension-scripts/audits/README.md) | **Pipeline audits (Stages A–J)** |
-| [../airtable/extension-scripts/safe-backfills/README.md](../airtable/extension-scripts/safe-backfills/README.md) | **Backfill run order** |
-| [airtable/stage-j-legacy-cleanup.md](./airtable/stage-j-legacy-cleanup.md) | Stage J legacy field cleanup |
-| [../airtable/extension-scripts/schema/README.md](../airtable/extension-scripts/schema/README.md) | In-base schema export script |
-
-## Web (frontend)
-
-| Doc | Purpose |
-|-----|---------|
-| [../web/README.md](../web/README.md) | Next.js app quick start |
-| [../web/docs/site-hierarchy.md](../web/docs/site-hierarchy.md) | **Canonical routes and nav** |
-| [../web/docs/page-plan.md](../web/docs/page-plan.md) | Page phases (links to site-hierarchy) |
-| [../web/docs/airtable-views.md](../web/docs/airtable-views.md) | **Views and filters** used by queries.ts |
-| [../web/docs/airtable-data-map.md](../web/docs/airtable-data-map.md) | Airtable tables → web features |
-| [../web/docs/public-data-rules.md](../web/docs/public-data-rules.md) | What may appear on public pages |
-| [../web/docs/deployment-notes.md](../web/docs/deployment-notes.md) | Vercel deploy and env vars |
-| [../web/docs/project-roadmap.md](../web/docs/project-roadmap.md) | Web product phases |
-| [../web/docs/cursor-instructions.md](../web/docs/cursor-instructions.md) | AI editing conventions for `web/` |
-
-## Make.com
-
-| Doc | Purpose |
-|-----|---------|
-| [../make/documentation/README.md](../make/documentation/README.md) | Scenario documentation index |
-| [../make/documentation/upload-asset-engine.md](../make/documentation/upload-asset-engine.md) | Upload asset engine |
-| [../make/blueprints/README.md](../make/blueprints/README.md) | Exported scenario blueprints |
-| [integrations/tremendous-award-fulfillment.md](./integrations/tremendous-award-fulfillment.md) | C-028 Tremendous current state (sandbox validated; production API pending) |
-| [integrations/email-send-plane.md](./integrations/email-send-plane.md) | Current SC email delivery (Resend; Make is not the email sender) |
-
-## JR Referee Clinics
-
-Separate repo: `127-si-jr-ref` (public path `/refclinic`).
-
-## Multi-repo map
-
-| Program | Repo | Public path |
-|---------|------|-------------|
-| Club landing | landing project (historical repo name may still be `hoopchallenges-landing`) | https://www.fairfieldbasketballclub.com |
-| Shooting Challenge | this repo | `/shoot` on fairfieldbasketballclub.com |
-| JR Referee Clinics | `127-si-jr-ref` | `/refclinic` |
-
-Details: [PROJECT_STATE.md](./PROJECT_STATE.md)
-
-## Tools
-
-| Doc | Purpose |
-|-----|---------|
-| [../tools/airtable/README.md](../tools/airtable/README.md) | Schema export Python tools |
-
-## AI / Cursor
-
-| Doc | Purpose |
-|-----|---------|
-| [../.cursor/rules/](../.cursor/rules/) | **Canonical Cursor rules** (always applied) |
-| [../cursor/rules.md](../cursor/rules.md) | Pointer to `.cursor/rules/` |
-
----
-
-## Common tasks
-
-| I want to… | Go to |
-|------------|-------|
-| Run a data integrity pass | [audits README](../airtable/extension-scripts/audits/README.md) |
-| Repair historical data | [safe-backfills README](../airtable/extension-scripts/safe-backfills/README.md) |
-| Deploy the website | [deployment-notes](../web/docs/deployment-notes.md) |
-| Add a new public page | [site-hierarchy](../web/docs/site-hierarchy.md) |
-| Export Shooting Challenge schema | [tools/airtable](../tools/airtable/README.md) |
-| Multi-repo program map | [PROJECT_STATE.md](./PROJECT_STATE.md) |
-| Look up an automation | [automation-index.md](./automation-index.md) |
+Historical evidence is intentionally retained. Use [ARCHIVED-AND-SUPERSEDED-FILES.md](./ARCHIVED-AND-SUPERSEDED-FILES.md) to determine whether an older document is evidence, superseded guidance, or a retired path.

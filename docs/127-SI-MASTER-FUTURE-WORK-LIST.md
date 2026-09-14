@@ -15,7 +15,7 @@
 
 | ID | Status | Notes |
 |----|--------|-------|
-| **SC-SEASON-SIM-PERFECT-202231Z** | **COMPLETE / historical** | Perfect Mike Schmidt path **PASSED** pre-restore **4980 / 170** — run `SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt`. Post-restore 4525 expected. Formulas restored; cleanup closed. |
+| **SC-SEASON-SIM-PERFECT-202231Z** | **COMPLETE / historical** | Perfect Mike Schmidt path **PASSED** pre-restore **4980 / 170** — run `SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt`. Post-restore 4525 expected. Formulas restored; cleanup closed. Future Perfect runs use [`SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md`](./deploy-checklists/SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md). |
 | **SC-SEASON-SIM-001** | **READY — NOT EXECUTED** | **Three-athlete** season simulation only. Requires exact owner authorization (`RUN 3-ATHLETE SEASON SIMULATION`). |
 | **SC-SEASON-SIM-002** | **COMPLETE (infrastructure / package closed)** | Do not re-run T122531Z. |
 | **MRW-L02 / FUT-053** | Launch-critical plan | Stripe coupon / 100% payment writeback — plan only until Mike activates. |
@@ -2257,7 +2257,7 @@ Reusable **three-athlete** full-season simulation (May 1 â€“ June 30, 2027)
 
 
 
-**Acceptance (live execute â€” future):** Three disposable athletes created under new run ID; cascade matches precomputed expectation matrices; allowlist email only; cleanup + formula restore verified.
+**Acceptance (live execute â€” future):** Three disposable athletes created under a new run ID; cascade matches precomputed expectation matrices; allowlist email only; pre-restore acceptance captured before Production-normal formula restore; cleanup separately authorized and verified.
 
 
 
@@ -2290,7 +2290,7 @@ Reusable **three-athlete** full-season simulation (May 1 â€“ June 30, 2027)
 
 **Priority:** P2  
 
-**Status:** **COMPLETE (package closed)** (2026-09-05) â€” Controlled run T122531Z + prior `SEASON-SIM-2027-20260902T213135Z-athlete1` cleaned; Production formulas restored to normal **`NOW()` / `TODAY()`** (temporary Season Sim formulas **not** active). Package reusable via [`deploy-checklists/SC-SEASON-SIM-002-EXECUTION-MANIFEST.md`](./deploy-checklists/SC-SEASON-SIM-002-EXECUTION-MANIFEST.md). **Not currently running.** Next execute **NOT authorized** â€” needs a **new** simulation ID and Mike saying exactly `RUN SEASON SIMULATION`.
+**Status:** **COMPLETE / historical package** (2026-09-05) â€” controlled runs were cleaned and formulas were restored. The dated SC-002 manifest is retained for evidence only; it is **not** the current execution procedure. Future Perfect runs use [`deploy-checklists/SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md`](./deploy-checklists/SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md) with a new run ID and explicit authorization.
 
 **Systems:** `tools/season_simulation/`, Airtable gated formulas (temporary), automations 010/114/073/053/055/057/072, Hub Test Allowlist  
 
@@ -3236,5 +3236,4 @@ Sorted by priority (P0?P3), then ID. Historical Sections A?F above remain for na
 **Regenerated operator queue:** [`_generated-work-list-section-g.md`](./_generated-work-list-section-g.md) via `node tools/docs/generate-work-list-section-g.mjs --patch-master`.
 
 ---
-
 

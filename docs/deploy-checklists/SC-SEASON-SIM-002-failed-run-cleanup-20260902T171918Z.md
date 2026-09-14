@@ -1,5 +1,7 @@
 # SC-SEASON-SIM-002 — Cleanup plan for failed run (2026-09-02T171918Z)
 
+> **HISTORICAL — CLEANUP ALREADY COMPLETE.** Retained as audit evidence only. Do not reuse these record IDs, operational assumptions, or cleanup command for current operations; use the [current Perfect operator guide](./SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md).
+
 | Item | Value |
 |------|--------|
 | **Backlog** | SC-SEASON-SIM-002 |
