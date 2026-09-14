@@ -14,7 +14,7 @@ The Daily Submission Acknowledgement email renders three compact metric columns 
 
 ## Payload contract
 
-See Communications Hub [`DAILY_SUBMISSION_v1.md`](../../communications/docs/contracts/DAILY_SUBMISSION_v1.md) (in `Schmidt127/communications`).
+See the Communications Hub [`DAILY_SUBMISSION_v1.md`](https://github.com/Schmidt127/communications/blob/main/docs/contracts/DAILY_SUBMISSION_v1.md) contract (external repository).
 
 | Field | Required | Notes |
 |-------|----------|-------|
