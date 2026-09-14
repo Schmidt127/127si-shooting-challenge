@@ -17,6 +17,9 @@ SIMULATION_DAY_COUNT = 67  # (SIM_END - SIM_START).days + 1
 CONFIRM_TOKEN = "SEASON-SIMULATION-2027"
 CONFIRM_DISPOSABLE_TOKEN = "CONFIRM-DISPOSABLE-SEASON-SIM"
 CONFIRM_CLEANUP_TOKEN = "CONFIRM-CLEANUP-SEASON-SIM"
+# Extra gate: cleanup of paused/failed/incomplete registries requires this token.
+# Cleanup never runs automatically after execute; Mike must authorize deletes.
+CONFIRM_FORCE_INCOMPLETE_CLEANUP_TOKEN = "CONFIRM-FORCE-CLEANUP-INCOMPLETE-SEASON-SIM"
 
 # SC-SEASON-SIM-001 three-athlete authorization (Mike must say exactly this phrase).
 THREE_ATHLETE_AUTHORIZATION_PHRASE = "RUN 3-ATHLETE SEASON SIMULATION"

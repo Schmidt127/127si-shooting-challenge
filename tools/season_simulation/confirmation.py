@@ -5,6 +5,7 @@ from __future__ import annotations
 from .constants import (
     CONFIRM_CLEANUP_TOKEN,
     CONFIRM_DISPOSABLE_TOKEN,
+    CONFIRM_FORCE_INCOMPLETE_CLEANUP_TOKEN,
     CONFIRM_THREE_ATHLETE_TOKEN,
     CONFIRM_TOKEN,
     THREE_ATHLETE_AUTHORIZATION_PHRASE,
@@ -77,6 +78,35 @@ def require_cleanup_gates(
         raise ConfirmationError(
             f"{action} requires --simulation-id / --run-id starting with "
             f"SEASON-SIM-2027- or SEASON-SIM-PERFECT-; got {simulation_id!r}"
+        )
+
+
+INCOMPLETE_CLEANUP_STATUSES = frozenset(
+    {"paused", "failed", "incomplete", "error", "interrupted"}
+)
+
+
+def require_incomplete_cleanup_force(
+    *,
+    registry_status: str | None,
+    confirm_force_incomplete: str | None,
+    action: str = "season simulation cleanup",
+) -> None:
+    """Refuse cleanup of failed/incomplete runs without an extra force token.
+
+    Cleanup never runs automatically after execute. Paused/failed registries
+    require Mike-authorized ``CONFIRM-FORCE-CLEANUP-INCOMPLETE-SEASON-SIM``.
+    """
+    status = str(registry_status or "").strip().lower()
+    if status not in INCOMPLETE_CLEANUP_STATUSES:
+        return
+    if (confirm_force_incomplete or "") != CONFIRM_FORCE_INCOMPLETE_CLEANUP_TOKEN:
+        raise ConfirmationError(
+            f"{action} for registry status {status!r} requires "
+            f"--confirm-force-incomplete-cleanup "
+            f"\"{CONFIRM_FORCE_INCOMPLETE_CLEANUP_TOKEN}\" exactly; "
+            f"got {confirm_force_incomplete!r}. "
+            "Cleanup is never automatic after a failed or incomplete simulation."
         )
 
 

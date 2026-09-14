@@ -23,6 +23,7 @@ from .confirmation import is_execute_fully_gated
 from .constants import (
     CONFIRM_CLEANUP_TOKEN,
     CONFIRM_DISPOSABLE_TOKEN,
+    CONFIRM_FORCE_INCOMPLETE_CLEANUP_TOKEN,
     CONFIRM_THREE_ATHLETE_TOKEN,
     CONFIRM_TOKEN,
     SAFE_EMAIL_RECIPIENT,
@@ -119,6 +120,14 @@ def _parser() -> argparse.ArgumentParser:
         "--confirm-cleanup",
         default="",
         help=f'Must equal "{CONFIRM_CLEANUP_TOKEN}" for cleanup deletes',
+    )
+    p.add_argument(
+        "--confirm-force-incomplete-cleanup",
+        default="",
+        help=(
+            f'Must equal "{CONFIRM_FORCE_INCOMPLETE_CLEANUP_TOKEN}" when cleaning '
+            "paused/failed/incomplete registries (never automatic after a failed sim)"
+        ),
     )
     p.add_argument(
         "--confirm-three-athlete",
@@ -853,6 +862,10 @@ def cmd_cleanup(args: argparse.Namespace) -> int:
         execute=bool(args.execute),
         confirm=args.confirm,
         confirm_cleanup=args.confirm_cleanup,
+        confirm_force_incomplete_cleanup=getattr(
+            args, "confirm_force_incomplete_cleanup", None
+        )
+        or None,
         simulation_id=args.run_id,
         client=client,
         out_dir=Path(args.out_dir),
