@@ -1,0 +1,43 @@
+{
+  "run_id": "SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt",
+  "enrollment_id": "recrQNLC7wX3oqbmm",
+  "athlete_id": "recmTBFNWWGtCTsCx",
+  "generated_at": "2026-09-14T21:16:00.772752+00:00",
+  "authority": "pre-restore acceptance hard gate (official Perfect score)",
+  "pre_restore_acceptance": {
+    "ok": true,
+    "active_xp": 4980,
+    "expected_active_xp": 4980,
+    "active_xp_event_count": 170,
+    "buckets": {
+      "Submission XP": 1340,
+      "Homework XP": 700,
+      "Video XP": 750,
+      "Streak XP": 455,
+      "Weekly Threshold XP": 480,
+      "Perfect Week XP": 1000,
+      "Shot Milestone XP": 165,
+      "Zoom XP": 90
+    },
+    "weekly_threshold_events": 26,
+    "weekly_threshold_xp": 480,
+    "streak_events": 9,
+    "streak_xp": 455,
+    "level": "G.O.A.T.",
+    "source": "complete-after-loader-fix closeout after Enrollment Record ID loader fix"
+  },
+  "post_restore_expected_behavior": {
+    "label": "EXPECTED \u2014 not a failure",
+    "active_xp_after_production_now_restore": 4525,
+    "inactive_streak_events": 9,
+    "explanation": "Under Production-normal NOW() formulas, future-dated Season Sim streak awards become inactive. Official score remains pre-restore 4980."
+  },
+  "closeout_snapshot": {
+    "acceptance_ok": true,
+    "acceptance_active_xp": 4980,
+    "business_pass": true,
+    "downstream_complete": true,
+    "production_formulas_restored": true,
+    "registry_status": "complete"
+  }
+}
