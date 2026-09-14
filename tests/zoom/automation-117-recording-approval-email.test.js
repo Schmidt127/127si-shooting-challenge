@@ -46,7 +46,7 @@ function requireRecId(label, value) {
 
 const source = fs.readFileSync(SCRIPT_PATH, "utf8");
 
-test("canonical 117 email script is Hub handoff v2.2", () => {
+test("canonical 117 email script is Hub handoff v2.3", () => {
   assert.match(source, /Version:\s*v2\.2/);
   assert.match(source, /version:\s*"v2\.2"/);
   assert.match(source, /eventType:\s*"ZOOM_RECORDING_APPROVAL"/);
@@ -57,7 +57,7 @@ test("canonical 117 email script is Hub handoff v2.2", () => {
   assert.doesNotMatch(source, /automationNumber\s*[:=]/);
 });
 
-test("117 v2.2 meeting / athlete / timestamp payload fields", () => {
+test("117 v2.3 meeting / athlete / timestamp payload fields", () => {
   assert.match(source, /meetingName:\s*"Meeting Name"/);
   assert.match(source, /meetingDisplayName:\s*"Meeting Display Name"/);
   assert.match(source, /athleteFirst:\s*"Athlete First Name"/);

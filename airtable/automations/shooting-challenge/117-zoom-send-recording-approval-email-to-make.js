@@ -5,9 +5,9 @@ System: 127 SI Shooting Challenge
 Source: Airtable Automation
 Status: GitHub Source of Truth
 
-Version: v2.2
+Version: v2.3
 Date Written: 2026-07-20
-Last Updated: 2026-09-06
+Last Updated: 2026-09-14
 
 PURPOSE
 - Validate one Zoom Attendance recording-approval path for parent email.
@@ -62,10 +62,10 @@ OUTPUTS
 
 const SCRIPT = {
   scriptName: "117 - Zoom - Create Zoom Recording Approval Communications Hub Handoff",
-  version: "v2.2",
-  versionDate: "2026-09-06",
+  version: "v2.3",
+  versionDate: "2026-09-14",
   originalWrittenDate: "2026-07-20",
-  lastUpdated: "2026-09-06",
+  lastUpdated: "2026-09-14",
   folder: "17 - Zoom Recording Credit",
   automationName: "117 - Zoom - Create Zoom Recording Approval Communications Hub Handoff",
 };
@@ -260,12 +260,28 @@ async function markQueueNeedsReview(queueTable, rows) {
   }
 }
 
+function parseAutomationBoolean(raw, defaultWhenMissing) {
+  if (raw === undefined || raw === null || raw === "") {
+    return defaultWhenMissing === true;
+  }
+  if (typeof raw === "boolean") return raw;
+  if (typeof raw === "number") {
+    if (raw === 0) return false;
+    if (raw === 1) return true;
+    return defaultWhenMissing === true;
+  }
+  const s = String(raw).trim().toLowerCase();
+  if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
+  if (s === "false" || s === "0" || s === "no" || s === "n") return false;
+  return defaultWhenMissing === true;
+}
+
 async function main() {
   const cfg = input.config();
   const zoomAttendanceId = requireRecId("recordId", cfg.recordId);
   const enrollmentRid = requireRecId("enrollmentRid", cfg.enrollmentRid);
   const zoomMeetingRid = requireRecId("zoomMeetingRid", cfg.zoomMeetingRid);
-  const testMode = cfg.testMode === undefined ? true : Boolean(cfg.testMode);
+  const testMode = parseAutomationBoolean(cfg.testMode, true);
   setOutput("zoomAttendanceId", zoomAttendanceId);
 
   const zaT = base.getTable(CONFIG.tables.za);

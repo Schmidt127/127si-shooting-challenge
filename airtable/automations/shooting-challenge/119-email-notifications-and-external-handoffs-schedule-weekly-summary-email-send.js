@@ -19,12 +19,13 @@ At a scheduled time — Weekly — Sunday 10:00 — America/Denver
 /************************************************************
  * 119 - Email - Schedule Weekly Summary Email Send
  *
- * Version: v1.8
+ * Version: v1.9
  * Date Written: 2026-07-16
- * Last Updated: 2026-09-08
+ * Last Updated: 2026-09-14
  *
  * VERSION HISTORY
  * - v1.8 (2026-09-08 / SC-121): Match 118 v2.1 by targeting the latest active non-Post-Challenge Week that has actually ended in America/Denver, so partial terminal Week 9 is not skipped.
+ * - v1.9 (2026-09-14): Strict parseAutomationBoolean for Airtable text inputs ("false" is false; missing keeps safe default).
  * - v1.7 (2026-08-06): Program Instance isolation — Week End Date match rejects
  *   multi-PI collisions; exclude both Schmidt test enrollment RIDs.
  * - v1.6 (2026-08-05): Airtable runtime compatibility — guard optional
@@ -84,9 +85,9 @@ At a scheduled time — Weekly — Sunday 10:00 — America/Denver
 
 const CONFIG = {
   scriptName: "119 - Email - Schedule Weekly Summary Email Send",
-  version: "v1.8",
-  versionDate: "2026-09-08",
-  lastUpdated: "2026-09-08",
+  version: "v1.9",
+  versionDate: "2026-09-14",
+  lastUpdated: "2026-09-14",
   timeZone: "America/Denver",
   schmidtEnrollmentId: "recCyFEPeATOVNlr9",
   schmidtEnrollmentIds: ["recCyFEPeATOVNlr9", "recgP9qZYjAhE7NXm"],
@@ -191,12 +192,20 @@ function linkedIds(record, fieldName) {
   return v.map((x) => x?.id).filter(Boolean);
 }
 
-function parseBool(raw, fallback) {
-  if (raw === undefined || raw === null || raw === "") return fallback;
+function parseAutomationBoolean(raw, defaultWhenMissing) {
+  if (raw === undefined || raw === null || raw === "") {
+    return defaultWhenMissing === true;
+  }
+  if (typeof raw === "boolean") return raw;
+  if (typeof raw === "number") {
+    if (raw === 0) return false;
+    if (raw === 1) return true;
+    return defaultWhenMissing === true;
+  }
   const s = String(raw).trim().toLowerCase();
-  if (["1", "true", "yes", "y"].includes(s)) return true;
-  if (["0", "false", "no", "n"].includes(s)) return false;
-  return fallback;
+  if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
+  if (s === "false" || s === "0" || s === "no" || s === "n") return false;
+  return defaultWhenMissing === true;
 }
 
 function denverDateParts(date = new Date()) {
@@ -284,8 +293,8 @@ async function main() {
   setOutputSafe("debugStep", debugStep);
 
   const inputConfig = input.config();
-  const dryRun = parseBool(inputConfig.dryRun, true);
-  const includeSchmidt = parseBool(inputConfig.includeSchmidt, false);
+  const dryRun = parseAutomationBoolean(inputConfig.dryRun, true);
+  const includeSchmidt = parseAutomationBoolean(inputConfig.includeSchmidt, false);
   const emptyWeekPolicyRaw = String(inputConfig.emptyWeekPolicy || "send_short")
     .trim()
     .toLowerCase();

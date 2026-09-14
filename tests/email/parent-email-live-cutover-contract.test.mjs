@@ -28,12 +28,12 @@ function script(slotPrefix) {
 }
 
 const PRODUCERS = [
-  { slot: "071", version: "v4.5" },
-  { slot: "073", version: "v4.7" },
-  { slot: "074", version: "v3.6" },
-  { slot: "076", version: "v8.14" },
-  { slot: "078A", version: "v1.7" },
-  { slot: "117", version: "v2.2" },
+  { slot: "071", version: "v4.6" },
+  { slot: "073", version: "v4.10" },
+  { slot: "074", version: "v3.7" },
+  { slot: "076", version: "v8.16" },
+  { slot: "078A", version: "v1.8" },
+  { slot: "117", version: "v2.3" },
 ];
 
 test("queue producers default testMode to safe true", () => {
@@ -42,15 +42,15 @@ test("queue producers default testMode to safe true", () => {
     assert.match(body, new RegExp(`version:\\s*"${version.replace(".", "\\.")}"`));
     assert.match(
       body,
-      /testMode[\s\S]{0,400}default\s+true|testMode === undefined \? true|cfg\.testMode === undefined \? true/i,
-      `${slot} must default testMode true`,
+      /parseAutomationBoolean\(\s*cfg\.testMode\s*,\s*true\s*\)|testMode[\s\S]{0,400}default\s+true/i,
+      `${slot} must default testMode true via parseAutomationBoolean`,
     );
   }
 });
 
-test("078A v1.7 exposes optional testMode automation input without hardcoded recipient", () => {
+test("078A v1.8 exposes optional testMode automation input without hardcoded recipient", () => {
   const { body } = script("078A");
-  assert.match(body, /version:\s*"v1\.7"/);
+  assert.match(body, /version:\s*"v1\.8"/);
   assert.match(body, /testMode/);
   assert.match(body, /Parent Email - Cleaned/);
   assert.match(body, /WELCOME\|SHOOTING_CHALLENGE\|/);

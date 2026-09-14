@@ -68,7 +68,7 @@ const videoSample = {
   shootPageUrl: BRAND.shootUrl,
 };
 
-test("071 v4.5 enriches branded template payload without changing Hub routing", () => {
+test("071 v4.6 enriches branded template payload without changing Hub routing", () => {
   assert.match(s071, /Version: v4\.5/);
   assert.match(s071, /reviewStatus: "Satisfactory"/);
   assert.match(s071, /landingPageUrl: CANONICAL_URLS\.landing/);

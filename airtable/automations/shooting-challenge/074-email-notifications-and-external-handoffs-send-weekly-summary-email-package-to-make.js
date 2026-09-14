@@ -31,11 +31,12 @@ Filename may still say Make; current path is Hub queue create only.
  * 074 - EMAIL, NOTIFICATIONS, AND EXTERNAL HANDOFFS
  * Create Weekly Athlete Summary Communications Hub Handoff
  *
- * Version: v3.6
+ * Version: v3.7
  * Date Written: 2026-05-29
- * Last Updated: 2026-09-06
+ * Last Updated: 2026-09-14
  *
  * VERSION HISTORY
+ * - v3.7 (2026-09-14): Strict parseAutomationBoolean for Airtable text inputs ("false" is false; missing keeps safe default).
  * - v3.6 (2026-09-06): Hub payload adds athleteFirstName from Enrollment
  *   Athlete First Name (or 072 package firstName) when present.
  * - v3.5 (2026-09-01): videoFeedbackStatus summary uses Custom Video File Name display
@@ -116,10 +117,10 @@ Filename may still say Make; current path is Hub queue create only.
 
 const SCRIPT = {
   scriptName: "074 - Email, Notifications, and External Handoffs - Create Weekly Athlete Summary Communications Hub Handoff",
-  version: "v3.6",
-  versionDate: "2026-09-06",
+  version: "v3.7",
+  versionDate: "2026-09-14",
   originalWrittenDate: "2026-05-29",
-  lastUpdated: "2026-09-06",
+  lastUpdated: "2026-09-14",
   folder: "07 - Email, Notifications, and External Handoffs",
   automationName: "074 - Email, Notifications, and External Handoffs - Create Weekly Athlete Summary Communications Hub Handoff",
 };
@@ -402,6 +403,22 @@ async function markQueueNeedsReview(queueTable, rows) {
    SECTION 4: MAIN
 ========================================================= */
 
+function parseAutomationBoolean(raw, defaultWhenMissing) {
+  if (raw === undefined || raw === null || raw === "") {
+    return defaultWhenMissing === true;
+  }
+  if (typeof raw === "boolean") return raw;
+  if (typeof raw === "number") {
+    if (raw === 0) return false;
+    if (raw === 1) return true;
+    return defaultWhenMissing === true;
+  }
+  const s = String(raw).trim().toLowerCase();
+  if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
+  if (s === "false" || s === "0" || s === "no" || s === "n") return false;
+  return defaultWhenMissing === true;
+}
+
 async function main() {
   step("1 - Validate recordId");
   const cfg = typeof input !== "undefined" && input?.config ? input.config() : {};
@@ -409,7 +426,7 @@ async function main() {
   if (!/^rec[A-Za-z0-9]{14}$/.test(recordId)) {
     throw new Error("recordId must be a valid Airtable record ID.");
   }
-  const testMode = cfg.testMode === undefined ? true : Boolean(cfg.testMode);
+  const testMode = parseAutomationBoolean(cfg.testMode, true);
 
   step("2 - Load tables");
   const wasTable = base.getTable(CONFIG.tables.was);

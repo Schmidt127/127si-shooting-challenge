@@ -27,16 +27,16 @@ const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
 test("118/119 default dryRun true; 118 allows Live input and refuses Live+Schmidt", () => {
   const s118 = read("118-email-notifications-and-external-handoffs-schedule-weekly-summary-email-build.js");
   const s119 = read("119-email-notifications-and-external-handoffs-schedule-weekly-summary-email-send.js");
-  assert.ok(/parseBool\(inputConfig\.dryRun,\s*true\)/.test(s118));
-  assert.ok(/parseBool\(inputConfig\.dryRun,\s*true\)/.test(s119));
+  assert.ok(/parseAutomationBoolean\(inputConfig\.dryRun,\s*true\)/.test(s118));
+  assert.ok(/parseAutomationBoolean\(inputConfig\.dryRun,\s*true\)/.test(s119));
   assert.ok(
     !/refuses sendMode=Live when dryRun=false/.test(s118),
     "118 must allow PROD Live schedule (dryRun=false + sendMode=Live)"
   );
   assert.ok(/refuses sendMode=Live when includeSchmidt=true/.test(s118));
   assert.ok(/update\[CONFIG\.was\.sendMode\]\s*=\s*\{\s*name:\s*sendMode\s*\}/.test(s118));
-  assert.ok(/version:\s*"v2\.1"/.test(s118));
-  assert.ok(/version:\s*"v1\.8"/.test(s119));
+  assert.ok(/version:\s*"v2\.2"/.test(s118));
+  assert.ok(/version:\s*"v1\.9"/.test(s119));
   assert.ok(/Program Instance/.test(s118));
   assert.ok(/Program Instance/.test(s119));
   assert.ok(/schmidtEnrollmentIds/.test(s118));
@@ -66,7 +66,7 @@ test("074 creates the canonical Hub handoff and never writes Weekly Email Sent?"
   assert.ok(/WEEKLY_ATHLETE_SUMMARY\|WEEKLY_ATHLETE_SUMMARY/.test(s074));
   assert.ok(/Do not write Weekly Email Sent\?/.test(s074));
   assert.ok(/Do not write Weekly Email Sent\? or Weekly Email Sent At/.test(s074));
-  assert.ok(/Version:\s*v3\.6/.test(s074));
+  assert.ok(/Version:\s*v3\.7/.test(s074));
 });
 
 test("legacy priorSaturdayKeyDenver Sunday→Saturday helper remains stable", () => {

@@ -17,6 +17,7 @@ const COMMANDS = [
   { name: "config-selection", args: ["tests/config-selection/resolve-config.test.js"] },
   { name: "v2-engine-contracts", args: ["airtable/automations/shooting-challenge/lib/v2-engine-contracts.test.js"] },
   { name: "072-074-email-helpers", args: ["airtable/automations/shooting-challenge/lib/072-074-email-helpers.test.js"] },
+  { name: "automation-input-booleans", args: ["airtable/automations/shooting-challenge/lib/automation-input-booleans.test.js"] },
   { name: "118-119-week-key", args: ["airtable/automations/shooting-challenge/lib/118-119-week-key.test.js"] },
   { name: "c011-weekly-email-schedule", args: ["airtable/automations/shooting-challenge/lib/c011-weekly-email-schedule.test.js"] },
   { name: "overnight-perfect-week", args: ["airtable/automations/shooting-challenge/lib/overnight-perfect-week.test.js"] },

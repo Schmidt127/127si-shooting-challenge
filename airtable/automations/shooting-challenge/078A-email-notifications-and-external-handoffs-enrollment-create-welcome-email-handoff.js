@@ -32,11 +32,12 @@ send email, render subject/HTML, modify Automation 079, or restore 075.
  * 078A - EMAIL, NOTIFICATIONS, AND EXTERNAL HANDOFFS
  * Enrollment -> Create WELCOME Email Handoff
  *
- * Version: v1.7
+ * Version: v1.8
  * Date Written: 2026-08-11
- * Last Updated: 2026-09-08
+ * Last Updated: 2026-09-14
  *
  * VERSION HISTORY
+ * - v1.8 (2026-09-14): Strict parseAutomationBoolean for Airtable text inputs ("false" is false; missing keeps safe default).
  * - v1.7 (2026-09-08): Align deterministic Welcome business key with the
  *   authoritative Communications Hub source contract:
  *   WELCOME|SHOOTING_CHALLENGE|{Enrollment Record ID}. Replay/retry must reuse
@@ -122,10 +123,10 @@ send email, render subject/HTML, modify Automation 079, or restore 075.
 
 const SCRIPT = {
     scriptName: "078A - Enrollment -> Create WELCOME Email Handoff",
-    version: "v1.7",
-    versionDate: "2026-09-08",
+    version: "v1.8",
+    versionDate: "2026-09-14",
     originalWrittenDate: "2026-08-11",
-    lastUpdated: "2026-09-08",
+    lastUpdated: "2026-09-14",
     folder: "07 - Email, Notifications, and External Handoffs",
     automationName: "078A - Enrollment -> Create WELCOME Email Handoff",
 };
@@ -413,6 +414,22 @@ function setDomainOutputs(context, result, statusOut, actionOut, errorOut) {
     for (const [key, value] of Object.entries(context)) setOutputSafe(key, value);
 }
 
+function parseAutomationBoolean(raw, defaultWhenMissing) {
+  if (raw === undefined || raw === null || raw === "") {
+    return defaultWhenMissing === true;
+  }
+  if (typeof raw === "boolean") return raw;
+  if (typeof raw === "number") {
+    if (raw === 0) return false;
+    if (raw === 1) return true;
+    return defaultWhenMissing === true;
+  }
+  const s = String(raw).trim().toLowerCase();
+  if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
+  if (s === "false" || s === "0" || s === "no" || s === "n") return false;
+  return defaultWhenMissing === true;
+}
+
 async function main() {
     let debugStep = "Start";
     const context = {
@@ -430,7 +447,7 @@ async function main() {
         setOutputSafe("debugStep", debugStep);
         const cfg = input.config();
         context.enrollmentRecordId = requireRecordId(cfg.recordId, "Enrollment");
-        const testMode = cfg.testMode === undefined ? true : Boolean(cfg.testMode);
+        const testMode = parseAutomationBoolean(cfg.testMode, true);
 
         debugStep = "2 - Load tables and validate schema";
         setOutputSafe("debugStep", debugStep);

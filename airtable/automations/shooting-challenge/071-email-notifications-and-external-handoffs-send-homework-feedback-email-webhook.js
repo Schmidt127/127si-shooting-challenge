@@ -5,9 +5,9 @@ System: 127 SI Shooting Challenge
 Source: Airtable Automation
 Status: GitHub Source of Truth
 
-Version: v4.5
+Version: v4.6
 Date Written: 2026-06-17
-Last Updated: 2026-09-08
+Last Updated: 2026-09-14
 
 PURPOSE
 - Validate one Homework Completion record that is ready for parent email.
@@ -72,10 +72,10 @@ AUTOMATION NAME
 
 const SCRIPT = {
   scriptName: "071 - Email, Notifications, and External Handoffs - Create Homework Feedback Communications Hub Handoff",
-  version: "v4.5",
-  versionDate: "2026-09-08",
+  version: "v4.6",
+  versionDate: "2026-09-14",
   originalWrittenDate: "2026-06-17",
-  lastUpdated: "2026-09-08",
+  lastUpdated: "2026-09-14",
   folder: "07 - Email, Notifications, and External Handoffs",
   automationName: "071 - Email, Notifications, and External Handoffs - Create Homework Feedback Communications Hub Handoff",
 };
@@ -359,13 +359,29 @@ async function markQueueNeedsReview(queueTable, rows) {
   }
 }
 
+function parseAutomationBoolean(raw, defaultWhenMissing) {
+  if (raw === undefined || raw === null || raw === "") {
+    return defaultWhenMissing === true;
+  }
+  if (typeof raw === "boolean") return raw;
+  if (typeof raw === "number") {
+    if (raw === 0) return false;
+    if (raw === 1) return true;
+    return defaultWhenMissing === true;
+  }
+  const s = String(raw).trim().toLowerCase();
+  if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
+  if (s === "false" || s === "0" || s === "no" || s === "n") return false;
+  return defaultWhenMissing === true;
+}
+
 async function main() {
   const cfg = input.config();
   const recordId = String(cfg.recordId || "").trim();
   if (!/^rec[A-Za-z0-9]{14}$/.test(recordId)) {
     throw new Error("recordId must be a valid Airtable record ID.");
   }
-  const testMode = cfg.testMode === undefined ? true : Boolean(cfg.testMode);
+  const testMode = parseAutomationBoolean(cfg.testMode, true);
 
   const hcT = base.getTable(CONFIG.tables.hc);
   const enrT = base.getTable(CONFIG.tables.enr);
