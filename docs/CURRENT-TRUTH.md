@@ -232,7 +232,7 @@ Do **not** treat other Automations-table columns (trigger/conditions) as authori
 | **058** | **1.7** | **1.7 Live** | Lifecycle `recordUpdated` + nine fields | SC-153 **COMPLETE / Live Tested** â withdraw/restore/idempotency PASS ([`SC-153-058-V17-LIVE-VERIFICATION-20260904.md`](./audits/SC-153-058-V17-LIVE-VERIFICATION-20260904.md)) |
 | **059** | **v3.8** | v3.8 | Live / **SC-159 COMPLETE / Live Tested** | Formula `059 Lifecycle Trigger?` = 1 only; withdraw/restore/idempotency/PW PASS â [`audits/SC-159-LIVE-VERIFICATION-CLOSEOUT-20260904.md`](./audits/SC-159-LIVE-VERIFICATION-CLOSEOUT-20260904.md) Â· checklist [`deploy-checklists/059-sc159-lifecycle-formula-trigger.md`](./deploy-checklists/059-sc159-lifecycle-formula-trigger.md) (nested OR checklist superseded) |
 | **064** | **Production-verified current live** | v12.2 in repo | Live | Do not invent a new version string |
-| **065** | **v10.7** | v10.7 | Live / **PASTE-ALIGNED** (SC-160 Stage 6 2026-09-04) | Early/late full homework XP when satisfactory. Evidence [`audits/SC-160-STAGE6-LIVE-VERIFICATION-20260904.md`](./audits/SC-160-STAGE6-LIVE-VERIFICATION-20260904.md) |
+| **065** | **v10.11** | v10.11 | Live / **GitHub synced from live Automation Code** (2026-09-14) | Soft-skip when `Total Homework XP Awarded` not yet positive (`SC-SEASON-SIM-001-DEPLOY-20260913B`); required trigger Needed?=1 AND Total XP > 0. Evidence [`audits/readiness-20260914/065-V10.11-LIVE-SYNC-VERIFY-20260914.md`](./audits/readiness-20260914/065-V10.11-LIVE-SYNC-VERIFY-20260914.md). Prior SC-160 Stage 6 path remains valid. |
 | **067** | **v3.5** | v3.5 | Live / **aligned** (no paste needed) | Reflection quiz → Homework Completion. Live body matches GitHub **v3.5** (Agent 3 MCP 2026-09-05). Prior decline note historical — [`audits/VERSION-AUDIT-CORRECTION-021-013-067-20260905.md`](./audits/VERSION-AUDIT-CORRECTION-021-013-067-20260905.md) |
 | **066** | **v4.1** | v4.1 | Live / **SC-163 COMPLETE / Live Tested** | Goal Met Date date-only + milestones; Athlete1 stamped **8/30/2026**; may remain ON — [`audits/SC-163-LIVE-VERIFICATION-CLOSEOUT-20260905.md`](./audits/SC-163-LIVE-VERIFICATION-CLOSEOUT-20260905.md) |
 | **013** | **v3.2.0** | v3.2.0 | Live / **aligned** (no paste needed) | VF create path. Live body matches GitHub **v3.2.0** (Agent 3 MCP 2026-09-05). Prior decline note historical — [`audits/VERSION-AUDIT-CORRECTION-021-013-067-20260905.md`](./audits/VERSION-AUDIT-CORRECTION-021-013-067-20260905.md) |
@@ -279,7 +279,7 @@ Live ON/OFF for rows without Mike UI confirmation = `UNVERIFIED`. Full table: [`
 | Domain | Owner (repo contract) | Live proof |
 |--------|----------------------|------------|
 | Submission XP | **010** — Source Key `SUBMISSION_XP\|{submissionId}` | GitHub + Live **v10.14** (SC-167 COMPLETE / Live Tested) |
-| Homework XP | **064** prepares (`HOMEWORK_COMPLETION` rule); **065** creates/reconciles `HOMEWORK_XP|{hcId}` (**020** HC create; **078** marks Parent Feedback Ready?) | **065 Production v10.7** (SC-160); late-credit + weekless WAS paths Live Tested |
+| Homework XP | **064** prepares (`HOMEWORK_COMPLETION` rule); **065** creates/reconciles `HOMEWORK_XP|{hcId}` (**020** HC create; **078** marks Parent Feedback Ready?) | **065 Production v10.11** (soft-skip / 064→065 re-entry); late-credit + weekless WAS paths Live Tested |
 | Video XP | **113 / 114** (+ **013** VF create) | **Live v6.4 / v6.2**; **PKG-007 lifecycle proof PASS 2026-08-23** (`AUTONOMOUS_VIDEO_QA_20260823_164549`, Testing3). Native trigger + 073 OFF UI attestation open |
 | Shot milestones | **066** | Production **v4.1** Live Tested (SC-163 Goal Met Date + milestones) |
 | Levels | **041 / 042** | **041 Production v5.1**; broader progression proof still open |
@@ -293,7 +293,7 @@ Live ON/OFF for rows without Mike UI confirmation = `UNVERIFIED`. Full table: [`
 
 | Path | State |
 |------|--------|
-| Homework assets → HC → XP → parent | **009** → **020 v4.1** → **070a v4.7 Live** → **064** prepare / **065 v10.7** → **078** Ready → **071** Hub (SC-160 Live Tested) |
+| Homework assets → HC → XP → parent | **009** → **020 v4.1** → **070a v4.7 Live** → **064** prepare / **065 v10.11** → **078** Ready → **071** Hub (SC-160 Live Tested; v10.10 soft-skip protects 064→065 timing) |
 | Homework completion (**020**) | Production Automations Code **v4.1** (SC-160). **012** / **063** deleted — do not restore |
 | Homework upload Make (**070a**) | Production **v4.7 Live** during Perfect Week controlled window (historically intentional OFF). Formula Ready alone does not send; **Send to Make Trigger** required |
 | Video upload (**070b** + Lambda + **070c**) | Production **070b v4.7** â Make â Lambda â **070c current live (repo v1.1)** verify. Optional retry proof + secret rotation **PENDING** |
@@ -338,7 +338,7 @@ Live ON/OFF for rows without Mike UI confirmation = `UNVERIFIED`. Full table: [`
 
 - Wave 0 2025â26 close-out; H-001; many PKG merges on `master`
 - Email plane migrated to Hub â Resend (Mike 2026-08-19)
-- Confirmed Production pastes aligned: **010 v10.14**, **020 v4.1**, **022 v2.2**, **065 v10.7**, **071 v4.3**, **076 v8.12**, **072 v4.9.1**, **073 v4.6**, **066 v4.1**, **013 v3.2.0**, **067 v3.5**, **070b**, **117**
+- Confirmed Production pastes aligned: **010 v10.14**, **020 v4.1**, **022 v2.2**, **065 v10.11**, **071 v4.3**, **076 v8.12**, **072 v4.9.1**, **073 v4.6**, **066 v4.1**, **013 v3.2.0**, **067 v3.5**, **070b**, **117**
 - Tremendous sandbox validation
 - Lambda season CodeOnly deploy (optional follow-ups open)
 - Repository integrity + PII redaction pass

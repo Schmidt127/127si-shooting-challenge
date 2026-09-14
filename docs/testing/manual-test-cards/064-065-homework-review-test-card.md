@@ -60,18 +60,22 @@ After review fields are complete, **064** should:
 
 ## Expected 065 results
 
-When **Homework XP Reconciliation Needed?** = 1 (driven by signature/review state), **065** should:
+When **Homework XP Reconciliation Needed?** = 1 **and** **Total Homework XP Awarded > 0**, **065** should:
 
 | Output / field | Expected |
 |----------------|----------|
-| `statusOut` | `success` (or controlled `skipped` if already reconciled) |
-| `actionOut` | `created_or_reactivated` or `reused_after_recheck` on replay |
+| `statusOut` | `success` (or controlled `skipped` if already reconciled / Total XP not ready) |
+| `actionOut` | `created_or_reactivated` or `reused_after_recheck` on replay; `skipped_total_xp_not_ready` if 065 ran before 064 settled Base XP |
 | `sourceKeyOut` / XP Event **Source Key** | `HOMEWORK_XP\|{Homework Completion ID}` |
 | XP Events link on HC | Exactly one owned event for that Source Key |
 | XP Event **Active?** | Checked when review remains satisfactory |
 | **Award Status** on HC | Moves to awarded/reconciled state after success |
-| **Last Homework XP Reconciled Signature** | Updates after formula settle |
+| **Last Homework XP Reconciled Signature** | Updates after formula settle (**not** written on soft-skip) |
 | **Homework XP Reconciliation Needed?** | Clears to 0 after success |
+
+### 064 → 065 timing (v10.10 / v10.11)
+
+If **Needed?** becomes 1 before **064** writes a positive **Total Homework XP Awarded**, **065** soft-skips (`skipped_total_xp_not_ready`) without throwing and without acknowledging the signature. After **064** sets Total XP > 0, the Required trigger (`Needed?=1` **AND** Total XP > 0) re-enters **065** cleanly. Do not treat that soft-skip as a hard failure.
 
 Confirm on the XP Event:
 
