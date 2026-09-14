@@ -1,5 +1,7 @@
 # SC-SEASON-SIM-002 — Cleanup plan for run `…T181332Z` (writer gap run)
 
+> **HISTORICAL — CLEANUP ALREADY COMPLETE.** This document preserves the writer-gap investigation only. Do not reuse its IDs or run instructions. Current operations begin with [`SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md`](./SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md).
+
 | Item | Value |
 |------|--------|
 | **Backlog** | SC-SEASON-SIM-002 |
