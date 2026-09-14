@@ -1,5 +1,8 @@
 # Tier-1 Remaining Email Paths Proof — 2026-09-13
 
+> **HISTORICAL EVIDENCE — DO NOT USE AS CURRENT OPERATING OR PASTE INSTRUCTIONS.**
+> This record preserves a dated disposable proof. For current published-editor versions and operator guidance, use [`TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md`](../../../deploy-checklists/TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md).
+
 **Run marker:** `TIER1EP|2026-09-13T2238Z`  
 **Base:** Production `appn84sqPw03zEbTT`  
 **Enrollment:** gated disposable Testing Schmidt `recn54wbxTjygydqa`  
