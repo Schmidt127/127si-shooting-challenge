@@ -19,7 +19,7 @@ STREAK_XP_THRESHOLDS = (3, 5, 7, 10, 20, 30, 40, 50, 60)
 HOMEWORK_XP_PREFIX = "HOMEWORK_XP|"
 PERFECT_WEEK_XP_PREFIX = "PERFECT_WEEK|"
 WEEKLY_THRESHOLD_PREFIX = "WEEKLY_THRESHOLD|"
-STREAK_XP_PREFIX = "STREAK|"
+STREAK_XP_PREFIX = "STREAK_XP|"
 
 
 @dataclass
@@ -202,17 +202,18 @@ def requeue_was_perfect_week(client: Any, was_id: str) -> None:
 def _list_xp_for_enrollment_prefix(
     client: Any, *, enrollment_id: str, prefix: str
 ) -> list[dict[str, Any]]:
+    """List XP Events by Enrollment Record ID + Source Key prefix.
+
+    ``ARRAYJOIN({Enrollment})`` returns zero rows in this Production base.
+    """
+    from .business_reconciliation import list_xp_events_for_enrollment
+
     try:
-        return (
-            client.list_records(
-                "XP Events",
-                formula=(
-                    f"AND(FIND('{prefix}', {{Source Key}} & ''),"
-                    f"FIND('{enrollment_id}', ARRAYJOIN({{Enrollment}})))"
-                ),
-                max_records=200,
-            )
-            or []
+        return list_xp_events_for_enrollment(
+            client,
+            enrollment_id,
+            source_key_prefix=prefix,
+            max_records=200,
         )
     except Exception:
         return []
@@ -385,16 +386,31 @@ def poll_downstream_settlement(
                 )
             occurrence_by_thr: dict[int, list[str]] = {t: [] for t in expected_streaks}
             try:
+                # ARRAYJOIN({Enrollment}) returns 0 in this base; use Record ID.
                 occ_rows = (
                     client.list_records(
                         "Streak Occurrences",
-                        formula=f"FIND('{enr_id}', ARRAYJOIN({{Enrollment}}))",
+                        formula=f"{{Enrollment Record ID}}='{enr_id}'",
                         max_records=100,
                     )
                     or []
                 )
             except Exception:
+                try:
+                    all_occ = client.list_records("Streak Occurrences", max_records=500) or []
+                except Exception:
+                    all_occ = []
                 occ_rows = []
+                for row in all_occ:
+                    f = row.get("fields") or {}
+                    linked = f.get("Enrollment Record ID") or f.get("Enrollment") or []
+                    items = linked if isinstance(linked, list) else [linked]
+                    flat = [
+                        str(i.get("id") if isinstance(i, dict) else i or "")
+                        for i in items
+                    ]
+                    if str(enr_id) in flat:
+                        occ_rows.append(row)
             for row in occ_rows:
                 f = row.get("fields") or {}
                 days = int(_num(f.get("Streak Days")) or 0)
@@ -422,11 +438,37 @@ def poll_downstream_settlement(
             xp_rows = _list_xp_for_enrollment_prefix(
                 client, enrollment_id=str(enr_id), prefix=STREAK_XP_PREFIX
             )
+            # Production STREAK_XP Source Keys embed a segment/submission id, not the
+            # Streak Occurrence id. Map by XP Points (XP Reward Rules amounts) and
+            # by trailing activity date vs occurrence key date as a secondary key.
+            from .business_reconciliation import STREAK as STREAK_POINTS
+
+            points_to_thr = {int(pts): int(thr) for thr, pts in STREAK_POINTS.items()}
+            occ_by_date: dict[str, list[tuple[int, str]]] = {}
+            for row in occ_rows:
+                f = row.get("fields") or {}
+                days = int(_num(f.get("Streak Days")) or 0)
+                key = str(f.get("Streak Occurrence Key") or "")
+                date_token = key.rsplit("|", 1)[-1].strip() if "|" in key else ""
+                if date_token:
+                    occ_by_date.setdefault(date_token, []).append((days, str(row["id"])))
             for row in xp_rows:
-                key = str((row.get("fields") or {}).get("Source Key") or "").lower()
-                for thr in expected_streaks:
-                    if f"{thr}" in key and ("day" in key or "streak" in key):
-                        xp_by_thr[thr].append(str(row["id"]))
+                f = row.get("fields") or {}
+                key = str(f.get("Source Key") or "")
+                pts = int(_num(f.get("XP Points")) or _num(f.get("Active XP Points")) or 0)
+                thr = points_to_thr.get(pts)
+                date_token = key.rsplit("|", 1)[-1].strip() if "|" in key else ""
+                if thr is None and date_token in occ_by_date:
+                    thr = occ_by_date[date_token][0][0]
+                if thr is not None and thr in xp_by_thr:
+                    xp_by_thr[thr].append(str(row["id"]))
+                    continue
+                key_l = key.lower()
+                for candidate in expected_streaks:
+                    token = f"{candidate}-day"
+                    if token in key_l or f"|{candidate}|" in key_l:
+                        xp_by_thr[candidate].append(str(row["id"]))
+                        break
             checks.extend(
                 classify_streak_settlement(
                     enrollment_fields=enr_fields,

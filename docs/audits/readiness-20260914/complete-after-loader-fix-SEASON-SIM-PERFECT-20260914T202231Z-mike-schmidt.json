@@ -1,0 +1,75 @@
+{
+  "run_id": "SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt",
+  "generated_at": "2026-09-14T21:09:18.592080+00:00",
+  "enrollment_id": "recrQNLC7wX3oqbmm",
+  "loader": {
+    "events": 170,
+    "lifetime_xp": 4980,
+    "level": "G.O.A.T."
+  },
+  "downstream_complete": true,
+  "business_pass": true,
+  "acceptance_ok": true,
+  "acceptance_active_xp": 4980,
+  "stage_z": {
+    "status": "ok",
+    "stage": "Z_formula_restore",
+    "restored": true,
+    "dry_run": false,
+    "client_present": true,
+    "restored_fields": [
+      "Submissions.Activity Date Is Future?",
+      "Submissions.Submitted Same Day?",
+      "Submissions.Perfect Week Grace Eligible?"
+    ],
+    "errors": [],
+    "hooks": {
+      "tool": "AirtableClient.update_formula_field",
+      "notes": "Restore exact Production-normal formula_text via Meta API PATCH; assert base/table/field IDs; pre/post SHA-256 verify; refuse if SEASON-SIM text remains. Do NOT restore from Stage-0 snapshots. Do NOT use OMNI or natural-language formula generation.",
+      "required_payload_keys": [
+        "baseId",
+        "tableId",
+        "fieldId",
+        "formula"
+      ],
+      "restore_source": "tools/season_simulation/production_normal_formulas.json",
+      "reason": "perfect_closeout_SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt",
+      "bundle_id": "PRODUCTION-NORMAL-FORMULAS-V1",
+      "expected_hashes": {
+        "Activity Date Is Future?": "d14642bb2f82abc43709c825bd80986f36c302c1451e14c26fe8c87ae75c1088",
+        "Submitted Same Day?": "084d2e2f71db854b7eb2fd8e1bc017bce5b381572d6dd6b97091ce24cb772658",
+        "Perfect Week Grace Eligible?": "8484fe440c76ea4157d3b9ba1058741e239b47fe52af99e319b7e4393813a526"
+      },
+      "ignored_stage0_snapshot": false,
+      "pre_write_hashes": {
+        "Activity Date Is Future?": "0bbcff9783f6fa2a501f4598b69e4f9de9959201690194ffc1a692a61fa5511c",
+        "Submitted Same Day?": "aa60aa98d4dd0396470f1fa9df17eab811a3c43200e0edacf312ab120df862be",
+        "Perfect Week Grace Eligible?": "15f89a03d16a149d75dbe9f9ebd5763caab3e074314ae6a679e6d59ae2b2eb10"
+      }
+    },
+    "production_formulas_restored": true,
+    "formula_restore_failed": false,
+    "formula_restore_pending": false,
+    "verified_hashes": {
+      "Activity Date Is Future?": "d14642bb2f82abc43709c825bd80986f36c302c1451e14c26fe8c87ae75c1088",
+      "Submitted Same Day?": "084d2e2f71db854b7eb2fd8e1bc017bce5b381572d6dd6b97091ce24cb772658",
+      "Perfect Week Grace Eligible?": "8484fe440c76ea4157d3b9ba1058741e239b47fe52af99e319b7e4393813a526"
+    },
+    "expected_hashes": {
+      "Activity Date Is Future?": "d14642bb2f82abc43709c825bd80986f36c302c1451e14c26fe8c87ae75c1088",
+      "Submitted Same Day?": "084d2e2f71db854b7eb2fd8e1bc017bce5b381572d6dd6b97091ce24cb772658",
+      "Perfect Week Grace Eligible?": "8484fe440c76ea4157d3b9ba1058741e239b47fe52af99e319b7e4393813a526"
+    },
+    "season_sim_remaining": false,
+    "lifecycle": {
+      "gates_applied": true,
+      "settlement_complete": true,
+      "formula_restore_pending": false,
+      "production_formulas_restored": true,
+      "formula_restore_failed": false
+    },
+    "restore_source": "production_normal_bundle",
+    "ignored_stage0_snapshot": false
+  },
+  "registry_status": "complete"
+}
