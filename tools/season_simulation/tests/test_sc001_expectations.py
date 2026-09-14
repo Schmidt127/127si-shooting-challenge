@@ -48,7 +48,7 @@ def _offline_kwargs(run_id: str) -> dict:
             "library_id": f"recOFFLIB{i:02d}",
             "display": f"HW{i}",
         }
-        for i in range(1, 19)
+        for i in range(1, 21)
     ]
     return dict(
         run_id=run_id,

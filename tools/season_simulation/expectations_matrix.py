@@ -121,24 +121,51 @@ def _milestone_defs(grade_band_id: str = "recSIMGB912") -> list[ShotMilestoneDef
     ]
 
 
+def _streak_blocks(submit_day_numbers: Sequence[int]) -> list[list[int]]:
+    """Split unique submit day numbers into contiguous blocks (053 semantics)."""
+    if not submit_day_numbers:
+        return []
+    days = sorted(set(int(d) for d in submit_day_numbers))
+    blocks: list[list[int]] = []
+    current = [days[0]]
+    for i in range(1, len(days)):
+        if days[i] == days[i - 1] + 1:
+            current.append(days[i])
+        else:
+            blocks.append(current)
+            current = [days[i]]
+    blocks.append(current)
+    return blocks
+
+
+def _streak_award_multiset(
+    submit_day_numbers: Sequence[int],
+    *,
+    thresholds: Sequence[int] = DEFAULT_STREAK_XP_THRESHOLDS,
+) -> list[int]:
+    """Per-segment streak XP awards mirroring automation 053.
+
+    Each contiguous submit-day block can award each threshold when
+    ``block.length >= threshold``. Awards are **not** unique across the season —
+    Recovery athletes with many short segments correctly earn threshold 3/5/…
+    multiple times (one XP Event per segment crossing).
+    """
+    awards: list[int] = []
+    for block in _streak_blocks(submit_day_numbers):
+        length = len(block)
+        for t in thresholds:
+            if length >= int(t):
+                awards.append(int(t))
+    return awards
+
+
 def _streaks_from_submit_days(
     submit_day_numbers: Sequence[int],
     *,
-    thresholds: Sequence[int] = DEFAULT_STREAK_GATE_THRESHOLDS,
+    thresholds: Sequence[int] = DEFAULT_STREAK_XP_THRESHOLDS,
 ) -> list[int]:
-    """Streak thresholds crossed by longest contiguous submit-day run."""
-    if not submit_day_numbers:
-        return []
-    days = sorted(submit_day_numbers)
-    best = cur = 1
-    for i in range(1, len(days)):
-        if days[i] == days[i - 1] + 1:
-            cur += 1
-        else:
-            best = max(best, cur)
-            cur = 1
-    best = max(best, cur)
-    return [t for t in thresholds if best >= t]
+    """Unique streak thresholds crossed in any 053 contiguous block (sorted)."""
+    return sorted(set(_streak_award_multiset(submit_day_numbers, thresholds=thresholds)))
 
 
 def _homework_summary(scenario: AthleteScenario, week_label: str) -> tuple[str, str]:
@@ -148,8 +175,6 @@ def _homework_summary(scenario: AthleteScenario, week_label: str) -> tuple[str, 
             continue
         items.extend(d.homework)
     if not items:
-        if week_label == "Week 9":
-            return "none", "n/a"
         return "skipped", "skipped"
     outcomes = {str(i.get("outcome") or "") for i in items}
     timing = str(items[0].get("timing_note") or items[0].get("late_status") or "on_time")
@@ -181,10 +206,14 @@ def _format_goal_met_expectation(
 def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpectationMatrix:
     weekly_agg = aggregate_weekly_shots(scenario.days)
     submit_nums = [d.day_number for d in scenario.days if d.action == "submit"]
-    streak_gates = _streaks_from_submit_days(submit_nums)
-    streak_xp = _streaks_from_submit_days(
+    streak_gates = _streaks_from_submit_days(
+        submit_nums, thresholds=DEFAULT_STREAK_GATE_THRESHOLDS
+    )
+    # XP expectations use the per-segment multiset (053), not unique thresholds.
+    streak_xp_awards = _streak_award_multiset(
         submit_nums, thresholds=DEFAULT_STREAK_XP_THRESHOLDS
     )
+    streak_xp = sorted(set(streak_xp_awards))
     milestones = _milestone_defs(scenario.grade_band_id or "recSIMGB912")
     total_shots = sum(d.shot_total for d in scenario.days if d.action == "submit")
     crossed = select_crossed_shot_milestones(
@@ -260,7 +289,7 @@ def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpect
                 homework_timing=hw_timing,
                 video_count=int(bucket.get("video_count") or 0),
                 zoom_state=zoom_state,
-                streak_state=f"longest_run≥{max(streak_xp) if streak_xp else 0}",
+                streak_state=f"053_blocks≥{max(streak_xp) if streak_xp else 0}",
                 milestone_crossings=week_crossings,
                 perfect_week=pw,
                 xp_categories=sorted(set(xp_cats)),
@@ -268,7 +297,7 @@ def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpect
         )
 
     xp_by_cat = _estimate_xp_buckets(
-        scenario, threshold_awards, crossed, streak_xp, pw_pass
+        scenario, threshold_awards, crossed, streak_xp_awards, pw_pass
     )
 
     level_notes = {
@@ -288,7 +317,7 @@ def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpect
         miss_days=sum(1 for d in scenario.days if d.action == "miss"),
         weekly_rows=rows,
         expected_perfect_week_count=pw_pass,
-        expected_streak_achievements=streak_xp,
+        expected_streak_achievements=list(streak_xp_awards),
         expected_shot_milestones=[m.shot_count for m in crossed],
         expected_weekly_threshold_awards=threshold_awards,
         expected_xp_by_category=xp_by_cat,
@@ -300,7 +329,8 @@ def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpect
         expected_email_handoffs=build_email_handoff_expectations(scenario),
         notes=list(scenario.gate_notes) + [
             f"Streak gate thresholds crossed: {streak_gates}",
-            f"Streak XP thresholds crossed: {streak_xp}",
+            f"Streak XP unique thresholds: {streak_xp}",
+            f"Streak XP award multiset (n={len(streak_xp_awards)}): {streak_xp_awards}",
         ],
     )
 

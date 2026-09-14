@@ -1,0 +1,88 @@
+{
+  "verified_at": "2026-09-14T12:46:36.751324+00:00",
+  "sc_transactional_counts": {
+    "Athletes": {
+      "count": 0
+    },
+    "Enrollments": {
+      "count": 0
+    },
+    "Submissions": {
+      "count": 0
+    },
+    "Submission Assets": {
+      "count": 0
+    },
+    "Homework Completions": {
+      "count": 0
+    },
+    "Video Feedback": {
+      "count": 0
+    },
+    "XP Events": {
+      "count": 0
+    },
+    "Athlete Achievement Unlocks": {
+      "count": 0
+    },
+    "Streak Occurrences": {
+      "count": 0
+    },
+    "Weekly Athlete Summary": {
+      "count": 0
+    },
+    "Zoom Attendance": {
+      "count": 0
+    },
+    "Zoom Meetings": {
+      "count": 2
+    },
+    "Email Handoff Queue": {
+      "count": 0
+    },
+    "Award Recipients": {
+      "count": 0
+    },
+    "Final Reflection Quiz Submissions": {
+      "count": 0
+    },
+    "Homework Attempts": {
+      "count": 0
+    },
+    "Homework Responses": {
+      "count": 0
+    }
+  },
+  "hub_transactional_counts": {
+    "Submission Outbox": {
+      "count": 0
+    },
+    "Homework Draft Attempts": {
+      "count": 0
+    },
+    "Homework Draft Responses": {
+      "count": 0
+    }
+  },
+  "sc_formula_sim_branches": [],
+  "sc_reference_counts": {
+    "Weeks": 12,
+    "Program Homework Assignments": 20,
+    "Homework Library": 132,
+    "XP Reward Rules": 31,
+    "Levels": 12,
+    "Achievements": 15,
+    "Countries": 194,
+    "States": null,
+    "Automations": 50
+  },
+  "hub_reference_counts": {
+    "Lessons": 132,
+    "Questions": null,
+    "Standards": null,
+    "Assignments": null
+  },
+  "deleted_primary": 926,
+  "deleted_residual": 16,
+  "deleted_total": 942
+}

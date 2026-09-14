@@ -87,7 +87,7 @@ def _athlete1_offline():
                 "library_id": f"recOFFLINELIB{i:02d}",
                 "display": f"HW{i}",
             }
-            for i in range(1, 19)
+            for i in range(1, 21)
         ],
         zoom_meetings=[
             {"record_id": "recOFFLINEZOOM1", "display": "Zoom A"},
@@ -212,23 +212,23 @@ class TestFutureDateOverride(unittest.TestCase):
 
 
 class TestHomeworkLifecyclePrep(unittest.TestCase):
-    def test_product_expects_eighteen_active_pha(self):
-        self.assertEqual(EXPECTED_ACTIVE_PHA_COUNT, 18)
+    def test_product_expects_twenty_active_pha(self):
+        self.assertEqual(EXPECTED_ACTIVE_PHA_COUNT, 20)
 
-    def test_offline_scenario_schedules_eighteen_when_phas_provided(self):
+    def test_offline_scenario_schedules_twenty_when_phas_provided(self):
         s = _athlete1_offline()
-        self.assertEqual(s.intended_writes_summary.get("homework_completions"), 18)
-        self.assertEqual(s.meta.get("homework_selected_count"), 18)
+        self.assertEqual(s.intended_writes_summary.get("homework_completions"), 20)
+        self.assertEqual(s.meta.get("homework_selected_count"), 20)
         for day in s.days:
             for hw in day.homework:
                 self.assertTrue(hw.get("pha_record_id") or hw.get("record_id"))
                 self.assertIn(hw.get("outcome"), {"Satisfactory", "Needs Revision"})
 
     def test_live_four_pha_is_incomplete_for_final_run(self):
-        """Document Production truth as of 2026-09-12: only Early Bird + Week 1."""
+        """Historical note: early prep had only Early Bird + Week 1 (4). Product expects 20."""
         live_active = 4
         self.assertLess(live_active, EXPECTED_ACTIVE_PHA_COUNT)
-        self.assertEqual(EXPECTED_ACTIVE_PHA_COUNT - live_active, 14)
+        self.assertEqual(EXPECTED_ACTIVE_PHA_COUNT - live_active, 16)
 
 
 if __name__ == "__main__":

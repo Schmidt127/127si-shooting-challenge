@@ -98,7 +98,7 @@ def _scenario(run_id: str):
                 "slot": "HW1" if i % 2 else "HW2",
                 "library_id": f"recLIB{i:02d}",
             }
-            for i in range(1, 19)
+            for i in range(1, 21)
         ],
         zoom_meetings=[
             {"record_id": "recZOOMLive", "display": "Live Meet"},
@@ -227,7 +227,7 @@ class TestWriterFullCreate(unittest.TestCase):
             )
 
         hc = list(self.client.tables.get("Homework Completions", {}).values())
-        self.assertEqual(len(hc), 18)
+        self.assertEqual(len(hc), 20)
         pha_ids = set()
         for row in hc:
             fields = row["fields"]
@@ -245,7 +245,7 @@ class TestWriterFullCreate(unittest.TestCase):
             # Writer must not falsely mark Awarded.
             self.assertNotEqual(fields.get("Award Status"), "Awarded", row["id"])
             pha_ids.update(fields["Program Homework Assignment"])
-        self.assertEqual(len(pha_ids), 18)
+        self.assertEqual(len(pha_ids), 20)
 
         vf = list(self.client.tables.get("Video Feedback", {}).values())
         self.assertEqual(len(vf), 4)  # VIDEO_FEEDBACK_DAYS
@@ -306,7 +306,7 @@ class TestWriterFullCreate(unittest.TestCase):
         readiness = summarize_intended_write_readiness(writes)
         self.assertEqual(readiness["submission_creates"], SIMULATION_DAY_COUNT - 3)
         self.assertTrue(readiness["all_submissions_countable"])
-        self.assertEqual(readiness["homework_completions"], 18)
+        self.assertEqual(readiness["homework_completions"], 20)
         self.assertTrue(readiness["all_homework_dual_linked"])
         self.assertTrue(readiness["video_update_triggers_planned"])
         self.assertEqual(readiness["video_feedback_creates"], 4)
@@ -935,7 +935,7 @@ class TestWriterFullCreate(unittest.TestCase):
         self.assertFalse(readiness["weekly_hub_handoffs_expected_from_execute_alone"])
         self.assertEqual(readiness["weekly_hub_handoffs_require_stage"], "weekly-email-stage")
         self.assertGreater(readiness["homework_needs_revision"], 0)
-        self.assertEqual(readiness["homework_071_structural"], 18)
+        self.assertEqual(readiness["homework_071_structural"], 20)
         live_confirmed = [
             w
             for w in writes

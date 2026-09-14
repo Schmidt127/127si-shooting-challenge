@@ -28,7 +28,7 @@ class AthleteProfile(str, Enum):
     ATHLETE1_SC002 = "athlete1_sc002"
 
 
-HOMEWORK_WEEK_ORDER = ("Early Bird",) + tuple(f"Week {i}" for i in range(1, 9))
+HOMEWORK_WEEK_ORDER = ("Early Bird",) + tuple(f"Week {i}" for i in range(1, 10))
 
 
 @dataclass(frozen=True)

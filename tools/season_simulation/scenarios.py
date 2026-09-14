@@ -53,8 +53,8 @@ LATE_HOMEWORK_PROBE_DAY = 67
 # Flag Perfect Week Manual Exception on a mid-season same-day week for PW timing
 PW_MANUAL_EXCEPTION_DAY = SAME_DAY_SUBMIT_DAY
 
-# Product homework weeks: Early Bird + Weeks 1–8 (2 slots each). Week 9 = 0.
-HOMEWORK_WEEK_ORDER = ("Early Bird",) + tuple(f"Week {i}" for i in range(1, 9))
+# Product homework weeks: Early Bird + Weeks 1–9 (2 slots each) = 20 PHA.
+HOMEWORK_WEEK_ORDER = ("Early Bird",) + tuple(f"Week {i}" for i in range(1, 10))
 
 
 @dataclass(frozen=True)
@@ -159,7 +159,7 @@ def group_phas_by_homework_week(
     homework: Sequence[dict[str, Any]],
     weeks: Sequence[dict[str, Any]] | None = None,
 ) -> dict[str, list[dict[str, Any]]]:
-    """Group PHAs into Early Bird + Weeks 1–8 (2 slots each).
+    """Group PHAs into Early Bird + Weeks 1–9 (2 slots each).
 
     Prefer live ``week_id`` → Weeks.name. Offline fixtures without week_id are
     chunked in ``HOMEWORK_WEEK_ORDER`` order (2 per week).
@@ -203,8 +203,9 @@ def _schedule_homework_attachments(
     allow_late_probe: bool = True,
     force_satisfactory: bool = False,
 ) -> dict[int, list[dict[str, Any]]]:
-    """Return day_number → homework payloads. Each PHA exactly once; Week 9 empty.
+    """Return day_number → homework payloads. Each PHA exactly once.
 
+    Schedules Early Bird + Weeks 1–9 (2 slots each when 20 PHA supplied).
     ``allow_late_probe`` — SC-002 mixed path may complete one Week 8 PHA after
     that week's Saturday cutoff (normal XP still yes; Perfect Week no).
     Perfect-athlete paths must pass ``allow_late_probe=False``.
@@ -215,14 +216,10 @@ def _schedule_homework_attachments(
     hw_index = 0
 
     submit_days_by_label: dict[str, list[Any]] = {label: [] for label in HOMEWORK_WEEK_ORDER}
-    week9_days: list[Any] = []
     for meta in days_meta:
         if meta.day_number in MISS_DAYS:
             continue
         label = week_label_for_activity_date(meta.activity_date)
-        if label == "Week 9":
-            week9_days.append(meta)
-            continue
         if label in submit_days_by_label:
             submit_days_by_label[label].append(meta)
 
@@ -300,7 +297,7 @@ def _schedule_homework_attachments(
                     outcome = "Needs Revision"
                     gate_notes.append(
                         f"Day {n}: gate-pressure homework marked Needs Revision "
-                        "(PHA still completed — 18/18 coverage preserved)"
+                        "(PHA still completed — 20/20 coverage preserved)"
                     )
             multi_asset = hw_index % 4 == 0
             library_id = str(pha.get("library_id") or "").strip()
@@ -327,15 +324,8 @@ def _schedule_homework_attachments(
             assigned_pha_ids.append(str(pha["record_id"]))
             hw_index += 1
 
-    if week9_days:
-        gate_notes.append(
-            f"Week 9 ({week9_days[0].activity_date}..{week9_days[-1].activity_date}): "
-            "no PHA attached (Production: 18 = Early Bird + Weeks 1–8; "
-            "Perfect Week homework vacuously satisfied)."
-        )
-
-    # Safety: every selected PHA must appear exactly once when count is 18.
-    if len(hw_list) == 18:
+    # Safety: every selected PHA must appear exactly once when count is 20.
+    if len(hw_list) == 20:
         missing = [
             str(h["record_id"])
             for h in hw_list
@@ -343,7 +333,7 @@ def _schedule_homework_attachments(
         ]
         if missing:
             raise ValueError(
-                "Homework planner failed to assign all 18 PHAs; missing: "
+                "Homework planner failed to assign all 20 PHAs; missing: "
                 + ", ".join(missing)
             )
         if len(assigned_pha_ids) != len(set(assigned_pha_ids)):
@@ -438,10 +428,6 @@ def build_athlete1_scenario(
 
         week_label = week_label_for_activity_date(meta.activity_date)
         hw_payload = list(hw_by_day.get(n) or [])
-        if week_label == "Week 9" and hw_payload:
-            # Hard guard — Week 9 must never carry Week-9 PHAs; late Week 8 probe is OK
-            # only when payloads are tagged week_label Week 8.
-            hw_payload = [h for h in hw_payload if h.get("week_label") != "Week 9"]
 
         zoom_ids: list[str] = []
         zoom_modes: list[str] = []
@@ -630,7 +616,7 @@ def build_athlete1_scenario(
                 "each_pha_exactly_once"
             ),
             "sim_window_week_count": len(window_weeks),
-            "week9_zero_homework": True,
+            "week9_zero_homework": False,
             "zoom_meetings_create_during_execute": True,
             "week9_bounds": (
                 [week9_bounds[0].isoformat(), week9_bounds[1].isoformat()]

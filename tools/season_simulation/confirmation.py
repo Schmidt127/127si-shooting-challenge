@@ -10,6 +10,7 @@ from .constants import (
     THREE_ATHLETE_AUTHORIZATION_PHRASE,
     THREE_ATHLETE_RUN_SUFFIX,
 )
+from .run_registry import is_valid_run_id_prefix
 
 
 class ConfirmationError(RuntimeError):
@@ -49,10 +50,10 @@ def require_execute_gates(
             f"exactly; got {confirm_disposable!r}"
         )
     sid = (simulation_id or "").strip()
-    if not sid.startswith("SEASON-SIM-2027-"):
+    if not is_valid_run_id_prefix(sid):
         raise ConfirmationError(
-            f"{action} requires --simulation-id starting with SEASON-SIM-2027-; "
-            f"got {simulation_id!r}"
+            f"{action} requires --simulation-id starting with SEASON-SIM-2027- "
+            f"or SEASON-SIM-PERFECT-; got {simulation_id!r}"
         )
 
 
@@ -72,10 +73,10 @@ def require_cleanup_gates(
             f"exactly; got {confirm_cleanup!r}"
         )
     sid = (simulation_id or "").strip()
-    if not sid.startswith("SEASON-SIM-2027-"):
+    if not is_valid_run_id_prefix(sid):
         raise ConfirmationError(
             f"{action} requires --simulation-id / --run-id starting with "
-            f"SEASON-SIM-2027-; got {simulation_id!r}"
+            f"SEASON-SIM-2027- or SEASON-SIM-PERFECT-; got {simulation_id!r}"
         )
 
 

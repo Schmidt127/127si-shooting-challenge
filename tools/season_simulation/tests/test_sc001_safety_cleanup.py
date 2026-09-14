@@ -143,7 +143,7 @@ class TestSafetyGates(unittest.TestCase):
             automation_versions={"010": "v10.14", "066": "v4.1", "114": "v6.2"},
             transactional_counts={t: 0 for t in ("Athletes", "Enrollments", "Submissions")},
             weeks_count=10,
-            homework_count=18,
+            homework_count=20,
         )
         self.assertFalse(report.ok)
         self.assertTrue(any("allowlist" in r.lower() for r in report.stop_reasons))
@@ -156,7 +156,7 @@ class TestSafetyGates(unittest.TestCase):
             automation_versions={"010": "v10.14", "066": "v4.1", "114": "v6.2"},
             transactional_counts={"Athletes": 0, "Enrollments": 0},
             weeks_count=10,
-            homework_count=18,
+            homework_count=20,
             meta_tables=_meta_production(),
             expect_gated_formula=False,
         )

@@ -74,9 +74,7 @@ def _homework_status(
                 items.append(hw)
 
     if not items:
-        if week_label == "Week 9":
-            # Production: Week 9 has 0 PHA — homework requirement vacuously met.
-            return True, False, False, False
+        # Week 9 now has 2 PHA like other homework weeks — missing HW is a skip fail.
         return False, True, False, False
 
     needs_revision = any(str(i.get("outcome") or "") == "Needs Revision" for i in items)

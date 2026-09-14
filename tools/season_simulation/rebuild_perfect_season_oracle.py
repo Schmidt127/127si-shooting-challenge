@@ -80,7 +80,7 @@ def main() -> None:
                 "Early Bird" if i < 2 else f"Week {((i - 2) // 2) + 1}"
             ),
         }
-        for i in range(18)
+        for i in range(20)
     ]
     sc = build_athlete1_perfect_scenario(
         run_id="SEASON-SIM-2027-ORACLE-OFFLINE",

@@ -145,6 +145,8 @@ def build_athlete1_perfect_scenario(
     homework: Sequence[dict[str, Any]],
     zoom_meetings: Sequence[dict[str, Any]],
     weeks: Sequence[dict[str, Any]] | None = None,
+    athlete_first_name: str | None = None,
+    athlete_last_name: str | None = None,
 ) -> AthleteScenario:
     profile = PROFILE.ATHLETE1_PERFECT.value
     days_meta = simulation_days()
@@ -211,10 +213,12 @@ def build_athlete1_perfect_scenario(
         f"{len(video_days)} video days, all homework Satisfactory."
     )
 
+    first = (athlete_first_name or "Sim").strip() or "Sim"
+    last = (athlete_last_name or "Perfect").strip() or "Perfect"
     identity = build_athlete_identity(
         profile=PROFILE.ATHLETE1_PERFECT,
-        first_name="Sim",
-        last_name="Perfect",
+        first_name=first,
+        last_name=last,
         grade="12",
     )
 
@@ -242,6 +246,7 @@ def build_athlete1_perfect_scenario(
             "goal_coverage_ratio": round(total / goal_total_shots, 3) if goal_total_shots else 0,
             "video_days": sorted(video_days),
             "miss_days": [],
+            "homework_selected_count": len(hw_list),
         },
     )
     scenario.meta.update(_athlete1_meta_goal_crossing(scenario))

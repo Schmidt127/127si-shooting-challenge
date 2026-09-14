@@ -517,7 +517,7 @@ class TestLiveWriteContractCore(unittest.TestCase):
             assert_live_write_contract_pass(report)
 
     def test_oracle_constant(self):
-        self.assertEqual(EXPECTED_PERFECT_SEASON_XP, 4910)
+        self.assertEqual(EXPECTED_PERFECT_SEASON_XP, 4980)
 
 
 class TestZoomContract(unittest.TestCase):
@@ -673,7 +673,7 @@ class TestZoomContract(unittest.TestCase):
         self.assertEqual(detail["bonus_2_xp"], 0)
         self.assertEqual(detail["bonus_3_xp"], 0)
         self.assertEqual(detail["zoom_total_xp"], 90)
-        self.assertEqual(detail["season_xp"], 4910)
+        self.assertEqual(detail["season_xp"], 4980)
 
     def test_structural_uses_classification_not_loose_count(self):
         # Four total meetings would pass old >=2 gate; wrong canonical must still fail.
@@ -685,7 +685,7 @@ class TestZoomContract(unittest.TestCase):
         ]
         structural, violations = validate_structural_assumptions(
             zoom_count=4,
-            pha_count=18,
+            pha_count=20,
             weeks_count=10,
             live_zoom_meetings=meetings,
             registry_zoom_ids={self.LIVE, self.REC},

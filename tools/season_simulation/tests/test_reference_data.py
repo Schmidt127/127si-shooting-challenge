@@ -198,7 +198,7 @@ class TestWeekIndexDenverOwnership(unittest.TestCase):
             grade_band_id="recBAND",
             goal_record_id="recGOAL",
             goal_total_shots=12000,
-            homework=[{"record_id": f"recHW{i}", "slot": "HW1"} for i in range(18)],
+            homework=[{"record_id": f"recHW{i}", "slot": "HW1"} for i in range(20)],
             zoom_meetings=[
                 {"record_id": "recZ1", "display": "A"},
                 {"record_id": "recZ2", "display": "B"},

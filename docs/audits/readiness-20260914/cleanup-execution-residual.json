@@ -1,0 +1,31 @@
+{
+  "pass": "residual_2",
+  "started_at": "2026-09-14T12:43:53.654199+00:00",
+  "deleted": {
+    "Homework Completions": [
+      "recrkGlseDJvVfB9G",
+      "recse9QAllg8MbI7J"
+    ],
+    "XP Events": [
+      "rec2UPvBMvIFe2dgY",
+      "rec2dFNDRwOqrAHtW",
+      "recIDNHEPXhAk8JYK",
+      "recIH5OVaO4nLRJAt",
+      "recORtGYojBz9jbGh",
+      "recPRWnGAZqUhe3vP",
+      "recQOAM6SjDm8vEiA",
+      "recSbNjFEu6fPA79N",
+      "recWKX0D3ol5PJtS3",
+      "recfXlFuvu3Oy836Y",
+      "recluiGSBswhYrVNW",
+      "recpArDGi0OpqxJoa",
+      "recveiAbYccUiO6G0"
+    ],
+    "Email Handoff Queue": [
+      "recr8XuNe3UgAAt4F"
+    ]
+  },
+  "errors": [],
+  "rationale": "Automation race recreations after primary delete; sources point at deleted test submissions/enrollments; Testing Schmidt EHQ allowlisted.",
+  "finished_at": "2026-09-14T12:43:57.764870+00:00"
+}
