@@ -163,12 +163,13 @@
   },
   {
     "code": "035",
-    "github": "v1.3",
-    "live": "v1.5",
+    "github": "v1.6",
+    "live": "v1.6",
     "status": "Live",
-    "match": "MISMATCH",
+    "match": "MATCH",
     "file": "035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js",
-    "live_name": "035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Events"
+    "live_name": "035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Events",
+    "note": "Synced live\u2192GitHub 2026-09-14; identity-tuple verified in live-vs-github-automation-compare.json"
   },
   {
     "code": "041",
@@ -199,12 +200,13 @@
   },
   {
     "code": "053",
-    "github": "5.6",
+    "github": "5.8",
     "live": "5.8",
     "status": "Live",
-    "match": "MISMATCH",
+    "match": "MATCH",
     "file": "053-achievements-and-milestones-streak-occurrences-rebuild-and-upsert-from-submissions.js",
-    "live_name": "053 - Achievements and Milestones - Streak Occurrences - Rebuild and Upsert From Submissions"
+    "live_name": "053 - Achievements and Milestones - Streak Occurrences - Rebuild and Upsert From Submissions",
+    "note": "Synced live\u2192GitHub 2026-09-14; identity-tuple verified in live-vs-github-automation-compare.json"
   },
   {
     "code": "054",
@@ -280,12 +282,13 @@
   },
   {
     "code": "065",
-    "github": "v10.9",
+    "github": "v10.11",
     "live": "v10.11",
     "status": "Live",
-    "match": "MISMATCH",
+    "match": "MATCH",
     "file": "065-homework-review-and-xp-create-homework-xp-event.js",
-    "live_name": "065 - Homework Review and XP - Create or Update Homework XP Event"
+    "live_name": "065 - Homework Review and XP - Create or Update Homework XP Event",
+    "note": "Synced live\u2192GitHub 2026-09-14; identity-tuple verified in live-vs-github-automation-compare.json"
   },
   {
     "code": "066",

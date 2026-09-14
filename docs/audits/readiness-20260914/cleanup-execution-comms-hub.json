@@ -916,7 +916,9 @@
   "residual_note": {
     "at": "2026-09-14T13:22:36.029531+00:00",
     "primary_deleted_total": 876,
-    "residual_policy": "Did not delete post-primary residuals because live execute-perfect SEASON-SIM-PERFECT-20260914T131218Z-mike-schmidt is running with --enable-email-delivery and owns the new Mike Schmidt Hub identity/CM/events.",
-    "concurrent_simulation_id": "SEASON-SIM-PERFECT-20260914T131218Z-mike-schmidt"
+    "residual_policy": "HISTORICAL snapshot during cleanup: residuals temporarily retained while a paused/interrupted SEASON-SIM-PERFECT-20260914T131218Z attempt held Hub rows. That attempt was closed/cleaned; final pre-merge readiness is transactional zero and NOT EXECUTED.",
+    "concurrent_simulation_id": "SEASON-SIM-PERFECT-20260914T131218Z-mike-schmidt",
+    "historical_only": true,
+    "final_state_20260914": "Transactional Comms Hub zero-state restored after closeout/cleanup. Perfect Mike Schmidt simulation was NOT completed/approved; final readiness audit reports zero transactional rows. Do not treat this residual_note as proof of an approved execute."
   }
 }

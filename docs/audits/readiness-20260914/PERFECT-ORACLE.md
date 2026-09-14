@@ -1,6 +1,7 @@
 # Perfect Mike Schmidt Season Oracle
 
-**Run ID (planned):** SEASON-SIM-PERFECT-20260914T131218Z-mike-schmidt  
+**Run ID (planned / not executed):** SEASON-SIM-PERFECT-20260914T131218Z-mike-schmidt  
+**Status:** Prepared oracle only — **simulation NOT EXECUTED** (any interrupted attempt was cleaned; transactional bases returned to zero-state).  
 **Published:** 2026-09-14T13:12:18.501342+00:00  
 **Window:** 2027-04-25 → 2027-06-30 (67 days)  
 **Grade band:** 9-12 / season goal 12,000  

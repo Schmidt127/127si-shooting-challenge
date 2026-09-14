@@ -92,7 +92,7 @@
   {
     "file": "035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js",
     "scriptId": "035",
-    "version": "v1.3"
+    "version": "v1.6"
   },
   {
     "file": "041-levels-and-progression-mark-enrollment-for-level-recalculation.js",
@@ -112,7 +112,7 @@
   {
     "file": "053-achievements-and-milestones-streak-occurrences-rebuild-and-upsert-from-submissions.js",
     "scriptId": "053",
-    "version": "5.6"
+    "version": "5.8"
   },
   {
     "file": "054-achievements-and-milestones-streak-occurrences-create-or-repair-streak-xp-event.js",
@@ -157,7 +157,7 @@
   {
     "file": "065-homework-review-and-xp-create-homework-xp-event.js",
     "scriptId": "065",
-    "version": "v10.9"
+    "version": "v10.11"
   },
   {
     "file": "066-achievements-and-milestones-create-shot-milestone-unlocks.js",
