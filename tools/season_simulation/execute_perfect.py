@@ -232,14 +232,40 @@ def run_execute_perfect(
             if lock_held:
                 release_simulation_lock(registry_dir=registry_dir, run_id=rid)
             return payload
+        # Scenario builders expect plain dicts (same shape as three_athlete).
+        # ExecuteContext still receives WeekInfo objects via weeks_covering_window.
+        homework_dicts = [
+            {
+                "record_id": h.record_id,
+                "slot": h.slot,
+                "library_id": h.library_id,
+                "display": h.display,
+                "week_id": h.week_id,
+            }
+            for h in (snap.homework or [])
+        ]
+        zoom_dicts = [
+            {"record_id": z.record_id, "display": z.display}
+            for z in (snap.zoom_meetings or [])
+        ]
+        week_dicts = [
+            {
+                "record_id": w.record_id,
+                "name": w.name,
+                "start": w.start.isoformat() if w.start else None,
+                "end": w.end.isoformat() if w.end else None,
+                "program_instance_id": w.program_instance_id,
+            }
+            for w in (snap.weeks_covering_window or [])
+        ]
         scenario = build_mike_schmidt_perfect_scenario(
             run_id=rid,
             grade_band_id=snap.grade_band.record_id,
             goal_record_id=snap.highest_goal.record_id,
             goal_total_shots=int(snap.highest_goal.total_shot_target or 0),
-            homework=list(snap.homework or []),
-            zoom_meetings=list(snap.zoom_meetings or []),
-            weeks=list(snap.weeks_covering_window or []),
+            homework=homework_dicts,
+            zoom_meetings=zoom_dicts,
+            weeks=week_dicts,
         )
 
     if scenario.athlete.get("display_name") != f"{MIKE_FIRST} {MIKE_LAST}":
