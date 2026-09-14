@@ -1,0 +1,111 @@
+{
+  "run": "SEASON-SIM-PERFECT-20260914T183404Z-mike-schmidt",
+  "enrollment_id": "rec2r1VgYEEWJBeKG",
+  "athlete_id": "recRrd9nLKwK4vspy",
+  "pass": true,
+  "unsafe_recipients": [],
+  "recipients": [
+    "schmidt@fairfieldbasketballclub.com"
+  ],
+  "allowlist_only": true,
+  "ehq_count": 94,
+  "hub_event_ids": [],
+  "preserved_catalog_zoom": {
+    "recMFP2x5LDqea9ax": "Introduction to the Challenge",
+    "recb9EjQIJVzaRpZa": "Motivation for a Strong Finish"
+  },
+  "preserved": {},
+  "counts_by_table": {
+    "Athlete Achievement Unlocks": 16,
+    "Athletes": 1,
+    "Email Handoff Queue": 94,
+    "Enrollments": 1,
+    "Homework Completions": 20,
+    "Streak Occurrences": 9,
+    "Submission Assets": 55,
+    "Submissions": 67,
+    "Video Feedback": 30,
+    "Weekly Athlete Summary": 10,
+    "XP Events": 169,
+    "Zoom Attendance": 2,
+    "Zoom Meetings": 2
+  },
+  "blockers": [],
+  "warnings": [
+    "Athlete Achievement Unlocks primary formula failed: GET https://api.airtable.com/v0/appn84sqPw03zEbTT/Athlete%20Achievement%20Unlocks -> 422: {\"error\":{\"type\":\"INVALID_FILTER_BY_FORMULA\",\"message\":\"The formula for filtering records is invalid: Unknown field names: enrollment record id\"}}",
+    "Athlete Achievement Unlocks alt failed: GET https://api.airtable.com/v0/appn84sqPw03zEbTT/Athlete%20Achievement%20Unlocks -> 422: {\"error\":{\"type\":\"INVALID_FILTER_BY_FORMULA\",\"message\":\"The formula for filtering records is invalid: Unknown field names: source key\"}}",
+    "Curriculum Submission Outbox: GET https://api.airtable.com/v0/appnrW8pPpzq8Nhov/Submission%20Outbox -> 422: {\"error\":{\"type\":\"INVALID_FILTER_BY_FORMULA\",\"message\":\"The formula for filtering records is invalid: Unknown field names: enrollment record id\"}}",
+    "Curriculum Submission Outbox: GET https://api.airtable.com/v0/appnrW8pPpzq8Nhov/Submission%20Outbox -> 422: {\"error\":{\"type\":\"INVALID_FILTER_BY_FORMULA\",\"message\":\"The formula for filtering records is invalid: Unknown field names: enrollment\"}}",
+    "Curriculum Submission Outbox: no matching formula succeeded",
+    "Curriculum Homework Draft Responses: GET https://api.airtable.com/v0/appnrW8pPpzq8Nhov/Homework%20Draft%20Responses -> 422: {\"error\":{\"type\":\"INVALID_FILTER_BY_FORMULA\",\"message\":\"The formula for filtering records is invalid: Unknown field names: enrollment record id\"}}",
+    "Curriculum Homework Draft Responses: GET https://api.airtable.com/v0/appnrW8pPpzq8Nhov/Homework%20Draft%20Responses -> 422: {\"error\":{\"type\":\"INVALID_FILTER_BY_FORMULA\",\"message\":\"The formula for filtering records is invalid: Unknown field names: athlete record id\"}}",
+    "Curriculum Homework Draft Responses: no matching formula succeeded",
+    "Curriculum Homework Draft Attempts: GET https://api.airtable.com/v0/appnrW8pPpzq8Nhov/Homework%20Draft%20Attempts -> 422: {\"error\":{\"type\":\"INVALID_FILTER_BY_FORMULA\",\"message\":\"The formula for filtering records is invalid: Unknown field names: enrollment record id\"}}",
+    "Curriculum Homework Draft Attempts: GET https://api.airtable.com/v0/appnrW8pPpzq8Nhov/Homework%20Draft%20Attempts -> 422: {\"error\":{\"type\":\"INVALID_FILTER_BY_FORMULA\",\"message\":\"The formula for filtering records is invalid: Unknown field names: athlete record id\"}}",
+    "Curriculum Homework Draft Attempts: no matching formula succeeded",
+    "Communication Identities scan: GET https://api.airtable.com/v0/appYG1t5DBRimHBCT/Communication%20Identities -> 422: {\"error\":{\"type\":\"INVALID_FILTER_BY_FORMULA\",\"message\":\"The formula for filtering records is invalid: Unknown field names: email\"}}"
+  ],
+  "formula_season_sim_hits": [],
+  "production_normal_formulas": true,
+  "ownership_sample": {
+    "Athletes": {
+      "recRrd9nLKwK4vspy": "registry_ids_by_table"
+    },
+    "Enrollments": {
+      "rec2r1VgYEEWJBeKG": "registry_ids_by_table"
+    },
+    "Homework Completions": {
+      "reckEptbfza6VCQXn": "registry_ids_by_table",
+      "recjP8XPJfvTObh02": "registry_ids_by_table",
+      "rec2QdpdWmMUA65rk": "registry_ids_by_table"
+    },
+    "Submission Assets": {
+      "recufMf3Kl8mlM6fZ": "registry_ids_by_table",
+      "recJ2pIysMlvr7M0b": "registry_ids_by_table",
+      "rec02nEPUW1sE1sp1": "registry_ids_by_table"
+    },
+    "Submissions": {
+      "recbMpY5Yu5JZR9Ct": "registry_ids_by_table",
+      "recrBNtHjwhuJkeaY": "registry_ids_by_table",
+      "recnNnpnZkfRHz0zg": "registry_ids_by_table"
+    },
+    "Video Feedback": {
+      "recNgBYODJOYKVieo": "registry_ids_by_table",
+      "rec1vZRF8LMmH6NW0": "registry_ids_by_table",
+      "recocNMyUp9ECfOfc": "registry_ids_by_table"
+    },
+    "Weekly Athlete Summary": {
+      "recKq7DU65lqEUh10": "registry_ids_by_table",
+      "recYhbzze2Xc75lDa": "registry_ids_by_table",
+      "recFYX7SRXS9bZJCx": "registry_ids_by_table"
+    },
+    "Zoom Attendance": {
+      "recAXd2hi0uOMZdwQ": "registry_ids_by_table",
+      "recTM8Y6NEnXZ7hDq": "registry_ids_by_table"
+    },
+    "Zoom Meetings": {
+      "recGkN3Uywvb5g6We": "registry_disposable_zoom",
+      "recBF0Gcjba4jIUTd": "registry_disposable_zoom"
+    },
+    "XP Events": {
+      "recmD7acxLVEnbxX6": "enrollment_xp_events_link",
+      "recEkPo4ejYv1fur5": "enrollment_xp_events_link",
+      "rectpcOG2IONhLnod": "enrollment_xp_events_link"
+    },
+    "Athlete Achievement Unlocks": {
+      "recuGN3S3jugDro7Y": "enrollment_achievement_unlocks_link",
+      "recAYhu1LhvOTqSuG": "enrollment_achievement_unlocks_link",
+      "recF0b2GRNth2ybYO": "enrollment_achievement_unlocks_link"
+    },
+    "Streak Occurrences": {
+      "reclv4RkMDXYRDaH2": "enrollment_record_id_match",
+      "recmcpMCZv1AmjLbi": "enrollment_record_id_match",
+      "recKr7CECAI0NTtL6": "enrollment_record_id_match"
+    },
+    "Email Handoff Queue": {
+      "rec0GVZSLx03Z3tX0": "enrollment_record_id_match",
+      "rec0HnFiDsfkdkA81": "enrollment_record_id_match",
+      "rec0NgeSMNnE7VzjV": "enrollment_record_id_match"
+    }
+  }
+}

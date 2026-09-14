@@ -1,0 +1,1674 @@
+{
+  "phase": "1_failure_evidence_readonly",
+  "generated_by": "tools/season_simulation/_phase1_failure_evidence_183404Z.py",
+  "run": "SEASON-SIM-PERFECT-20260914T183404Z-mike-schmidt",
+  "enrollment_id": "rec2r1VgYEEWJBeKG",
+  "athlete_id": "recRrd9nLKwK4vspy",
+  "registry_status": "paused",
+  "registry_path": "C:\\Users\\mschmidt_fairfield\\Documents\\GitHub\\127si-shooting-challenge\\.worktrees\\perfect-sim-master-20260914\\tools\\season_simulation\\run_registries\\SEASON-SIM-PERFECT-20260914T183404Z-mike-schmidt__athlete1-perfect.json",
+  "enrollment_live": {
+    "lifetime_xp_earned": 4495,
+    "lifetime_xp_total": 4495,
+    "active_level": [
+      "recOdLPbf4Vl43kP7"
+    ],
+    "xp_event_link_count": 169
+  },
+  "xp": {
+    "total_events": 169,
+    "active_count": 160,
+    "inactive_count": 9,
+    "active_xp_sum": 4495,
+    "active_buckets": {
+      "Submission XP": 1340,
+      "Homework XP": 700,
+      "Video XP": 750,
+      "Streak XP": 0,
+      "Weekly Threshold XP": 450,
+      "Perfect Week XP": 1000,
+      "Shot Milestone XP": 165,
+      "Zoom XP": 90
+    },
+    "active_event_counts_by_bucket": {
+      "Submission XP": 97,
+      "Homework XP": 20,
+      "Weekly Threshold XP": 25,
+      "Shot Milestone XP": 6,
+      "Zoom XP": 2,
+      "Perfect Week XP": 10
+    },
+    "inactive_event_counts_by_bucket": {
+      "Streak XP": 9
+    },
+    "active_streak_xp_events": [],
+    "inactive_streak_xp_events": [
+      {
+        "id": "recTznj0JiKfdLQ0o",
+        "source_key": "STREAK_XP|rec2r1VgYEEWJBeKG|rechOec7g8LBLcdgl|2027-04-29",
+        "xp_points": 15,
+        "active_xp_points": 0,
+        "active_flag": null,
+        "xp_bucket": "Streak",
+        "bucket": "Streak XP"
+      },
+      {
+        "id": "recf1vkdZ2ne9j7ZP",
+        "source_key": "STREAK_XP|rec2r1VgYEEWJBeKG|recQuAtXyT2wKJNGI|2027-04-27",
+        "xp_points": 10,
+        "active_xp_points": 0,
+        "active_flag": null,
+        "xp_bucket": "Streak",
+        "bucket": "Streak XP"
+      },
+      {
+        "id": "recfAsDoPUfAe35tX",
+        "source_key": "STREAK_XP|rec2r1VgYEEWJBeKG|recP8QP4uhEXaiZAX|2027-05-01",
+        "xp_points": 20,
+        "active_xp_points": 0,
+        "active_flag": null,
+        "xp_bucket": "Streak",
+        "bucket": "Streak XP"
+      },
+      {
+        "id": "recrVtuxkCAEwJdXk",
+        "source_key": "STREAK_XP|rec2r1VgYEEWJBeKG|recxzySdFFaAOqNNG|2027-05-04",
+        "xp_points": 30,
+        "active_xp_points": 0,
+        "active_flag": null,
+        "xp_bucket": "Streak",
+        "bucket": "Streak XP"
+      },
+      {
+        "id": "recODbaVQBLttGBcJ",
+        "source_key": "STREAK_XP|rec2r1VgYEEWJBeKG|recJ2caP3qBUfqzEp|2027-05-14",
+        "xp_points": 50,
+        "active_xp_points": 0,
+        "active_flag": null,
+        "xp_bucket": "Streak",
+        "bucket": "Streak XP"
+      },
+      {
+        "id": "rec4opM0btpNTu49z",
+        "source_key": "STREAK_XP|rec2r1VgYEEWJBeKG|rechvtS1pfT086cwW|2027-05-24",
+        "xp_points": 60,
+        "active_xp_points": 0,
+        "active_flag": null,
+        "xp_bucket": "Streak",
+        "bucket": "Streak XP"
+      },
+      {
+        "id": "recHeoeHJZujHD3ET",
+        "source_key": "STREAK_XP|rec2r1VgYEEWJBeKG|recewTtymiSN7Hkhw|2027-06-13",
+        "xp_points": 90,
+        "active_xp_points": 0,
+        "active_flag": null,
+        "xp_bucket": "Streak",
+        "bucket": "Streak XP"
+      },
+      {
+        "id": "recW2w2hgyrH6EsiE",
+        "source_key": "STREAK_XP|rec2r1VgYEEWJBeKG|recgaun3HjV7EB2kN|2027-06-03",
+        "xp_points": 75,
+        "active_xp_points": 0,
+        "active_flag": null,
+        "xp_bucket": "Streak",
+        "bucket": "Streak XP"
+      },
+      {
+        "id": "rec6bwh6cDL2f1j3O",
+        "source_key": "STREAK_XP|rec2r1VgYEEWJBeKG|recz5At8CvV5f4iFg|2027-06-23",
+        "xp_points": 105,
+        "active_xp_points": 0,
+        "active_flag": null,
+        "xp_bucket": "Streak",
+        "bucket": "Streak XP"
+      }
+    ],
+    "weekly_threshold_events": [
+      {
+        "id": "rec8LA2L2B0nSwtAC",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rec2Rewxt21z7dI9f|125",
+        "active": true,
+        "pts": 20
+      },
+      {
+        "id": "recB1zLVdXL1Uv175",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rec2Rewxt21z7dI9f|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "recTCtxr9UgfafySV",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recBrZ1sV8byWEHZU|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "recutztqRcEGrK8yn",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rec7RpUMVLbcrmn4h|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "recv7M8QgQsNcmmMJ",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recBrZ1sV8byWEHZU|125",
+        "active": true,
+        "pts": 20
+      },
+      {
+        "id": "rec6vQFABgd2ykSfx",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rec7RpUMVLbcrmn4h|125",
+        "active": true,
+        "pts": 20
+      },
+      {
+        "id": "recFjFD4R9KT23xdW",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recEapVpi6u0oxuPy|125",
+        "active": true,
+        "pts": 20
+      },
+      {
+        "id": "recIDiYBheRefN4rY",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recCCpyqPKA580sdk|125",
+        "active": true,
+        "pts": 20
+      },
+      {
+        "id": "recKxSFzZA7yuhby3",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recEapVpi6u0oxuPy|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "recYqo8KfHWGxhXJ1",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recCCpyqPKA580sdk|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "recrQcp8qAgxfCA17",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recEapVpi6u0oxuPy|150",
+        "active": true,
+        "pts": 30
+      },
+      {
+        "id": "rec6yylxBB3QuD3Ow",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recRp4y42EpLvtwk5|150",
+        "active": true,
+        "pts": 30
+      },
+      {
+        "id": "recOFcjcD6SH2Xdy5",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recW3irij491AIPrl|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "recPZ5R8od00NUjRC",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recRp4y42EpLvtwk5|125",
+        "active": true,
+        "pts": 20
+      },
+      {
+        "id": "recS4AVb2spwLYnYj",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recKJMGYbEzGHyXfd|125",
+        "active": true,
+        "pts": 20
+      },
+      {
+        "id": "recgLQ44kMD5hHJc3",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recKJMGYbEzGHyXfd|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "recytvH2ZJWqwmY6f",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recRp4y42EpLvtwk5|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "recC5ltamZmqQToam",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recfu3dpVJAnVBvCB|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "recCfyzQV1Tdolsbm",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rech8lgJkNMStWh9A|150",
+        "active": true,
+        "pts": 30
+      },
+      {
+        "id": "recIpPP8FTS3pLY0Y",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recW3irij491AIPrl|125",
+        "active": true,
+        "pts": 20
+      },
+      {
+        "id": "recNtdyeMq6N68Tso",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rech8lgJkNMStWh9A|125",
+        "active": true,
+        "pts": 20
+      },
+      {
+        "id": "rechDw5x5LleuOFuv",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rech8lgJkNMStWh9A|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "reciptatXh2Ps6jf6",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recW3irij491AIPrl|150",
+        "active": true,
+        "pts": 30
+      },
+      {
+        "id": "recliAlaqiiOy3ncq",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recfu3dpVJAnVBvCB|125",
+        "active": true,
+        "pts": 20
+      },
+      {
+        "id": "reczPohmzCYgRLFYT",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|recfu3dpVJAnVBvCB|150",
+        "active": true,
+        "pts": 30
+      }
+    ],
+    "weekly_threshold_active_count": 25,
+    "weekly_threshold_active_xp": 450
+  },
+  "week2_was": {
+    "id": "recYhbzze2Xc75lDa",
+    "goal_completion_pct": null,
+    "threshold_xp_status": "Processed",
+    "requeue_threshold_xp": null,
+    "week": [
+      "rec7RpUMVLbcrmn4h"
+    ],
+    "related_wt_events": [
+      {
+        "id": "recutztqRcEGrK8yn",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rec7RpUMVLbcrmn4h|100",
+        "active": true,
+        "pts": 10
+      },
+      {
+        "id": "rec6vQFABgd2ykSfx",
+        "key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rec7RpUMVLbcrmn4h|125",
+        "active": true,
+        "pts": 20
+      }
+    ],
+    "expected_missing_150_source_key": "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rec7RpUMVLbcrmn4h|150",
+    "missing_150_source_key_present": false,
+    "present_wt_keys_for_week": [
+      "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rec7RpUMVLbcrmn4h|100",
+      "WEEKLY_THRESHOLD|rec2r1VgYEEWJBeKG|rec7RpUMVLbcrmn4h|125"
+    ]
+  },
+  "streak_occurrences_count": 9,
+  "formulas": {
+    "production_normal_no_season_sim_branches": true,
+    "season_sim_hits": [],
+    "monitored_fields": [
+      {
+        "table": "Submissions",
+        "field": "Activity Date Is Future?",
+        "has_season_sim_gate": false,
+        "contains_season_sim_text": false,
+        "formula_preview": "IF(\n  {fldpkkSBsx8kQRZos},\n  IF({fldpkkSBsx8kQRZos} > NOW(), 1, 0),\n  BLANK()\n)",
+        "formula_len": 79
+      },
+      {
+        "table": "Submissions",
+        "field": "Submitted Same Day?",
+        "has_season_sim_gate": false,
+        "contains_season_sim_text": false,
+        "formula_preview": "IF(\n  AND(\n    {fld7JJ7neI0YYmB7i},\n    {fldpkkSBsx8kQRZos}\n  ),\n  IF(\n    DATETIME_FORMAT(\n      SET_TIMEZONE({fld7JJ7neI0YYmB7i}, \"America/Denver\"),\n      \"YYYY-MM-DD\"\n    )\n    =\n    DATETIME_FORMAT(\n      SET_TIMEZON",
+        "formula_len": 300
+      },
+      {
+        "table": "Submissions",
+        "field": "Perfect Week Grace Eligible?",
+        "has_season_sim_gate": false,
+        "contains_season_sim_text": false,
+        "formula_preview": "IF(\n  OR(\n    {fldIb6nJu5TBkUUrD},\n    AND(\n      {fld1gQ2c04pndnTKe} = 1,\n      {fldpkkSBsx8kQRZos},\n      {fld7JJ7neI0YYmB7i},\n      DATETIME_FORMAT(\n        SET_TIMEZONE({fldpkkSBsx8kQRZos}, \"America/Denver\"),\n       ",
+        "formula_len": 832
+      }
+    ]
+  },
+  "ehq": {
+    "count": 94,
+    "recipients": {
+      "schmidt@fairfieldbasketballclub.com": 95
+    },
+    "unsafe_recipients": [],
+    "allowlist_only": true,
+    "rows": [
+      {
+        "id": "rec0GVZSLx03Z3tX0",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "reckCFjh6s0uugvsw",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|reckCFjh6s0uugvsw"
+      },
+      {
+        "id": "rec0HnFiDsfkdkA81",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "rec55QVnaJ3ABanS0",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|rec55QVnaJ3ABanS0"
+      },
+      {
+        "id": "rec0NgeSMNnE7VzjV",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recBzIDhZRUbkrBcT",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recBzIDhZRUbkrBcT"
+      },
+      {
+        "id": "rec1GSQsLR3rfSBi2",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "reckNg6BcqAvIZECb",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|reckNg6BcqAvIZECb"
+      },
+      {
+        "id": "rec1nZtA4gcKRaH6Z",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "rec3g6rxnk3goeHfg",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|rec3g6rxnk3goeHfg"
+      },
+      {
+        "id": "rec2OfGFnmbV4PIF2",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recQRiScfJvMMHfag",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recQRiScfJvMMHfag"
+      },
+      {
+        "id": "rec2m5LS2xpIUaV5P",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recrBNtHjwhuJkeaY",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recrBNtHjwhuJkeaY"
+      },
+      {
+        "id": "rec3oXMxdYQZUNyX3",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recd3o9ZkkO8KVHtg",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recd3o9ZkkO8KVHtg"
+      },
+      {
+        "id": "rec4Z2udKBuRJVvBh",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recsn14ADRd3eNl0Z",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recsn14ADRd3eNl0Z"
+      },
+      {
+        "id": "rec6SdGNJN60qv7Sv",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "receKqo90kSXodcxQ",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|receKqo90kSXodcxQ"
+      },
+      {
+        "id": "rec6vdmw1TdJBbUry",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recJj6uxh1agnxmIK",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recJj6uxh1agnxmIK"
+      },
+      {
+        "id": "rec80DWEHTj6tTBTW",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recsLRC2qTtKwiqIg",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recsLRC2qTtKwiqIg"
+      },
+      {
+        "id": "rec8arL8MlCoO4chz",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recVgpMgD6QPtlySP",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recVgpMgD6QPtlySP"
+      },
+      {
+        "id": "rec8iICiYOxShU2eR",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recYBKPOnZUTxwbPq",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recYBKPOnZUTxwbPq"
+      },
+      {
+        "id": "rec8nHlNLrirjIdfH",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recBKr6u0RtCIx66B",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recBKr6u0RtCIx66B"
+      },
+      {
+        "id": "rec9ITsaNfukBeUbs",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recRwgKGfmCgQ6S5L",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recRwgKGfmCgQ6S5L"
+      },
+      {
+        "id": "rec9K0sz7GMBoY3GA",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recBlg3pcPTRvn0AV",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recBlg3pcPTRvn0AV"
+      },
+      {
+        "id": "rec9WkZFJbI01rklU",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recRIfGCZsByi9Xbm",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recRIfGCZsByi9Xbm"
+      },
+      {
+        "id": "rec9i7gBNCnz8hEIc",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recganct44UWXKIGC",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recganct44UWXKIGC"
+      },
+      {
+        "id": "rec9zR3fi0ZAIrByw",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recZNKVE2YtrRAsFd",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recZNKVE2YtrRAsFd"
+      },
+      {
+        "id": "recAcboecnmUbrFFT",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "rec2QdpdWmMUA65rk",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|rec2QdpdWmMUA65rk"
+      },
+      {
+        "id": "recB3IDys12dpKt2L",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recMhiWFFXFHeM315",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recMhiWFFXFHeM315"
+      },
+      {
+        "id": "recCD0vlXW3Rd981p",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recMsc9qINcqSNYBI",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recMsc9qINcqSNYBI"
+      },
+      {
+        "id": "recCKkWAwvwQEC6wa",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "reczj1hqs9jHeDo1J",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|reczj1hqs9jHeDo1J"
+      },
+      {
+        "id": "recCdXKuh9nsSwxeZ",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recew0wRfCDLVqY83",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recew0wRfCDLVqY83"
+      },
+      {
+        "id": "recE0tJHn1lP05KJv",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recTbEKCzyZ0WkIwy",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recTbEKCzyZ0WkIwy"
+      },
+      {
+        "id": "recEQw9HoVsHfr1qG",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "rece1FksL3H0cyvwF",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|rece1FksL3H0cyvwF"
+      },
+      {
+        "id": "recEvBFSqy1oZ3pkh",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recaknWihNui1TuZI",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recaknWihNui1TuZI"
+      },
+      {
+        "id": "recFBrxTj1AIDPxkn",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recRkekdPkr16zJsP",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recRkekdPkr16zJsP"
+      },
+      {
+        "id": "recFdwClRKLJdrI3o",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "rec2iz0UX7FZwJzNH",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|rec2iz0UX7FZwJzNH"
+      },
+      {
+        "id": "recFjmcYJdd5XGBf1",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recJSoCYpOZQUNQlA",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recJSoCYpOZQUNQlA"
+      },
+      {
+        "id": "recITMIpdz01O7UFq",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "reckMRWcxn5aZRxT2",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|reckMRWcxn5aZRxT2"
+      },
+      {
+        "id": "recN0E6IauHkMkg4b",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recWLKlHin6vUDNov",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recWLKlHin6vUDNov"
+      },
+      {
+        "id": "recOUSS6LdFoX4b9q",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recnNnpnZkfRHz0zg",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recnNnpnZkfRHz0zg"
+      },
+      {
+        "id": "recQIxnJkPXWyRr0w",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recbZyJ80d3Q2hdNz",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recbZyJ80d3Q2hdNz"
+      },
+      {
+        "id": "recQRxwkRyie1pkJm",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "rec0Fhh5Y7LSv1iZE",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|rec0Fhh5Y7LSv1iZE"
+      },
+      {
+        "id": "recQT7GJyiDx20tvb",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "reco6NjuqTbag3kQJ",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|reco6NjuqTbag3kQJ"
+      },
+      {
+        "id": "recQunsp9O93aW8Xm",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "WELCOME",
+        "event_type": "WELCOME",
+        "hub_event_id": null,
+        "source_record_id": "rec2r1VgYEEWJBeKG",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "WELCOME|SHOOTING_CHALLENGE|rec2r1VgYEEWJBeKG"
+      },
+      {
+        "id": "recRbWgU1KU5pxFKr",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recO8voPM7XnYCGWo",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recO8voPM7XnYCGWo"
+      },
+      {
+        "id": "recRiQX0WRvXgIaCf",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recf2lFUO9danix0L",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recf2lFUO9danix0L"
+      },
+      {
+        "id": "recRpWiDnMg7mEEk0",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "ZOOM_RECORDING_APPROVED",
+        "event_type": "ZOOM_RECORDING_APPROVAL",
+        "hub_event_id": null,
+        "source_record_id": "recTM8Y6NEnXZ7hDq",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "ZOOM_RECORDING_APPROVAL|ZOOM_ATTENDANCE|recTM8Y6NEnXZ7hDq"
+      },
+      {
+        "id": "recSyWYQvoMKbGugf",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recBMshjQS0sB1rQ6",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recBMshjQS0sB1rQ6"
+      },
+      {
+        "id": "recT6dbgUCaFoFr22",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recLvKWEXrn83vz6J",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recLvKWEXrn83vz6J"
+      },
+      {
+        "id": "recUKCn4ofoPVqvEe",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "VIDEO_FEEDBACK",
+        "event_type": "VIDEO_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recaZolnDtuTsL84E",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "VIDEO_FEEDBACK|VIDEO_FEEDBACK|recaZolnDtuTsL84E"
+      },
+      {
+        "id": "recVQVqzlkAQNaitk",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recbcIE4po8GBccFU",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recbcIE4po8GBccFU"
+      },
+      {
+        "id": "recVl6gmn5ZLiqKsG",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recRmAgQ9bi77Wcqt",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recRmAgQ9bi77Wcqt"
+      },
+      {
+        "id": "recWjnzlOJzcJ47J8",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recHj7qx3GVpebmUV",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recHj7qx3GVpebmUV"
+      },
+      {
+        "id": "recXDgS7169wHYkdo",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recVujMCCLWn87qVR",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recVujMCCLWn87qVR"
+      },
+      {
+        "id": "recXakEq9y1pOlTQq",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "rec2F0SvH1b7Rk72S",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|rec2F0SvH1b7Rk72S"
+      },
+      {
+        "id": "recXq1MHiUUplo17n",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recaC1LysdEtIQsqv",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recaC1LysdEtIQsqv"
+      },
+      {
+        "id": "recYdLKEplOgqoW4V",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "rec1d0xAdbrBJOtvX",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|rec1d0xAdbrBJOtvX"
+      },
+      {
+        "id": "recYubzAv9cH3CciJ",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recZqTf3axlscXoHo",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recZqTf3axlscXoHo"
+      },
+      {
+        "id": "recbWakVDl20k3KTm",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recm6HOljyKboHkaL",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recm6HOljyKboHkaL"
+      },
+      {
+        "id": "recc14gIiwEStFe8C",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recP8w7TLjmRSdB0O",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recP8w7TLjmRSdB0O"
+      },
+      {
+        "id": "reccQKnoSuFbLRyyS",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "reciG8LoQ8D9k2e9m",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|reciG8LoQ8D9k2e9m"
+      },
+      {
+        "id": "reccmBEV5WnmvhIY5",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "rec7i6SBcnvkUenNc",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|rec7i6SBcnvkUenNc"
+      },
+      {
+        "id": "reccuIpXE1uQ6Ed1t",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "reccN1esR3GCHScwB",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|reccN1esR3GCHScwB"
+      },
+      {
+        "id": "recdvsROI5Rzg0mPG",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recKWSyTpddm1WBdS",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recKWSyTpddm1WBdS"
+      },
+      {
+        "id": "recfPtMUOVYRggb6U",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recPzWTH7N5t9r6yr",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recPzWTH7N5t9r6yr"
+      },
+      {
+        "id": "recg82sqY4deUQxqi",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "VIDEO_FEEDBACK",
+        "event_type": "VIDEO_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recV3Nt98Xzc91tiq",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "VIDEO_FEEDBACK|VIDEO_FEEDBACK|recV3Nt98Xzc91tiq"
+      },
+      {
+        "id": "rech19PNaecki0ley",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recDQHYKv6TRhYUOs",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recDQHYKv6TRhYUOs"
+      },
+      {
+        "id": "rechuI0YZCnBn6VbW",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recFXUoLOItcsxmTU",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recFXUoLOItcsxmTU"
+      },
+      {
+        "id": "rechzMxzqiFcCNjVO",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recD0dxiTkCJsBPtQ",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recD0dxiTkCJsBPtQ"
+      },
+      {
+        "id": "reciZ7wDJsOUXG9J4",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "rec1b2QCyg5GUPuLT",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|rec1b2QCyg5GUPuLT"
+      },
+      {
+        "id": "recibyoWpt4IQ3ZJJ",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recabEVJRrwhnPW2L",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recabEVJRrwhnPW2L"
+      },
+      {
+        "id": "reciz4Kfk86Y3Gjcf",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recugUbwUzGL30OlV",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recugUbwUzGL30OlV"
+      },
+      {
+        "id": "reckXLE1MMwRH7Zgt",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "rec6sBorlOfpNMoPX",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|rec6sBorlOfpNMoPX"
+      },
+      {
+        "id": "recksYDHmY7ULK3ZW",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "reccJtVzz0RIS4WVF",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|reccJtVzz0RIS4WVF"
+      },
+      {
+        "id": "reclE6tUHZogp8UP9",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "reckEptbfza6VCQXn",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|reckEptbfza6VCQXn"
+      },
+      {
+        "id": "reclaMKnHcrvDnPMo",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recWtnDEPC8aHCiDN",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recWtnDEPC8aHCiDN"
+      },
+      {
+        "id": "recm7NZPiZMlPpJAl",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recaG6bmRC5h7keg5",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recaG6bmRC5h7keg5"
+      },
+      {
+        "id": "recmAy4z83H4sikos",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recn8qPysYJ6x8kET",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recn8qPysYJ6x8kET"
+      },
+      {
+        "id": "recn3CfWjpTQRBAoz",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "rec6MI3h02Y53KMgH",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|rec6MI3h02Y53KMgH"
+      },
+      {
+        "id": "recnHNzcD9yFvuJmD",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recZXGraNCUzzk9KM",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recZXGraNCUzzk9KM"
+      },
+      {
+        "id": "recnYLTskF1M8rQAr",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recGThDo0frbzj4d6",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recGThDo0frbzj4d6"
+      },
+      {
+        "id": "recntulj33qpX81QT",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recjP8XPJfvTObh02",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recjP8XPJfvTObh02"
+      },
+      {
+        "id": "recoANABSUuXIipvT",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recmiw1GYEwIi4n94",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recmiw1GYEwIi4n94"
+      },
+      {
+        "id": "recpMjc5Yzga8ymCD",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recO5wjq9WoUA06hH",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recO5wjq9WoUA06hH"
+      },
+      {
+        "id": "recpNU5iFtS01NGEB",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recbMpY5Yu5JZR9Ct",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recbMpY5Yu5JZR9Ct"
+      },
+      {
+        "id": "recqDN6gzmkZBViZM",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recciXD4jqgllsYCZ",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recciXD4jqgllsYCZ"
+      },
+      {
+        "id": "recqwIOlnCzqvSib1",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "VIDEO_FEEDBACK",
+        "event_type": "VIDEO_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recvy5sVKMzuzFvRv",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "VIDEO_FEEDBACK|VIDEO_FEEDBACK|recvy5sVKMzuzFvRv"
+      },
+      {
+        "id": "recrD9uMcgCwqmYq2",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "HOMEWORK_FEEDBACK",
+        "event_type": "HOMEWORK_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recssUmWNNoGaSgoK",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "HOMEWORK_FEEDBACK|HOMEWORK_COMPLETIONS|recssUmWNNoGaSgoK"
+      },
+      {
+        "id": "recrFU6oiwSe6ho3q",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recK80ZBsZnhU67dG",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recK80ZBsZnhU67dG"
+      },
+      {
+        "id": "recrZfLBNyETduuTB",
+        "status": "Needs Review",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recRmAgQ9bi77Wcqt",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recRmAgQ9bi77Wcqt"
+      },
+      {
+        "id": "recsEMLziKh1BKy7w",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recmtkI1sz2KgdMm5",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recmtkI1sz2KgdMm5"
+      },
+      {
+        "id": "rect1OZyH0XiN0YCE",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recAyamRduppYHhdJ",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recAyamRduppYHhdJ"
+      },
+      {
+        "id": "rectJzJxxnWXCV6cM",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "rec4ufuUxXDWDgBML",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|rec4ufuUxXDWDgBML"
+      },
+      {
+        "id": "recuBtvxvgLwYg1Ok",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recc5YH9oCHX8f8mI",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recc5YH9oCHX8f8mI"
+      },
+      {
+        "id": "recuwve2CCF1t7KZe",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "VIDEO_FEEDBACK",
+        "event_type": "VIDEO_FEEDBACK",
+        "hub_event_id": null,
+        "source_record_id": "recTSIDuu9Ycuh8qC",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "VIDEO_FEEDBACK|VIDEO_FEEDBACK|recTSIDuu9Ycuh8qC"
+      },
+      {
+        "id": "recvV0Ktn9Udmb8sC",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recG2d5rYQ3pHWleN",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recG2d5rYQ3pHWleN"
+      },
+      {
+        "id": "recwf9dy1JGr0Nb9g",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recBR8dcOc2nArO4Q",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recBR8dcOc2nArO4Q"
+      },
+      {
+        "id": "recyVSTvPMPACwSWN",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recmEvINBZLr6q4aP",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recmEvINBZLr6q4aP"
+      },
+      {
+        "id": "recyesE9MwhbYpbpf",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "recO6VhWkjFnTHUuJ",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|recO6VhWkjFnTHUuJ"
+      },
+      {
+        "id": "reczSfEFejUDFfxGZ",
+        "status": "Failed",
+        "test_mode": null,
+        "template_key": "DAILY_SUBMISSION",
+        "event_type": "DAILY_SUBMISSION",
+        "hub_event_id": null,
+        "source_record_id": "rec5O1rAQV4nuOYdj",
+        "enrollment_record_id": "rec2r1VgYEEWJBeKG",
+        "recipients": [
+          "schmidt@fairfieldbasketballclub.com"
+        ],
+        "handoff_key": "DAILY_SUBMISSION|SUBMISSIONS|rec5O1rAQV4nuOYdj"
+      }
+    ]
+  },
+  "interpretation": {
+    "pre_restore_snapshot_xp": 4950,
+    "live_active_xp_after_restore": 4495,
+    "inactive_streak_count": 9,
+    "statement": "The 4,950 number was a pre-restore simulation snapshot (missing one 150% Weekly Threshold award = 30 XP vs target 4,980). The live active XP after Production-normal formula restore reflects post-restore ineligibility/deactivation (nine STREAK_XP events inactive when that state is present). Future-dated Week 2 WAS recYhbzze2Xc75lDa shows Goal Completion %=0 under Production NOW() formulas. Do not fabricate the missing 30-XP event and do not requeue under restored formulas. Treat this run as a failed acceptance test."
+  }
+}

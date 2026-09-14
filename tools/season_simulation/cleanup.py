@@ -706,12 +706,21 @@ def run_cleanup(
     execute: bool = False,
     confirm: str | None = None,
     confirm_cleanup: str | None = None,
+    confirm_force_incomplete_cleanup: str | None = None,
     simulation_id: str | None = None,
     client: AirtableClient | None = None,
     out_dir: Path | None = None,
 ) -> CleanupResult:
-    """Dry-run by default. Deletes only with full cleanup gates."""
-    from .confirmation import ConfirmationError, require_cleanup_gates
+    """Dry-run by default. Deletes only with full cleanup gates.
+
+    Cleanup never runs automatically after execute. Failed/incomplete registries
+    additionally require ``confirm_force_incomplete_cleanup``.
+    """
+    from .confirmation import (
+        ConfirmationError,
+        require_cleanup_gates,
+        require_incomplete_cleanup_force,
+    )
 
     plan = build_cleanup_plan(run_id=run_id, registry_dir=registry_dir, client=client)
     if plan.errors:
@@ -743,6 +752,26 @@ def run_cleanup(
             confirm_cleanup=confirm_cleanup,
             simulation_id=simulation_id or run_id,
         )
+        try:
+            reg = load_registry(registry_dir, run_id)
+            require_incomplete_cleanup_force(
+                registry_status=getattr(reg, "status", None),
+                confirm_force_incomplete=confirm_force_incomplete_cleanup,
+            )
+        except FileNotFoundError:
+            # Profile-suffixed Perfect registries.
+            from .execute_three import profile_registry_run_id
+
+            try:
+                reg = load_registry(
+                    registry_dir, profile_registry_run_id(run_id, "athlete1_perfect")
+                )
+                require_incomplete_cleanup_force(
+                    registry_status=getattr(reg, "status", None),
+                    confirm_force_incomplete=confirm_force_incomplete_cleanup,
+                )
+            except FileNotFoundError:
+                pass
     except ConfirmationError as exc:
         result = CleanupResult(
             run_id=run_id,

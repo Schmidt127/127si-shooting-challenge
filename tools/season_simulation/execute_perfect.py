@@ -3,10 +3,13 @@
 Runs ONLY the Perfect scenario with Mike Schmidt identity. Reuses
 execute_three writer / settlement / cleanup gates for one profile.
 
-Formula lifecycle: Season Sim gates stay active through settlement.
-Stage Z restores Production-normal formulas only after settlement completes
-(or via ``recover-formula-restore``). Restore source is the committed
-Production-normal bundle — never a Stage-0 snapshot.
+Formula lifecycle: Season Sim gates stay active through writer execution,
+downstream settlement, reconciliation, authorized requeue repair, and final
+active-XP verification. Stage Z restores Production-normal formulas only after
+pre-restore acceptance hard-passes (active XP 4980 + bucket / Source Key /
+allowlist checks). See docs/deploy-checklists/SC-SEASON-SIM-PERFECT-FORMULA-LIFECYCLE.md.
+Restore source is the committed Production-normal bundle — never a Stage-0
+snapshot. Cleanup is never automatic.
 """
 
 from __future__ import annotations
@@ -41,6 +44,11 @@ from .formula_lifecycle import (
     restore_production_formulas,
     snapshot_formulas,
     stage_f_formula_verify_hook,
+)
+from .perfect_pre_restore_acceptance import (
+    evaluate_pre_restore_acceptance,
+    may_restore_production_formulas,
+    post_restore_safety_notes,
 )
 from .live_write_contract import (
     assert_live_write_contract_pass,
@@ -475,10 +483,42 @@ def run_execute_perfect(
             )
         profile_payload["E2_business_success"] = business
 
+        # Pre-restore hard acceptance (active XP 4980 + buckets) — formulas stay
+        # gated until this passes. Never restore on a failed Perfect acceptance.
+        acceptance_events: list[dict[str, Any]] = []
+        if (
+            writes_allowed
+            and execute
+            and client is not None
+            and reg is not None
+            and reg.enrollment_id
+        ):
+            live_for_gate = try_load_enrollment_xp_for_reconcile(
+                client, reg.enrollment_id
+            )
+            acceptance_events = list(live_for_gate.get("events") or [])
+        acceptance = evaluate_pre_restore_acceptance(
+            events=acceptance_events,
+            enrollment_id=(reg.enrollment_id if reg else None),
+            expected_enrollment_linked_ids=(
+                [reg.enrollment_id] if reg and reg.enrollment_id else None
+            ),
+        )
+        profile_payload["E3_pre_restore_acceptance"] = acceptance.to_dict()
+        business_ok = bool(business.get("pass"))
+        restore_allowed, restore_block_reason = may_restore_production_formulas(
+            settlement_complete=settlement_complete,
+            business_pass=business_ok,
+            acceptance=acceptance,
+        )
+
         # Still gated during F verify when clock override was acknowledged.
         profile_payload["F_formula_verify"] = stage_f_formula_verify_hook(
             client,
-            expect_gated=bool(acknowledge_clock_override and not settlement_complete),
+            expect_gated=bool(
+                acknowledge_clock_override
+                and not (settlement_complete and restore_allowed)
+            ),
             snapshot_bundle=(snapshot_result or {}).get("bundle")
             if snapshot_result
             else None,
@@ -490,17 +530,19 @@ def run_execute_perfect(
             profile=profile,
         )
 
-        # Stage Z — only after settlement completes; Production-normal bundle only.
+        # Stage Z — only after settlement + business + pre-restore acceptance.
         if writes_allowed and execute and client is not None:
-            if settlement_complete:
+            if restore_allowed:
                 try:
                     stage_z = restore_production_formulas(
                         client,
                         allow_writes=True,
                         confirm=confirm,
-                        reason="stage_z_after_settlement",
+                        reason="stage_z_after_pre_restore_acceptance",
                         dry_run=False,
                     )
+                    stage_z["post_restore_safety_notes"] = post_restore_safety_notes()
+                    stage_z["pre_restore_active_xp"] = acceptance.active_xp
                 except Exception as exc:  # noqa: BLE001
                     stage_z = {
                         "status": "failed",
@@ -531,26 +573,39 @@ def run_execute_perfect(
             else:
                 stage_z = {
                     "stage": "Z_formula_restore",
-                    "status": "deferred_pending_settlement",
+                    "status": "blocked_acceptance_gate"
+                    if settlement_complete
+                    else "deferred_pending_settlement",
                     "production_formulas_restored": False,
                     "formula_restore_pending": True,
                     "formula_restore_failed": False,
                     "restore_source": "production_normal_bundle",
+                    "blocked_reason": restore_block_reason,
+                    "pre_restore_acceptance": acceptance.to_dict(),
                     "note": (
-                        "Season Sim gates remain active until settlement completes. "
-                        "Use recover-formula-restore if the process was interrupted "
-                        "after gates_applied."
+                        "Season Sim gates remain active until settlement completes "
+                        "AND pre-restore acceptance passes (active XP "
+                        f"{acceptance.expected_active_xp}, Weekly Threshold "
+                        "26/480, Streak 9/455, Source Key integrity, allowlist). "
+                        "Do not restore Production-normal formulas on a failed "
+                        "Perfect acceptance. Use recover-formula-restore only after "
+                        "Mike-authorized investigation/repair."
                     ),
                 }
                 if reg is not None:
                     lifecycle = _set_registry_lifecycle(
                         reg,
                         gates_applied=True,
-                        settlement_complete=False,
+                        settlement_complete=bool(settlement_complete),
                         formula_restore_pending=True,
                         production_formulas_restored=False,
                     )
                     payload["formula_lifecycle"] = dict(lifecycle)
+                if settlement_complete and not restore_allowed:
+                    payload["errors"].append(
+                        f"formula restore blocked — {restore_block_reason}: "
+                        + "; ".join(acceptance.errors or ["acceptance unmet"])
+                    )
 
         if writes_allowed and execute and reg is not None:
             if not reconcile.get("complete") or not business.get("pass"):
