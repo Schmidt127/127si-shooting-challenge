@@ -1,5 +1,7 @@
 # Master Update Proposal — WAS / weekly email (verified PROD)
 
+> **HISTORICAL / REFERENCE ONLY.** This proposal reflects the 2026-07-24 Make/Gmail configuration and is not a current task list. Use [`../../../MASTER_REMAINING_WORK_LIST.md`](../../../MASTER_REMAINING_WORK_LIST.md) for active work.
+
 **Date:** 2026-07-24  
 **Source:** `docs/next-wave/was-email/`  
 **Canonical:** [`WAS-WEEKLY-EMAIL-ARCHITECTURE.md`](./WAS-WEEKLY-EMAIL-ARCHITECTURE.md)
