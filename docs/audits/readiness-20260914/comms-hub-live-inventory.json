@@ -1,0 +1,43 @@
+{
+  "captured_note": "Full per-record inventory discarded after classification; counts below are pre-cleanup snapshot from build tooling.",
+  "comms_base": "appYG1t5DBRimHBCT",
+  "pre_cleanup_observed_peak": {
+    "Audit Events": 1588,
+    "Deliveries": 794,
+    "Delivery Attempts": 794,
+    "Delivery Keys": 795,
+    "Integration Events": 800,
+    "Messages": 0,
+    "Communication Identities": 3,
+    "Contact Methods": 3,
+    "Households": 0,
+    "Suppressions": 0,
+    "Programs": 1,
+    "Templates": 5,
+    "Test Allowlist": 3
+  },
+  "identity_proof_at_cleanup": [
+    {
+      "id": "recPAUAPGrxENGUJ2",
+      "email": "schmidt@fairfieldbasketballclub.com",
+      "Is Test Identity?": true
+    },
+    {
+      "id": "reclglyYaWamXeCOR",
+      "email": "mschmidt@fairfield.k12.mt.us",
+      "Is Test Identity?": true,
+      "notes": "Controlled Schmidt test identity"
+    },
+    {
+      "id": "recrpmEu9xaRsswWV",
+      "email": "mschmidt@127si.com",
+      "Is Test Identity?": true,
+      "notes": "COMMS-TEST-DATA"
+    }
+  ],
+  "preserve": [
+    "Programs",
+    "Templates",
+    "Test Allowlist"
+  ]
+}

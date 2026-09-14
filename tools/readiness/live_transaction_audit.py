@@ -6,6 +6,7 @@ Classifies disposable vs real/uncertain. Never deletes.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
@@ -252,22 +253,46 @@ def scan_formulas(tables: list[dict]) -> dict:
 
 
 def automation_versions(base: str) -> list[dict]:
-    rows = list_all(base, "Automations", fields=["Name", "Status", "Automation Code"])
+    """Identity-aware automation version extract (hash + SCRIPT fields).
+
+    Prefer tools/readiness/compare_live_vs_github_automations.py for 035/053/065
+    GitHub sync checks. Do not rely on first regex vX.Y in the file (false hits).
+    """
+    rows = list_all(
+        base,
+        "Automations",
+        fields=["Name", "Status", "Automation Code", "Version Number - AI Agent"],
+    )
     out = []
     for r in rows:
         if "_error" in r:
             return [{"_error": r}]
         f = r.get("fields") or {}
         code = str(f.get("Automation Code") or "")
-        # extract version like v8.15 or 8.15
-        m = re.search(r"v?\d+\.\d+(?:\.\d+)?", code)
+        head = code[:6000]
+        script_ver = re.search(r'version:\s*[\'"]([^\'"]+)[\'"]', head)
+        deploy = re.search(r'deployMarker:\s*[\'"]([^\'"]+)[\'"]', head)
+        last = re.search(r'lastUpdated:\s*[\'"]([^\'"]+)[\'"]', head)
+        doc_ver = re.search(r"\*\s*Version:\s*([^\n*]+)", head)
+        season = re.search(r"SC-SEASON-SIM-001-DEPLOY-[A-Z0-9]+", head)
+        body_idx = code.find("/************************************************")
+        body = code[body_idx:] if body_idx >= 0 else code
         out.append(
             {
                 "id": r["id"],
                 "name": f.get("Name"),
                 "status": f.get("Status"),
+                "version_ai_field": f.get("Version Number - AI Agent"),
+                "script_version": script_ver.group(1) if script_ver else None,
+                "docblock_version": doc_ver.group(1).strip() if doc_ver else None,
+                "deploy_marker": deploy.group(1)
+                if deploy
+                else (season.group(0) if season else None),
+                "last_updated": last.group(1) if last else None,
+                "automation_code_sha256": hashlib.sha256(body.encode("utf-8")).hexdigest()
+                if body
+                else None,
                 "code_preview": code[:160],
-                "version_guess": m.group(0) if m else None,
             }
         )
     return out

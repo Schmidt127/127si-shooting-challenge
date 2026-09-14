@@ -3,7 +3,7 @@ Automation: 035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Eve
 System: 127 SI Shooting Challenge
 Source: Airtable Automation
 Status: GitHub Source of Truth — PROD paste only after Mike UI attestation
-Last GitHub Update: 2026-09-14 (synced from Mike-attested live Production v1.6)
+Last GitHub Update: 2026-08-03
 
 Purpose:
 Create XP Events for met Weekly Threshold tiers (100% / 125% / 150%) from one Weekly Athlete Summary.

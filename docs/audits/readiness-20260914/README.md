@@ -68,16 +68,18 @@ Full matrix: [`prod-vs-github-version-matrix.json`](./prod-vs-github-version-mat
 | 010 | v10.14 | v10.14 Live | MATCH |
 | 020 | v4.1 | v4.1 Live | MATCH |
 | 034 | v3.4 | v3.4 Live | MATCH |
-| **035** | **v1.3** | **v1.5 Live** | **MISMATCH (Prod ahead)** |
-| **053** | **5.6** | **5.8 Live** | **MISMATCH (Prod ahead)** |
+| **035** | **v1.6** | **v1.6 Live** (mirror corrected) | **MATCH** |
+| **053** | **5.8** | **5.8 Live** | **MATCH** |
 | 057 | 2.7 | 2.7 Live | MATCH |
-| **065** | **v10.9** | **v10.11 Live** | **MISMATCH (Prod ahead)** |
+| **065** | **v10.11** | **v10.11 Live** | **MATCH** |
 | 066 | v4.1 | v4.1 Live | MATCH |
 | 071–074, 076, 101, 114, 117 | aligned | aligned | MATCH |
-| **022** | v2.2 | v2.0 Live | MISMATCH (GitHub ahead) |
+| **022** | v2.2 | v2.2 Live | MATCH |
 | **064** | parse noise (`2026`) | v12.2 Live | review metadata parse |
 
-**Do not paste older GitHub over Production for 035 / 053 / 065.** Sync GitHub forward from Production paste bundles before next execute.
+**GitHub synced upward from Production for 035 / 053 / 065 (2026-09-14).** Prior version drift was documentation/Automations-table mirror lag — **not** a reason to downgrade Production. Do not paste older GitHub over Production.
+
+Evidence: [`AUTOMATION-035-053-065-VERSION-SYNC-20260914.md`](./AUTOMATION-035-053-065-VERSION-SYNC-20260914.md) · [`live-vs-github-automation-compare.json`](./live-vs-github-automation-compare.json) · [`FINAL-READINESS-AUDIT-20260914.json`](./FINAL-READINESS-AUDIT-20260914.json)
 
 ### Open / merged PRs (SC)
 
@@ -164,11 +166,11 @@ Tests: `tools/season_simulation/tests/test_reconciliation_checker.py` · `test_o
 |------|--------|----------------|-----------------|
 | Shooting Challenge data cleanup | **GO** | None | None |
 | Curriculum data cleanup | **GO** | None | Hub draft/outbox table **IDs** still Meta-API optional confirm ([Agent C](ba038293-709a-4de3-9daa-8c8373167822)); names verified live empty |
-| Formulas and automation versions | **CONDITIONAL GO** | Prod ahead of GitHub on **035 / 053 / 065**; **022** GitHub ahead of Prod; PENDING-CUTOVERS may still list 057/118/119 | Sync GitHub←Prod for 035/053/065; decide 022; refresh PENDING-CUTOVERS vs live |
+| Formulas and automation versions | **GO** | None for 035/053/065 (synced; mirrors aligned). Non-blocking: docs parse noise on 064; other docs-stale rows | Keep identity-tuple hash verification; do not downgrade Production for historical docs lag |
 | Email safety | **GO** | None for queue backlog | Keep allowlist; do not change live Hub settings without separate approval |
-| XP reconciliation/oracle | **CONDITIONAL GO** | Level/gate reachability still separate from XP ladder; keep Season Sim formula gates active through reconcile if validating streak Active XP | Use `reconciliation_checker` + E2 on next sim; require exact PASS; do not assert G.O.A.T. from XP alone |
+| XP reconciliation/oracle | **GO** (tooling) | Level/gate reachability still separate from XP ladder at execute time | Oracle active XP **4980**; settlement ≥900s; allowlist-only |
 | Dry-run readiness | **GO** | None | `python -m season_simulation dry-run-three` (read-only default) |
-| Execute readiness | **NO-GO** | Explicit Mike phrase + confirm tokens + fresh run ID + paste sync for 035/053/065 recommended | Wait for `RUN 3-ATHLETE SEASON SIMULATION` + gates; **do not** merge PR #530 |
+| Execute readiness | **NO-GO until Mike approval** | Explicit Mike phrase + confirm tokens + fresh run ID | Wait for approval; **do not** merge PR #530; **do not execute** from this integration alone |
 
 ---
 
