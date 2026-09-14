@@ -7,32 +7,41 @@
 | **Base** | Production `appn84sqPw03zEbTT` only — **no DEV environment** |
 | **Athletes** | 3 disposable VERIFY profiles (Perfect / Recovery / Edge) |
 | **Window** | 2027-04-25 → 2027-06-30 11:59 PM America/Denver inclusive (**67** days) |
-| **Oracle** | Perfect-season XP **4910** → Level **G.O.A.T.** (matches dry-run) |
-| **Authorize command** | Mike says exactly: **`RUN 3-ATHLETE SEASON SIMULATION`** |
+| **Oracle** | Perfect-season XP **4980** → Level **G.O.A.T.** (20 PHA / Week 9 HW1+HW2; Zoom 90) |
+| **Authorize command** | Mike says exactly: **`RUN 3-ATHLETE SEASON SIMULATION`** (or Perfect path authorization) |
 | **This document does NOT authorize execute** | Pending gates in §0 |
 
 ---
 
 ## 0. READY FOR EXECUTE — pending
 
-| Gate | Status (2026-09-12) |
+| Gate | Status (2026-09-14) |
 |------|---------------------|
-| **(a)** Mike authorization phrase `RUN 3-ATHLETE SEASON SIMULATION` | **Required** — not yet given |
-| **(b)** Production automation **057** must be **v2.7** | **Blocked** — live **v2.6** as of 2026-09-12 audit; GitHub has v2.7 ([paste checklist](./057-v2.7-perfect-week-homework-week-end-PASTE.md)) |
-| Oracle **4910** vs dry-run | **Match** |
-| Active PHA | **18** (Early Bird + Weeks 1–8 × 2); Week 9 = 0 — **not** the old PHA=4 blocker |
-| Simulation executed? | **No** |
+| **(a)** Mike authorization phrase | **Required** — not yet given for a new execute |
+| **(b)** Production automation **057** | **v2.7 verified live** (header + SHA-256 match GitHub 2026-09-14) — paste **not** required |
+| Oracle **4980** | Canonical (`expected_perfect_season_xp.json`); prior **4910 / 18-PHA** model superseded |
+| Active PHA | **20** (Early Bird + Weeks 1–9 × 2); **Week 9 HW2 is active** |
+| Formula restore | Production-normal bundle + Stage Z / `recover-formula-restore` (never Stage-0 snapshot) |
+| Simulation executed? | **No** (prior paused run cleaned; next execute not authorized) |
 
-### Rollback notes — Season Sim formula gates already ACTIVE
+### Formula restore source (immutable)
 
-Season Sim gates on Production are **already ACTIVE** (Activity Date Is Future?, Submitted Same Day?, Perfect Week Grace Eligible?). They are not a pre-execute paste step.
+**Sole restore source:** `tools/season_simulation/production_normal_formulas.json`  
+Do **not** restore from `docs/audits/readiness-20260914/formula-snapshot-pre-perfect.json` (Stage-0 evidence only; may be captured while gates are already active).
 
-| After run (or if execute deferred) | Action |
-|------------------------------------|--------|
-| `Activity Date Is Future?` | Restore NOW()-only (see README / operator checklist) |
-| `Submitted Same Day?` / `Perfect Week Grace Eligible?` | Restore Production rollbacks per `same_day_contracts.py` / operator checklist |
-| Disposable records | `cleanup-three` / `cleanup` with confirm gates |
-| Do **not** leave gated formulas live indefinitely | Restore even if execute is postponed |
+### Rollback notes — Season Sim formula gates
+
+Season Sim gates may be ACTIVE during an authorized run. Keep them through full settlement (900s). Stage Z restores Production-normal formulas only after settlement completes, or via:
+
+```powershell
+python -m season_simulation recover-formula-restore --run-id $RUN --execute --confirm "SEASON-SIMULATION-2027"
+```
+
+| After settlement / recovery | Action |
+|-----------------------------|--------|
+| Three monitored Submissions formulas | Meta restore from Production-normal bundle + hash verify |
+| Disposable records | `cleanup` / `cleanup-three` with confirm gates |
+| Do **not** leave gated formulas live indefinitely | Recovery command if process was force-killed |
 
 ---
 

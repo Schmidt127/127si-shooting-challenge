@@ -31,7 +31,7 @@
 
 **Totals:** 18,294 planned shots · **10** expected Perfect Weeks · milestones **3000–18000** · streak gates **3–60**
 
-**Expected XP buckets (oracle):** SHOOTING_BASE 67 · WEEKLY_THRESHOLD 26 · HOMEWORK 18 · VIDEO 30 · STREAK 9 · SHOT_MILESTONE 6 · PERFECT_WEEK **10** · **Lifetime XP = 4910 (Zoom XP = 90: 1 live + 1 recording; no Bonus 2/3)** (see `expected_perfect_season_xp.json`)
+**Expected XP buckets (oracle):** SHOOTING_BASE 67 · WEEKLY_THRESHOLD 26 · HOMEWORK **20** · VIDEO 30 · STREAK 9 · SHOT_MILESTONE 6 · PERFECT_WEEK **10** · **Lifetime XP = 4980 (Zoom XP = 90: 1 live + 1 recording; no Bonus 2/3)** (see `expected_perfect_season_xp.json`). Prior **4910 / 18-PHA** model superseded.
 
 ---
 

@@ -23,10 +23,11 @@ Infrastructure for full-season disposable simulations of the Shooting Challenge.
 
 ### NEXT REQUIRED ACTION
 
-1. Mike authorization phrase exactly: **`RUN 3-ATHLETE SEASON SIMULATION`**
-2. Production paste of **057 v2.7** if not yet live (audit 2026-09-12: Production still **v2.6**)
+1. Mike authorization phrase (Perfect or three-athlete) before any live execute
+2. Production **057 v2.7** — **verified live 2026-09-14** (header + SHA-256 match GitHub); no paste required unless re-verified stale
+3. Formula Stage Z / recovery path ready (`production_normal_formulas.json`)
 
-Simulation **NOT executed**. Season Sim formula gates are **already ACTIVE** on Production — restore after run (or if execute is deferred).
+Simulation **NOT executed**. Do not treat Stage-0 snapshots as Production restore sources. Prior **4910 / 18-PHA / paste-required 057** claims are superseded.
 
 ## Can it run today?
 
@@ -34,7 +35,7 @@ Simulation **NOT executed**. Season Sim formula gates are **already ACTIVE** on 
 |---|---|
 | Offline tests / dry-run / preflight | Yes |
 | SC-001 three-athlete dry-run | **Yes** — `python -m season_simulation dry-run-three` (Independent Oracle XP == Dry-run Expected XP) |
-| Full execute writer (idempotent) | **Code ready** — blocked on Mike phrase + Production **057 v2.7** paste |
+| Full execute writer (idempotent) | **Code ready** — blocked on Mike authorization phrase (057 v2.7 live verified 2026-09-14) |
 | Complete countable E2E on wall-clock 2026 | Season Sim gates **currently ACTIVE** on Production (restore after run). Hub allowlist includes `schmidt@fairfieldbasketballclub.com`. |
 
 `CREATED_TIME()` / `Submitted At` **cannot** be API-backdated. Same-day / Perfect Week timing uses gated `Season Sim Test Submitted At` and/or `Perfect Week Manual Exception?` on disposable rows only.

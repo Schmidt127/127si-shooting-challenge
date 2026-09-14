@@ -122,6 +122,38 @@ class AirtableClient:
         data = self._request("GET", url)
         return list(data.get("tables") or [])
 
+    def update_formula_field(
+        self,
+        *,
+        table_id: str,
+        field_id: str,
+        formula: str,
+    ) -> dict:
+        """Patch a formula field via Airtable Meta API (schema write).
+
+        Requires ``allow_writes=True``. Callers must enforce confirm tokens and
+        Production-normal bundle assertions before invoking.
+        """
+        if not self.allow_writes:
+            raise WriteBlockedError(
+                "update_formula_field blocked: client allow_writes=False"
+            )
+        if not str(table_id).startswith("tbl"):
+            raise ValueError(f"Invalid table_id: {table_id!r}")
+        if not str(field_id).startswith("fld"):
+            raise ValueError(f"Invalid field_id: {field_id!r}")
+        if not (formula or "").strip():
+            raise ValueError("formula text is empty")
+        url = (
+            f"https://api.airtable.com/v0/meta/bases/{self.base_id}/tables/"
+            f"{table_id}/fields/{field_id}"
+        )
+        return self._request(
+            "PATCH",
+            url,
+            json_body={"options": {"formula": formula}},
+        )
+
     def create_records(self, table: str, records: list[dict[str, Any]]) -> list[dict]:
         self._require_writes(table)
         out: list[dict] = []

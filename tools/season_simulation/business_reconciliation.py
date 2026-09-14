@@ -11,6 +11,7 @@ from collections import Counter
 from dataclasses import asdict, dataclass, field
 from typing import Any, Sequence
 
+from .active_xp_source_key_integrity import validate_active_xp_source_keys
 from .expectations_matrix import AthleteExpectationMatrix
 
 SAFE_ALLOWLIST = {
@@ -299,9 +300,19 @@ def reconcile_business_success(
         if int(n) > 1:
             errors.append(f"duplicate_streak_occurrence_key:{k} count={n}")
 
+    # Shared active-XP Source Key integrity (blank / duplicate / HW dual-key).
+    sk_integrity = validate_active_xp_source_keys(actual_events)
+    errors.extend(sk_integrity.errors)
+
+    # Preserve caller-supplied duplicate map (do not weaken existing checks).
     for k, n in (duplicate_xp_keys or {}).items():
         if int(n) > 1:
-            errors.append(f"duplicate_xp_source_key:{k} count={n}")
+            already = any(
+                i.code == "duplicate_source_key" and i.source_key == k
+                for i in sk_integrity.issues
+            )
+            if not already:
+                errors.append(f"duplicate_xp_source_key:{k} count={n}")
 
     for pending in pending_reconciliation_fields or []:
         errors.append(f"pending_reconciliation:{pending}")
@@ -519,6 +530,11 @@ def try_load_enrollment_xp_for_reconcile(
 
 
 def count_duplicate_keys(keys: Sequence[str]) -> dict[str, int]:
+    """Count duplicate non-empty keys (legacy helper for pre-extracted keys).
+
+    Prefer ``duplicate_active_source_keys(events)`` / 
+    ``validate_active_xp_source_keys(events)`` when XP Event rows are available.
+    """
     c = Counter(k for k in keys if k)
     return {k: n for k, n in c.items() if n > 1}
 

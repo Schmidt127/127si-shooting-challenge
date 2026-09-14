@@ -27,17 +27,43 @@ class MemoryAirtableClient:
 
     def meta_tables(self) -> list[dict]:
         """Return schema stubs; formula fields include Production-shaped options."""
-        from .clock_override import PRODUCTION_ACTIVITY_DATE_IS_FUTURE_FORMULA
+        from .production_normal_formulas import load_production_normal_bundle
         from .same_day_contracts import (
-            PERFECT_WEEK_GRACE_ROLLBACK,
-            SUBMITTED_SAME_DAY_ROLLBACK,
+            FIELD_ID_PERFECT_WEEK_GRACE,
+            FIELD_ID_SUBMITTED_SAME_DAY,
         )
+        from .simulation_clock import FIELD_ID_ACTIVITY_DATE_IS_FUTURE
 
-        formula_by_field = {
-            "Activity Date Is Future?": PRODUCTION_ACTIVITY_DATE_IS_FUTURE_FORMULA,
-            "Submitted Same Day?": SUBMITTED_SAME_DAY_ROLLBACK,
-            "Perfect Week Grace Eligible?": PERFECT_WEEK_GRACE_ROLLBACK,
-        }
+        try:
+            bundle = load_production_normal_bundle()
+            formula_by_field = {
+                f.field_name: f.formula_text for f in bundle.fields
+            }
+            field_ids = {f.field_name: f.field_id for f in bundle.fields}
+            table_id = bundle.table_id
+        except Exception:  # noqa: BLE001
+            from .clock_override import PRODUCTION_ACTIVITY_DATE_IS_FUTURE_FORMULA
+            from .same_day_contracts import (
+                PERFECT_WEEK_GRACE_ROLLBACK,
+                SUBMITTED_SAME_DAY_ROLLBACK,
+            )
+
+            formula_by_field = {
+                "Activity Date Is Future?": PRODUCTION_ACTIVITY_DATE_IS_FUTURE_FORMULA,
+                "Submitted Same Day?": SUBMITTED_SAME_DAY_ROLLBACK,
+                "Perfect Week Grace Eligible?": PERFECT_WEEK_GRACE_ROLLBACK,
+            }
+            field_ids = {
+                "Activity Date Is Future?": FIELD_ID_ACTIVITY_DATE_IS_FUTURE,
+                "Submitted Same Day?": FIELD_ID_SUBMITTED_SAME_DAY,
+                "Perfect Week Grace Eligible?": FIELD_ID_PERFECT_WEEK_GRACE,
+            }
+            table_id = "tblEVjVpGGlPTsYSt"
+
+        # Allow tests to override live formula text after Stage Z writes.
+        overrides = getattr(self, "_formula_overrides", {}) or {}
+        formula_by_field = {**formula_by_field, **overrides}
+
         out: list[dict] = []
         for name in sorted(self.tables.keys() | set(self._schema_defaults())):
             fields = []
@@ -45,10 +71,43 @@ class MemoryAirtableClient:
                 entry: dict[str, Any] = {"name": fname}
                 if fname in formula_by_field:
                     entry["type"] = "formula"
+                    entry["id"] = field_ids.get(fname, f"fld{fname[:8]}")
                     entry["options"] = {"formula": formula_by_field[fname]}
                 fields.append(entry)
-            out.append({"name": name, "fields": fields})
+            table_entry: dict[str, Any] = {"name": name, "fields": fields}
+            if name == "Submissions":
+                table_entry["id"] = table_id
+            out.append(table_entry)
         return out
+
+    def update_formula_field(
+        self,
+        *,
+        table_id: str,
+        field_id: str,
+        formula: str,
+    ) -> dict:
+        self._require_writes("meta:formula")
+        if not hasattr(self, "_formula_overrides"):
+            self._formula_overrides = {}
+        # Map field_id → name via Production-normal bundle when possible.
+        name = None
+        try:
+            from .production_normal_formulas import load_production_normal_bundle
+
+            bundle = load_production_normal_bundle()
+            if table_id != bundle.table_id:
+                raise ValueError(f"table_id mismatch: {table_id}")
+            for fld in bundle.fields:
+                if fld.field_id == field_id:
+                    name = fld.field_name
+                    break
+        except Exception:  # noqa: BLE001
+            name = None
+        if not name:
+            raise ValueError(f"Unknown formula field_id={field_id!r}")
+        self._formula_overrides[name] = formula
+        return {"id": field_id, "options": {"formula": formula}}
 
     def _schema_defaults(self) -> dict[str, set[str]]:
         return {

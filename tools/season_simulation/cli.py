@@ -69,6 +69,7 @@ def _parser() -> argparse.ArgumentParser:
             "execute",
             "execute-three",
             "execute-perfect",
+            "recover-formula-restore",
             "cleanup",
             "cleanup-preview-three",
             "cleanup-three",
@@ -81,6 +82,8 @@ def _parser() -> argparse.ArgumentParser:
             "preflight=read-only checks; dry-run/dry-run-three=plan; "
             "execute/execute-three/execute-perfect/cleanup require confirm gates; "
             "execute-perfect=single Mike Schmidt Perfect path; "
+            "recover-formula-restore=restore Production-normal formulas after "
+            "interrupted run (registry formula_restore_pending); "
             "cleanup-preview-three/cleanup-three=SC-001 three-athlete (preview read-only); "
             "rearm-submission-xp=dry-run by default; clear Last Reconciled Signature "
             "on owned sim submissions missing Active SUBMISSION_XP; "
@@ -141,6 +144,34 @@ def _parser() -> argparse.ArgumentParser:
             f"{SAFE_EMAIL_RECIPIENT}. Arms Build Weekly (072 path) only — "
             "WEEKLY Hub handoffs need weekly-email-stage (SC-168)."
         ),
+    )
+    p.add_argument(
+        "--attest-079-ingress-secret",
+        action="store_true",
+        help=(
+            "Operator visually attested 079 ingressSecret in Airtable UI "
+            "(required with --enable-email-delivery; API cannot read UI-only inputs)"
+        ),
+    )
+    p.add_argument(
+        "--attest-producer-input-modes",
+        action="store_true",
+        help=(
+            "Operator visually attested producer input modes immediately before "
+            "email-enabled execution (required with --enable-email-delivery)"
+        ),
+    )
+    p.add_argument(
+        "--ehq-backlog-count",
+        type=int,
+        default=0,
+        help="Pre-execute: Email Handoff Queue transactional backlog count (must be 0)",
+    )
+    p.add_argument(
+        "--hub-transactional-backlog-count",
+        type=int,
+        default=0,
+        help="Pre-execute: Communications Hub transactional backlog count (must be 0)",
     )
     p.add_argument(
         "--weekly-email-mode",
@@ -515,6 +546,12 @@ def cmd_execute_perfect(args: argparse.Namespace) -> int:
             allow_writes=allow_writes if args.execute else False,
             enable_email_delivery=args.enable_email_delivery,
             acknowledge_clock_override=args.acknowledge_clock_override,
+            attest_079_ingress_secret=bool(args.attest_079_ingress_secret),
+            attest_producer_input_modes=bool(args.attest_producer_input_modes),
+            ehq_backlog_count=int(args.ehq_backlog_count),
+            hub_transactional_backlog_count=int(
+                args.hub_transactional_backlog_count
+            ),
         )
     except Exception as exc:  # noqa: BLE001
         print(f"execute-perfect failed: {exc}", file=sys.stderr)
@@ -537,6 +574,73 @@ def cmd_execute_perfect(args: argparse.Namespace) -> int:
         return 2 if not args.execute else 3
     if args.execute and not result.get("gates_passed"):
         return 2
+    return 0
+
+
+def cmd_recover_formula_restore(args: argparse.Namespace) -> int:
+    """Restore Production-normal formulas after interrupted/force-killed run."""
+    from .formula_lifecycle import recover_pending_formula_restore
+    from .production_normal_formulas import load_production_normal_bundle
+    from .run_registry import load_registry
+
+    run_id = args.run_id
+    if not run_id:
+        print("recover-formula-restore requires --run-id / --simulation-id", file=sys.stderr)
+        return 2
+    validate_run_id(run_id)
+
+    try:
+        bundle = load_production_normal_bundle()
+    except Exception as exc:  # noqa: BLE001
+        print(f"Production-normal bundle failed closed: {exc}", file=sys.stderr)
+        return 2
+
+    print("Production-normal formula hashes to restore:")
+    for name, digest in bundle.hashes().items():
+        print(f"  {name}: {digest}")
+
+    allow_writes = bool(args.execute)
+    if allow_writes and args.confirm != CONFIRM_TOKEN:
+        print(
+            f'Refused: live restore requires --execute --confirm "{CONFIRM_TOKEN}"',
+            file=sys.stderr,
+        )
+        return 2
+
+    try:
+        reg = load_registry(Path(args.registry_dir), run_id)
+    except FileNotFoundError:
+        # Perfect path stores profile-suffixed registry ids.
+        from .execute_three import profile_registry_run_id
+        from .execute_perfect import PERFECT_PROFILE
+
+        try:
+            reg = load_registry(
+                Path(args.registry_dir),
+                profile_registry_run_id(run_id, PERFECT_PROFILE),
+            )
+        except FileNotFoundError:
+            print(f"No registry found for {run_id!r}", file=sys.stderr)
+            return 2
+
+    client = None
+    if allow_writes:
+        client = _client(args, allow_writes=True)
+    elif not args.offline_fixture:
+        client = _client(args, allow_writes=False)
+
+    result = recover_pending_formula_restore(
+        registry=reg,
+        registry_dir=Path(args.registry_dir),
+        client=client,
+        allow_writes=allow_writes,
+        confirm=args.confirm,
+    )
+    print(json.dumps(result, indent=2, default=str))
+    if result.get("status") == "failed":
+        return 3
+    if allow_writes and not result.get("production_formulas_restored"):
+        return 3
     return 0
 
 
@@ -783,6 +887,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_execute_three(args)
     if args.command == "execute-perfect":
         return cmd_execute_perfect(args)
+    if args.command == "recover-formula-restore":
+        return cmd_recover_formula_restore(args)
     if args.command == "cleanup":
         return cmd_cleanup(args)
     if args.command == "cleanup-preview-three":
