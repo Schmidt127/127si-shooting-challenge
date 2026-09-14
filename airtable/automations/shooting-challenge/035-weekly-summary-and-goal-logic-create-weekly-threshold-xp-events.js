@@ -2,8 +2,8 @@
 Automation: 035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Events
 System: 127 SI Shooting Challenge
 Source: Airtable Automation
-Status: GitHub Source of Truth ? PROD paste only after Mike UI attestation
-Last GitHub Update: 2026-08-03
+Status: GitHub Source of Truth — PROD paste only after Mike UI attestation
+Last GitHub Update: 2026-09-14 (synced from Mike-attested live Production v1.6)
 
 Purpose:
 Create XP Events for met Weekly Threshold tiers (100% / 125% / 150%) from one Weekly Athlete Summary.
@@ -15,7 +15,8 @@ Important Tables:
 Weekly Athlete Summary, XP Events, XP Reward Rules, Weeks, Enrollments
 
 Important Fields:
-Goal Completion %, Threshold XP Status, Requeue Threshold XP, Source Key,
+Goal Completion %, Threshold XP Status, Threshold Settled Through %,
+Requeue Threshold XP, Source Key,
 XP Bucket=Weekly Threshold, XP Source=Weekly Threshold {100|125|150}
 
 Notes:
@@ -28,11 +29,23 @@ Reconstructed for SC-049 / XP-D1 (writer was missing from repo).
  * 035 - WEEKLY SUMMARY AND GOAL LOGIC
  * Create Weekly Threshold XP Events
  *
- * Version: v1.3
+ * Version: v1.6
  * Date Written: 2026-07-25
- * Last Updated: 2026-08-05
+ * Last Updated: 2026-09-13
  *
  * VERSION HISTORY
+ * - v1.6 (2026-09-13): SC-SEASON-SIM-001-DEPLOY-20260913C — progressive tier state
+ *   machine. Writes Threshold Settled Through % (0/100/125/150) from awarded tiers so
+ *   Threshold XP Ready? can return 0 after each pass and rise 0→1 only when Goal
+ *   newly reaches a missing tier. Fixes v1.5 Ready stuck at 1 in 125–149% band
+ *   (recordMatchesConditions never re-fired for 150%). Source Key dedupe unchanged.
+ * - v1.5 (2026-09-13): SC-SEASON-SIM-001-DEPLOY-20260913B — version bump for
+ *   Airtable draft verification only. Progressive reopen notes unchanged from v1.4.
+ * - v1.4 (2026-09-13): Progressive threshold awards — do not mark Threshold XP
+ *   Status=Processed until Goal Completion % meets 150% OR every currently-met
+ *   tier (100/125/150) already has an XP Event. Partial awards leave Status
+ *   cleared so Threshold XP Ready? can re-enter when Goal % rises (Production
+ *   Perfect sim: early 100%-only awards latched Processed → 11/26 events).
  * - v1.3 (2026-08-05): Airtable runtime compatibility — guard optional
  *   QueryResult.unloadData() cleanup so unsupported cleanup cannot fail an
  *   otherwise successful automation run.
@@ -54,16 +67,19 @@ Reconstructed for SC-049 / XP-D1 (writer was missing from repo).
  * - Also skips when Enrollment+Week already has XP Source
  *   "Weekly Threshold {100|125|150}" (legacy Source Key shape unknown / wiped).
  * - Writes XP Activity Date from Week End Date (America/Denver).
- * - Marks WAS Threshold XP Status = Processed and clears Requeue Threshold XP.
+ * - Marks WAS Threshold XP Status = Processed, writes Threshold Settled Through %,
+ *   and clears Requeue Threshold XP.
  *
  * IMPORTANT DESIGN RULES
- * - One enrollment ? week ? percent tier = one XP Event (append-only).
+ * - One enrollment → week → percent tier = one XP Event (append-only).
  * - Do not write formula/rollup fields (Goal Completion %, Threshold XP Ready?).
- * - Do not invent XP amounts ? missing/invalid rules error that tier.
+ * - Do not invent XP amounts — missing/invalid rules error that tier.
  * - XP Bucket = "Weekly Threshold".
  * - XP Source = "Weekly Threshold 100" | "Weekly Threshold 125" | "Weekly Threshold 150".
  * - XP Activity Date Source = "Weekly Summary Week End Date" when that option exists.
- * - Inactive Enrollment (Active?=false) ? skipped (not error).
+ * - Threshold Settled Through % = highest contiguous awarded tier (100/125/150).
+ *   Ready? must return 0 after settle until Goal newly earns a missing tier.
+ * - Inactive Enrollment (Active?=false) → skipped (not error).
  * - This is not Perfect Week XP (058/059) and not Submission Base XP (010).
  * - Before PROD paste: Mike must UI-attest no competing Threshold automation still ON.
  *
@@ -96,12 +112,13 @@ Reconstructed for SC-049 / XP-D1 (writer was missing from repo).
 
 const SCRIPT = {
   scriptName: "035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Events",
-  version: "v1.3",
-  versionDate: "2026-08-05",
+  version: "v1.6",
+  versionDate: "2026-09-13",
   originalWrittenDate: "2026-07-25",
-  lastUpdated: "2026-08-05",
+  lastUpdated: "2026-09-13",
   folder: "03 - Weekly Summary and Goal Logic",
   automationName: "035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Events",
+  deployMarker: "SC-SEASON-SIM-001-DEPLOY-20260913C",
 };
 
 const CONFIG = {
@@ -124,6 +141,7 @@ const CONFIG = {
     thresholdStatus: "Threshold XP Status",
     thresholdProcessedAt: "Threshold XP Processed At",
     thresholdError: "Threshold XP Error Message",
+    thresholdSettledThrough: "Threshold Settled Through %",
     requeue: "Requeue Threshold XP",
     xpEvents: "XP Events",
     ready: "Threshold XP Ready?",
@@ -352,7 +370,7 @@ function goalMeetsPercent(goalCompletionValue, percent) {
   const raw = Number(goalCompletionValue);
   if (!Number.isFinite(raw)) return false;
   // Airtable percent fields return ratios (1 = 100%, 1.25 = 125%, 83.7 = 8370%).
-  // Compare the raw numeric ratio directly ? do not divide values > 3 by 100.
+  // Compare the raw numeric ratio directly — do not divide values > 3 by 100.
   return raw + 1e-9 >= percent / 100;
 }
 
@@ -370,6 +388,33 @@ function tierAlreadyAwarded(sourceKey, xpSourceLabel, existingKeys, existingLabe
     return { awarded: true, via: "xp_source_label" };
   }
   return { awarded: false, via: "" };
+}
+
+/**
+ * Highest contiguous awarded threshold tier for Ready?/Settled Through state.
+ * Source Key shape: WEEKLY_THRESHOLD|{enrollmentId}|{weekId}|{percent}
+ * Label shape: Weekly Threshold {100|125|150}
+ */
+function highestSettledThrough(existingKeys, existingLabels, enrollmentId, weekId) {
+  const awarded = new Set();
+  const keyPrefix = `${CONFIG.values.sourceKeyPrefix}${enrollmentId}|${weekId}|`;
+  for (const key of existingKeys) {
+    if (!String(key || "").startsWith(keyPrefix)) continue;
+    const suffix = String(key).slice(keyPrefix.length);
+    if (suffix === "100" || suffix === "125" || suffix === "150") {
+      awarded.add(Number(suffix));
+    }
+  }
+  for (const label of existingLabels) {
+    const m = String(label || "").match(/^Weekly Threshold (100|125|150)$/);
+    if (m) awarded.add(Number(m[1]));
+  }
+  let highest = 0;
+  for (const percent of CONFIG.thresholdPercents) {
+    if (awarded.has(percent)) highest = percent;
+    else break;
+  }
+  return highest;
 }
 
 function escapeFormulaString(value) {
@@ -398,7 +443,7 @@ function resolveRuleForTier(rulesByKey, ruleKey, gradeBandIds) {
 }
 
 async function findExistingBySourceKey(xpTable, sourceKey) {
-  // Targeted recheck ? exact Source Key only (no full-table scan).
+  // Targeted recheck — exact Source Key only (no full-table scan).
   try {
     const formula = `{${CONFIG.xp.sourceKey}} = '${escapeFormulaString(sourceKey)}'`;
     const recheck = await xpTable.selectRecordsAsync({
@@ -412,7 +457,7 @@ async function findExistingBySourceKey(xpTable, sourceKey) {
       unloadQuerySafe(recheck);
     }
   } catch (e) {
-    // filterByFormula unsupported / field name issue ? fall back to in-memory only.
+    // filterByFormula unsupported / field name issue — fall back to in-memory only.
     console.log(`findExistingBySourceKey fallback: ${e && e.message ? e.message : e}`);
     return null;
   }
@@ -745,7 +790,17 @@ async function main() {
   }
 
   setDebug("update_was_status");
+  const settledThrough = highestSettledThrough(
+    existingKeys,
+    existingXpSourceLabels,
+    enrollmentId,
+    weekId
+  );
   const wasUpdate = {};
+  // Always record Processed after a successful evaluation. Progressive re-entry is
+  // owned by Threshold XP Ready? comparing Goal Completion % to Threshold Settled
+  // Through % (0→1 only when a newly earned tier is still missing). Source Keys
+  // keep awards idempotent.
   if (fieldExists(wasTable, CONFIG.was.thresholdStatus)) {
     const processed = requireSingleSelectOption(
       wasTable,
@@ -753,6 +808,9 @@ async function main() {
       CONFIG.values.statusProcessed
     );
     wasUpdate[CONFIG.was.thresholdStatus] = { id: processed.id };
+  }
+  if (fieldExists(wasTable, CONFIG.was.thresholdSettledThrough)) {
+    wasUpdate[CONFIG.was.thresholdSettledThrough] = settledThrough;
   }
   if (fieldExists(wasTable, CONFIG.was.thresholdProcessedAt)) {
     wasUpdate[CONFIG.was.thresholdProcessedAt] = new Date();
@@ -786,11 +844,13 @@ async function main() {
   );
   setOutputSafe("weekEndKeyOut", weekEndKey);
   setOutputSafe("bandCodeOut", bandCode);
+  setOutputSafe("settledThroughOut", settledThrough);
   setDebug("done");
 
   console.log(JSON.stringify({
     automation: SCRIPT.automationName,
     version: SCRIPT.version,
+    deployMarker: SCRIPT.deployMarker,
     statusOut: "success",
     actionOut,
     recordId,
@@ -800,6 +860,7 @@ async function main() {
     bandCode,
     gradeBandIds,
     weekEndKey,
+    settledThrough,
     createdCount: createdIds.length,
     createdIds,
     skipExistingCount,

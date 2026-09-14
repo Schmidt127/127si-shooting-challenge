@@ -85,7 +85,7 @@ def _full_scenario():
             "program_instance_id": "recPI20262027",
             "display": f"PHA {i}",
         }
-        for i in range(1, 19)
+        for i in range(1, 21)
     ]
     return build_athlete1_scenario(
         run_id=RUN_ID,
@@ -102,15 +102,15 @@ def _full_scenario():
 
 
 class TestScenarioCoverage(unittest.TestCase):
-    def test_simulation_days_goal_coverage_and_week9_zero_hw(self):
+    def test_simulation_days_goal_coverage_and_week9_homework(self):
         s = _full_scenario()
         self.assertEqual(s.intended_writes_summary["simulation_days"], SIMULATION_DAY_COUNT)
         self.assertGreaterEqual(s.intended_writes_summary["total_planned_shots"], 12000)
         self.assertEqual(s.intended_writes_summary["miss_days"], len(MISS_DAYS))
         self.assertEqual(s.intended_writes_summary["video_feedback_days"], len(VIDEO_FEEDBACK_DAYS))
-        self.assertEqual(s.intended_writes_summary["homework_completions"], 18)
+        self.assertEqual(s.intended_writes_summary["homework_completions"], 20)
         probe = next(d for d in s.days if d.day_number == GATE_BLOCK_PROBE_DAY)
-        # Gate pressure uses Needs Revision — PHA is still completed (18/18).
+        # Gate pressure uses Needs Revision — PHA is still completed (20/20).
         if probe.homework:
             self.assertEqual(probe.homework[0]["outcome"], "Needs Revision")
         live = next(d for d in s.days if d.day_number == 12)
@@ -119,19 +119,18 @@ class TestScenarioCoverage(unittest.TestCase):
         self.assertEqual(rec.zoom_modes, ["recording"])
         self.assertTrue(s.meta.get("early_bird_in_window"))
         self.assertEqual(s.meta.get("early_bird_handling"), "full_early_bird_week_in_window")
-        self.assertTrue(s.meta.get("week9_zero_homework"))
+        self.assertFalse(s.meta.get("week9_zero_homework"))
         bounds = s.meta.get("week9_bounds")
         self.assertIsNotNone(bounds)
         w9_start = date.fromisoformat(bounds[0])
         w9_end = date.fromisoformat(bounds[1])
+        week9_hw = []
         for d in s.days:
             if w9_start <= d.activity_date <= w9_end:
                 for hw in d.homework:
-                    self.assertNotEqual(
-                        hw.get("week_label"),
-                        "Week 9",
-                        f"week9 day {d.day_number} has Week 9 PHA",
-                    )
+                    if hw.get("week_label") == "Week 9":
+                        week9_hw.append(hw)
+        self.assertEqual(len(week9_hw), 2)
 
 
 class TestExecuteOrchestration(unittest.TestCase):
@@ -258,7 +257,7 @@ class TestExecuteOrchestration(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             self._run(client, Path(tmp))
         hc = client.list_records("Homework Completions")
-        self.assertEqual(len(hc), 18)
+        self.assertEqual(len(hc), 20)
         for row in hc:
             self.assertRegex(str(row["fields"].get("Submission Date") or ""), r"^2027-\d{2}-\d{2}$")
             self.assertEqual(len(row["fields"].get("Homework") or []), 1)
@@ -402,7 +401,7 @@ class TestExecuteOrchestration(unittest.TestCase):
         )
         readiness = summarize_intended_write_readiness(writes)
         self.assertTrue(readiness["all_submissions_countable"])
-        self.assertEqual(readiness["homework_completions"], 18)
+        self.assertEqual(readiness["homework_completions"], 20)
         self.assertTrue(readiness["all_homework_dual_linked"])
         self.assertTrue(readiness["video_update_triggers_planned"])
         self.assertTrue(readiness["live_xp_path_planned"])

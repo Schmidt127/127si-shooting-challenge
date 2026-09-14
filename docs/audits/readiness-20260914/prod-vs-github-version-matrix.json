@@ -1,0 +1,518 @@
+[
+  {
+    "code": "001",
+    "github": null,
+    "live": "v5.4",
+    "status": "Live",
+    "match": "n/a",
+    "file": "001-enrollment-intake-and-setup-find-or-create-athlete-and-link-enrollment.js",
+    "live_name": "001 - Enrollment Intake and Setup - Find or Create Athlete and Link Enrollment"
+  },
+  {
+    "code": "002",
+    "github": null,
+    "live": "v8.2",
+    "status": "Live",
+    "match": "n/a",
+    "file": "002-enrollment-intake-and-setup-assign-grade-band-initial.js",
+    "live_name": "002 - Enrollment Intake and Setup - Assign Grade Band - Initial"
+  },
+  {
+    "code": "003",
+    "github": null,
+    "live": "v2.0",
+    "status": "Live",
+    "match": "n/a",
+    "file": "003-enrollment-intake-and-setup-assign-grade-band-if-grade-changes.js",
+    "live_name": "003 - Enrollment Intake and Setup - Assign Grade Band - If Grade Changes"
+  },
+  {
+    "code": "005",
+    "github": "v5.5",
+    "live": "v5.5",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "005-submission-intake-and-asset-creation-assign-week-to-submission-homework-first.js",
+    "live_name": "005 - Submission Intake and Asset Creation - Assign Week to Submission - Homework First"
+  },
+  {
+    "code": "006",
+    "github": null,
+    "live": null,
+    "status": null,
+    "match": "GITHUB_ONLY",
+    "file": "006-submission-intake-and-asset-creation-set-video-count.js",
+    "live_name": null
+  },
+  {
+    "code": "007",
+    "github": null,
+    "live": "v2.0",
+    "status": "Live",
+    "match": "n/a",
+    "file": "007-submission-intake-and-asset-creation-duplicate-checker-for-submissions.js",
+    "live_name": "007 - Submission Intake and Asset Creation - Duplicate Checker for Submissions"
+  },
+  {
+    "code": "009",
+    "github": "v1.3",
+    "live": "v1.3",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "009-submission-intake-create-submission-assets.js",
+    "live_name": "009 - Submission Intake and Asset Creation - Create Submission Assets from Submission"
+  },
+  {
+    "code": "010",
+    "github": "v10.14",
+    "live": "v10.14",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "010-submission-intake-create-xp-event.js",
+    "live_name": "010 - Submission Intake and Asset Creation - Create XP Event from Submission"
+  },
+  {
+    "code": "013",
+    "github": "v3.2.0",
+    "live": "v3.2.0",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "013-submission-intake-create-or-link-video-feedback.js",
+    "live_name": "013 - Submission Intake - Create or Link Video Feedback"
+  },
+  {
+    "code": "020",
+    "github": "v4.1",
+    "live": "v4.1",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "020-homework-link-or-create-homework-completion.js",
+    "live_name": "020 - Submission Intake and Asset Creation - Link or Create Homework Completion from Submission Asset"
+  },
+  {
+    "code": "021",
+    "github": null,
+    "live": "v2.0",
+    "status": "Live",
+    "match": "n/a",
+    "file": "021-submission-intake-and-asset-creation-set-attachment-upload-status.js",
+    "live_name": "021 - Submission Intake and Asset Creation - Set Attachment Upload Status"
+  },
+  {
+    "code": "022",
+    "github": "v2.2",
+    "live": "v2.0",
+    "status": "Live",
+    "match": "MISMATCH",
+    "file": "022-submission-intake-sync-child-upload-writeback-from-submission-asset.js",
+    "live_name": "022 - Submission Intake - Sync Child Upload Writeback from Submission Asset"
+  },
+  {
+    "code": "023",
+    "github": "v3.1",
+    "live": "v3.1",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "023-submission-intake-and-asset-creation-assign-enrollment-to-submission.js",
+    "live_name": "023 - Submission Intake and Asset Creation - Assign Enrollment to Submission"
+  },
+  {
+    "code": "030",
+    "github": "v3.0",
+    "live": "v3.0",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "030-weekly-summary-and-goal-logic-copy-enrollment-grade-band-to-weekly-summary.js",
+    "live_name": "030 - Weekly Summary and Goal Logic - Copy Enrollment Grade Band to Weekly Summary"
+  },
+  {
+    "code": "031",
+    "github": "v4.1",
+    "live": "v4.1",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "031-weekly-summary-and-goal-logic-find-or-create-weekly-athlete-summary-from-submission.js",
+    "live_name": "031 - Weekly Summary and Goal Logic - Find or Create Weekly Athlete Summary from Submission"
+  },
+  {
+    "code": "032",
+    "github": "v3.4",
+    "live": "v3.4",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "032-weekly-summary-and-goal-logic-link-challenge-goal-record-to-weekly-athlete-summary.js",
+    "live_name": "032 - Weekly Summary and Goal Logic - Link Challenge Goal Record to Weekly Athlete Summary"
+  },
+  {
+    "code": "033",
+    "github": "v4.4",
+    "live": "v4.4",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "033-weekly-summary-and-goal-logic-assign-homework-to-weekly-athlete-summary.js",
+    "live_name": "033 - Weekly Summary and Goal Logic - Assign Homework to Weekly Athlete Summary"
+  },
+  {
+    "code": "034",
+    "github": "v3.4",
+    "live": "v3.4",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "034-weekly-summary-and-goal-logic-set-previous-week-helper-values.js",
+    "live_name": "034 - Weekly Summary and Goal Logic - Set Previous Week Helper Values"
+  },
+  {
+    "code": "035",
+    "github": "v1.6",
+    "live": "v1.6",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js",
+    "live_name": "035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Events",
+    "note": "Synced live\u2192GitHub 2026-09-14; identity-tuple verified in live-vs-github-automation-compare.json"
+  },
+  {
+    "code": "041",
+    "github": "v5.1",
+    "live": "v5.1",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "041-levels-and-progression-mark-enrollment-for-level-recalculation.js",
+    "live_name": "041 - Levels and Progression - Mark Enrollment for Level Recalculation"
+  },
+  {
+    "code": "042",
+    "github": "4.1.3",
+    "live": "4.1.3",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "042-levels-and-progression-assign-current-and-next-level-with-gate-blocking.js",
+    "live_name": "042 - Levels and Progression - Assign Current and Next Level"
+  },
+  {
+    "code": "043",
+    "github": null,
+    "live": null,
+    "status": null,
+    "match": "GITHUB_ONLY",
+    "file": "043-levels-and-progression-set-level-gate-rule-from-next-level.js",
+    "live_name": null
+  },
+  {
+    "code": "053",
+    "github": "5.8",
+    "live": "5.8",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "053-achievements-and-milestones-streak-occurrences-rebuild-and-upsert-from-submissions.js",
+    "live_name": "053 - Achievements and Milestones - Streak Occurrences - Rebuild and Upsert From Submissions",
+    "note": "Synced live\u2192GitHub 2026-09-14; identity-tuple verified in live-vs-github-automation-compare.json"
+  },
+  {
+    "code": "054",
+    "github": "v5.8",
+    "live": "v5.8",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "054-achievements-and-milestones-streak-occurrences-create-or-repair-streak-xp-event.js",
+    "live_name": "054 - Achievements and Milestones, Streak Occurrences - Create or Repair Streak XP Event"
+  },
+  {
+    "code": "055",
+    "github": "v3.2",
+    "live": "v3.2",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "055-achievements-and-milestones-recalculate-current-shooting-streak-from-submission.js",
+    "live_name": "055 - Achievements and Milestones - Recalculate Current Shooting Streak from Submission"
+  },
+  {
+    "code": "056",
+    "github": "v1.2",
+    "live": "v1.2",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "056-achievements-and-milestones-refresh-current-shooting-streaks-daily.js",
+    "live_name": "056 - Achievements and Milestones - Refresh Current Shooting Streaks Daily"
+  },
+  {
+    "code": "057",
+    "github": "2.7",
+    "live": "2.7",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "057-achievements-and-milestones-calculate-perfect-week-eligibility.js",
+    "live_name": "057 - Achievements and Milestones - Calculate Perfect Week Eligibility"
+  },
+  {
+    "code": "058",
+    "github": "1.7",
+    "live": "1.7",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "058-achievements-and-milestones-create-perfect-week-unlock.js",
+    "live_name": "058 - Achievements and Milestones - Create Perfect Week Unlock"
+  },
+  {
+    "code": "059",
+    "github": "v3.8",
+    "live": "v3.8",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "059-achievements-and-milestones-create-xp-event-from-achievement-unlock.js",
+    "live_name": "059 - Achievements and Milestones - Create XP Event from Achievement Unlock"
+  },
+  {
+    "code": "063",
+    "github": null,
+    "live": null,
+    "status": null,
+    "match": "GITHUB_ONLY",
+    "file": "063-homework-review-and-xp-copy-enrollment-grade-band-to-homework-completion.js",
+    "live_name": null
+  },
+  {
+    "code": "064",
+    "github": "2026",
+    "live": "v12.2",
+    "status": "Live",
+    "match": "MISMATCH",
+    "file": "064-homework-review-and-xp-prepare-homework-xp-award.js",
+    "live_name": "064 - Homework Review and XP - Assign Base Homework XP"
+  },
+  {
+    "code": "065",
+    "github": "v10.11",
+    "live": "v10.11",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "065-homework-review-and-xp-create-homework-xp-event.js",
+    "live_name": "065 - Homework Review and XP - Create or Update Homework XP Event",
+    "note": "Synced live\u2192GitHub 2026-09-14; identity-tuple verified in live-vs-github-automation-compare.json"
+  },
+  {
+    "code": "066",
+    "github": "v4.1",
+    "live": "v4.1",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "066-achievements-and-milestones-create-shot-milestone-unlocks.js",
+    "live_name": "066 - Achievements and Milestones - Create Shot Milestone Unlocks"
+  },
+  {
+    "code": "067",
+    "github": "v3.5",
+    "live": "v3.5",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "067-homework-link-or-create-completion-from-reflection-quiz.js",
+    "live_name": "067 - Homework - Link Reflection Quiz to Homework Completion"
+  },
+  {
+    "code": "068",
+    "github": null,
+    "live": null,
+    "status": null,
+    "match": "GITHUB_ONLY",
+    "file": "068-homework-reconcile-deferred-weekly-summary-links.js",
+    "live_name": null
+  },
+  {
+    "code": "071",
+    "github": "v4.5",
+    "live": "v4.5",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "071-email-notifications-and-external-handoffs-send-homework-feedback-email-webhook.js",
+    "live_name": "071 - Email, Notifications, and External Handoffs - Create Homework Feedback Communications Hub Handoff"
+  },
+  {
+    "code": "072",
+    "github": "v4.9.2",
+    "live": "v4.9.2",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "072-email-notifications-and-external-handoffs-build-weekly-summary-email-package.js",
+    "live_name": "072 - Email, Notifications, and External Handoffs - Build Weekly Summary Email Package"
+  },
+  {
+    "code": "073",
+    "github": "v4.9",
+    "live": "v4.9",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "073-email-notifications-and-external-handoffs-send-video-feedback-parent-email-webhook.js",
+    "live_name": "073 - Email, Notifications, and External Handoffs - Create Video Feedback Communications Hub Handoff"
+  },
+  {
+    "code": "074",
+    "github": "v3.6",
+    "live": "v3.6",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "074-email-notifications-and-external-handoffs-send-weekly-summary-email-package-to-make.js",
+    "live_name": "074 - Email, Notifications, and External Handoffs - Create Weekly Summary Hub Handoff"
+  },
+  {
+    "code": "075",
+    "github": "v3.0",
+    "live": null,
+    "status": null,
+    "match": "GITHUB_ONLY",
+    "file": "075-email-notifications-and-external-handoffs-build-challenge-welcome-email.js",
+    "live_name": null
+  },
+  {
+    "code": "076",
+    "github": "v8.15",
+    "live": "v8.15",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "076-email-notifications-and-external-handoffs-build-daily-submission-email-package.js",
+    "live_name": "076 - Daily Submission Communications Hub Handoff"
+  },
+  {
+    "code": "077",
+    "github": "v5.0",
+    "live": null,
+    "status": null,
+    "match": "GITHUB_ONLY",
+    "file": "077-email-notifications-and-external-handoffs-send-daily-submission-email-package-to-make.js",
+    "live_name": null
+  },
+  {
+    "code": "078",
+    "github": null,
+    "live": null,
+    "status": "Live",
+    "match": "LIVE_ONLY",
+    "file": null,
+    "live_name": "078 - Email, Notifications, and External Handoffs - Mark Homework Parent Feedback Ready"
+  },
+  {
+    "code": "079",
+    "github": "v2.5",
+    "live": "v2.5",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "079-email-notifications-and-external-handoffs-send-queue-handoff-to-communications-hub.js",
+    "live_name": "079 - Send to Communications Hub - NEW"
+  },
+  {
+    "code": "101",
+    "github": "v6.9",
+    "live": "6.9",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "101-zoom-attendance-xp-award-meeting-xp.js",
+    "live_name": "101 - Zoom / Attendance XP - Award Meeting XP"
+  },
+  {
+    "code": "111",
+    "github": null,
+    "live": null,
+    "status": null,
+    "match": "GITHUB_ONLY",
+    "file": "111-video-review-and-xp-copy-enrollment-grade-band-to-video-feedback.js",
+    "live_name": null
+  },
+  {
+    "code": "112",
+    "github": null,
+    "live": null,
+    "status": null,
+    "match": "GITHUB_ONLY",
+    "file": "112-video-review-and-xp-create-video-feedback-from-submission-asset.js",
+    "live_name": null
+  },
+  {
+    "code": "113",
+    "github": "v6.5",
+    "live": "v6.5",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "113-video-review-and-xp-assign-base-video-xp.js",
+    "live_name": "113 - Video Review and XP - Assign Base Video XP by Grade Band"
+  },
+  {
+    "code": "114",
+    "github": "v6.3",
+    "live": "v6.3",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "114-video-review-and-xp-create-or-update-video-xp-event.js",
+    "live_name": "114 - Video Review and XP - Create or Update Video XP Event"
+  },
+  {
+    "code": "115",
+    "github": "v2.1",
+    "live": null,
+    "status": null,
+    "match": "GITHUB_ONLY",
+    "file": "115-engineering-test-framework-run-testing-scenario-daily-submission.js",
+    "live_name": null
+  },
+  {
+    "code": "116",
+    "github": "v1.0.1",
+    "live": "v1.0.1",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "116-submission-assets-apply-asset-reuse-decision-consequences.js",
+    "live_name": "116 - Submission Assets - Apply Asset Reuse Decision Consequences"
+  },
+  {
+    "code": "117",
+    "github": "v2.2",
+    "live": "v2.2",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "117-zoom-send-recording-approval-email-to-make.js",
+    "live_name": "117 - Zoom - Create Zoom Recording Approval Communications Hub Handoff"
+  },
+  {
+    "code": "118",
+    "github": "v2.1",
+    "live": "v2.1",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "118-email-notifications-and-external-handoffs-schedule-weekly-summary-email-build.js",
+    "live_name": "118 - Email - Schedule Weekly Summary Email Build"
+  },
+  {
+    "code": "119",
+    "github": "v1.8",
+    "live": "v1.8",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "119-email-notifications-and-external-handoffs-schedule-weekly-summary-email-send.js",
+    "live_name": "119 - Email - Schedule Weekly Summary Email Send"
+  },
+  {
+    "code": "120",
+    "github": "v1.0",
+    "live": "v1.0",
+    "status": "Live",
+    "match": "MATCH",
+    "file": "120-video-review-and-xp-apply-fut009-s3-video-rename.js",
+    "live_name": "120 - Video Review and XP - Apply FUT-009 S3 Video Rename"
+  },
+  {
+    "code": "122",
+    "github": "v0.0-superseded",
+    "live": null,
+    "status": null,
+    "match": "GITHUB_ONLY",
+    "file": "122-achievements-and-milestones-stamp-goal-met-date.js",
+    "live_name": null
+  },
+  {
+    "code": "127",
+    "github": null,
+    "live": "v4.8",
+    "status": "Live",
+    "match": "LIVE_ONLY",
+    "file": null,
+    "live_name": "070b - Email, Notifications, and External Handoffs - Send Video Asset Payload to Make"
+  }
+]

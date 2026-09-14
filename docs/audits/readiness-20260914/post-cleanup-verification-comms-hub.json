@@ -1,0 +1,117 @@
+{
+  "verified_at": "2026-09-14T13:21:23.785446+00:00",
+  "comms_base": "appYG1t5DBRimHBCT",
+  "transactional_counts": {
+    "Delivery Attempts": {
+      "count": 3,
+      "error": null,
+      "residual_ids": [
+        "rec54ac6Lbd9KXctL",
+        "recAymetUpTsIRSIA",
+        "reclLUTKhBlwYwvqj"
+      ]
+    },
+    "Audit Events": {
+      "count": 6,
+      "error": null,
+      "residual_ids": [
+        "recBwZ8nmLTMkqsVV",
+        "receuqeLhlWlIJYUK",
+        "recgtiHZUucORO9Gt",
+        "reckKmMq8Xn0w9i0D",
+        "reclaEtBgDdAKrWwW",
+        "recuYHM2xJaU6Lpg2"
+      ]
+    },
+    "Deliveries": {
+      "count": 3,
+      "error": null,
+      "residual_ids": [
+        "rec4a98LvU4ha1LmK",
+        "rec71PbNDXyoEvgog",
+        "recZbNaFQ2xTJmgWj"
+      ]
+    },
+    "Delivery Keys": {
+      "count": 4,
+      "error": null,
+      "residual_ids": [
+        "recb9OfeVzPH67JES",
+        "recidlzF3MFacIZSG",
+        "recoJX0cuA4FyONBp",
+        "rect9iXxrtNcycVPB"
+      ]
+    },
+    "Messages": {
+      "count": 4,
+      "error": null,
+      "residual_ids": [
+        "rec584w9UJEDZsfRa",
+        "recYzKQxjqS0lhsdh",
+        "reckWKhgqhAoaHShN",
+        "recsPiZum8Tp7V3lt"
+      ]
+    },
+    "Integration Events": {
+      "count": 4,
+      "error": null,
+      "residual_ids": [
+        "rec9Qt4wO5pSzcMxS",
+        "recG2fV7fzlh8yQNF",
+        "recVg519VMgcB4Dlm",
+        "recfP76neWqpTTUdu"
+      ]
+    },
+    "Contact Methods": {
+      "count": 1,
+      "error": null,
+      "residual_ids": [
+        "recuE3EVGPfZFCyH2"
+      ]
+    },
+    "Communication Identities": {
+      "count": 1,
+      "error": null,
+      "residual_ids": [
+        "rec12JPqmYpCIMczS"
+      ]
+    },
+    "Households": {
+      "count": 0,
+      "error": null,
+      "residual_ids": []
+    },
+    "Suppressions": {
+      "count": 0,
+      "error": null,
+      "residual_ids": []
+    }
+  },
+  "infrastructure_counts": {
+    "Programs": {
+      "count": 1
+    },
+    "Templates": {
+      "count": 5
+    },
+    "Test Allowlist": {
+      "count": 3
+    }
+  },
+  "all_transactional_empty": false,
+  "infrastructure_preserved": true,
+  "pass": false,
+  "pre_simulation_cleanup": {
+    "primary_pass_deleted": 876,
+    "errors": 0,
+    "historical_test_identities_removed": true,
+    "infrastructure_preserved": true
+  },
+  "concurrent_live_simulation": {
+    "simulation_id": "SEASON-SIM-PERFECT-20260914T131218Z-mike-schmidt",
+    "email_delivery_enabled": true,
+    "explanation": "Transactional Hub rows present after primary cleanup are owned by the concurrent Perfect Mike Schmidt execute; emptying them mid-run would sabotage that simulation."
+  },
+  "pass_for_pre_sim_historical_wipe": true,
+  "pass_all_transactional_empty_absolute": false
+}

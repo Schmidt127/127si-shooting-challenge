@@ -66,7 +66,7 @@ Trigger map (downstream effects): [../airtable/schema/current/automation-trigger
 | 012 | ~~Legacy HC create~~ | **DELETED** — do not restore | — |
 | 063 | ~~Homework Review — Copy Enrollment Grade Band~~ | **DELETED / RETIRED in PROD** — do not restore; repo runtime stop | `063-…js` *(historical only)* |
 | 064 | Homework Review — Prepare Homework XP Award | **Production-verified current live** — prepares XP from rule `HOMEWORK_COMPLETION`; **does not create XP Event** (repo header v12.2) | `064-homework-review-and-xp-prepare-homework-xp-award.js` |
-| **065** | Homework Review — Create/Reconcile Homework XP Event | `Homework XP Reconciliation Needed? = 1` — **Production v10.7 Live** (SC-160 Stage 6); Source Key `HOMEWORK_XP\|{HC ID}`; input `recordId` = **triggering HC** (dynamic); do not re-paste | `065-homework-review-and-xp-create-homework-xp-event.js` |
+| **065** | Homework Review — Create/Reconcile Homework XP Event | `Homework XP Reconciliation Needed? = 1` **AND** `Total Homework XP Awarded > 0` — **Production v10.11 Live** (2026-09-13; GitHub synced from live Automation Code; marker `SC-SEASON-SIM-001-DEPLOY-20260913B`); Source Key `HOMEWORK_XP\|{HC ID}`; input `recordId` = **triggering HC** (dynamic); v10.10 soft-skips (no throw / no ack) if Total XP not yet positive so 064→065 re-entry works; do not paste older GitHub over Production | `065-homework-review-and-xp-create-homework-xp-event.js` (**v10.11**) |
 | **067** | Homework — Link or Create Completion from Reflection Quiz | Final Reflection Quiz Submissions · Enrollment set · HC empty · Processing Status empty — **Live v3.4** (GitHub **v3.5** structure-only; paste declined 2026-09-05) | `067-homework-link-or-create-completion-from-reflection-quiz.js` |
 | **068** | Homework — Reconcile Deferred Weekly Summary Links | **RETIRED / keep OFF**; 033 owns deferred WAS reconciliation | `068-homework-reconcile-deferred-weekly-summary-links.js` |
 | **070a** | Send Homework Asset Payload to Make | Send to Make Trigger checked **and** homework ready — **Live v4.7** (Perfect Week test window 2026-08-21; historically intentional OFF) | `070a-…js` (**v4.7** `fetch`) |
@@ -83,7 +83,7 @@ Trigger map (downstream effects): [../airtable/schema/current/automation-trigger
 | **031** | Weekly Summary — Find or Create WAS from Submission | Submissions when formula-backed count readiness evaluates checked and formula-backed stat mode evaluates `Simple Total` or `Detailed Shooting`; reuses or creates the canonical WAS | `031-weekly-summary-and-goal-logic-find-or-create-weekly-athlete-summary-from-submission.js` (**v4.1** — authoritative find-or-create owner; exact Enrollment/Week cardinality, formula-backed readiness inputs, writable email-readiness checkbox) |
 | 032 | Weekly Summary — Link Challenge Goal to WAS | WAS with one Enrollment + Grade Band and no Goal Record | `032-weekly-summary-and-goal-logic-link-challenge-goal-record-to-weekly-athlete-summary.js` (**v3.4** — exactly one active explicit-numeric Target Goal Shots match by Program Instance record ID + Grade Band record ID; zero is valid only when configured) |
 | 033 | Weekly Summary — Assign Homework to WAS | **paste v4.1 pending** — PHA-only, exact PI required | `033-weekly-summary-and-goal-logic-assign-homework-to-weekly-athlete-summary.js` (**v4.1**) |
-| **035** | Weekly Summary — Create Weekly Threshold XP Events | WAS when goal completion threshold is eligible; creates threshold XP Events and updates WAS threshold status | `035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js` |
+| **035** | Weekly Summary — Create Weekly Threshold XP Events | WAS when `Threshold XP Ready? = 1` — **Production v1.6 Live** (marker `SC-SEASON-SIM-001-DEPLOY-20260913C`; progressive Settled Through % state machine). Automations-table mirror aligned 2026-09-14. Prior docs/mirror lag was not a reason to downgrade Production. Do not paste older GitHub over Production. | `035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js` (**v1.6**) |
 | 034 | Weekly Summary — Set Previous Week Helper Values | *confirm in Airtable* | `034-weekly-summary-and-goal-logic-set-previous-week-helper-values.js` |
 
 ## Levels and progression (041–043)
@@ -96,14 +96,13 @@ Trigger map (downstream effects): [../airtable/schema/current/automation-trigger
 
 ## Achievements and streaks (053–059, 066)
 
-> **PKG-038 status:** **COMPLETE** (Production proof passed 2026-08-16). 053 v5.5,
-> 054 v5.8, **066 v4.1** (Live / GitHub aligned — SC-163 Goal Met Date + milestones COMPLETE / Live Tested), and 059 v3.7 (repo; paste with 058 v1.5) are the GitHub source. Charlie Schmidt Early
+> **PKG-038 status:** **COMPLETE** (Production proof passed 2026-08-16). Streak writer **053 is Production / GitHub v5.8** (synced 2026-09-14 from live Automation Code; marker `SC-SEASON-SIM-001-DEPLOY-20260913B`; Denver-safe `toDateKey` — no UTC ISO-prefix slice — so Week End/Start do not overlap; unblocks 50/60-day streak occurrences). 054 v5.8, **066 v4.1** (Live / GitHub aligned — SC-163 Goal Met Date + milestones COMPLETE / Live Tested), and 059 v3.7 (repo; paste with 058 v1.5) remain as documented. Charlie Schmidt Early
 > Bird path proven; audit v2.1 issueTotal = 0. **Do not retest** unless source,
-> trigger, or schema changes. Resume after first regular Week closes (~May 8, 2027).
+> trigger, or schema changes. Resume after first regular Week closes (~May 8, 2027). Verification: [`audits/053-v5.8-live-sync-20260914/VERIFICATION.md`](./audits/053-v5.8-live-sync-20260914/VERIFICATION.md).
 
 | # | Airtable automation name | Trigger | File |
 |---|--------------------------|---------|------|
-| 053 | Achievements — Streak Occurrences Rebuild from Submissions | Submissions updated; exact trigger must cover eligibility/identity corrections | `053-achievements-and-milestones-streak-occurrences-rebuild-and-upsert-from-submissions.js` (**v5.5** — first-create Ready handoff; **ON in PROD**) |
+| 053 | Achievements — Streak Occurrences Rebuild from Submissions | Submissions updated; exact trigger must cover eligibility/identity corrections | `053-achievements-and-milestones-streak-occurrences-rebuild-and-upsert-from-submissions.js` (**v5.8** — Denver `toDateKey` Week boundary fix; deploy `SC-SEASON-SIM-001-DEPLOY-20260913B`; **ON in PROD**) |
 | **054** | Achievements — Create or Reconcile Streak XP Event | Streak Occurrences updated; exact trigger must cover Active? withdrawal and Ready/restoration | `054-achievements-and-milestones-streak-occurrences-create-or-repair-streak-xp-event.js` (**v5.8** — exact same-event lifecycle; **ON in PROD**) |
 | 055 | Achievements — Recalculate Current Shooting Streak from Submission | *confirm in Airtable* | `055-achievements-and-milestones-recalculate-current-shooting-streak-from-submission.js` |
 | 056 | Achievements — Refresh Current Shooting Streaks Daily | *confirm in Airtable (scheduled)* | `056-achievements-and-milestones-refresh-current-shooting-streaks-daily.js` |

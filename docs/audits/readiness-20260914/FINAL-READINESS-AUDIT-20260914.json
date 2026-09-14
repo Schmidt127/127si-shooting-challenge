@@ -1,0 +1,1073 @@
+{
+  "generated_at": "2026-09-14T14:11:18.485946+00:00",
+  "mode": "read_only",
+  "simulation_executed": false,
+  "bases": {
+    "shooting_challenge": "appn84sqPw03zEbTT",
+    "curriculum_hub": "appnrW8pPpzq8Nhov",
+    "communications_hub": "appYG1t5DBRimHBCT"
+  },
+  "transactional_zero_state": {
+    "shooting_challenge": {
+      "counts": {
+        "Athletes": {
+          "table": "Athletes",
+          "count": 0,
+          "ids": []
+        },
+        "Enrollments": {
+          "table": "Enrollments",
+          "count": 0,
+          "ids": []
+        },
+        "Submissions": {
+          "table": "Submissions",
+          "count": 0,
+          "ids": []
+        },
+        "Submission Assets": {
+          "table": "Submission Assets",
+          "count": 0,
+          "ids": []
+        },
+        "Homework Completions": {
+          "table": "Homework Completions",
+          "count": 0,
+          "ids": []
+        },
+        "Video Feedback": {
+          "table": "Video Feedback",
+          "count": 0,
+          "ids": []
+        },
+        "XP Events": {
+          "table": "XP Events",
+          "count": 0,
+          "ids": []
+        },
+        "Athlete Achievement Unlocks": {
+          "table": "Athlete Achievement Unlocks",
+          "count": 0,
+          "ids": []
+        },
+        "Streak Occurrences": {
+          "table": "Streak Occurrences",
+          "count": 0,
+          "ids": []
+        },
+        "Weekly Athlete Summary": {
+          "table": "Weekly Athlete Summary",
+          "count": 0,
+          "ids": []
+        },
+        "Zoom Attendance": {
+          "table": "Zoom Attendance",
+          "count": 0,
+          "ids": []
+        },
+        "Email Handoff Queue": {
+          "table": "Email Handoff Queue",
+          "count": 0,
+          "ids": []
+        },
+        "Award Recipients": {
+          "table": "Award Recipients",
+          "count": 0,
+          "ids": []
+        }
+      },
+      "optional": {
+        "Homework Attempts": {
+          "table": "Homework Attempts",
+          "count": 0,
+          "ids": []
+        },
+        "Homework Responses": {
+          "table": "Homework Responses",
+          "count": 0,
+          "ids": []
+        },
+        "Attempts": {
+          "table": "Attempts",
+          "_error": 403,
+          "body": "{\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+        },
+        "Responses": {
+          "table": "Responses",
+          "_error": 403,
+          "body": "{\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+        }
+      },
+      "blockers": []
+    },
+    "curriculum_hub": {
+      "counts": {
+        "Submission Outbox": {
+          "table": "Submission Outbox",
+          "count": 0,
+          "ids": []
+        },
+        "Homework Draft Attempts": {
+          "table": "Homework Draft Attempts",
+          "count": 0,
+          "ids": []
+        },
+        "Homework Draft Responses": {
+          "table": "Homework Draft Responses",
+          "count": 0,
+          "ids": []
+        }
+      },
+      "optional": {
+        "Outbox": {
+          "table": "Outbox",
+          "_error": 403,
+          "body": "{\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+        },
+        "Attempts": {
+          "table": "Attempts",
+          "_error": 403,
+          "body": "{\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+        },
+        "Responses": {
+          "table": "Responses",
+          "_error": 403,
+          "body": "{\"error\":{\"type\":\"INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND\",\"message\":\"Invalid permissions, or the requested model was not found. Check that both your user and your token have the required permissions, and that the model names and/or ids are correct.\"}}"
+        }
+      },
+      "blockers": []
+    },
+    "communications_hub": {
+      "counts": {
+        "Deliveries": {
+          "table": "Deliveries",
+          "count": 0,
+          "ids": []
+        },
+        "Delivery Attempts": {
+          "table": "Delivery Attempts",
+          "count": 0,
+          "ids": []
+        },
+        "Delivery Keys": {
+          "table": "Delivery Keys",
+          "count": 0,
+          "ids": []
+        },
+        "Messages": {
+          "table": "Messages",
+          "count": 0,
+          "ids": []
+        },
+        "Audit Events": {
+          "table": "Audit Events",
+          "count": 0,
+          "ids": []
+        },
+        "Integration Events": {
+          "table": "Integration Events",
+          "count": 0,
+          "ids": []
+        },
+        "Communication Identities": {
+          "table": "Communication Identities",
+          "count": 0,
+          "ids": []
+        },
+        "Contact Methods": {
+          "table": "Contact Methods",
+          "count": 0,
+          "ids": []
+        },
+        "Households": {
+          "table": "Households",
+          "count": 0,
+          "ids": []
+        },
+        "Suppressions": {
+          "table": "Suppressions",
+          "count": 0,
+          "ids": []
+        }
+      },
+      "optional": {},
+      "blockers": []
+    },
+    "ok": true
+  },
+  "pha": {
+    "total_rows": 20,
+    "active_count": 20,
+    "active_ids_sample": [
+      "rec7Fc5xTIz0pflAs",
+      "recBm8vAMrXG3q9sz",
+      "recFUgqHDfFhEkQAt",
+      "recLH2gubtRVCAtUE",
+      "recM1QEbSjQyX2kws",
+      "recNKakIewpjTX9Ux",
+      "recPbT6jPBmJAEnIi",
+      "recSt7E96JP4YYoM4",
+      "recWDg6AekmbKu47u",
+      "recWvRatrjmjwjcMq",
+      "recXgTrjNH4GERzm9",
+      "recb4kgYWnqRz0vFd",
+      "recceFsPC41CIJPfY",
+      "recfgmuOOe1MPEt9j",
+      "recjxR5J57YLqJFlW",
+      "recnnnTOqj9J2PQ6G",
+      "recoVOW5aZS14j4wd",
+      "recuASvOHCcDmHRXn",
+      "reczhSyu0Zxz5SBSR",
+      "reczku4c9ZUaLXl9B"
+    ],
+    "week9_ids": [
+      "recBm8vAMrXG3q9sz",
+      "recb4kgYWnqRz0vFd"
+    ],
+    "week9_count": 2,
+    "ok": true
+  },
+  "zoom_meetings": {
+    "table": "Zoom Meetings",
+    "count": 2,
+    "ids": [
+      "recMFP2x5LDqea9ax",
+      "recb9EjQIJVzaRpZa"
+    ],
+    "ok": true
+  },
+  "formulas": {
+    "season_sim_hits": [],
+    "submission_formula_samples": [
+      {
+        "field": "Activity Date Is Future?",
+        "sha256": "d14642bb2f82abc43709c825bd80986f36c302c1451e14c26fe8c87ae75c1088",
+        "has_season_sim": false
+      },
+      {
+        "field": "Submitted Same Day?",
+        "sha256": "084d2e2f71db854b7eb2fd8e1bc017bce5b381572d6dd6b97091ce24cb772658",
+        "has_season_sim": false
+      },
+      {
+        "field": "Perfect Week Grace Eligible?",
+        "sha256": "8484fe440c76ea4157d3b9ba1058741e239b47fe52af99e319b7e4393813a526",
+        "has_season_sim": false
+      }
+    ],
+    "ok": true
+  },
+  "automations": {
+    "critical": [
+      {
+        "code": "010",
+        "name": "010 - Submission Intake and Asset Creation - Create XP Event from Submission",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v10.14 - 2026-09-05",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v10.14",
+          "docblock_version": "v10.14",
+          "deploy_marker": null,
+          "last_updated": "2026-09-05",
+          "full_sha256": "63536e5cce4c530538e5012f02ffbaa0f68c6f21e25278cea6ca0e536d3bfe54",
+          "body_sha256": "bfb4e529df6495a7a4206ddbe5057948df438583308053f8e2de8eecf60ce0b6",
+          "crlf_full_sha256": "6a4086a150ba621912d26f06b527ed13f200759f9ff3db57cc74570035f01abd",
+          "char_len": 51785
+        },
+        "github": {
+          "script_version": "v10.14",
+          "docblock_version": "v10.14",
+          "deploy_marker": null,
+          "last_updated": "2026-09-05",
+          "full_sha256": "ce3567aeabc1be69c5f1524bf23af084f457e69ff0d5bf89ec6989a0f5b116f5",
+          "body_sha256": "d5d9679b896cc99ff5486c04ba7f5fe18813f85d85fb1fcd5d38042abe0b2f34",
+          "crlf_full_sha256": "7b06e03e459647f49f6d166a3e36aa1f01a3c3539fc7bac161bff2f1dba7ecf1",
+          "char_len": 51786
+        },
+        "live_version": "v10.14",
+        "github_version": "v10.14",
+        "body_hash_match": false,
+        "full_hash_match": false,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "020",
+        "name": "020 - Submission Intake and Asset Creation - Link or Create Homework Completion from Submission Asset",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v4.1 - 2026-09-05",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v4.1",
+          "docblock_version": "v4.1",
+          "deploy_marker": null,
+          "last_updated": "2026-09-05",
+          "full_sha256": "6450f091e7611e1ad48499a41d63ae8cb591f00185988a8f6191fb580a60b20f",
+          "body_sha256": "942b5ef6d54559e068f48510e507c59ab96f5165d315dac1b233650eb53fadf0",
+          "crlf_full_sha256": "5822352b41bfb4942fc8008755e1538f4dc9f7ec8812e60228133bbe8beffb55",
+          "char_len": 50627
+        },
+        "github": {
+          "script_version": "v4.1",
+          "docblock_version": "v4.1",
+          "deploy_marker": null,
+          "last_updated": "2026-09-05",
+          "full_sha256": "9621b52b95ff9236c6f81834f90c23a6155c6c8d0ec32bd293eae0f5ed9de761",
+          "body_sha256": "90050cfe757478cfa1fe20c853fca8203626129ac4b3d6bf7cf6e6faccbfb213",
+          "crlf_full_sha256": "b78e475880eaf0c1888b3b6d5becaff28a08098a52833823ce658f0e42195d1f",
+          "char_len": 50628
+        },
+        "live_version": "v4.1",
+        "github_version": "v4.1",
+        "body_hash_match": false,
+        "full_hash_match": false,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "022",
+        "name": "022 - Submission Intake - Sync Child Upload Writeback from Submission Asset",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v2.2 - 2026-08-24",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v2.2",
+          "docblock_version": "v2.2",
+          "deploy_marker": null,
+          "last_updated": "2026-08-24",
+          "full_sha256": "1ab9a96bff124298a0425db3493eeb762910a7bcce6710983a4d4bd8bafee067",
+          "body_sha256": "8b380359db463f6314ac2d29a00db9fd8e12664a3482b0de0d572e07a12b83ef",
+          "crlf_full_sha256": "06b356a53115ca3659e21d24ffea379349eaf09e3d7355e4caa6bf7cc08b65cf",
+          "char_len": 27622
+        },
+        "github": {
+          "script_version": "v2.2",
+          "docblock_version": "v2.2",
+          "deploy_marker": null,
+          "last_updated": "2026-08-24",
+          "full_sha256": "593b6fd512457d7d0bf61acdad072095829c13ccf315d6b894b6657654210a11",
+          "body_sha256": "a60dbb0c4fcbd40464cdadaa478c7a85a6efc530efbc9ede0a64be621825f1c7",
+          "crlf_full_sha256": "348b9f5b578c5df95d6cabffac7e2679d12510de75daa076358dd6ff79ac207e",
+          "char_len": 27623
+        },
+        "live_version": "v2.2",
+        "github_version": "v2.2",
+        "body_hash_match": false,
+        "full_hash_match": false,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "034",
+        "name": "034 - Weekly Summary and Goal Logic - Set Previous Week Helper Values",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v3.4 - 2026-06-20",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v3.4",
+          "docblock_version": "v3.4",
+          "deploy_marker": null,
+          "last_updated": "2026-06-20",
+          "full_sha256": "96008e2f3bafe2401f3002bf195167f863b2de3982ae8efb00e2151f308a4600",
+          "body_sha256": "16cfb26fd012eaee12d1b54a347b271eda4fb1fb6eb6542bcde60c68825f7c0d",
+          "crlf_full_sha256": "74c595c74bafe86ca6ca4cb41c8134b95f3261dc2b7a11705e4cd3ee9a6dfe9b",
+          "char_len": 22508
+        },
+        "github": {
+          "script_version": "v3.4",
+          "docblock_version": "v3.4",
+          "deploy_marker": null,
+          "last_updated": "2026-06-20",
+          "full_sha256": "96008e2f3bafe2401f3002bf195167f863b2de3982ae8efb00e2151f308a4600",
+          "body_sha256": "16cfb26fd012eaee12d1b54a347b271eda4fb1fb6eb6542bcde60c68825f7c0d",
+          "crlf_full_sha256": "74c595c74bafe86ca6ca4cb41c8134b95f3261dc2b7a11705e4cd3ee9a6dfe9b",
+          "char_len": 22508
+        },
+        "live_version": "v3.4",
+        "github_version": "v3.4",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "035",
+        "name": "035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Events",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v1.6 - 2026-09-13",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v1.6",
+          "docblock_version": "v1.6",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913C",
+          "last_updated": "2026-09-13",
+          "full_sha256": "c7c1cf1330689f1f7336e36615af62eb232bc5a104df165448818f9252250677",
+          "body_sha256": "6ddaf1bd8803289efbb2cef32114717002eef98ba7771fab0aa4c3d26f3e4e71",
+          "crlf_full_sha256": "17ed015406af6e5348afeaf80fa7efe765aa72d394efe7f3bf07de68a66b56b3",
+          "char_len": 31748
+        },
+        "github": {
+          "script_version": "v1.6",
+          "docblock_version": "v1.6",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913C",
+          "last_updated": "2026-09-13",
+          "full_sha256": "c7c1cf1330689f1f7336e36615af62eb232bc5a104df165448818f9252250677",
+          "body_sha256": "6ddaf1bd8803289efbb2cef32114717002eef98ba7771fab0aa4c3d26f3e4e71",
+          "crlf_full_sha256": "17ed015406af6e5348afeaf80fa7efe765aa72d394efe7f3bf07de68a66b56b3",
+          "char_len": 31748
+        },
+        "live_version": "v1.6",
+        "github_version": "v1.6",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true,
+        "expected": {
+          "version": "v1.6",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913C",
+          "full_sha256": "c7c1cf1330689f1f7336e36615af62eb232bc5a104df165448818f9252250677",
+          "body_sha256": "6ddaf1bd8803289efbb2cef32114717002eef98ba7771fab0aa4c3d26f3e4e71"
+        },
+        "github_matches_expected_full": true,
+        "live_matches_expected_full": true,
+        "version_ok": true,
+        "marker_ok": true
+      },
+      {
+        "code": "041",
+        "name": "041 - Levels and Progression - Mark Enrollment for Level Recalculation",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v5.1 - 2026-08-20",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v5.1",
+          "docblock_version": "v5.1",
+          "deploy_marker": null,
+          "last_updated": "2026-08-20",
+          "full_sha256": "6f078776d6e7c57571ef21de41b6147118df5436ba26327c77738b1a17abb45c",
+          "body_sha256": "30c279468a3e6e5dc5e7ede7002fef8325ea7501758f0c459fc97d8c11a7af26",
+          "crlf_full_sha256": "6acdba3e01daaf3d9bc448457ef1095d7292b980ccfacf3e61bf91fa3e20fdc4",
+          "char_len": 20117
+        },
+        "github": {
+          "script_version": "v5.1",
+          "docblock_version": "v5.1",
+          "deploy_marker": null,
+          "last_updated": "2026-08-20",
+          "full_sha256": "6f078776d6e7c57571ef21de41b6147118df5436ba26327c77738b1a17abb45c",
+          "body_sha256": "30c279468a3e6e5dc5e7ede7002fef8325ea7501758f0c459fc97d8c11a7af26",
+          "crlf_full_sha256": "6acdba3e01daaf3d9bc448457ef1095d7292b980ccfacf3e61bf91fa3e20fdc4",
+          "char_len": 20117
+        },
+        "live_version": "v5.1",
+        "github_version": "v5.1",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "042",
+        "name": "042 - Levels and Progression - Assign Current and Next Level",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v4.1.3 - 2026-09-13",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "4.1.3",
+          "docblock_version": "4.1.3",
+          "deploy_marker": null,
+          "last_updated": "2026-09-13",
+          "full_sha256": "4920e7abf3fe3435f32b0a80d21fc8ec09808ab79334f3f3941a5325166b61b5",
+          "body_sha256": "e77545bf71e4af09eb73fd4b1af4d99007f26c93cf974c33f75bc53bcc6c8d1c",
+          "crlf_full_sha256": "6af5db38a7c4b51fb60007153c0699be56ac79afea27daac0597543e02e8954b",
+          "char_len": 54770
+        },
+        "github": {
+          "script_version": "4.1.3",
+          "docblock_version": "4.1.3",
+          "deploy_marker": null,
+          "last_updated": "2026-09-13",
+          "full_sha256": "f3903b78dce12855bfa2d6c182aa7c5850545164ce9bdb08b92d55eb06be295d",
+          "body_sha256": "2ea71c2ef8aeaf92581f4f88207b8178bbc98759f80ecfb840adfdda308ef8a2",
+          "crlf_full_sha256": "340b1a4e4d990223b6114e10fb34307ece3db7a772e4f4d7f71b97ed81763bac",
+          "char_len": 54771
+        },
+        "live_version": "4.1.3",
+        "github_version": "4.1.3",
+        "body_hash_match": false,
+        "full_hash_match": false,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "053",
+        "name": "053 - Achievements and Milestones - Streak Occurrences - Rebuild and Upsert From Submissions",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v5.8 - 2026-09-13",
+          "isStale": false
+        },
+        "live": {
+          "script_version": null,
+          "docblock_version": "5.8",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+          "last_updated": "2026-09-13",
+          "full_sha256": "bded88f5d40fc16213e70b2928dc96747537c6c4bf38002ab151521260e98dfa",
+          "body_sha256": "ea66f00dd105a138c1904cfc5201fbfb79d132e8cb174dd55579a521bd0f177d",
+          "crlf_full_sha256": "1a6509cc70eda27d7c73320d2a0c94a761e81517350c253787ccbf320816333d",
+          "char_len": 45068
+        },
+        "github": {
+          "script_version": null,
+          "docblock_version": "5.8",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+          "last_updated": "2026-09-13",
+          "full_sha256": "bded88f5d40fc16213e70b2928dc96747537c6c4bf38002ab151521260e98dfa",
+          "body_sha256": "ea66f00dd105a138c1904cfc5201fbfb79d132e8cb174dd55579a521bd0f177d",
+          "crlf_full_sha256": "1a6509cc70eda27d7c73320d2a0c94a761e81517350c253787ccbf320816333d",
+          "char_len": 45068
+        },
+        "live_version": "5.8",
+        "github_version": "5.8",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true,
+        "expected": {
+          "version": "5.8",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+          "full_sha256": "bded88f5d40fc16213e70b2928dc96747537c6c4bf38002ab151521260e98dfa",
+          "attested_crlf_sha256": null
+        },
+        "github_matches_expected_full": true,
+        "live_matches_expected_full": true,
+        "version_ok": true,
+        "marker_ok": true
+      },
+      {
+        "code": "054",
+        "name": "054 - Achievements and Milestones, Streak Occurrences - Create or Repair Streak XP Event",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v5.8 - 2026-08-13",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v5.8",
+          "docblock_version": "v5.8",
+          "deploy_marker": null,
+          "last_updated": "2026-08-13",
+          "full_sha256": "b32edf101dcbc70c7fe49356d0a769b67d23658318bfa995890aeaf3818fa0c6",
+          "body_sha256": "4d5185e5ae4a3bb8e82910ce513978aca2425febbf5c7c363e96758dd1ec5a1b",
+          "crlf_full_sha256": "6720d1bea6571fb2b0246e79288ead90f78cbf959acc6bce491ca0d17c21bd96",
+          "char_len": 41056
+        },
+        "github": {
+          "script_version": "v5.8",
+          "docblock_version": "v5.8",
+          "deploy_marker": null,
+          "last_updated": "2026-08-13",
+          "full_sha256": "b32edf101dcbc70c7fe49356d0a769b67d23658318bfa995890aeaf3818fa0c6",
+          "body_sha256": "4d5185e5ae4a3bb8e82910ce513978aca2425febbf5c7c363e96758dd1ec5a1b",
+          "crlf_full_sha256": "6720d1bea6571fb2b0246e79288ead90f78cbf959acc6bce491ca0d17c21bd96",
+          "char_len": 41056
+        },
+        "live_version": "v5.8",
+        "github_version": "v5.8",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "057",
+        "name": "057 - Achievements and Milestones - Calculate Perfect Week Eligibility",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v2.7 - 2026-09-12",
+          "isStale": false
+        },
+        "live": {
+          "script_version": null,
+          "docblock_version": "2.7",
+          "deploy_marker": null,
+          "last_updated": null,
+          "full_sha256": "684f7c485cfd9af023c5211f89b8215d04782bf19e6585bded376acd5b3e58f0",
+          "body_sha256": "4c46c9cec4ac9a7731f72cd56001a6bb1284ed6599748ca2c6ed943f53b9305d",
+          "crlf_full_sha256": "80c78cb18a0fd680cada8845e4a8d10f43671e7ea522ad2fb558e64360435b70",
+          "char_len": 56975
+        },
+        "github": {
+          "script_version": null,
+          "docblock_version": "2.7",
+          "deploy_marker": null,
+          "last_updated": null,
+          "full_sha256": "684f7c485cfd9af023c5211f89b8215d04782bf19e6585bded376acd5b3e58f0",
+          "body_sha256": "4c46c9cec4ac9a7731f72cd56001a6bb1284ed6599748ca2c6ed943f53b9305d",
+          "crlf_full_sha256": "80c78cb18a0fd680cada8845e4a8d10f43671e7ea522ad2fb558e64360435b70",
+          "char_len": 56975
+        },
+        "live_version": "2.7",
+        "github_version": "2.7",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "064",
+        "name": "064 - Homework Review and XP - Assign Base Homework XP",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v12.2 - 2026-08-12",
+          "isStale": false
+        },
+        "live": {
+          "script_version": null,
+          "docblock_version": "2026-08-12 v12.2",
+          "deploy_marker": null,
+          "last_updated": null,
+          "full_sha256": "a44d9e374ab7e9722c4b21c631523a9419db984d81307ef619cc7fab87e44c00",
+          "body_sha256": "c2d1b07b9d7b51c205e066841c4af0b0cd897671adb56bb20fd4f5a334908c3d",
+          "crlf_full_sha256": "bc8bc1f5915d816d5b8098e4e447c3e10d1c181c27591a171c4b0b8f6013ef91",
+          "char_len": 20515
+        },
+        "github": {
+          "script_version": null,
+          "docblock_version": "2026-08-12 v12.2",
+          "deploy_marker": null,
+          "last_updated": null,
+          "full_sha256": "a44d9e374ab7e9722c4b21c631523a9419db984d81307ef619cc7fab87e44c00",
+          "body_sha256": "c2d1b07b9d7b51c205e066841c4af0b0cd897671adb56bb20fd4f5a334908c3d",
+          "crlf_full_sha256": "bc8bc1f5915d816d5b8098e4e447c3e10d1c181c27591a171c4b0b8f6013ef91",
+          "char_len": 20515
+        },
+        "live_version": "2026-08-12 v12.2",
+        "github_version": "2026-08-12 v12.2",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "065",
+        "name": "065 - Homework Review and XP - Create or Update Homework XP Event",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v10.11 - 2026-09-13",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v10.11",
+          "docblock_version": "v10.11",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+          "last_updated": "2026-09-13",
+          "full_sha256": "0e84172d0f164ce19e3f3e27188eb702e83d6a3a4037705d16a9886f216ef4ac",
+          "body_sha256": "ab15c174547160abc33c6147df7aca43190a974744a63f70e5952f71241dc3b2",
+          "crlf_full_sha256": "266ca405733a0e6797fedeb03b5fc30b2ceaf092b3bc0d17e9ff6699bf5bf305",
+          "char_len": 33895
+        },
+        "github": {
+          "script_version": "v10.11",
+          "docblock_version": "v10.11",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+          "last_updated": "2026-09-13",
+          "full_sha256": "0e84172d0f164ce19e3f3e27188eb702e83d6a3a4037705d16a9886f216ef4ac",
+          "body_sha256": "ab15c174547160abc33c6147df7aca43190a974744a63f70e5952f71241dc3b2",
+          "crlf_full_sha256": "266ca405733a0e6797fedeb03b5fc30b2ceaf092b3bc0d17e9ff6699bf5bf305",
+          "char_len": 33895
+        },
+        "live_version": "v10.11",
+        "github_version": "v10.11",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true,
+        "expected": {
+          "version": "v10.11",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+          "full_sha256": "0e84172d0f164ce19e3f3e27188eb702e83d6a3a4037705d16a9886f216ef4ac",
+          "attested_crlf_sha256": "266ca405733a0e6797fedeb03b5fc30b2ceaf092b3bc0d17e9ff6699bf5bf305"
+        },
+        "github_matches_expected_full": true,
+        "live_matches_expected_full": true,
+        "version_ok": true,
+        "marker_ok": true,
+        "github_crlf_attestation_match": true
+      },
+      {
+        "code": "066",
+        "name": "066 - Achievements and Milestones - Create Shot Milestone Unlocks",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v4.1 - 2026-09-05",
+          "isStale": false
+        },
+        "live": {
+          "script_version": null,
+          "docblock_version": "v4.1",
+          "deploy_marker": null,
+          "last_updated": "2026-09-05",
+          "full_sha256": "bfdeb1a5a8ca85ec27e05c48c59aa07270856a8b3f66e6fe50138cd23f95e2d1",
+          "body_sha256": "3c2fd4aaa273e6be99c05b3925801e50cdf629b7299042e6a36fedbd0f2dacd5",
+          "crlf_full_sha256": "1c8ac50c20d2d4f588000c7347743375f66b1350f21ccfbcd87818b0a19344ca",
+          "char_len": 61953
+        },
+        "github": {
+          "script_version": null,
+          "docblock_version": "v4.1",
+          "deploy_marker": null,
+          "last_updated": "2026-09-05",
+          "full_sha256": "bfdeb1a5a8ca85ec27e05c48c59aa07270856a8b3f66e6fe50138cd23f95e2d1",
+          "body_sha256": "3c2fd4aaa273e6be99c05b3925801e50cdf629b7299042e6a36fedbd0f2dacd5",
+          "crlf_full_sha256": "1c8ac50c20d2d4f588000c7347743375f66b1350f21ccfbcd87818b0a19344ca",
+          "char_len": 61953
+        },
+        "live_version": "v4.1",
+        "github_version": "v4.1",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "071",
+        "name": "071 - Email, Notifications, and External Handoffs - Create Homework Feedback Communications Hub Handoff",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v4.5 - 2026-09-08",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v4.5",
+          "docblock_version": null,
+          "deploy_marker": null,
+          "last_updated": "2026-09-08",
+          "full_sha256": "4aff2250199203c93857d4f5c24817d7b0df7ca0190ebac7614b578febded93a",
+          "body_sha256": "e651968eb2edd727e86ad5f08a4637079bafffa0c17eef2fbd8dcd85ccade295",
+          "crlf_full_sha256": "4516db89bea7006faf1c34ba4496d98944d8e469a8d862997cf17084b48f4b77",
+          "char_len": 28435
+        },
+        "github": {
+          "script_version": "v4.5",
+          "docblock_version": null,
+          "deploy_marker": null,
+          "last_updated": "2026-09-08",
+          "full_sha256": "4aff2250199203c93857d4f5c24817d7b0df7ca0190ebac7614b578febded93a",
+          "body_sha256": "e651968eb2edd727e86ad5f08a4637079bafffa0c17eef2fbd8dcd85ccade295",
+          "crlf_full_sha256": "4516db89bea7006faf1c34ba4496d98944d8e469a8d862997cf17084b48f4b77",
+          "char_len": 28435
+        },
+        "live_version": "v4.5",
+        "github_version": "v4.5",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "072",
+        "name": "072 - Email, Notifications, and External Handoffs - Build Weekly Summary Email Package",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v4.9.2 - 2026-09-06",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v4.9.2",
+          "docblock_version": "v4.9.2",
+          "deploy_marker": null,
+          "last_updated": "2026-09-06",
+          "full_sha256": "083925ccd072a138f69c8e8088ea9c40a4c1234fe73508fc68c2cbc0453cfdde",
+          "body_sha256": "ea6022106cdd7a1639fd48ab5447445d15b90a4b1dbb8630a0c72833202e8fc4",
+          "crlf_full_sha256": "5fc99dbc721b68c72550b73beefe13bbea121cf3b1f62a97359b569a8fc76b4b",
+          "char_len": 64521
+        },
+        "github": {
+          "script_version": "v4.9.2",
+          "docblock_version": "v4.9.2",
+          "deploy_marker": null,
+          "last_updated": "2026-09-06",
+          "full_sha256": "c196c0ace1d3aea587adaf9803af92e85ab2e9cf9a1e6addb93e3b5f911c0c44",
+          "body_sha256": "fb6edef44826a7b183dfaa9ad6a7d92cb5985c438bd79f50967869a4f43acce2",
+          "crlf_full_sha256": "c16db2cc930c19f31cd40cf5c4f0a07421a5b79ed98c1758775dc7b4487464cd",
+          "char_len": 64522
+        },
+        "live_version": "v4.9.2",
+        "github_version": "v4.9.2",
+        "body_hash_match": false,
+        "full_hash_match": false,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "073",
+        "name": "073 - Email, Notifications, and External Handoffs - Create Video Feedback Communications Hub Handoff",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v4.9 - 2026-09-13",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v4.9",
+          "docblock_version": "v4.9",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+          "last_updated": "2026-09-13",
+          "full_sha256": "dae984e95be6a341cc3133fd2fa19711f0661bceb8cdc40853467be95f7ed48a",
+          "body_sha256": "35ab256cce3182a0a8c5ed54bac49eca535070c6c9a6109fbc248495c2958c0b",
+          "crlf_full_sha256": "998e207be94a8665327d1ae4bee7247fcceacb850c200efd759637550d69d3b6",
+          "char_len": 34348
+        },
+        "github": {
+          "script_version": "v4.9",
+          "docblock_version": "v4.9",
+          "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+          "last_updated": "2026-09-13",
+          "full_sha256": "bbae5824ad0da602f9483ba679039eef122dc1dad09fa1f44d8c3cdaa659a195",
+          "body_sha256": "35ab256cce3182a0a8c5ed54bac49eca535070c6c9a6109fbc248495c2958c0b",
+          "crlf_full_sha256": "5a5ff1e9dc649cb9319242a2b115faa7c69a3b4a4efa8b86f3a8076368c6722d",
+          "char_len": 34366
+        },
+        "live_version": "v4.9",
+        "github_version": "v4.9",
+        "body_hash_match": true,
+        "full_hash_match": false,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "074",
+        "name": "074 - Email, Notifications, and External Handoffs - Create Weekly Summary Hub Handoff",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v3.6 - 2026-09-06",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v3.6",
+          "docblock_version": "v3.6",
+          "deploy_marker": null,
+          "last_updated": "2026-09-06",
+          "full_sha256": "fd9be61af33eb4e54d6af2c0b0ab1332b3839b094cd68f635d64809a3c85b507",
+          "body_sha256": "4128d087b565b94f24bb2d185478bba163b4307f965249119c6b588dbf677c53",
+          "crlf_full_sha256": "1651d8b5e3d0e690c24eaebdcc805fd34e7629294873d4a8c6bec6b7ca6f209b",
+          "char_len": 28048
+        },
+        "github": {
+          "script_version": "v3.6",
+          "docblock_version": "v3.6",
+          "deploy_marker": null,
+          "last_updated": "2026-09-06",
+          "full_sha256": "b567a5881bfa96c8cf9e1433d022413ee49fd272eaab41f97d7173dea6c7dc16",
+          "body_sha256": "96211db72865cbf219331e2deb17a1b9292d4c7afd2c98960ec6a55c644fda45",
+          "crlf_full_sha256": "7bc656bbb4299eb77e3a4c627d05e2db71e47dd0b065ffc75d35540f93ab551d",
+          "char_len": 28049
+        },
+        "live_version": "v3.6",
+        "github_version": "v3.6",
+        "body_hash_match": false,
+        "full_hash_match": false,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "076",
+        "name": "076 - Daily Submission Communications Hub Handoff",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v8.15 - 2026-09-12",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v8.15",
+          "docblock_version": "v8.15",
+          "deploy_marker": null,
+          "last_updated": "2026-09-12",
+          "full_sha256": "9d72eed09863bbd60dd9859893bce5b1580ebebbf34c8e8d99fb732f16787f2a",
+          "body_sha256": "d736147adfd70b70c3cf26df8817698f1bb7e0b37681cb7525b19b120fe280d1",
+          "crlf_full_sha256": "c4189082c538dfac07aeedd0e9ed4aeae6a4e3d3acb3fd803302f689d5f28382",
+          "char_len": 44556
+        },
+        "github": {
+          "script_version": "v8.15",
+          "docblock_version": "v8.15",
+          "deploy_marker": null,
+          "last_updated": "2026-09-12",
+          "full_sha256": "9d72eed09863bbd60dd9859893bce5b1580ebebbf34c8e8d99fb732f16787f2a",
+          "body_sha256": "d736147adfd70b70c3cf26df8817698f1bb7e0b37681cb7525b19b120fe280d1",
+          "crlf_full_sha256": "c4189082c538dfac07aeedd0e9ed4aeae6a4e3d3acb3fd803302f689d5f28382",
+          "char_len": 44556
+        },
+        "live_version": "v8.15",
+        "github_version": "v8.15",
+        "body_hash_match": true,
+        "full_hash_match": true,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "101",
+        "name": "101 - Zoom / Attendance XP - Award Meeting XP",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "I need the actual header code or a file to read in order to extract the version number and last written date. Please provide the header code or a link to the file.",
+          "isStale": false
+        },
+        "live": {
+          "script_version": null,
+          "docblock_version": null,
+          "deploy_marker": null,
+          "last_updated": null,
+          "full_sha256": "774ece22b78710b437989c9547aa21f5b67ff349e361bfbb7b17b456d0868b84",
+          "body_sha256": "774ece22b78710b437989c9547aa21f5b67ff349e361bfbb7b17b456d0868b84",
+          "crlf_full_sha256": "774ece22b78710b437989c9547aa21f5b67ff349e361bfbb7b17b456d0868b84",
+          "char_len": 40
+        },
+        "github": {
+          "script_version": "v6.9",
+          "docblock_version": "v6.9",
+          "deploy_marker": null,
+          "last_updated": "2026-09-12",
+          "full_sha256": "ab84f743ff7e56585a8569618f8b790652135d0f50109e5cf7af592631ffdb5c",
+          "body_sha256": "d1b846fe0d4d37bd528632de6084b96c22416debfb83ea66988180d2797e5dd7",
+          "crlf_full_sha256": "9291271cbf460b1b2630b6c0c0ae355ab01864f2c6af6e299aa563d92f0b904e",
+          "char_len": 108169
+        },
+        "live_version": null,
+        "github_version": "v6.9",
+        "body_hash_match": false,
+        "full_hash_match": false,
+        "version_match": false,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "114",
+        "name": "114 - Video Review and XP - Create or Update Video XP Event",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v6.3 - 2026-09-07",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v6.3",
+          "docblock_version": "v6.3",
+          "deploy_marker": null,
+          "last_updated": "2026-09-07",
+          "full_sha256": "4da155e115e9ccd4c36e16c14aa3c4ee42e83866a3158de17e1b3dbcddb09b03",
+          "body_sha256": "617d0dfa45be7e0e81b581c43f5676ad7f4b638461f438a7c3e24058169ce025",
+          "crlf_full_sha256": "f16865f80c2dda444ec18920c40d4d5296d64934e41e0ec4e612cc57463d9d70",
+          "char_len": 40614
+        },
+        "github": {
+          "script_version": "v6.3",
+          "docblock_version": "v6.3",
+          "deploy_marker": null,
+          "last_updated": "2026-09-07",
+          "full_sha256": "c0c79f718385c9d1defcaab5fecd056c8e86e9c6f1e4791f3ce97cf215a67c19",
+          "body_sha256": "bf8c029987439ce12aa8ba75c001f42b8f353bf2e807be53c642358769ef23fa",
+          "crlf_full_sha256": "a7792e555de8446453431f5c6ee78068c747cdd091c84eab8c5a9b1415263074",
+          "char_len": 40615
+        },
+        "live_version": "v6.3",
+        "github_version": "v6.3",
+        "body_hash_match": false,
+        "full_hash_match": false,
+        "version_match": true,
+        "deploy_marker_match": true
+      },
+      {
+        "code": "117",
+        "name": "117 - Zoom - Create Zoom Recording Approval Communications Hub Handoff",
+        "status": "Live",
+        "ai_version": {
+          "state": "generated",
+          "value": "v2.2 - 2026-09-06",
+          "isStale": false
+        },
+        "live": {
+          "script_version": "v2.2",
+          "docblock_version": null,
+          "deploy_marker": null,
+          "last_updated": "2026-09-06",
+          "full_sha256": "a9a974985cc8d03bf79022f7eaec9024b190695657459540c3a90b8938ecd240",
+          "body_sha256": "32c388191a80bbd8b32a6e3cd30b4ebc9b04b32fd3c8d884b3df1603d4b1be5f",
+          "crlf_full_sha256": "4465e406afa0c156f6b6acd95ed3dcdaf69a09ba0016aa7e9f5a1f891c83988c",
+          "char_len": 16428
+        },
+        "github": {
+          "script_version": "v2.2",
+          "docblock_version": null,
+          "deploy_marker": null,
+          "last_updated": "2026-09-06",
+          "full_sha256": "8c42c105af324461b47805d45e779e79dde3f0676f3db5c5e45d1526527f547f",
+          "body_sha256": "70be8fb906a02e208aa877cb5f40353b1b0a9a2e91eaa132eb84ff8080810ded",
+          "crlf_full_sha256": "bde02e4df7b4888537ee0ceb43ed024d02accc382cdd34a69294f565b4b53af4",
+          "char_len": 16429
+        },
+        "live_version": "v2.2",
+        "github_version": "v2.2",
+        "body_hash_match": false,
+        "full_hash_match": false,
+        "version_match": true,
+        "deploy_marker_match": true
+      }
+    ],
+    "method": "identity_tuple_not_first_version_string"
+  },
+  "sync_035_053_065_ok": true,
+  "simulation_contract": {
+    "active_xp_oracle": 4980,
+    "oracle_ok": true,
+    "safe_email": "schmidt@fairfieldbasketballclub.com",
+    "email_ok": true,
+    "settlement_timeouts_s": {
+      "cascade": 900.0,
+      "downstream": 900.0,
+      "profile": 900.0
+    },
+    "settlement_ok": true,
+    "write_contract": {
+      "sequential": true,
+      "rate_limited": true,
+      "notes": "execute_perfect / writer use sequential Airtable writes with settlement waits"
+    }
+  },
+  "ready_for_mike_approval": true,
+  "verdict": "READY FOR MIKE APPROVAL \u2014 INTEGRATION PR OPEN \u2014 NO SIMULATION EXECUTED",
+  "blockers": []
+}

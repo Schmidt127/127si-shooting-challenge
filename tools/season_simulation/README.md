@@ -9,8 +9,8 @@ Infrastructure for full-season disposable simulations of the Shooting Challenge.
 | **SC-SEASON-SIM-002** | Single-athlete historical package — **COMPLETE** (T122531Z); do not rerun |
 | **Window** | 2027-04-25 → 2027-06-30 11:59 PM America/Denver inclusive (**67** days) |
 | **Challenge weeks** | **10** — Early Bird + Week 1–9 (Week 9 = 10th ordinal, **4 days**, partial **4/7** shot target) |
-| **PHA** | **18** active = Early Bird + Weeks 1–8 (2 each); **Week 9 = 0 PHA** (Perfect Week homework vacuously OK) |
-| **Oracle** | Perfect-season XP **4910** → Level **G.O.A.T.** (Zoom XP **90** = 1 live + 1 recording; no Bonus 2/3; obsolete 7-live **5340** retired) → `expected_perfect_season_xp.json` |
+| **PHA** | **20** active = Early Bird + Weeks 1–9 (2 each); Week 9 HW1 Active in Production; HW2 modeled as expected once activated |
+| **Oracle** | Perfect-season XP **4980** → Level **G.O.A.T.** (Zoom XP **90** = 1 live + 1 recording; no Bonus 2/3; +2 Week-9 HW × 35 vs prior 4910) → `expected_perfect_season_xp.json` |
 | **Environment** | Production `appn84sqPw03zEbTT` only — **no DEV environment** |
 | **SC-001 manifest** | [`docs/deploy-checklists/SC-SEASON-SIM-001-EXECUTION-MANIFEST.md`](../../docs/deploy-checklists/SC-SEASON-SIM-001-EXECUTION-MANIFEST.md) |
 | **SC-002 manifest** | [`docs/deploy-checklists/SC-SEASON-SIM-002-EXECUTION-MANIFEST.md`](../../docs/deploy-checklists/SC-SEASON-SIM-002-EXECUTION-MANIFEST.md) |
@@ -46,7 +46,7 @@ Exercise as much of the live system as possible once authorized:
 - Daily submissions, missed days, streaks, weekly goals
 - Homework (incl. multi-asset) satisfactory / unsatisfactory / late paths
 - Early Bird (2027-04-25…05-01; full Sun–Sat week inside the sim window)
-- Week 9 shooting with **no** homework; **18** active PHA expected
+- Week 9 shooting + **2** homework slots; **20** active PHA expected
 - Video feedback, Zoom attendance (do not change 101 / SC-147)
 - XP events, achievements, shot milestones
 - Weekly summaries, weekly emails, coach digest, inactivity alerts
@@ -74,7 +74,7 @@ tools/season_simulation/
   three_athlete.py       SC-001 orchestration + dry-run-three
   simulation_clock.py    Harness clock (Activity Date / day number)
   clock_override.py      Gated Production vs sim future-date / same-day model
-  season_policy.py       Early Bird / Week 9 / 18 PHA / late homework
+  season_policy.py       Early Bird / Week 9 / 20 PHA / late homework
   reference_data.py      Dynamic Grade Band / goal / HW / Zoom / levels
   writer.py              Full idempotent execute writer (resume-safe)
   memory_client.py       In-memory Airtable client for offline writer tests
@@ -215,6 +215,27 @@ python -m season_simulation dry-run-three
 python -m season_simulation dry-run-three --offline-fixture
 ```
 
+### SC-SEASON-SIM-001 Perfect Mike Schmidt execute (gated)
+
+Single-athlete Perfect path with identity **Mike Schmidt** /
+`schmidt@fairfieldbasketballclub.com`. Run ID format:
+`SEASON-SIM-PERFECT-<YYYYMMDDTHHMMSSZ>-mike-schmidt`.
+
+```powershell
+python -m season_simulation execute-perfect `
+  --offline-fixture `
+  --simulation-id "SEASON-SIM-PERFECT-<utc>-mike-schmidt"
+
+python -m season_simulation execute-perfect `
+  --execute `
+  --confirm "SEASON-SIMULATION-2027" `
+  --confirm-disposable "CONFIRM-DISPOSABLE-SEASON-SIM" `
+  --acknowledge-clock-override `
+  --simulation-id "SEASON-SIM-PERFECT-<utc>-mike-schmidt"
+```
+
+(Omit `--simulation-id` to auto-generate via `new_perfect_run_id()`.)
+
 ### SC-SEASON-SIM-001 three-athlete execute (gated)
 
 Prep / dry-plan (no writes):
@@ -332,7 +353,7 @@ python -m season_simulation cleanup `
 
 ## Before the final authorized run
 
-1. Confirm **Program Homework Assignments** = **18** active (Early Bird + Weeks 1–8); Week 9 = 0
+1. Confirm **Program Homework Assignments** = **20** active (Early Bird + Weeks 1–9); Week 9 HW2 activated when required for Perfect
 2. Ensure **Weeks** cover April 25 – June 30, 2027 (10 challenge weeks)
 3. Paste Production **057 v2.7** if still on v2.6; Season Sim formula gates already ACTIVE — keep restore formulas ready
 4. Verify Resend sender already used by live Hub pipeline

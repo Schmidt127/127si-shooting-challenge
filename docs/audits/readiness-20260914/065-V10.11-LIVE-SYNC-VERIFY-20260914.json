@@ -1,0 +1,36 @@
+{
+  "automation": "065 - Homework Review and XP - Create or Reconcile Homework XP Event",
+  "automationCode": "065",
+  "scope": "GitHub + docs upward sync only. No Production automation paste. No simulation.",
+  "syncedAt": "2026-09-14T14:10:00Z",
+  "authority": "Production Automations.Automation Code (API) — LF octets are runtime authority",
+  "version": "v10.11",
+  "lastUpdated": "2026-09-13",
+  "deploymentMarker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+  "hashes": {
+    "algorithm": "SHA-256",
+    "liveProductionAutomationCodeLf": "0e84172d0f164ce19e3f3e27188eb702e83d6a3a4037705d16a9886f216ef4ac",
+    "githubAfterSyncLf": "0e84172d0f164ce19e3f3e27188eb702e83d6a3a4037705d16a9886f216ef4ac",
+    "exactMatchLiveEqualsGithubAfter": true,
+    "priorFocusedPrAttestationCrlfEquivalent": "266ca405733a0e6797fedeb03b5fc30b2ceaf092b3bc0d17e9ff6699bf5bf305",
+    "note": "266ca405… is the same logical script with CRLF line endings (Windows working-tree / prior PR attestation). Live API and Git objects use LF."
+  },
+  "behaviorNotes": {
+    "v10.10": "Soft-skip (do not throw / do not ack) when Total Homework XP Awarded is not yet positive so premature Needed=1 runs before 064 settles cannot latch the HC forever.",
+    "v10.11": "Draft-verification version bump only; soft-skip behavior unchanged from v10.10.",
+    "requiredTriggerUi": "Homework XP Reconciliation Needed? = 1 AND Total Homework XP Awarded > 0",
+    "actionOutWhenTotalXpNotReady": "skipped_total_xp_not_ready"
+  },
+  "automationsTable": {
+    "recordId": "recIiu9B03aL3NVDC",
+    "versionNumberAiAgent": {
+      "state": "generated",
+      "value": "v10.11 - 2026-09-13",
+      "isStale": false,
+      "updatedByThisTask": false,
+      "reason": "Already current; field is aiText and not writable via API. Automation Code / trigger / conditions / Status untouched."
+    }
+  },
+  "githubPath": "airtable/automations/shooting-challenge/065-homework-review-and-xp-create-homework-xp-event.js",
+  "liveCapturePath": "docs/audits/readiness-20260914/live-automation-065.js"
+}

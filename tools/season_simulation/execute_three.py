@@ -45,7 +45,11 @@ from .live_write_contract import (
 from .cascade_settlement import stage_d_settlement_hook, stage_e_reconcile_hook
 from .cleanup import stage_h_post_cascade_hooks
 from .downstream_settlement import stage_d_downstream_settlement_hook
-from .business_reconciliation import stage_e2_business_success_hook
+from .business_reconciliation import (
+    reconcile_with_live_events,
+    stage_e2_business_success_hook,
+    try_load_enrollment_xp_for_reconcile,
+)
 from .expectations_matrix import build_athlete_expectation_matrix
 from .rearm_submission_xp import run_rearm_submission_xp
 from .run_registry import save_registry
@@ -59,7 +63,7 @@ from .simulation_clock import SimulationClock
 from .three_athlete import build_three_athlete_scenarios
 
 # Per-profile cascade settle before the next athlete starts writing.
-DEFAULT_PROFILE_SETTLEMENT_TIMEOUT_S = 300.0
+DEFAULT_PROFILE_SETTLEMENT_TIMEOUT_S = 900.0
 DEFAULT_PROFILE_SETTLEMENT_POLL_S = 5.0
 
 # Ordered profile execution — athlete1 perfect first, then recovery, then edge.
@@ -553,12 +557,23 @@ def run_execute_three(
 
             # Stage E2 — business-success gate (cascade_complete alone never PASSes).
             matrix_for_biz = build_athlete_expectation_matrix(scenario)
-            business = stage_e2_business_success_hook(
-                profile=profile,
-                matrix=matrix_for_biz,
-                cascade_complete=bool(reconcile.get("complete")),
-                planned=not (writes_allowed and execute),
-            )
+            if writes_allowed and execute and client is not None and reg.enrollment_id:
+                live = try_load_enrollment_xp_for_reconcile(client, reg.enrollment_id)
+                business = reconcile_with_live_events(
+                    profile=profile,
+                    matrix=matrix_for_biz,
+                    cascade_complete=bool(reconcile.get("complete")),
+                    actual_events=live.get("events") or [],
+                    actual_lifetime_xp=live.get("lifetime_xp"),
+                    actual_level=live.get("level"),
+                )
+            else:
+                business = stage_e2_business_success_hook(
+                    profile=profile,
+                    matrix=matrix_for_biz,
+                    cascade_complete=bool(reconcile.get("complete")),
+                    planned=not (writes_allowed and execute),
+                )
             profile_payload["E2_business_success"] = business
 
             if writes_allowed and execute and (

@@ -38,10 +38,11 @@ from .execute import (
 from .preflight import run_preflight, write_preflight_reports
 from .reference_data import load_reference_snapshot
 from .reports import write_dry_run_report
-from .run_registry import new_run_id, validate_run_id
+from .run_registry import new_perfect_run_id, new_run_id, validate_run_id
 from .scenarios import scenario_from_reference
 from .simulation_clock import SimulationClock
 from .execute_three import run_execute_three
+from .execute_perfect import run_execute_perfect
 from .three_athlete import new_three_athlete_run_id, run_three_athlete_dry_run
 from .weekly_email_stage import (
     apply_weekly_email_send_arm,
@@ -67,6 +68,7 @@ def _parser() -> argparse.ArgumentParser:
             "dry-run-three",
             "execute",
             "execute-three",
+            "execute-perfect",
             "cleanup",
             "cleanup-preview-three",
             "cleanup-three",
@@ -77,7 +79,8 @@ def _parser() -> argparse.ArgumentParser:
         ],
         help=(
             "preflight=read-only checks; dry-run/dry-run-three=plan; "
-            "execute/execute-three/cleanup require confirm gates; "
+            "execute/execute-three/execute-perfect/cleanup require confirm gates; "
+            "execute-perfect=single Mike Schmidt Perfect path; "
             "cleanup-preview-three/cleanup-three=SC-001 three-athlete (preview read-only); "
             "rearm-submission-xp=dry-run by default; clear Last Reconciled Signature "
             "on owned sim submissions missing Active SUBMISSION_XP; "
@@ -220,7 +223,7 @@ def _offline_scenario(run_id: str):
                 "library_id": f"recOFFLINELIB{i:02d}",
                 "display": f"HW{i}",
             }
-            for i in range(1, 19)
+            for i in range(1, 21)
         ],
         zoom_objs=[
             {"record_id": "recOFFLINEZOOM1", "display": "Zoom A", "meeting_name": "Zoom A"},
@@ -484,6 +487,59 @@ def cmd_execute_three(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_execute_perfect(args: argparse.Namespace) -> int:
+    """Single Mike Schmidt Perfect season execute (SC-001 athlete1 path only)."""
+    run_id = args.run_id or new_perfect_run_id()
+    validate_run_id(run_id)
+    allow_writes = bool(args.execute)
+    client = None
+    if args.offline_fixture:
+        from .memory_client import MemoryAirtableClient
+
+        client = MemoryAirtableClient(allow_writes=allow_writes)
+    elif not args.execute:
+        client = _client(args, allow_writes=False)
+    else:
+        client = _client(args, allow_writes=True)
+
+    try:
+        result = run_execute_perfect(
+            run_id=run_id,
+            execute=bool(args.execute),
+            confirm=args.confirm,
+            confirm_disposable=args.confirm_disposable,
+            registry_dir=Path(args.registry_dir),
+            out_dir=Path(args.out_dir),
+            client=client,
+            offline_fixture=args.offline_fixture,
+            allow_writes=allow_writes if args.execute else False,
+            enable_email_delivery=args.enable_email_delivery,
+            acknowledge_clock_override=args.acknowledge_clock_override,
+        )
+    except Exception as exc:  # noqa: BLE001
+        print(f"execute-perfect failed: {exc}", file=sys.stderr)
+        return 3
+
+    print(
+        json.dumps(
+            {
+                k: v
+                for k, v in result.items()
+                if k not in {"stages", "profile_result"}
+            },
+            indent=2,
+            default=str,
+        )
+    )
+    if result.get("report_path"):
+        print(f"Wrote {result['report_path']}")
+    if result.get("errors"):
+        return 2 if not args.execute else 3
+    if args.execute and not result.get("gates_passed"):
+        return 2
+    return 0
+
+
 def cmd_execute(args: argparse.Namespace) -> int:
     if not is_execute_fully_gated(
         execute=args.execute,
@@ -725,6 +781,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_execute(args)
     if args.command == "execute-three":
         return cmd_execute_three(args)
+    if args.command == "execute-perfect":
+        return cmd_execute_perfect(args)
     if args.command == "cleanup":
         return cmd_cleanup(args)
     if args.command == "cleanup-preview-three":

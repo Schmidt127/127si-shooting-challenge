@@ -46,7 +46,7 @@ def _offline_reference() -> dict[str, Any]:
             "library_id": f"recOFFLINELIB{i:02d}",
             "display": f"HW{i}",
         }
-        for i in range(1, 19)
+        for i in range(1, 21)
     ]
     zoom = [
         {"record_id": "recOFFLINEZOOM1", "display": "Zoom Live"},

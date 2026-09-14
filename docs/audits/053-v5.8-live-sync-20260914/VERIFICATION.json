@@ -1,0 +1,37 @@
+{
+  "automation": "053 - Achievements and Milestones - Streak Occurrences - Rebuild and Upsert From Submissions",
+  "automation_code": "053",
+  "automations_table_record_id": "recFpmZOqUaeUtFJQ",
+  "version": "v5.8",
+  "version_number_ai_agent": {
+    "value": "v5.8 - 2026-09-13",
+    "state": "generated",
+    "isStale": false,
+    "action": "no_update_needed_already_current"
+  },
+  "deployment_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+  "last_updated": "2026-09-13",
+  "sync_date": "2026-09-14",
+  "authority": "Production Automations.Automation Code (API fetch) + Mike-attached live script",
+  "hashes": {
+    "master_github_before_sha256": "42b5fac78d077369b1314b8e795b5867f0a99d2c4baab30ea92286f131f54219",
+    "live_production_automation_code_sha256": "bded88f5d40fc16213e70b2928dc96747537c6c4bf38002ab151521260e98dfa",
+    "github_after_sync_sha256": "bded88f5d40fc16213e70b2928dc96747537c6c4bf38002ab151521260e98dfa",
+    "exact_byte_match_live_to_github_after": true,
+    "note": "Git objects stored with LF (core.autocrlf disabled for this add) to match Production Automation Code API bytes."
+  },
+  "fix_summary": "toDateKey no longer UTC-slices ISO datetime YYYY-MM-DD prefixes; date-only keys preserved literally; ISO datetimes convert via America/Denver. Prevents Week End (Denver EOD stored as next-UTC-morning 05:59Z) from overlapping next Week Start \u2014 unblocks 50/60-day streak occurrence materialization (Production Perfect D67 failure: Multiple Weeks matched streak end date 2027-06-13).",
+  "scope_exclusions": [
+    "035",
+    "065",
+    "no Production code/trigger/condition/formula/record/email changes",
+    "no simulation executed"
+  ],
+  "recorded_at_utc": "2026-09-14T13:55:16Z",
+  "tests": {
+    "season_simulation.test_reference_data_and_sc001_expectations": "PASS (33)",
+    "tests/streak-milestone/mocked-runtime.test.js": "PASS (1)",
+    "tests/pipeline/counted-submission-xp-standings-orchestration.test.mjs": "PASS (18)",
+    "static_053_todatekey_week6_week7_boundary": "PASS (2027-06-13T05:59Z -> 2027-06-12; 2027-06-13T06:00Z -> 2027-06-13)"
+  }
+}

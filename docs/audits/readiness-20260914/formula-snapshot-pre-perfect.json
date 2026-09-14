@@ -1,0 +1,65 @@
+{
+  "captured_at": "2026-09-14T13:11:26.708119+00:00",
+  "base_id": "appn84sqPw03zEbTT",
+  "table_id": "tblEVjVpGGlPTsYSt",
+  "fields": {
+    "Activity Date Is Future?": {
+      "field_id": "fldyFAjhbfaC4LlPb",
+      "type": "formula",
+      "options": {
+        "isValid": true,
+        "formula": "IF(\n  {fldpkkSBsx8kQRZos},\n  IF({fldpkkSBsx8kQRZos} > NOW(), 1, 0),\n  BLANK()\n)",
+        "referencedFieldIds": [
+          "fldpkkSBsx8kQRZos"
+        ],
+        "result": {
+          "type": "number",
+          "options": {
+            "precision": 0
+          }
+        }
+      },
+      "formula_before": "IF(\n  {fldpkkSBsx8kQRZos},\n  IF({fldpkkSBsx8kQRZos} > NOW(), 1, 0),\n  BLANK()\n)"
+    },
+    "Submitted Same Day?": {
+      "field_id": "fldE7G8H1O7HPYuIi",
+      "type": "formula",
+      "options": {
+        "isValid": true,
+        "formula": "IF(\n  AND(\n    {fld7JJ7neI0YYmB7i},\n    {fldpkkSBsx8kQRZos}\n  ),\n  IF(\n    DATETIME_FORMAT(\n      SET_TIMEZONE({fld7JJ7neI0YYmB7i}, \"America/Denver\"),\n      \"YYYY-MM-DD\"\n    )\n    =\n    DATETIME_FORMAT(\n      SET_TIMEZONE({fldpkkSBsx8kQRZos}, \"UTC\"),\n      \"YYYY-MM-DD\"\n    ),\n    1,\n    0\n  ),\n  0\n)",
+        "referencedFieldIds": [
+          "fld7JJ7neI0YYmB7i",
+          "fldpkkSBsx8kQRZos"
+        ],
+        "result": {
+          "type": "number",
+          "options": {
+            "precision": 0
+          }
+        }
+      },
+      "formula_before": "IF(\n  AND(\n    {fld7JJ7neI0YYmB7i},\n    {fldpkkSBsx8kQRZos}\n  ),\n  IF(\n    DATETIME_FORMAT(\n      SET_TIMEZONE({fld7JJ7neI0YYmB7i}, \"America/Denver\"),\n      \"YYYY-MM-DD\"\n    )\n    =\n    DATETIME_FORMAT(\n      SET_TIMEZONE({fldpkkSBsx8kQRZos}, \"UTC\"),\n      \"YYYY-MM-DD\"\n    ),\n    1,\n    0\n  ),\n  0\n)"
+    },
+    "Perfect Week Grace Eligible?": {
+      "field_id": "fldLo2GO5aac6tPX1",
+      "type": "formula",
+      "options": {
+        "isValid": true,
+        "formula": "IF(\n  OR(\n    {fldIb6nJu5TBkUUrD},\n    AND(\n      {fld1gQ2c04pndnTKe} = 1,\n      {fldpkkSBsx8kQRZos},\n      {fld7JJ7neI0YYmB7i},\n      DATETIME_FORMAT(\n        SET_TIMEZONE({fldpkkSBsx8kQRZos}, \"America/Denver\"),\n        \"YYYY-MM-DD\"\n      ) <= DATETIME_FORMAT(TODAY(), \"YYYY-MM-DD\"),\n      DATETIME_DIFF(\n        {fld7JJ7neI0YYmB7i},\n        DATETIME_PARSE(\n          DATETIME_FORMAT(\n            DATEADD(\n              DATETIME_PARSE(\n                DATETIME_FORMAT(\n                  SET_TIMEZONE({fldpkkSBsx8kQRZos}, \"America/Denver\"),\n                  \"YYYY-MM-DD\"\n                ),\n                \"YYYY-MM-DD\"\n              ),\n              1,\n              \"days\"\n            ),\n            \"YYYY-MM-DD\"\n          ) & \" 00:00\",\n          \"YYYY-MM-DD HH\\\\:mm\"\n        ),\n        \"hours\"\n      ) <= 48\n    )\n  ),\n  1,\n  0\n)",
+        "referencedFieldIds": [
+          "fldIb6nJu5TBkUUrD",
+          "fld1gQ2c04pndnTKe",
+          "fldpkkSBsx8kQRZos",
+          "fld7JJ7neI0YYmB7i"
+        ],
+        "result": {
+          "type": "number",
+          "options": {
+            "precision": 0
+          }
+        }
+      },
+      "formula_before": "IF(\n  OR(\n    {fldIb6nJu5TBkUUrD},\n    AND(\n      {fld1gQ2c04pndnTKe} = 1,\n      {fldpkkSBsx8kQRZos},\n      {fld7JJ7neI0YYmB7i},\n      DATETIME_FORMAT(\n        SET_TIMEZONE({fldpkkSBsx8kQRZos}, \"America/Denver\"),\n        \"YYYY-MM-DD\"\n      ) <= DATETIME_FORMAT(TODAY(), \"YYYY-MM-DD\"),\n      DATETIME_DIFF(\n        {fld7JJ7neI0YYmB7i},\n        DATETIME_PARSE(\n          DATETIME_FORMAT(\n            DATEADD(\n              DATETIME_PARSE(\n                DATETIME_FORMAT(\n                  SET_TIMEZONE({fldpkkSBsx8kQRZos}, \"America/Denver\"),\n                  \"YYYY-MM-DD\"\n                ),\n                \"YYYY-MM-DD\"\n              ),\n              1,\n              \"days\"\n            ),\n            \"YYYY-MM-DD\"\n          ) & \" 00:00\",\n          \"YYYY-MM-DD HH\\\\:mm\"\n        ),\n        \"hours\"\n      ) <= 48\n    )\n  ),\n  1,\n  0\n)"
+    }
+  }
+}

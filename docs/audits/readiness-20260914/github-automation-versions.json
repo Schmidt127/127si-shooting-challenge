@@ -1,0 +1,277 @@
+[
+  {
+    "file": "001-enrollment-intake-and-setup-find-or-create-athlete-and-link-enrollment.js",
+    "scriptId": "001",
+    "version": null
+  },
+  {
+    "file": "002-enrollment-intake-and-setup-assign-grade-band-initial.js",
+    "scriptId": "002",
+    "version": null
+  },
+  {
+    "file": "003-enrollment-intake-and-setup-assign-grade-band-if-grade-changes.js",
+    "scriptId": "003",
+    "version": null
+  },
+  {
+    "file": "005-submission-intake-and-asset-creation-assign-week-to-submission-homework-first.js",
+    "scriptId": "005",
+    "version": "v5.5"
+  },
+  {
+    "file": "006-submission-intake-and-asset-creation-set-video-count.js",
+    "scriptId": "006",
+    "version": null
+  },
+  {
+    "file": "007-submission-intake-and-asset-creation-duplicate-checker-for-submissions.js",
+    "scriptId": "007",
+    "version": null
+  },
+  {
+    "file": "009-submission-intake-create-submission-assets.js",
+    "scriptId": "009",
+    "version": "v1.3"
+  },
+  {
+    "file": "010-submission-intake-create-xp-event.js",
+    "scriptId": "010",
+    "version": "v10.14"
+  },
+  {
+    "file": "013-submission-intake-create-or-link-video-feedback.js",
+    "scriptId": "013",
+    "version": "v3.2.0"
+  },
+  {
+    "file": "020-homework-link-or-create-homework-completion.js",
+    "scriptId": "020",
+    "version": "v4.1"
+  },
+  {
+    "file": "021-submission-intake-and-asset-creation-set-attachment-upload-status.js",
+    "scriptId": "021",
+    "version": null
+  },
+  {
+    "file": "022-submission-intake-sync-child-upload-writeback-from-submission-asset.js",
+    "scriptId": "022",
+    "version": "v2.2"
+  },
+  {
+    "file": "023-submission-intake-and-asset-creation-assign-enrollment-to-submission.js",
+    "scriptId": "023",
+    "version": "v3.1"
+  },
+  {
+    "file": "030-weekly-summary-and-goal-logic-copy-enrollment-grade-band-to-weekly-summary.js",
+    "scriptId": "030",
+    "version": "v3.0"
+  },
+  {
+    "file": "031-weekly-summary-and-goal-logic-find-or-create-weekly-athlete-summary-from-submission.js",
+    "scriptId": "031",
+    "version": "v4.1"
+  },
+  {
+    "file": "032-weekly-summary-and-goal-logic-link-challenge-goal-record-to-weekly-athlete-summary.js",
+    "scriptId": "032",
+    "version": "v3.4"
+  },
+  {
+    "file": "033-weekly-summary-and-goal-logic-assign-homework-to-weekly-athlete-summary.js",
+    "scriptId": "033",
+    "version": "v4.4"
+  },
+  {
+    "file": "034-weekly-summary-and-goal-logic-set-previous-week-helper-values.js",
+    "scriptId": "034",
+    "version": "v3.4"
+  },
+  {
+    "file": "035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js",
+    "scriptId": "035",
+    "version": "v1.6"
+  },
+  {
+    "file": "041-levels-and-progression-mark-enrollment-for-level-recalculation.js",
+    "scriptId": "041",
+    "version": "v5.1"
+  },
+  {
+    "file": "042-levels-and-progression-assign-current-and-next-level-with-gate-blocking.js",
+    "scriptId": "042",
+    "version": "4.1.3"
+  },
+  {
+    "file": "043-levels-and-progression-set-level-gate-rule-from-next-level.js",
+    "scriptId": "043",
+    "version": null
+  },
+  {
+    "file": "053-achievements-and-milestones-streak-occurrences-rebuild-and-upsert-from-submissions.js",
+    "scriptId": "053",
+    "version": "5.8"
+  },
+  {
+    "file": "054-achievements-and-milestones-streak-occurrences-create-or-repair-streak-xp-event.js",
+    "scriptId": "054",
+    "version": "v5.8"
+  },
+  {
+    "file": "055-achievements-and-milestones-recalculate-current-shooting-streak-from-submission.js",
+    "scriptId": "055",
+    "version": "v3.2"
+  },
+  {
+    "file": "056-achievements-and-milestones-refresh-current-shooting-streaks-daily.js",
+    "scriptId": "056",
+    "version": "v1.2"
+  },
+  {
+    "file": "057-achievements-and-milestones-calculate-perfect-week-eligibility.js",
+    "scriptId": "057",
+    "version": "2.7"
+  },
+  {
+    "file": "058-achievements-and-milestones-create-perfect-week-unlock.js",
+    "scriptId": "058",
+    "version": "1.7"
+  },
+  {
+    "file": "059-achievements-and-milestones-create-xp-event-from-achievement-unlock.js",
+    "scriptId": "059",
+    "version": "v3.8"
+  },
+  {
+    "file": "063-homework-review-and-xp-copy-enrollment-grade-band-to-homework-completion.js",
+    "scriptId": "063",
+    "version": null
+  },
+  {
+    "file": "064-homework-review-and-xp-prepare-homework-xp-award.js",
+    "scriptId": "064",
+    "version": "2026"
+  },
+  {
+    "file": "065-homework-review-and-xp-create-homework-xp-event.js",
+    "scriptId": "065",
+    "version": "v10.11"
+  },
+  {
+    "file": "066-achievements-and-milestones-create-shot-milestone-unlocks.js",
+    "scriptId": "066",
+    "version": "v4.1"
+  },
+  {
+    "file": "067-homework-link-or-create-completion-from-reflection-quiz.js",
+    "scriptId": "067",
+    "version": "v3.5"
+  },
+  {
+    "file": "068-homework-reconcile-deferred-weekly-summary-links.js",
+    "scriptId": "068",
+    "version": null
+  },
+  {
+    "file": "071-email-notifications-and-external-handoffs-send-homework-feedback-email-webhook.js",
+    "scriptId": "071",
+    "version": "v4.5"
+  },
+  {
+    "file": "072-email-notifications-and-external-handoffs-build-weekly-summary-email-package.js",
+    "scriptId": "072",
+    "version": "v4.9.2"
+  },
+  {
+    "file": "073-email-notifications-and-external-handoffs-send-video-feedback-parent-email-webhook.js",
+    "scriptId": "073",
+    "version": "v4.9"
+  },
+  {
+    "file": "074-email-notifications-and-external-handoffs-send-weekly-summary-email-package-to-make.js",
+    "scriptId": "074",
+    "version": "v3.6"
+  },
+  {
+    "file": "075-email-notifications-and-external-handoffs-build-challenge-welcome-email.js",
+    "scriptId": "075",
+    "version": "v3.0"
+  },
+  {
+    "file": "076-email-notifications-and-external-handoffs-build-daily-submission-email-package.js",
+    "scriptId": "076",
+    "version": "v8.15"
+  },
+  {
+    "file": "077-email-notifications-and-external-handoffs-send-daily-submission-email-package-to-make.js",
+    "scriptId": "077",
+    "version": "v5.0"
+  },
+  {
+    "file": "079-email-notifications-and-external-handoffs-send-queue-handoff-to-communications-hub.js",
+    "scriptId": "079",
+    "version": "v2.5"
+  },
+  {
+    "file": "101-zoom-attendance-xp-award-meeting-xp.js",
+    "scriptId": "101",
+    "version": "v6.9"
+  },
+  {
+    "file": "111-video-review-and-xp-copy-enrollment-grade-band-to-video-feedback.js",
+    "scriptId": "111",
+    "version": null
+  },
+  {
+    "file": "112-video-review-and-xp-create-video-feedback-from-submission-asset.js",
+    "scriptId": "112",
+    "version": null
+  },
+  {
+    "file": "113-video-review-and-xp-assign-base-video-xp.js",
+    "scriptId": "113",
+    "version": "v6.5"
+  },
+  {
+    "file": "114-video-review-and-xp-create-or-update-video-xp-event.js",
+    "scriptId": "114",
+    "version": "v6.3"
+  },
+  {
+    "file": "115-engineering-test-framework-run-testing-scenario-daily-submission.js",
+    "scriptId": "115",
+    "version": "v2.1"
+  },
+  {
+    "file": "116-submission-assets-apply-asset-reuse-decision-consequences.js",
+    "scriptId": "116",
+    "version": "v1.0.1"
+  },
+  {
+    "file": "117-zoom-send-recording-approval-email-to-make.js",
+    "scriptId": "117",
+    "version": "v2.2"
+  },
+  {
+    "file": "118-email-notifications-and-external-handoffs-schedule-weekly-summary-email-build.js",
+    "scriptId": "118",
+    "version": "v2.1"
+  },
+  {
+    "file": "119-email-notifications-and-external-handoffs-schedule-weekly-summary-email-send.js",
+    "scriptId": "119",
+    "version": "v1.8"
+  },
+  {
+    "file": "120-video-review-and-xp-apply-fut009-s3-video-rename.js",
+    "scriptId": "120",
+    "version": "v1.0"
+  },
+  {
+    "file": "122-achievements-and-milestones-stamp-goal-met-date.js",
+    "scriptId": "122",
+    "version": "v0.0-superseded"
+  }
+]

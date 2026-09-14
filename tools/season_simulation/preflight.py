@@ -344,7 +344,7 @@ def run_preflight(
         "Gated formula (temporary):\n" + GATED_ACTIVITY_DATE_IS_FUTURE_FORMULA,
         "REQUIRED: Weeks rows covering every date from 2027-04-25 through 2027-06-30.",
         f"REQUIRED before final run: {EXPECTED_ACTIVE_PHA_COUNT} active Program Homework "
-        "Assignments (Early Bird + Weeks 1–8 × 2 slots); Week 9 must have 0 PHA.",
+        "Assignments (Early Bird + Weeks 1–9 × 2 slots).",
         "REQUIRED: Resend domain/sender already used by live Hub pipeline must be verified before enabling delivery.",
         "Do not permanently weaken production future-date protections for normal athletes.",
         "Do not modify SC-147, Automation 101, or Zoom credit logic for this simulation.",
@@ -447,7 +447,7 @@ def run_preflight(
     if not final_ready and not errors:
         warnings.append(
             "Configuration is readable but not marked sufficient_for_final_run "
-            "(need 18 active PHA for the Grade 12 band, Zoom contract PASS, weeks coverage, "
+            "(need 20 active PHA for the Grade 12 band, Zoom contract PASS, weeks coverage, "
             "XP rules, gated clock override readiness, and no errors)."
         )
 

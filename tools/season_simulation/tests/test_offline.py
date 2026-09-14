@@ -365,18 +365,18 @@ class TestSeasonPolicy(unittest.TestCase):
         self.assertTrue(d.countable)
         self.assertEqual(week_label_for_activity_date(date(2027, 5, 1)), "Early Bird")
 
-    def test_week9_no_homework(self):
+    def test_week9_has_homework(self):
         # Week 9 starts 2027-06-27 (Sun) in this calendar model
         label = week_label_for_activity_date(date(2027, 6, 27))
         self.assertEqual(label, "Week 9")
-        own = evaluate_homework_week_ownership("Week 9", 0)
+        own = evaluate_homework_week_ownership("Week 9", 2)
         self.assertTrue(own.ok)
-        self.assertFalse(own.expect_homework)
-        bad = evaluate_homework_week_ownership("Week 9", 2)
+        self.assertTrue(own.expect_homework)
+        bad = evaluate_homework_week_ownership("Week 9", 0)
         self.assertFalse(bad.ok)
 
-    def test_eighteen_homework_expectation(self):
-        self.assertEqual(EXPECTED_ACTIVE_PHA_COUNT, 18)
+    def test_twenty_homework_expectation(self):
+        self.assertEqual(EXPECTED_ACTIVE_PHA_COUNT, 20)
         early = evaluate_homework_week_ownership("Early Bird", 2)
         self.assertTrue(early.ok)
         w1 = evaluate_homework_week_ownership("Week 1", 2)
@@ -419,7 +419,7 @@ class TestSeasonPolicy(unittest.TestCase):
 
 
 class TestScenario(unittest.TestCase):
-    def _scenario(self, hw_count: int = 18):
+    def _scenario(self, hw_count: int = 20):
         return build_athlete1_scenario(
             run_id="SEASON-SIM-2027-20260101T000000Z-test01",
             grade_band_id="recBAND",
@@ -456,7 +456,7 @@ class TestScenario(unittest.TestCase):
         self.assertEqual(back.timing, "backdated")
         self.assertEqual(back.write_on_day_number, BACKDATE_WRITE_DAY)
 
-    def test_week9_has_no_homework_attachments(self):
+    def test_week9_schedules_week9_homework(self):
         s = self._scenario()
         week9_days = [
             d
@@ -464,10 +464,10 @@ class TestScenario(unittest.TestCase):
             if week_label_for_activity_date(d.activity_date) == "Week 9"
         ]
         self.assertTrue(week9_days)
-        for d in week9_days:
-            for hw in d.homework:
-                # Late Week 8 probe may land on calendar Week 9; never a Week 9 PHA.
-                self.assertNotEqual(hw.get("week_label"), "Week 9")
+        week9_owned = [
+            hw for d in week9_days for hw in d.homework if hw.get("week_label") == "Week 9"
+        ]
+        self.assertEqual(len(week9_owned), 2)
 
     def test_early_bird_day_one(self):
         s = self._scenario()
@@ -487,23 +487,23 @@ class TestScenario(unittest.TestCase):
         self.assertFalse(hw["perfect_week_homework_eligible"])
         self.assertEqual(hw["late_status"], "late_xp_ok_no_retro_pw")
 
-    def test_eighteen_homework_selected(self):
-        s = self._scenario(18)
-        self.assertEqual(s.meta["homework_selected_count"], 18)
+    def test_twenty_homework_selected(self):
+        s = self._scenario(20)
+        self.assertEqual(s.meta["homework_selected_count"], 20)
 
-    def test_eighteen_phas_each_exactly_once(self):
-        s = self._scenario(18)
+    def test_twenty_phas_each_exactly_once(self):
+        s = self._scenario(20)
         pha_ids = [
             hw["pha_record_id"] for d in s.days for hw in d.homework
         ]
-        self.assertEqual(len(pha_ids), 18)
-        self.assertEqual(len(set(pha_ids)), 18)
+        self.assertEqual(len(pha_ids), 20)
+        self.assertEqual(len(set(pha_ids)), 20)
         selected = {h["record_id"] for h in s.homework_selected}
         self.assertEqual(set(pha_ids), selected)
-        self.assertEqual(s.intended_writes_summary["homework_completions"], 18)
+        self.assertEqual(s.intended_writes_summary["homework_completions"], 20)
 
     def test_early_bird_two_completions(self):
-        s = self._scenario(18)
+        s = self._scenario(20)
         early_days = [
             d
             for d in s.days
@@ -516,8 +516,8 @@ class TestScenario(unittest.TestCase):
         self.assertEqual(len(early_hw), 2)
         self.assertEqual({hw.get("week_label") for hw in early_hw}, {"Early Bird"})
 
-    def test_week9_has_zero_week9_pha_completions(self):
-        s = self._scenario(18)
+    def test_week9_has_two_week9_pha_completions(self):
+        s = self._scenario(20)
         week9_days = [
             d
             for d in s.days
@@ -530,11 +530,10 @@ class TestScenario(unittest.TestCase):
             for hw in d.homework
             if hw.get("week_label") == "Week 9"
         ]
-        self.assertEqual(week9_owned, [])
-        # Late Week 8 probe may land on final sim day (calendar Week 9) — still not a Week 9 PHA.
+        self.assertEqual(len(week9_owned), 2)
+        # Late Week 8 probe may still land on final sim day (calendar Week 9).
         late = next(d for d in s.days if d.day_number == LATE_HOMEWORK_PROBE_DAY)
-        if late.homework:
-            self.assertEqual(late.homework[0].get("week_label"), "Week 8")
+        if late.homework and late.homework[0].get("week_label") == "Week 8":
             self.assertTrue(late.homework[0]["homework_xp_eligible"])
             self.assertFalse(late.homework[0]["perfect_week_homework_eligible"])
 

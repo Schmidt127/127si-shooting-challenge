@@ -16,12 +16,12 @@ WEEK1_START = date(2027, 5, 2)
 PROGRAM_END = date(2027, 6, 30)  # inclusive end of challenge (11:59 PM Denver)
 # Catalog/display recommendation only — NOT a normal Homework XP cutoff.
 COMMON_HOMEWORK_DUE_DATE = date(2027, 6, 29)
-EXPECTED_ACTIVE_PHA_COUNT = 18
+EXPECTED_ACTIVE_PHA_COUNT = 20
 HOMEWORK_SLOTS_PER_HOMEWORK_WEEK = 2
-REGULAR_HOMEWORK_WEEKS = frozenset(range(1, 9))  # 1..8
-# Production PHA schedule: Early Bird + Weeks 1–8 (2 slots each) = 18.
-# Named Week 9 has 0 PHA rows; Perfect Week homework passes vacuously.
-WEEK9_HAS_HOMEWORK = False
+REGULAR_HOMEWORK_WEEKS = frozenset(range(1, 10))  # 1..9
+# Production PHA schedule: Early Bird + Weeks 1–9 (2 slots each) = 20.
+# Week 9 HW1 is Active; Week 9 HW2 must be modeled as expected once activated.
+WEEK9_HAS_HOMEWORK = True
 
 # Official Week End Saturday (or Wed for Week 9) for Perfect Week homework.
 WEEK_END_CUTOFFS: dict[str, date] = {
@@ -120,23 +120,11 @@ def evaluate_homework_week_ownership(
         except (IndexError, ValueError):
             week_num = None
 
-    if is_week9:
-        ok = active_pha_count_for_week == 0 and WEEK9_HAS_HOMEWORK is False
-        return HomeworkWeekOwnership(
-            week_label=label,
-            ok=ok,
-            expect_homework=False,
-            actual_active_pha_count=active_pha_count_for_week,
-            reason=(
-                "Week 9 correctly has no active PHA (Production: 18 = EB + Weeks 1–8)."
-                if ok
-                else f"Week 9 must have 0 active PHA (got {active_pha_count_for_week})."
-            ),
-        )
-
-    if is_early or (week_num in REGULAR_HOMEWORK_WEEKS):
+    if is_week9 or is_early or (week_num in REGULAR_HOMEWORK_WEEKS):
         expect = HOMEWORK_SLOTS_PER_HOMEWORK_WEEK
-        ok = active_pha_count_for_week == expect
+        ok = active_pha_count_for_week == expect and (
+            not is_week9 or WEEK9_HAS_HOMEWORK is True
+        )
         return HomeworkWeekOwnership(
             week_label=label,
             ok=ok,
@@ -144,6 +132,12 @@ def evaluate_homework_week_ownership(
             actual_active_pha_count=active_pha_count_for_week,
             reason=(
                 f"{label} has {active_pha_count_for_week} active PHA (expect {expect})."
+                if ok
+                else (
+                    f"{label} must have {expect} active PHA "
+                    f"(got {active_pha_count_for_week}; "
+                    f"Production: 20 = EB + Weeks 1–9 × 2)."
+                )
             ),
         )
 

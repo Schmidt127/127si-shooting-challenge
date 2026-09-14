@@ -40,7 +40,7 @@ def _offline_kwargs(run_id: str) -> dict:
             "library_id": f"recOFFLIB{i:02d}",
             "display": f"HW{i}",
         }
-        for i in range(1, 19)
+        for i in range(1, 21)
     ]
     return dict(
         run_id=run_id,
@@ -179,16 +179,17 @@ class TestBusinessSuccessGate(unittest.TestCase):
         self.assertFalse(hook["pass"])
         self.assertTrue(any("cascade_complete=true" in e for e in hook["errors"]))
 
-    def test_perfect_oracle_points_4910(self):
+    def test_perfect_oracle_points_4980(self):
         rid = new_run_id(suffix="biz3")
         scenario = build_all_sc001_scenarios(**_offline_kwargs(rid))["athlete1_perfect"]
         matrix = build_athlete_expectation_matrix(scenario)
         pts = expected_points_from_matrix(matrix)
-        self.assertEqual(sum_points(pts), 4910)
-        self.assertEqual(level_for(4910), "G.O.A.T.")
+        self.assertEqual(sum_points(pts), 4980)
+        self.assertEqual(level_for(4980), "G.O.A.T.")
         self.assertEqual(pts["Streak XP"], 455)
         self.assertEqual(pts["Weekly Threshold XP"], 480)
         self.assertEqual(pts["Perfect Week XP"], 1000)
+        self.assertEqual(pts["Homework XP"], 700)
 
 
 class TestRecoveryEdgeOracle(unittest.TestCase):
@@ -199,8 +200,10 @@ class TestRecoveryEdgeOracle(unittest.TestCase):
         matrix = build_athlete_expectation_matrix(scenario)
         pts = expected_points_from_matrix(matrix)
         self.assertEqual(matrix.expected_perfect_week_count, 1)
-        self.assertEqual(sum_points(pts), 2305)
+        self.assertEqual(sum_points(pts), 2565)
         self.assertEqual(pts["Perfect Week XP"], 100)
+        self.assertEqual(pts["Streak XP"], 265)
+        self.assertEqual(matrix.expected_xp_by_category.get("STREAK_XP"), 19)
 
     def test_edge_perfect_week_five_and_xp(self):
         rid = new_run_id(suffix="edge")
@@ -209,9 +212,9 @@ class TestRecoveryEdgeOracle(unittest.TestCase):
         matrix = build_athlete_expectation_matrix(scenario)
         pts = expected_points_from_matrix(matrix)
         self.assertEqual(matrix.expected_perfect_week_count, 5)
-        self.assertEqual(sum_points(pts), 3620)
+        self.assertEqual(sum_points(pts), 3885)
         self.assertEqual(pts["Perfect Week XP"], 500)
-        self.assertEqual(pts["Streak XP"], 260)
+        self.assertEqual(pts["Streak XP"], 455)
 
 
 class TestDailyFloor191(unittest.TestCase):

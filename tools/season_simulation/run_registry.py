@@ -11,7 +11,17 @@ from typing import Any, Sequence
 
 from .constants import RUN_MARKER_PREFIX
 
-_RUN_ID_RE = re.compile(r"^SEASON-SIM-2027-[0-9]{8}T[0-9]{6}Z-[a-z0-9]{6}$")
+# Legacy three-athlete / SC-002: SEASON-SIM-2027-<stamp>-<suffix>
+_RUN_ID_RE_2027 = re.compile(r"^SEASON-SIM-2027-[0-9]{8}T[0-9]{6}Z-[a-z0-9]{6,}$")
+# Perfect Mike Schmidt: SEASON-SIM-PERFECT-<stamp>-mike-schmidt (or SEASON-SIM-PERFECT-…)
+_RUN_ID_RE_PERFECT = re.compile(
+    r"^SEASON-SIM-PERFECT-[0-9]{8}T[0-9]{6}Z(?:-[a-z0-9\-]+)?$",
+    re.IGNORECASE,
+)
+_EXTRACT_RUN_IDS_RE = re.compile(
+    r"SEASON-SIM-(?:2027|PERFECT)-[A-Za-z0-9\-]+",
+    re.IGNORECASE,
+)
 
 
 def new_run_id(*, now: datetime | None = None, suffix: str = "athlete1") -> str:
@@ -22,13 +32,28 @@ def new_run_id(*, now: datetime | None = None, suffix: str = "athlete1") -> str:
     return f"SEASON-SIM-2027-{stamp}-{safe_suffix}"
 
 
+def new_perfect_run_id(*, now: datetime | None = None) -> str:
+    """Generate Perfect Mike Schmidt run ID: SEASON-SIM-PERFECT-<stamp>-mike-schmidt."""
+    moment = now or datetime.now(timezone.utc)
+    stamp = moment.strftime("%Y%m%dT%H%M%SZ")
+    return f"SEASON-SIM-PERFECT-{stamp}-mike-schmidt"
+
+
+def is_valid_run_id_prefix(run_id: str) -> bool:
+    value = (run_id or "").strip()
+    return value.startswith("SEASON-SIM-2027-") or value.upper().startswith(
+        "SEASON-SIM-PERFECT-"
+    )
+
+
 def validate_run_id(run_id: str) -> str:
     value = (run_id or "").strip()
-    if not value.startswith("SEASON-SIM-2027-"):
+    if not is_valid_run_id_prefix(value):
         raise ValueError(
-            f"Run ID must start with SEASON-SIM-2027-: got {run_id!r}"
+            "Run ID must start with SEASON-SIM-2027- or SEASON-SIM-PERFECT-: "
+            f"got {run_id!r}"
         )
-    if len(value) < 20 or len(value) > 80:
+    if len(value) < 20 or len(value) > 96:
         raise ValueError(f"Run ID length out of bounds: {run_id!r}")
     return value
 
@@ -48,7 +73,7 @@ def marker_matches(text: str | None, run_id: str) -> bool:
 def extract_run_ids(text: str | None) -> list[str]:
     if not text:
         return []
-    return re.findall(r"SEASON-SIM-2027-[A-Za-z0-9\-]+", str(text))
+    return _EXTRACT_RUN_IDS_RE.findall(str(text))
 
 
 @dataclass

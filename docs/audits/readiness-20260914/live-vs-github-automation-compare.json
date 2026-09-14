@@ -1,0 +1,144 @@
+{
+  "generated_at": "2026-09-14T14:09:37.270677+00:00",
+  "base_id": "appn84sqPw03zEbTT",
+  "method": {
+    "name": "live_automation_code_vs_github_identity",
+    "fields": [
+      "Automation Code hash (paste body SHA-256)",
+      "SCRIPT.version (docblock Version fallback)",
+      "SCRIPT.deployMarker (or SC-SEASON-SIM deploy token in header)",
+      "SCRIPT.lastUpdated / docblock Last Updated"
+    ],
+    "authority": "Production Automations.Automation Code is runtime authority. Identity is SCRIPT.version / docblock Version + deployMarker + paste-body SHA-256 \u2014 never 'first version string found'. Do not paste older GitHub over Production. Prior 035 Automations-table mirror lag was documentation-only and is not a reason to downgrade Production.",
+    "expected_baselines": {
+      "035": {
+        "version": "v1.6",
+        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913C",
+        "full_sha256": "c7c1cf1330689f1f7336e36615af62eb232bc5a104df165448818f9252250677"
+      },
+      "053": {
+        "version": "5.8",
+        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+        "full_sha256": "bded88f5d40fc16213e70b2928dc96747537c6c4bf38002ab151521260e98dfa"
+      },
+      "065": {
+        "version": "v10.11",
+        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+        "full_sha256_lf_live_api": "0e84172d0f164ce19e3f3e27188eb702e83d6a3a4037705d16a9886f216ef4ac",
+        "attested_crlf_equivalent": "266ca405733a0e6797fedeb03b5fc30b2ceaf092b3bc0d17e9ff6699bf5bf305"
+      }
+    }
+  },
+  "results": [
+    {
+      "code": "035",
+      "record_id": "recIkAzMDMOYzSrox",
+      "name": "035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Events",
+      "status": "Live",
+      "automations_table_version_ai": {
+        "state": "generated",
+        "value": "v1.6 - 2026-09-13",
+        "isStale": false
+      },
+      "github_path": "airtable/automations/shooting-challenge/035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js",
+      "live": {
+        "script_version": "v1.6",
+        "docblock_version": "v1.6",
+        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913C",
+        "last_updated": "2026-09-13",
+        "body_sha256": "6ddaf1bd8803289efbb2cef32114717002eef98ba7771fab0aa4c3d26f3e4e71",
+        "full_sha256": "c7c1cf1330689f1f7336e36615af62eb232bc5a104df165448818f9252250677",
+        "char_len": 31748
+      },
+      "github": {
+        "script_version": "v1.6",
+        "docblock_version": "v1.6",
+        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913C",
+        "last_updated": "2026-09-13",
+        "body_sha256": "6ddaf1bd8803289efbb2cef32114717002eef98ba7771fab0aa4c3d26f3e4e71",
+        "full_sha256": "c7c1cf1330689f1f7336e36615af62eb232bc5a104df165448818f9252250677",
+        "char_len": 31748
+      },
+      "body_hash_match": true,
+      "script_version_match": true,
+      "deploy_marker_match": true,
+      "last_updated_match": true,
+      "notes": [
+        "automations_table_mirror_aligned_v1.6_with_github_and_live_ui"
+      ]
+    },
+    {
+      "code": "053",
+      "record_id": "recFpmZOqUaeUtFJQ",
+      "name": "053 - Achievements and Milestones - Streak Occurrences - Rebuild and Upsert From Submissions",
+      "status": "Live",
+      "automations_table_version_ai": {
+        "state": "generated",
+        "value": "v5.8 - 2026-09-13",
+        "isStale": false
+      },
+      "github_path": "airtable/automations/shooting-challenge/053-achievements-and-milestones-streak-occurrences-rebuild-and-upsert-from-submissions.js",
+      "live": {
+        "script_version": null,
+        "docblock_version": "5.8",
+        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+        "last_updated": "2026-09-13",
+        "body_sha256": "ea66f00dd105a138c1904cfc5201fbfb79d132e8cb174dd55579a521bd0f177d",
+        "full_sha256": "bded88f5d40fc16213e70b2928dc96747537c6c4bf38002ab151521260e98dfa",
+        "char_len": 45068
+      },
+      "github": {
+        "script_version": null,
+        "docblock_version": "5.8",
+        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+        "last_updated": "2026-09-13",
+        "body_sha256": "ea66f00dd105a138c1904cfc5201fbfb79d132e8cb174dd55579a521bd0f177d",
+        "full_sha256": "bded88f5d40fc16213e70b2928dc96747537c6c4bf38002ab151521260e98dfa",
+        "char_len": 45068
+      },
+      "body_hash_match": true,
+      "script_version_match": true,
+      "deploy_marker_match": true,
+      "last_updated_match": true,
+      "notes": []
+    },
+    {
+      "code": "065",
+      "record_id": "recIiu9B03aL3NVDC",
+      "name": "065 - Homework Review and XP - Create or Update Homework XP Event",
+      "status": "Live",
+      "automations_table_version_ai": {
+        "state": "generated",
+        "value": "v10.11 - 2026-09-13",
+        "isStale": false
+      },
+      "github_path": "airtable/automations/shooting-challenge/065-homework-review-and-xp-create-homework-xp-event.js",
+      "live": {
+        "script_version": null,
+        "docblock_version": "v10.11",
+        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+        "last_updated": "2026-09-13",
+        "body_sha256": "ab15c174547160abc33c6147df7aca43190a974744a63f70e5952f71241dc3b2",
+        "full_sha256": "0e84172d0f164ce19e3f3e27188eb702e83d6a3a4037705d16a9886f216ef4ac",
+        "char_len": 33895
+      },
+      "github": {
+        "script_version": null,
+        "docblock_version": "v10.11",
+        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913B",
+        "last_updated": "2026-09-13",
+        "body_sha256": "ab15c174547160abc33c6147df7aca43190a974744a63f70e5952f71241dc3b2",
+        "full_sha256": "0e84172d0f164ce19e3f3e27188eb702e83d6a3a4037705d16a9886f216ef4ac",
+        "char_len": 33895
+      },
+      "body_hash_match": true,
+      "script_version_match": true,
+      "deploy_marker_match": true,
+      "last_updated_match": true,
+      "notes": [
+        "github_lf_matches_live_api;_crlf_octet_hash_matches_prior_attestation_266ca405"
+      ],
+      "github_crlf_equivalent_sha256": "266ca405733a0e6797fedeb03b5fc30b2ceaf092b3bc0d17e9ff6699bf5bf305"
+    }
+  ]
+}
