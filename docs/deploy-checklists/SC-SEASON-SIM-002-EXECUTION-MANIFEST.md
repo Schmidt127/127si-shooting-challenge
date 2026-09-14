@@ -1,5 +1,7 @@
 # SC-SEASON-SIM-002 — Execution Manifest (PREP 2026-09-12 — NOT READY TO EXECUTE)
 
+> **HISTORICAL — DO NOT USE FOR CURRENT OPERATIONS.** This is a dated SC-002 preparation snapshot. Its PHA counts, automation versions, formula-gate state, and authorizing phrase are not the current Perfect Mike run procedure. Preserve it for evidence; use [`SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md`](./SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md) for a future Perfect run.
+
 | | |
 |---|---|
 | **Backlog** | SC-SEASON-SIM-002 |
