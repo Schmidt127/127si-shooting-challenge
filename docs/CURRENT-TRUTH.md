@@ -1,8 +1,9 @@
 # CURRENT TRUTH â 127 SI Shooting Challenge
 
 **Status:** Active — primary current-state document for this repository  
-**Last verification (repo):** 2026-09-14 — Perfect Mike Schmidt readiness integration. Live transactional purge **942** disposable IDs — SC + Curriculum Hub + Comms Hub transactional zero-state; catalog Zoom Meetings ×2 preserved; formulas normal (no SEASON-SIM branches). Packet: [`audits/readiness-20260914/README.md`](./audits/readiness-20260914/README.md). **PR #530 SUPERSEDED — do not merge.** Email allowlist for sim: **`schmidt@fairfieldbasketballclub.com`**. GitHub **035 v1.7** ASCII/comment hash-consistency release ready (`SC-SEASON-SIM-001-DEPLOY-20260914D`; Production paste pending Mike approval). **053 v5.8**, **065 v10.11** live. **Perfect Mike Schmidt / THREE-ATHLETE SIMULATION — NOT EXECUTED.** **SC-SEASON-SIM-002** CLOSED. **FUT-048** deferred.
+**Last verification (repo):** 2026-09-14 — **Master roadmap reconciled** ([`MASTER_REMAINING_WORK_LIST.md`](../MASTER_REMAINING_WORK_LIST.md) · [`roadmap/README.md`](./roadmap/README.md)). **Perfect Mike Schmidt season sim PASSED** — run `SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt` — pre-restore **4,980 active XP / 170 events**; formulas restored Production-normal after acceptance; exact-ID cleanup closed (transactional zero). Evidence: [`audits/readiness-20260914/FINAL-PASS-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.md`](./audits/readiness-20260914/FINAL-PASS-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.md). Post-restore **4,525** is **expected** (future-dated streaks inactive under Production `NOW()`) — **not** a failed season. Active **PHA = 20** (incl. Week 9 ×2). **Automation version authority = Airtable Automation editor** (tracking table Name/Status/Code only — not script-version authority). **Three-athlete SC-SEASON-SIM-001 still NOT EXECUTED.** **SC-SEASON-SIM-002** CLOSED. **FUT-048** deferred. Email allowlist: **`schmidt@fairfieldbasketballclub.com`**. Prior “Perfect / three-athlete both NOT EXECUTED” and “18 PHA” launch claims are **superseded** (18 PHA = historical restore era).
 **Companion release status:** [`SHOOTING_CHALLENGE_COMPLETION_MASTER.md`](./SHOOTING_CHALLENGE_COMPLETION_MASTER.md)  
+**Active roadmap:** [`MASTER_REMAINING_WORK_LIST.md`](../MASTER_REMAINING_WORK_LIST.md)  
 **Authority map:** [`AUTHORITY-MAP.md`](./AUTHORITY-MAP.md)  
 **Integrity audit:** [`REPOSITORY-INTEGRITY-AUDIT.md`](./REPOSITORY-INTEGRITY-AUDIT.md)
 
@@ -19,30 +20,32 @@
 | Landing hub FUT-033-037 | Implement in hoopchallenges-landing, not this repo web/ |
 ---
 
-## Authority rule â Production `Automations` table (updated 2026-08-20)
+## Authority rule — Automation versions (updated 2026-09-14)
 
-> **As of 2026-08-20, Mike intentionally refreshed the Production `Automations` data table.** For Version 2 automation **code / Live / identity** audits, treat these **three columns only** as Airtable authority:
+> **Script / version authority:** The live **Airtable Automation editor** (script body + SCRIPT header / UI configuration Mike attests) is the authority for which automation code is actually running. The Production `Automations` **tracking table is not authoritative for script versions**.
+
+> **Tracking-table scoped authority (historical refresh 2026-08-20):** When using the Production `Automations` data table at all, treat **only** these three columns as identity/ops metadata — never as version truth:
 >
 > 1. `Name`  
 > 2. `Status` (Live / Off)  
-> 3. `Automation Code`  
+> 3. `Automation Code` (label only — may lag the editor)  
 >
-> Do **not** use other columns on that table (trigger type, trigger table, conditions, sections, action summary, script location, external systems, etc.) as audit authority â they may still be stale.
+> Do **not** use other columns on that table (trigger type, trigger table, conditions, sections, action summary, script location, external systems, etc.) as audit authority — they may still be stale.
 
 **Prior rule (pre-refresh):** The old, unmaintained `Automations` table was non-authority. Any audit conclusion that depended on the **pre-refresh** table alone is still retracted for that era (including false Live claims for retired **077**).
 
 ### Allowed current-truth sources (only)
 
-1. Production `Automations` table columns **`Name` / `Status` / `Automation Code`** (post-2026-08-20 refresh)  
-2. Actual Airtable **Automations UI** configuration when Mike attests a UI vs table difference  
+1. Actual Airtable **Automations editor / UI** (script version authority)  
+2. Production `Automations` table columns **`Name` / `Status` / `Automation Code`** as **identity/ops labels only** (not script-version authority)  
 3. Dated live-test evidence supplied by Mike  
 4. Current Version 2 repository source files  
 5. Current Make.com scenario configuration and blueprint (non-email planes)  
 6. Current Communications Hub configuration  
 7. Current website and deployment evidence  
-8. Mikeâs direct confirmation of what is working in Production  
+8. Mike’s direct confirmation of what is working in Production  
 
-Repository docs (`automation-index.md`, inventories, Completion Master) are **documentation references**. They must not override current live evidence when Mike or the three authority columns contradict them.
+Repository docs (`automation-index.md`, inventories, Completion Master) are **documentation references**. They must not override current live evidence when Mike or the Automation editor contradicts them.
 
 **Audit artifact:** [`audits/2026-08-20-automation-49-code-audit.md`](./audits/2026-08-20-automation-49-code-audit.md)
 
@@ -65,17 +68,18 @@ Repository docs (`automation-index.md`, inventories, Completion Master) are **do
 
 | Check | Result |
 |-------|--------|
-| Branch | `master` (not detached) |
-| HEAD SHA | **`94429042`** (PR **#521**; re-verify after fetch) |
-| `origin/master` | **`94429042`** (re-verify after fetch) |
-| Ahead / behind | **0 / 0** (re-verify after fetch) |
-| Recent merges (2026-09-12 + 2026-09-11) | **#521** SEO footer (`94429042`) · **#520** homework attempt/response links · **#519** curriculum question-set submit auth · **#517** Tier 1 runbook (`8590c9ec`) · **#516** FUT-043 (`3703ffdc`). Email producer pastes still **pending Mike** — [`deploy-checklists/TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md`](./deploy-checklists/TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md). Open PRs: **none**. |
+| Branch | Re-verify with `git fetch` + `git rev-parse` (docs branch may differ from `master`) |
+| HEAD SHA | Re-verify — Perfect-sim closeout and roadmap reconcile may land after tip **`4f960814`** (PR **#545** lifecycle) |
+| `origin/master` | Re-verify after fetch |
+| Ahead / behind | Re-verify after fetch |
+| Recent merges (2026-09-14) | **#545** Perfect formula lifecycle / accept gate (`4f960814`). Roadmap reconcile + Perfect pass evidence in [`MASTER_REMAINING_WORK_LIST.md`](../MASTER_REMAINING_WORK_LIST.md). Perfect closeout code/docs may also land via open Perfect cleanup PR. |
+| Recent merges (2026-09-12 + 2026-09-11) | **#521** SEO footer (`94429042`) · **#520** homework attempt/response links · **#519** curriculum question-set submit auth · **#517** Tier 1 runbook (`8590c9ec`) · **#516** FUT-043 (`3703ffdc`). Email producer pastes still **pending Mike** — [`deploy-checklists/TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md`](./deploy-checklists/TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md). |
 | Recent merges (2026-09-06 presim web + email) | **#473** email name/Zoom payloads (`4a81c0cf`) · **#472** Grade Bands / leaderboard hero / MT / FAQ (`75632e88`). Hub communications **PR #52** merged (`e79637f`). |
 | Recent merges (2026-09-05 purge + SC-167 complete) | **#457** transactional purge (`ba969433`) · **#456** SC-167 complete docs (`57831fe7`) · **#455** SC-167/168/169 live-status |
 | Recent merges (2026-09-05 discrepancy wave) | **#450** backlog intake · **#451** SC-168 (`fba62be0`) · **#453** SC-167 010 v10.14 (`08da8b03`) · **#452** SC-169 (`caad5ba9`). Wave: [`audits/SC-167-168-169-DISCREPANCY-WAVE-CLOSEOUT-20260905.md`](./audits/SC-167-168-169-DISCREPANCY-WAVE-CLOSEOUT-20260905.md) |
 | Recent merges (2026-09-05 completion wave) | **#435** A1 truth (`7c63dd00`) · **#440** SC-161 (`0eb1ed28`) · **#438** SC-163 repo (`43d353a4`) · **#437** SC-162 (`f8a1c9ee`) · **#439** SC-164/165 (`9869a2eb`) · **#436** SC-166 (`bd0198a4`) · **#444** SC-163 066 v4.1 live closeout (`480771fc`) · **#446** dual-enrollment cleanup (`58663cfd`) · **#447** Season Sim preflight (`2131f7d5`) · **#448** Master List reconciliation (`3cf3b568`). Evidence: [`audits/SC-163-LIVE-VERIFICATION-CLOSEOUT-20260905.md`](./audits/SC-163-LIVE-VERIFICATION-CLOSEOUT-20260905.md) · [`audits/SC-WAVE-20260905-CLOSEOUT.md`](./audits/SC-WAVE-20260905-CLOSEOUT.md) · [`audits/MASTER-LIST-RECONCILIATION-20260905.md`](./audits/MASTER-LIST-RECONCILIATION-20260905.md) |
 | Recent merges (2026-09-04 SF + reliability) | **#411** SC-156 · **#410/#409/#408** SC-153 · **#407** SF closeout · **#406** SC-152/153 · **#404** SC-154/155/156 · **#401** SC-157 closes **#340** · **#398** SC-147 · **#399** SEO · **#397** FUT-025 · **#396** SC-148 · **#395** SC-057/058 |
-| Open PRs | **None** (2026-09-12). Historical draft notes below are obsolete. |
+| Open PRs | Re-verify with `gh pr list` — do not assume none. |
 | Recent merges (2026-08-31) | **#312** multi-asset HW / 065 XP closeout |
 | Recent merges (2026-08-30) | **#311** gift-card/coach Â· **#308** public-app readiness Â· **#298** public copy Â· **#276** ATHWF Â· **#297** paste audit |
 | Prior integrity ship | `0b1d634â¦` (2026-08-20); XP activity ledger merge follows |
@@ -137,14 +141,14 @@ Schema snapshots under `airtable/schema/snapshots/prod-20260706/` and `dev-20260
 | SC-151 Family Dashboard Gmail access | **MERGED/DEPLOYED** â PR **#389** merge `a00ef7a5`; Production `dpl_2mch4scL3c6bgHZgizDbsqPTywbW`; docs closeout PR **#391** (`0479db22`). Sign-in shows registration-email instruction; Gmail prohibition gone. **SC-112 remains closed.** Audit: [`audits/SC-151-family-dashboard-gmail-access-20260904.md`](./audits/SC-151-family-dashboard-gmail-access-20260904.md) |
 | Public awards (`Public On Web`) | **MERGED** PR **#378** (`a0e84533`) â `AWARD_RECIPIENT_PUBLICATION_FIELD = "Public On Web"`. PR **#376** closed superseded. |
 | Transactional enrollments | **Empty** after OPS-PURGE-20260905 — Athletes/Enrollments = **0**. Prior 2026-09-03 MCP note (2/3 Schmidt VERIFY) is historical.
-| Season Simulation | **THREE-ATHLETE SIMULATION READY — NOT EXECUTED.** **SC-002 T122531Z COMPLETE / cleaned (2026-09-05).** **SC-001 three-athlete prep READY (not executed).** Discrepancy wave **SC-167/168/169 ALL COMPLETE / Live Tested**. Live formulas normal **`NOW()` / `TODAY()`** — **DO NOT change** until authorized SC-001 execute. SC-002 rerun **NOT authorized**. SC-001 live execute requires **`RUN 3-ATHLETE SEASON SIMULATION`**. Readiness: [`audits/SC-SEASON-SIM-001-THREE-ATHLETE-PREP-READINESS-20260906.md`](./audits/SC-SEASON-SIM-001-THREE-ATHLETE-PREP-READINESS-20260906.md). |
+| Season Simulation | **Perfect Mike Schmidt PASSED** (`SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt`) — pre-restore **4980 / 170**; formulas restored; cleanup closed — [`audits/readiness-20260914/FINAL-PASS-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.md`](./audits/readiness-20260914/FINAL-PASS-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.md). Post-restore **4525** = expected under Production `NOW()`, not a failed season. **Three-athlete SC-SEASON-SIM-001 READY — NOT EXECUTED.** **SC-002 T122531Z COMPLETE / cleaned.** Discrepancy wave **SC-167/168/169 COMPLETE**. Live formulas Production-normal — do not change until authorized execute. SC-001 requires **`RUN 3-ATHLETE SEASON SIMULATION`**. |
 | Zoom Attendance primary (2026-09-06) | Lookups + **Attendance Label** formula **created live** (`fldVILeOyW1jepScv`, isValid). Primary still **Id** `fldXHFpB3MrOVevYL` autoNumber — Mike UI convert pending. Checklist: [`deploy-checklists/ZOOM-ATTENDANCE-PRIMARY-FIELD-FORMULA.md`](./deploy-checklists/ZOOM-ATTENDANCE-PRIMARY-FIELD-FORMULA.md). |
 | SC-109 Game Manual PDF | **COMPLETE / Live Tested in PROD (2026-09-04)** â `/shoot/game-manual` shows **Open game manual** â Adobe Publish Online (`GAME_MANUAL_PUBLISH_URL` repo default; env override optional); How you earn XP + Level ladder render; no env-name leak â evidence [`testing/evidence/SC-109-PROD-ATTESTATION-2026-09-04.json`](./testing/evidence/SC-109-PROD-ATTESTATION-2026-09-04.json) Â· checklist [`deploy-checklists/SC-109-game-manual-url-verification.md`](./deploy-checklists/SC-109-game-manual-url-verification.md) |
 | FUT-002 field inventory | **Batch 1 COMPLETE** + **SA XP stubs deleted** + **Batch 2 COMPLETE (2026-09-05)** — five Batch 2 text-stub IDs absent; live Meta **1375** fields / **35** tables; schema `airtable/schema/snapshots/prod-20260905-fut002-batch2/`; evidence [`testing/evidence/fut-002/batch2-live-verify-20260905.json`](./testing/evidence/fut-002/batch2-live-verify-20260905.json) · closeout [`audits/FUT-002-BATCH2-POST-DELETE-CLOSEOUT-20260905.md`](./audits/FUT-002-BATCH2-POST-DELETE-CLOSEOUT-20260905.md). Later: Config Drive roots + `unknown` interface review remain FUTURE |
 | FUT-010 intake attachment cleanup | **Dry-run complete (R3 2026-08-30)** â **0 eligible**; no deletion request â [`testing/evidence/FUT-010-DRY-RUN-2026-08-30-R3.md`](./testing/evidence/FUT-010-DRY-RUN-2026-08-30-R3.md) |
 | Weeks 2026â27 | **Finalized** â Early Bird **Apr 25âMay 1, 2027** countable; May 1 â Early Bird; Week 1 starts May 2 â [`testing/evidence/WEEKS-2026-27-AUDIT-2026-08-30.md`](./testing/evidence/WEEKS-2026-27-AUDIT-2026-08-30.md) |
-| Homework PHA 2026â27 | **18 active restored** after FUT-030 (2026-08-31) â new RIDs; Due Date **2027-06-29**; Homework Library **76** unchanged. Evidence: [`testing/evidence/transactional-reset-2026-08-31/11-pha-restore-created-20260831_133022.json`](./testing/evidence/transactional-reset-2026-08-31/11-pha-restore-created-20260831_133022.json). Prior audit (old RIDs historical): [`testing/evidence/HOMEWORK-PHA-18-AUDIT-2026-08-30.md`](./testing/evidence/HOMEWORK-PHA-18-AUDIT-2026-08-30.md) |
-| Transactional data | **Empty** after 2026-09-05 purge — Athletes/Enrollments/Submissions/Assets/HC/XP/WAS/VF/Unlocks/Streaks/Zoom Attendance/Award Recipients/Payments/Email Handoff Queue = **0**. Zoom Meetings **2** catalog (Introduction, Motivation). PHA **18** / Weeks **11** / Homework Library **121** / Countries **194** / State **50** preserved. Evidence: [`testing/evidence/transactional-purge-2026-09-05/CLOSEOUT.md`](./testing/evidence/transactional-purge-2026-09-05/CLOSEOUT.md). Prior FUT-030 reset 2026-08-31. |
+| Homework PHA 2026–27 | **Current: 20 active PHA** including **Week 9 × 2** (supersedes “18 PHA” launch claims). Historical: **18 active restored** after FUT-030 (2026-08-31) — evidence [`testing/evidence/transactional-reset-2026-08-31/11-pha-restore-created-20260831_133022.json`](./testing/evidence/transactional-reset-2026-08-31/11-pha-restore-created-20260831_133022.json); prior audit [`testing/evidence/HOMEWORK-PHA-18-AUDIT-2026-08-30.md`](./testing/evidence/HOMEWORK-PHA-18-AUDIT-2026-08-30.md) = **historical**. |
+| Transactional data | **Empty** after Perfect-sim cleanup (2026-09-14) and prior 2026-09-05 purge — Athletes/Enrollments/Submissions/Assets/HC/XP/WAS/VF/Unlocks/Streaks/Zoom Attendance/Award Recipients/Payments/Email Handoff Queue = **0**. Zoom Meetings **2** catalog (Introduction, Motivation). PHA **20** / Weeks preserved / Homework Library / Countries / State preserved. Evidence: [`audits/readiness-20260914/cleanup-verify-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.json`](./audits/readiness-20260914/cleanup-verify-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.json) · historical purge [`testing/evidence/transactional-purge-2026-09-05/CLOSEOUT.md`](./testing/evidence/transactional-purge-2026-09-05/CLOSEOUT.md). |
 | Phase 4 public copy | **Shipped** PR **#298** â CR-13/CR-17/CR-18 parent copy implemented 2026-09-01; optional Dashboard relabel complete (CR-12) |
 | SC-147 Recorded Zoom half-XP | **COMPLETE / Live Tested in PROD** â Automation **101 v6.8** Live; GitHub synced (PR **#398**); recording `ZOOM_RECORDING_CREDIT|*` @ 30 + live @ 60 on disposable VERIFY; **no 121**; **117** email-only. Optional residual: GitHub year-aware Config percent hardening may still need Airtable UI paste for byte-match. Evidence [`audits/SC-147-101-V68-PRODUCTION-CLOSEOUT-20260904.md`](./audits/SC-147-101-V68-PRODUCTION-CLOSEOUT-20260904.md) |
 | SC-148 mobile a11y | **COMPLETE / Live Tested in PROD** â interactive + Playwright attestation 2026-09-04. Evidence [`audits/SC-148-mobile-a11y-prod-attestation-20260904.md`](./audits/SC-148-mobile-a11y-prod-attestation-20260904.md) |

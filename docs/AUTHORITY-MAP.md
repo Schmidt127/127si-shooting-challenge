@@ -2,20 +2,26 @@
 
 **Status:** Active
 **Backlog:** `SCV2-SEASON-LAUNCH-CONSOLIDATION-001`
-**Last updated:** 2026-08-20 (Production `Automations` table Name/Status/Code authority refresh)
+**Last updated:** 2026-09-14 (Automation **editor** = script-version authority; roadmap reconcile)
 
 This map defines ownership. It does not assert that a repository document proves
 current live configuration.
 
-## Production `Automations` table — scoped authority (2026-08-20)
+## Automation version authority (2026-09-14)
 
-> Mike intentionally refreshed the Production `Automations` data table. For Version 2 automation **code / Live / identity** audits, use **only**:
+> **Script / version authority:** The live **Airtable Automation editor** (script body + SCRIPT header / UI Mike attests) is authoritative for which automation code is running.
+>
+> The Production `Automations` **tracking table is not authoritative for script versions**.
+
+## Production `Automations` table — scoped identity only (2026-08-20; demoted for versions 2026-09-14)
+
+> When using the tracking table at all, use **only**:
 >
 > 1. `Name`  
 > 2. `Status`  
-> 3. `Automation Code`  
+> 3. `Automation Code` (label — may lag the editor)  
 >
-> Do **not** use other columns on that table as audit authority.
+> Do **not** use other columns on that table as audit authority. Do **not** treat `Automation Code` as proof of the pasted script body.
 
 **Pre-refresh history:** The old unmaintained table was non-authority. Conclusions that depended on the **pre-refresh** table alone remain retracted for that era. See [`CURRENT-TRUTH.md`](./CURRENT-TRUTH.md) and [`audits/2026-08-20-automation-49-code-audit.md`](./audits/2026-08-20-automation-49-code-audit.md).
 
@@ -24,11 +30,13 @@ current live configuration.
 | Concern | Authority | Owner / update trigger |
 |---|---|---|
 | **Primary current-state document** | [`CURRENT-TRUTH.md`](./CURRENT-TRUTH.md) | Cursor; update on git tip changes, Mike overlays, or integrity audits |
+| **Active roadmap** | [`MASTER_REMAINING_WORK_LIST.md`](../MASTER_REMAINING_WORK_LIST.md) | Cursor; roadmap reconcile 2026-09-14 |
 | Source code and automation source | GitHub `master` and the committed repository paths | Cursor; update on approved code changes |
 | Human-readable release status | [`SHOOTING_CHALLENGE_COMPLETION_MASTER.md`](./SHOOTING_CHALLENGE_COMPLETION_MASTER.md) | Cursor; update when release evidence or blockers change |
 | Repository integrity / security registers | [`REPOSITORY-INTEGRITY-AUDIT.md`](./REPOSITORY-INTEGRITY-AUDIT.md) · [`SECURITY-AND-SENSITIVE-FILES.md`](./SECURITY-AND-SENSITIVE-FILES.md) · [`ARCHIVED-AND-SUPERSEDED-FILES.md`](./ARCHIVED-AND-SUPERSEDED-FILES.md) | Cursor; refresh after integrity passes |
 | Machine-readable run control | [`agent-runs/CONTROL.json`](./agent-runs/CONTROL.json) | Lead / Integrator; update when a controlled agent package starts, completes, or changes state |
-| Live Airtable **automation Name / Status / Code** | Production `Automations` table (**those three columns only**) | Mike refresh 2026-08-20; Cursor audits against Code |
+| Live Airtable **automation script version** | **Airtable Automation editor / UI** | Mike; dated UI attestation |
+| Live Airtable **automation Name / Status / Code labels** | Production `Automations` table (**those three columns only** — not version truth) | Mike refresh 2026-08-20; Cursor may use for inventory labels only |
 | Live Airtable **automation triggers / UI wiring** | **Airtable Automations UI** (not other Automations-table columns) | Mike; dated UI attestation |
 | Live Airtable **records** (athletes, submissions, XP, etc.) | Airtable UI / named base, not repository text | Mike; verify with a dated read-only export or controlled UI evidence |
 | Live Fillout enrollment availability | Fillout UI | Mike; verify before launch activation |
@@ -62,7 +70,7 @@ testing is not natural-trigger proof, offline tests are not controlled PROD
 proof, and successful 115 creation does not prove 005/009/020/064/XP/summary or
 email behavior.
 
-The Production base’s **`Automations` data table** is authority for **`Name` / `Status` / `Automation Code` only** after the 2026-08-20 refresh. Other columns on that table may still be stale. Pre-refresh historical exports (for example
+The Production base’s **`Automations` data table** may be used for **`Name` / `Status` / `Automation Code` labels only**. **Script version authority is the Automation editor.** Other columns on that table may still be stale. Pre-refresh historical exports (for example
 `foundation-reset/PROD-AUTOMATION-VERSION-INVENTORY-2026-07-23.md`) remain
 **historical / non-authority** for Version 2 decisions.
 

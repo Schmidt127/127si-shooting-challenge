@@ -10,7 +10,7 @@ This is the **detailed completion matrix and historical traceability record** fo
 | Field | Value |
 |-------|--------|
 | **Purpose** | Completion matrix, package traceability, and preserved historical evidence |
-| **Last updated** | **2026-09-12** — living docs synced to tip **`94429042`** (#521); Production **`dpl_6h8wT3nFtuxGveW8DaoN34CWCVyA`**; Hub Homework COMPLETE; season sim **READY — NOT EXECUTED**; see [`CURRENT-TRUTH.md`](./CURRENT-TRUTH.md) + [`audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md`](./audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md) |
+| **Last updated** | **2026-09-14** — master roadmap reconcile; Perfect Mike Schmidt sim **PASSED** (`SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt`, **4980 / 170** pre-restore); PHA **20**; Automation **editor** = version authority; active roadmap [`MASTER_REMAINING_WORK_LIST.md`](../MASTER_REMAINING_WORK_LIST.md). Prior tip notes: [`CURRENT-TRUTH.md`](./CURRENT-TRUTH.md) |
 | **Production branch** | `master` |
 | **Vercel root** | `web/` |
 | **Production website** | https://www.fairfieldbasketballclub.com/shoot |
@@ -23,6 +23,7 @@ This is the **detailed completion matrix and historical traceability record** fo
 | Role | Document |
 |------|----------|
 | **Current operational summary** | [`CURRENT-TRUTH.md`](./CURRENT-TRUTH.md) — read this first for live overlays |
+| **Active roadmap** | [`MASTER_REMAINING_WORK_LIST.md`](../MASTER_REMAINING_WORK_LIST.md) |
 | **Detailed ops companion** | [`PROJECT_STATE.md`](./PROJECT_STATE.md) |
 | **Automation version inventory** | [`AUTOMATION_VERSION_INVENTORY.md`](./AUTOMATION_VERSION_INVENTORY.md) |
 | **Ownership / evidence map** | [`docs/AUTHORITY-MAP.md`](./AUTHORITY-MAP.md) |

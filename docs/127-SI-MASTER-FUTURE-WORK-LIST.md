@@ -7,18 +7,23 @@
 **Repository:** `Schmidt127/127-si-shooting-challenge`  
 
 **Created:** 2026-08-24  
-**Reconciled:** 2026-09-12 — [`audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md`](./audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md)
+**Reconciled:** 2026-09-14 — master roadmap reconcile ([`MASTER_REMAINING_WORK_LIST.md`](../MASTER_REMAINING_WORK_LIST.md) · [`roadmap/README.md`](./roadmap/README.md)). Prior 2026-09-12: [`audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md`](./audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md)
 
-**Purpose:** One owner-approved list of future app, Airtable, AWS, email, payment, award, and website work. Each item is written so it can later become a focused Cursor or Airtable/OMNI prompt.
+**Purpose:** Detailed future-work narrative and history. **Active non-duplicative roadmap:** [`MASTER_REMAINING_WORK_LIST.md`](../MASTER_REMAINING_WORK_LIST.md). Each item is written so it can later become a focused Cursor or Airtable/OMNI prompt.
 
 ## Required before close (authoritative)
 
 | ID | Status | Notes |
 |----|--------|-------|
-| **SC-SEASON-SIM-001** | **READY — NOT EXECUTED** | Three-athlete season simulation **execution** + reconciliation. Requires exact owner authorization. |
-| **SC-SEASON-SIM-002** | **COMPLETE (infrastructure / package closed)** | Do **not** claim season simulation has been executed successfully. Do not re-run T122531Z. |
+| **SC-SEASON-SIM-PERFECT-202231Z** | **COMPLETE / historical** | Perfect Mike Schmidt path **PASSED** pre-restore **4980 / 170** — run `SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt`. Post-restore 4525 expected. Formulas restored; cleanup closed. |
+| **SC-SEASON-SIM-001** | **READY — NOT EXECUTED** | **Three-athlete** season simulation only. Requires exact owner authorization (`RUN 3-ATHLETE SEASON SIMULATION`). |
+| **SC-SEASON-SIM-002** | **COMPLETE (infrastructure / package closed)** | Do not re-run T122531Z. |
+| **MRW-L02 / FUT-053** | Launch-critical plan | Stripe coupon / 100% payment writeback — plan only until Mike activates. |
+| **MRW-L03 / FUT-054** | Launch-critical plan | Player Manual + Game Manual Addendum — outline only until Mike publishes. |
 
-Curriculum Hub Homework lifecycle, private SEO, 52 structured-enabled lessons, SC Assignment Key Sync, and lesson hero are **COMPLETE** — remove from active future work; reopen Hub only for Production defects.
+**Superseded claims (do not revive):** “season simulation unexecuted” as applied to the Perfect Mike path; “18 PHA” as current calendar truth (now **20**, Week 9 ×2); Automations tracking table as script-version authority.
+
+Curriculum Hub Homework lifecycle, private SEO, 52 structured-enabled lessons, SC Assignment Key Sync, and lesson hero are **COMPLETE** — remove from active future work; reopen Hub only for Production defects. New planning IDs **FUT-049 … FUT-057** live under [`roadmap/planning/`](./roadmap/planning/).
 
 ## Optional / deferred (not close blockers)
 
@@ -2119,6 +2124,63 @@ Owner-approved product/UX/infrastructure items captured below as **FUT-033?FUT-0
 
 
 
+
+
+### FUT-049 — PHA Grade Band removal and migration
+
+**Status:** Post-launch (plan only) · **Mike approval before implement:** Yes  
+**Plan:** [
+oadmap/planning/FUT-049-PHA-GRADE-BAND-REMOVAL.md](./roadmap/planning/FUT-049-PHA-GRADE-BAND-REMOVAL.md)
+
+### FUT-050 — Dribble Challenge product decision
+
+**Status:** Future (decision only — do not build) · **Mike approval before implement:** Yes  
+**Plan:** [
+oadmap/planning/FUT-050-DRIBBLE-CHALLENGE-DECISION.md](./roadmap/planning/FUT-050-DRIBBLE-CHALLENGE-DECISION.md)
+
+### FUT-051 — Unused-field cleanup program
+
+**Status:** Post-launch (continues FUT-002; no deletes in planning) · **Mike approval per batch:** Yes  
+**Plan:** [
+oadmap/planning/FUT-051-UNUSED-FIELD-CLEANUP-PROGRAM.md](./roadmap/planning/FUT-051-UNUSED-FIELD-CLEANUP-PROGRAM.md)
+
+### FUT-052 — Replace Tremendous for awards
+
+**Status:** Post-launch (decision only — do not activate provider) · **Mike approval before implement:** Yes  
+**Plan:** [
+oadmap/planning/FUT-052-REPLACE-TREMENDOUS-DECISION.md](./roadmap/planning/FUT-052-REPLACE-TREMENDOUS-DECISION.md) · Related: FUT-004
+
+### FUT-053 — Stripe coupon and 100%-payment writeback
+
+**Status:** Launch-critical (plan only — do not activate Make) · **Mike approval before activate:** Yes  
+**Plan:** [
+oadmap/planning/FUT-053-STRIPE-COUPON-100-PERCENT-WRITEBACK.md](./roadmap/planning/FUT-053-STRIPE-COUPON-100-PERCENT-WRITEBACK.md) · Related: FUT-003
+
+### FUT-054 — Player Manual and Game Manual Addendum
+
+**Status:** Launch-critical (outline only — do not publish yet) · **Mike approval before publish:** Yes  
+**Plan:** [
+oadmap/planning/FUT-054-PLAYER-MANUAL-AND-GAME-ADDENDUM.md](./roadmap/planning/FUT-054-PLAYER-MANUAL-AND-GAME-ADDENDUM.md) · Related: FUT-026
+
+### FUT-055 — Interactive Curriculum Hub modernization
+
+**Status:** Post-launch (plan only — do not implement FUT-029) · **Mike approval before implement:** Yes  
+**Plan:** [
+oadmap/planning/FUT-055-INTERACTIVE-CURRICULUM-HUB.md](./roadmap/planning/FUT-055-INTERACTIVE-CURRICULUM-HUB.md)
+
+### FUT-056 — Welcome email visual redesign (React Email)
+
+**Status:** Post-launch (brief only — do not paste live producers) · **Mike approval before paste:** Yes  
+**Plan:** [
+oadmap/planning/FUT-056-WELCOME-EMAIL-REACT-EMAIL.md](./roadmap/planning/FUT-056-WELCOME-EMAIL-REACT-EMAIL.md)
+
+### FUT-057 — Family private-profile redesign
+
+**Status:** Post-launch (spec only — do not build UI) · **Mike approval before ship:** Yes  
+**Plan:** [
+oadmap/planning/FUT-057-FAMILY-PRIVATE-PROFILE.md](./roadmap/planning/FUT-057-FAMILY-PRIVATE-PROFILE.md)
+
+
 ### SC-ATHLETE-WF-001 ? Individual athlete workflow QA (pre?season simulation)
 
 
@@ -2155,7 +2217,7 @@ Prove the **single disposable athlete** path end-to-end before any multi-enrollm
 
 **Priority:** P1  
 
-**Status:** **CASCADE FIX READY — full three-athlete rerun NOT yet re-authorized** (2026-09-06) — T144833Z writer completed but XP cascade partial; harness settlement/re-arm/cleanup fixes + targeted live mini verify passed — see [`audits/SC-SEASON-SIM-001-CASCADE-FAILURE-20260906.md`](./audits/SC-SEASON-SIM-001-CASCADE-FAILURE-20260906.md)
+**Status:** **READY — three-athlete NOT EXECUTED** (2026-09-14). Perfect Mike Schmidt path **COMPLETE** (SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt, pre-restore **4980 / 170**). Cascade-fix era notes remain historical — see [udits/SC-SEASON-SIM-001-CASCADE-FAILURE-20260906.md](./audits/SC-SEASON-SIM-001-CASCADE-FAILURE-20260906.md). Perfect pass: [udits/readiness-20260914/FINAL-PASS-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.md](./audits/readiness-20260914/FINAL-PASS-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.md)
 
 **Systems:** `tools/season_simulation/`, Enrollments, Submissions, Homework Completions, Video Feedback, Zoom, WAS, XP Events, streaks, milestones, Perfect Week, weekly email stage (SC-168), Hub allowlist  
 
@@ -2589,7 +2651,7 @@ Open SC items with remaining work (status not Complete / Superseded / Not Needed
 
 | **SC-005** | Testing | Full end-to-end live PROD matrix (all major paths) | P0 | Live Tested in PROD | SC-001GÃƒâ€¡ÃƒÂ´SC-004, core pipelines | Unblock B3 policy / B5 backdate week; streak+milestone when unlocks exist; email/failure inject GÃƒÂ¥Ãƒâ€  SC-008 |
 
-| **SC-SEASON-SIM-001** | Testing | Three-athlete full-season simulation (Perfect / Recovery / Edge) | P1 | **READY** (not executed) | SC-SEASON-SIM-002 package; SC-167/168/169; allowlist; **no DEV** | Preparation complete 2026-09-06; live execute requires `RUN 3-ATHLETE SEASON SIMULATION`; stop on material failure; cleanup + formula restore |
+| **SC-SEASON-SIM-001** | Testing | Three-athlete full-season simulation (Perfect / Recovery / Edge) | P1 | **READY** (three-athlete not executed). Perfect Mike path **COMPLETE** (`T202231Z`, 4980/170) | SC-SEASON-SIM-002 package; SC-167/168/169; allowlist; **no DEV** | Three-athlete execute requires `RUN 3-ATHLETE SEASON SIMULATION`; stop on material failure; cleanup + formula restore |
 
 | **SC-007** | Testing | Duplicate and rerun testing (idempotency proof) | P0 | Live Tested in PROD | SC-066, SC-096+ | Optional: 010 UI re-trigger attest; milestone/PW/Zoom-attend live fixtures when present |
 
@@ -2623,7 +2685,7 @@ Open SC items with remaining work (status not Complete / Superseded / Not Needed
 
 | **SC-059** | Data Integrity | Retire legacy automations 112 and 043 | P0 | Installed in PROD / 043 not deployed | SC-001, SC-058 | Confirm 112 OFF and retain the no-recreate-043 disposition; do not restore 043 or the stale orphan-XP bulk count from #100 |
 
-| **SC-065** | Enrollment | Challenge dates / Weeks configuration rebuilt | P0 | **COMPLETE (calendar + 18 PHA)** | SC-032 | Early Bird Apr 25?May 1 countable finalized; 18 active PHA + June 29 due; Week 9/Post-Challenge no HW; archive WSTEST/PWTEST before season sim ? [`WEEKS-2026-27-AUDIT-2026-08-30.md`](./testing/evidence/WEEKS-2026-27-AUDIT-2026-08-30.md) Ã‚Â· [`HOMEWORK-PHA-18-AUDIT-2026-08-30.md`](./testing/evidence/HOMEWORK-PHA-18-AUDIT-2026-08-30.md) |
+| **SC-065** | Enrollment | Challenge dates / Weeks configuration rebuilt | P0 | **COMPLETE (calendar)** — live PHA **20** (Week 9 ×2); **18 PHA** era **superseded** | SC-032 | Early Bird Apr 25–May 1 countable; historical 18-PHA restore + audits remain historical — [WEEKS-2026-27-AUDIT-2026-08-30.md](./testing/evidence/WEEKS-2026-27-AUDIT-2026-08-30.md) · [HOMEWORK-PHA-18-AUDIT-2026-08-30.md](./testing/evidence/HOMEWORK-PHA-18-AUDIT-2026-08-30.md) |
 
 | **SC-068** | Enrollment | Inactive / processing controls (`Active?` hardened) | P0 | Tracked under C-010 | SC-004 | PPE create/backfill; paste guards; resolve 072/118/119 Schmidt hard-exclude conflict vs GÃƒâ€¡Ã‚Â£Schmidt visibleGÃƒâ€¡Ã‚Â¥ web direction |
 
