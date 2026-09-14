@@ -1,5 +1,7 @@
 # WAS creator ownership — 031 / 101 / 118
 
+> **HISTORICAL / REFERENCE ONLY.** Preserve this creator-ownership audit as evidence. For current system authority, start with [`../../ACTIVE-DOCS-INDEX.md`](../../ACTIVE-DOCS-INDEX.md).
+
 **Agent:** 12 · **Date:** 2026-07-24  
 **Identity:** Exactly one Weekly Athlete Summary per **Enrollment + Week**  
 **Formula key (read-only):** `Summary Key` = `{Enrollment Key}|{Week Key}`  
