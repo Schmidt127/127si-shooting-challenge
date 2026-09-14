@@ -1,0 +1,122 @@
+{
+  "path": "airtable/automations/shooting-challenge/035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js",
+  "change_count": 16,
+  "changes": [
+    {
+      "line": 5,
+      "from": "U+2014",
+      "to": "-",
+      "kind": "comment",
+      "line_preview": "Status: GitHub Source of Truth \u2014 PROD paste only after Mike UI attestation"
+    },
+    {
+      "line": 37,
+      "from": "U+2014",
+      "to": "-",
+      "kind": "comment",
+      "line_preview": " * - v1.6 (2026-09-13): SC-SEASON-SIM-001-DEPLOY-20260913C \u2014 progressive tier state"
+    },
+    {
+      "line": 39,
+      "from": "U+2192",
+      "to": "->",
+      "kind": "comment",
+      "line_preview": " *   Threshold XP Ready? can return 0 after each pass and rise 0\u21921 only when Goal"
+    },
+    {
+      "line": 40,
+      "from": "U+2013",
+      "to": "-",
+      "kind": "comment",
+      "line_preview": " *   newly reaches a missing tier. Fixes v1.5 Ready stuck at 1 in 125\u2013149% band"
+    },
+    {
+      "line": 42,
+      "from": "U+2014",
+      "to": "-",
+      "kind": "comment",
+      "line_preview": " * - v1.5 (2026-09-13): SC-SEASON-SIM-001-DEPLOY-20260913B \u2014 version bump for"
+    },
+    {
+      "line": 44,
+      "from": "U+2014",
+      "to": "-",
+      "kind": "comment",
+      "line_preview": " * - v1.4 (2026-09-13): Progressive threshold awards \u2014 do not mark Threshold XP"
+    },
+    {
+      "line": 48,
+      "from": "U+2192",
+      "to": "->",
+      "kind": "comment",
+      "line_preview": " *   Perfect sim: early 100%-only awards latched Processed \u2192 11/26 events)."
+    },
+    {
+      "line": 49,
+      "from": "U+2014",
+      "to": "-",
+      "kind": "comment",
+      "line_preview": " * - v1.3 (2026-08-05): Airtable runtime compatibility \u2014 guard optional"
+    },
+    {
+      "line": 74,
+      "from": "U+2192",
+      "to": "->",
+      "kind": "comment",
+      "line_preview": " * - One enrollment \u2192 week \u2192 percent tier = one XP Event (append-only)."
+    },
+    {
+      "line": 74,
+      "from": "U+2192",
+      "to": "->",
+      "kind": "comment",
+      "line_preview": " * - One enrollment \u2192 week \u2192 percent tier = one XP Event (append-only)."
+    },
+    {
+      "line": 76,
+      "from": "U+2014",
+      "to": "-",
+      "kind": "comment",
+      "line_preview": " * - Do not invent XP amounts \u2014 missing/invalid rules error that tier."
+    },
+    {
+      "line": 82,
+      "from": "U+2192",
+      "to": "->",
+      "kind": "comment",
+      "line_preview": " * - Inactive Enrollment (Active?=false) \u2192 skipped (not error)."
+    },
+    {
+      "line": 373,
+      "from": "U+2014",
+      "to": "-",
+      "kind": "comment",
+      "line_preview": "  // Compare the raw numeric ratio directly \u2014 do not divide values > 3 by 100."
+    },
+    {
+      "line": 446,
+      "from": "U+2014",
+      "to": "-",
+      "kind": "comment",
+      "line_preview": "  // Targeted recheck \u2014 exact Source Key only (no full-table scan)."
+    },
+    {
+      "line": 460,
+      "from": "U+2014",
+      "to": "-",
+      "kind": "comment",
+      "line_preview": "    // filterByFormula unsupported / field name issue \u2014 fall back to in-memory only."
+    },
+    {
+      "line": 802,
+      "from": "U+2192",
+      "to": "->",
+      "kind": "comment",
+      "line_preview": "  // Through % (0\u21921 only when a newly earned tier is still missing). Source Keys"
+    }
+  ],
+  "sha256": "0dcbde8a6137face62711297477cc5bcc44a85b42d1bec995f39921a23a7ccf2",
+  "length": 32020,
+  "version": "v1.7",
+  "deployMarker": "SC-SEASON-SIM-001-DEPLOY-20260914D"
+}

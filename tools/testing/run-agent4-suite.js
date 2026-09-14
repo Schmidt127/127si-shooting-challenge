@@ -28,6 +28,15 @@ const COMMANDS = [
   { name: "overnight-xp-date-source", args: ["airtable/automations/shooting-challenge/lib/overnight-xp-date-source.test.js"] },
   { name: "agent4-xp-dedupe-matrix", args: ["airtable/automations/shooting-challenge/lib/agent4-xp-dedupe-matrix.test.js"] },
   { name: "weekly-threshold-xp", args: ["airtable/automations/shooting-challenge/lib/weekly-threshold-xp.test.js"] },
+  {
+    name: "035-ascii-hash-consistency",
+    cmd: process.execPath,
+    args: [
+      "--test",
+      "tests/automation-contracts/035-ascii-hash-consistency.test.js",
+      "tests/automation-contracts/035-progressive-threshold-reentry.test.js",
+    ],
+  },
   { name: "weekly-threshold-reconciliation", args: ["tests/automation-contracts/120-weekly-threshold-reconciliation.test.js"] },
   { name: "agent1-contract-hardening", args: ["airtable/automations/shooting-challenge/lib/agent1-contract-hardening.test.js"] },
   { name: "xp-date-normalization", args: ["airtable/automations/shooting-challenge/lib/xp-date-normalization.test.js"] },

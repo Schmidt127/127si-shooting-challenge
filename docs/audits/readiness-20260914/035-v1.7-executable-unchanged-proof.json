@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable_equal_after_comment_strip_and_metadata_neutralize": true,
+  "config_onward_equal_after_ascii_normalize_old": true,
+  "script_identity_equal_except_version_metadata": true,
+  "ascii_only": true,
+  "sha256": "0dcbde8a6137face62711297477cc5bcc44a85b42d1bec995f39921a23a7ccf2",
+  "length": 32020,
+  "paste_path": "docs/deploy-checklists/035-v1.7-PASTE.txt",
+  "mirror_path": "docs/audits/readiness-20260914/035-v1.7-AUTOMATIONS-TABLE-MIRROR.txt",
+  "byte_identical_github_paste_mirror": true
+}
