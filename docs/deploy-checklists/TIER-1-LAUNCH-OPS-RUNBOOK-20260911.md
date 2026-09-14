@@ -1,158 +1,73 @@
-# Tier 1 launch ops — consolidated operator runbook
+# Tier 1 email operations — current operator runbook
 
-**Date:** 2026-09-11  
-**Production base:** `appn84sqPw03zEbTT` (Production only — no DEV base)  
-**Git tip when written:** `8590c9ec` (includes FUT-043 #516 @ `3703ffdc` + paste bundles #517)  
-**Git tip after Tier-1 closeout (2026-09-13):** Production-aligned producers **076 v8.15**, **073 v4.9** — see PR for Tier-1 email closeout.  
-**Disposable proof email:** `schmidt@fairfieldbasketballclub.com` only
+**Current as of:** 2026-09-14
+**Production base:** `appn84sqPw03zEbTT`
+**Delivery plane:** Airtable producer → Email Handoff Queue → Automation 079 → Communications Hub → Resend
 
-This packet combines the highest-impact launch ops from CURRENT-TRUTH into **one ordered checklist**. Cursor cannot paste Airtable automations or set Vercel env vars — Mike UI only for execution steps.
+This is the current operator guide for Shooting Challenge email. Published Airtable Automation-editor code is the production authority. GitHub `master` is the source used to compare that published code. The `Automations` tracking table is a convenience mirror only; do not use it to decide whether code must be pasted.
 
----
+## Current published producer versions
 
-## Before you start
+| Automation | Version |
+|---|---:|
+| 071 — Homework feedback | v4.7 |
+| 072 — Weekly package | v4.9.4 |
+| 073 — Video feedback | v4.11 |
+| 074 — Weekly send | v3.8 |
+| 076 — Daily submission | v8.17 |
+| 078A — Welcome | v1.9 |
+| 079 — Hub dispatcher | v2.5 |
+| 117 — Zoom recording approval | v2.4 |
+| 118 — Weekly build schedule | v2.3 |
+| 119 — Weekly send schedule | v1.10 |
 
-| Check | Command / action |
-|---|---|
-| Hub health | `curl -sS https://communications-two-blue.vercel.app/api/health` → expect OK JSON |
-| SC health | `curl -sS https://www.fairfieldbasketballclub.com/shoot/api/health` → **200** + `{"status":"ok"}` |
-| Active real-family enrollments | Production Enrollments — **stop** if any non-disposable parent email would receive Live sends |
-| Version preflight | `node tools/testing/parent-email-live-cutover.mjs preflight` (requires `AIRTABLE_API_TOKEN`) |
+## Standard preflight
 
-**Safety:** Keep automation `testMode=true` / `dryRun=true` until paste verification completes. Flip Live only per [`parent-email-and-auth-live-cutover-2026-09-03.md`](./parent-email-and-auth-live-cutover-2026-09-03.md).
+Before changing email modes, running a disposable proof, or pasting a producer:
 
----
+1. Check Communications Hub health and confirm its transactional backlog is understood.
+2. Confirm no unintended Email Handoff Queue backlog is eligible for delivery.
+3. Compare **published editor code** against GitHub by version and normalized body hash. Do not rely on the tracking-table version field.
+4. In Airtable's Automation editor, confirm the trigger and dynamic `recordId` mapping are unchanged. Never hard-code a record ID or recipient.
+5. Confirm Automation 079 is ON and its `ingressSecret` is present. The secret is UI-only; do not copy it into GitHub or reports.
 
-## Phase A — Email producer pastes (GitHub → Production)
+## Boolean and send-mode inputs
 
-Paste rule: open the matching `*-PASTE.txt` below → select all → paste into the automation script editor → save. **Do not** paste the GitHub-only header lines.
+Producer scripts now parse Airtable values safely: the visible string `"false"` is treated as false, rather than JavaScript's truthy `Boolean("false")` behavior.
 
-Regenerate paste files after GitHub edits:
+| Input | Missing-value default | Live value | Safe rollback value |
+|---|---|---|---|
+| `testMode` | `true` | `false` | `true` |
+| `sendModeInput` / `sendMode` | `test` | `live` / `Live` | `test` |
+| `dryRun` | `true` | `false` | `true` |
+| `includeSchmidt` | `false` | `false` unless deliberately approved | `false` |
 
-```bash
-python3 tools/airtable/extract_email_paste_bundles.py
-node tools/testing/tests/test_paste_bundle_integrity.mjs
-```
+When changing an input, save, re-open the Automation editor, and confirm the value persisted. Do not manually run a producer merely to test a setting.
 
-### Paste order (recommended)
+## When a paste is actually needed
 
-| Order | Slot | GitHub / Production version | Paste file | What changed |
-|---|---|---|---|---|
-| 1 | **076** | **v8.15** | [`076-v8.15-PASTE.txt`](./076-v8.15-PASTE.txt) | SC-171 streak + `athleteFirstName`; v8.15 closes concurrent EHQ create race |
-| 2 | **071** | **v4.5** | [`071-v4.5-PASTE.txt`](./071-v4.5-PASTE.txt) | SC-171 dates + athlete profile URL; Structured Curriculum HC-only asset path |
-| 3 | **072** | **v4.9.2** | [`072-v4.9.2-PASTE.txt`](./072-v4.9.2-PASTE.txt) | Weekly package + `athleteFirstName` |
-| 4 | **074** | **v3.6** | [`074-v3.6-PASTE.txt`](./074-v3.6-PASTE.txt) | Weekly Hub handoff + `athleteFirstName` |
-| 5 | **073** | **v4.9** | [`073-v4.9-PASTE.txt`](./073-v4.9-PASTE.txt) | Canonical Submission Asset / Video Feedback evidence (v4.8) + `athleteFirstName` |
-| 6 | **117** | **v2.2** | [`117-v2.2-PASTE.txt`](./117-v2.2-PASTE.txt) | Zoom recording approval Hub handoff; meeting display + timestamps |
+Do not paste because an older checklist says a paste is pending. Paste only when the published editor body/version is behind the matching GitHub body/version, after a reviewed PR is merged.
 
-**2026-09-13 status:** Production **matches** GitHub for all six producers above. **Do not re-paste** unless Live drifts behind GitHub. Superseded bundles: `076-v8.14-PASTE.txt`, `073-v4.7-PASTE.txt`.
+For an approved paste:
 
-### After each paste
+1. Use the matching current `*-PASTE.txt` bundle generated from `master`.
+2. Preserve the existing trigger, conditions, input variables, and ON/OFF state.
+3. Paste the Automation body exactly as directed by the bundle; do not edit it in the browser.
+4. Save, re-open, and record published version plus normalized hash verification.
+5. Run the repository paste-integrity check. A paste alone is not a reason to send email.
 
-- [ ] Run automation once on a disposable record (or confirm trigger unchanged)
-- [ ] Confirm run-history JSON shows the new `version`
-- [ ] Production `Automations` table **Automation Code** column matches GitHub (Name / Status / Code only — ignore stale condition columns)
+## Delivery safety
 
-### Related producers (confirm, paste only if behind)
+- Resend through the Communications Hub is the only Shooting Challenge parent-email delivery plane.
+- Make/Gmail parent-email routes are retired; legacy `Send to Make?` fields are arm flags, not evidence of a Make email send.
+- Email Handoff Queue status and Hub delivery/audit rows are the operational evidence for a delivery.
+- Use a deliberate disposable proof before a broad live change. During a simulation, the approved recipient is `schmidt@fairfieldbasketballclub.com` only.
+- For normal family operation, recipient selection must come from the cleaned enrollment contact fields; do not use an allowlist as a substitute for family-contact validation.
 
-| Slot | GitHub | Notes |
-|---|---|---|
-| **078A** | v1.7 | Welcome handoff — Live matches GitHub (2026-09-13) |
-| **079** | v2.5 | Dispatcher — confirm `ingressSecret` input configured |
-| **118** | v2.1 | Weekly arm — confirm `dryRun` / `sendMode` before Live |
-| **119** | v1.8 | Weekly send — confirm `dryRun` before Live |
+## Emergency rollback
 
-Detail: [`parent-email-live-cutover-2026-09-02.md`](./parent-email-live-cutover-2026-09-02.md) · SC-171: [`SC-171-email-homework-presentation.md`](./SC-171-email-homework-presentation.md)
+Set affected producers back to `testMode=true`; set 072 to test send mode; set 118/119 `dryRun=true`; and disable scheduled arms only if a full weekly-email pause is necessary. Leave 079 ON unless the dispatcher itself is the confirmed fault. Preserve queue and Hub audit evidence; do not bulk-delete delivery records in an incident.
 
-### Live verification (disposable only)
+## Historical material
 
-```bash
-node tools/testing/parent-email-live-cutover.mjs verify-all --skip-welcome
-```
-
-Or path-by-path checks in SC-171 matrix (Daily streak 11→12→13, homework CTA `/shoot/athletes/{slug}`, no `rec…` in URLs).
-
----
-
-## Phase B — SC-172 admin diagnostics token
-
-**Goal:** Staff diagnostics route returns 200 with token (health already **200** on Production).
-
-| Step | Action |
-|---|---|
-| 1 | Vercel → **127-si-shooting-challenge** → Production env |
-| 2 | Set `ADMIN_DIAGNOSTICS_TOKEN` (≥32 random chars; do not commit) |
-| 3 | Redeploy if Vercel does not auto-redeploy on env change |
-| 4 | Smoke: unauthenticated → **401/403**; with Bearer token → **200** (no secrets in body) |
-
-Full checklist: [`SC-172-health-admin-diagnostics.md`](./SC-172-health-admin-diagnostics.md)
-
----
-
-## Phase C — Structured Curriculum Hub cutover
-
-**Goal:** Hub can redeem + submit against SC Production endpoints; Outbox supports retries.
-
-| Step | Owner | Action |
-|---|---|---|
-| 1 | Mike | Confirm SC routes: redeem/submit → **401** not **404** (see curl block in cutover doc) |
-| 2 | Mike | Hub Vercel Production: set redeem + submit URLs to Fairfield `/shoot/api/curriculum/...` |
-| 3 | Mike | Hub Vercel: `CURRICULUM_HANDOFF_SECRET` + `CURRICULUM_INGRESS_SECRET` match SC Production |
-| 4 | Mike / OMNI | Hub Airtable Submission Outbox: add five retry fields (Retry Payload, Attempt Count, etc.) |
-| 5 | Mike | Hub deploy + one disposable curriculum E2E |
-
-Full checklist: [`structured-curriculum-hub-production-cutover.md`](./structured-curriculum-hub-production-cutover.md)
-
----
-
-## Phase D — Zoom Attendance primary field
-
-**Goal:** Human-readable primary display (formula) instead of autoNumber `Id`.
-
-| Step | Action |
-|---|---|
-| 1 | Open Zoom Attendance → primary field **Id** (`fldXHFpB3MrOVevYL`) |
-| 2 | Convert **Autonumber → Formula** (Mike UI only — MCP cannot do this) |
-| 3 | Paste formula from live **Attendance Label** (`fldVILeOyW1jepScv`) |
-| 4 | Spot-check Automation **117** still receives ZA `rec…` IDs |
-
-Full checklist: [`ZOOM-ATTENDANCE-PRIMARY-FIELD-FORMULA.md`](./ZOOM-ATTENDANCE-PRIMARY-FIELD-FORMULA.md)
-
----
-
-## Phase E — Flip Live (after A–D verified)
-
-Only when disposable proofs pass:
-
-1. Set producer `testMode=false` on **071 / 073 / 074 / 076 / 117** (and **078A** if welcome Live)
-2. Set **118** `dryRun=false`, **sendMode=Live**; **119** `dryRun=false`
-3. Vercel: `ATHLETE_AUTH_TEST_MODE=false` (magic links to real enrollment email)
-4. One Athlete1 disposable proof per path — then stop
-
-Rollback: restore `testMode=true` / `dryRun=true` on the same automations.
-
-Detail: [`parent-email-and-auth-live-cutover-2026-09-03.md`](./parent-email-and-auth-live-cutover-2026-09-03.md)
-
----
-
-## Done checklist (master)
-
-| Phase | Done |
-|---|---|
-| A — Six email pastes + version preflight | [ ] |
-| A — Disposable email verify | [ ] |
-| B — `ADMIN_DIAGNOSTICS_TOKEN` + smoke | [ ] |
-| C — Hub URLs + secrets + Outbox fields + E2E | [ ] |
-| D — ZA primary formula | [ ] |
-| E — Live testMode / dryRun flip (optional) | [ ] |
-
----
-
-## Related (not in this packet)
-
-| Item | When |
-|---|---|
-| **FUT-003** Stripe/Make activation | When registration opens |
-| **SC-SEASON-SIM-001** | When Mike says `RUN 3-ATHLETE SEASON SIMULATION` |
-| **SC-166** coach Interface filters | Optional UI polish |
-| **FUT-043 Hub card tokens** | Paste [`card-tokens-mirror-reference.js`](../communications-hub/card-tokens-mirror-reference.js) into communications repo |
+The dated cutover packets and proof reports remain as evidence only. Start with this document and [`EMAIL-PRODUCER-BOOLEAN-INPUT-PARSING.md`](./EMAIL-PRODUCER-BOOLEAN-INPUT-PARSING.md) for current operation.
