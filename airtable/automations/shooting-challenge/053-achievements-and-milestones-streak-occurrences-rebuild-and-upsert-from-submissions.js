@@ -24,13 +24,15 @@ Airtable is the deployed/running copy.
 
 /************************************************************************************************
  * 053 - Achievements and Milestones - Streak Occurrences - Rebuild and Upsert From Submissions
- * Version: 5.6
+ * Version: 5.8
  * Date Written: 2026-06-09
- * Last Updated: 2026-09-12
- * Updated Reason: Close concurrent-create race that produced duplicate Streak
- * Occurrence Keys (season-sim Edge forensic). Create missing occurrences
- * one-at-a-time with a pre-create recheck; on duplicates keep the oldest Active
- * Ready row and mark extras Duplicate + inactive (instead of Error-all).
+ * Last Updated: 2026-09-13
+ * Updated Reason: SC-SEASON-SIM-001-DEPLOY-20260913B — bump for Airtable draft
+ * verification. Logic: Fix toDateKey UTC ISO-prefix slice on datetime strings so
+ * Week End (Denver EOD stored as next-UTC-morning 05:59Z) does not overlap the
+ * next Week Start. Production Perfect D67/053 failed with:
+ * "Multiple Weeks matched streak end date 2027-06-13 … Week 6, Week 7",
+ * aborting 50/60-day occurrence materialization (Longest Streak stuck at 40).
  *
  * SCRIPT TYPE
  * - Airtable Automation Script
@@ -62,7 +64,13 @@ Airtable is the deployed/running copy.
  *   canonical occurrence to Ready for XP in the separate reconciliation update so
  *   054 receives a real record-update event.
  *
- * IMPORTANT FIX IN THIS VERSION (v5.6)
+ * IMPORTANT FIX IN THIS VERSION (v5.7)
+ * - toDateKey: date-only YYYY-MM-DD keeps the literal calendar key; ISO datetime
+ *   strings (…T…Z) convert via America/Denver — never UTC-slice the YYYY-MM-DD
+ *   prefix (that falsely overlaps Week End/Start on boundary days).
+ * - findWeekForDate still throws on true multi-match after Denver keys.
+ *
+ * PRIOR FIX (v5.6) — still in force
  * - Concurrent create path: one-at-a-time create with pre-create recheck.
  * - Duplicate collapse keeps one canonical occurrence (no longer Error-all).
  *
@@ -329,14 +337,18 @@ async function main() {
 
         if (typeof value === "string") {
             const trimmed = String(value).trim();
-            const isoMatch = trimmed.match(/^(\d{4})-(\d{2})-(\d{2})/);
-            if (isoMatch) {
-                return `${isoMatch[1]}-${isoMatch[2]}-${isoMatch[3]}`;
+            // Date-only calendar key — preserve literally (no timezone shift).
+            const dateOnly = trimmed.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+            if (dateOnly) {
+                return `${dateOnly[1]}-${dateOnly[2]}-${dateOnly[3]}`;
             }
-            const localMatch = trimmed.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+            const localMatch = trimmed.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
             if (localMatch) {
                 return `${localMatch[3]}-${localMatch[1].padStart(2, "0")}-${localMatch[2].padStart(2, "0")}`;
             }
+            // ISO datetime strings (…T…Z): do NOT UTC-slice YYYY-MM-DD.
+            // Week End is Denver EOD stored as next-UTC-morning 05:59Z; UTC slice
+            // falsely overlaps the next Week Start (Production 2027-06-13 miss).
         }
 
         const date = value instanceof Date ? value : new Date(value);

@@ -96,14 +96,13 @@ Trigger map (downstream effects): [../airtable/schema/current/automation-trigger
 
 ## Achievements and streaks (053–059, 066)
 
-> **PKG-038 status:** **COMPLETE** (Production proof passed 2026-08-16). 053 v5.5,
-> 054 v5.8, **066 v4.1** (Live / GitHub aligned — SC-163 Goal Met Date + milestones COMPLETE / Live Tested), and 059 v3.7 (repo; paste with 058 v1.5) are the GitHub source. Charlie Schmidt Early
+> **PKG-038 status:** **COMPLETE** (Production proof passed 2026-08-16). Streak writer **053 is Production / GitHub v5.8** (synced 2026-09-14 from live Automation Code; marker `SC-SEASON-SIM-001-DEPLOY-20260913B`; Denver-safe `toDateKey` — no UTC ISO-prefix slice — so Week End/Start do not overlap; unblocks 50/60-day streak occurrences). 054 v5.8, **066 v4.1** (Live / GitHub aligned — SC-163 Goal Met Date + milestones COMPLETE / Live Tested), and 059 v3.7 (repo; paste with 058 v1.5) remain as documented. Charlie Schmidt Early
 > Bird path proven; audit v2.1 issueTotal = 0. **Do not retest** unless source,
-> trigger, or schema changes. Resume after first regular Week closes (~May 8, 2027).
+> trigger, or schema changes. Resume after first regular Week closes (~May 8, 2027). Verification: [`audits/053-v5.8-live-sync-20260914/VERIFICATION.md`](./audits/053-v5.8-live-sync-20260914/VERIFICATION.md).
 
 | # | Airtable automation name | Trigger | File |
 |---|--------------------------|---------|------|
-| 053 | Achievements — Streak Occurrences Rebuild from Submissions | Submissions updated; exact trigger must cover eligibility/identity corrections | `053-achievements-and-milestones-streak-occurrences-rebuild-and-upsert-from-submissions.js` (**v5.5** — first-create Ready handoff; **ON in PROD**) |
+| 053 | Achievements — Streak Occurrences Rebuild from Submissions | Submissions updated; exact trigger must cover eligibility/identity corrections | `053-achievements-and-milestones-streak-occurrences-rebuild-and-upsert-from-submissions.js` (**v5.8** — Denver `toDateKey` Week boundary fix; deploy `SC-SEASON-SIM-001-DEPLOY-20260913B`; **ON in PROD**) |
 | **054** | Achievements — Create or Reconcile Streak XP Event | Streak Occurrences updated; exact trigger must cover Active? withdrawal and Ready/restoration | `054-achievements-and-milestones-streak-occurrences-create-or-repair-streak-xp-event.js` (**v5.8** — exact same-event lifecycle; **ON in PROD**) |
 | 055 | Achievements — Recalculate Current Shooting Streak from Submission | *confirm in Airtable* | `055-achievements-and-milestones-recalculate-current-shooting-streak-from-submission.js` |
 | 056 | Achievements — Refresh Current Shooting Streaks Daily | *confirm in Airtable (scheduled)* | `056-achievements-and-milestones-refresh-current-shooting-streaks-daily.js` |
