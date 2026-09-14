@@ -1,5 +1,7 @@
 # Weekly email PROD install / ops runbook — 118 / 072 / 119 / 074 / Make
 
+> **HISTORICAL / DO NOT USE FOR CURRENT OPERATIONS.** This runbook describes the retired Make/Gmail sender. Current delivery uses Communications Hub → Resend; see [`../../integrations/email-send-plane.md`](../../integrations/email-send-plane.md).
+
 **Updated:** 2026-07-24 (verified Schmidt E2E)  
 **Base:** PROD `appn84sqPw03zEbTT`  
 **Canonical architecture:** [`WAS-WEEKLY-EMAIL-ARCHITECTURE.md`](./WAS-WEEKLY-EMAIL-ARCHITECTURE.md)
