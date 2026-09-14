@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-09-14T21:20:29.437961+00:00",
+  "run": "SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt",
+  "execute": true,
+  "deleted_counts": {
+    "Comms::Integration Events": 95,
+    "Email Handoff Queue": 98,
+    "XP Events": 170,
+    "Athlete Achievement Unlocks": 16,
+    "Streak Occurrences": 9,
+    "Video Feedback": 30,
+    "Homework Completions": 20,
+    "Submission Assets": 55,
+    "Zoom Attendance": 2,
+    "Zoom Meetings": 2,
+    "Weekly Athlete Summary": 10,
+    "Submissions": 67,
+    "Enrollments": 1,
+    "Athletes": 1
+  },
+  "deleted_total": 576,
+  "errors": [],
+  "skipped": [],
+  "sc_transactional_counts": {
+    "Athletes": 0,
+    "Enrollments": 0,
+    "Submissions": 0,
+    "Submission Assets": 0,
+    "Homework Completions": 0,
+    "Video Feedback": 0,
+    "XP Events": 4,
+    "Athlete Achievement Unlocks": 0,
+    "Streak Occurrences": 0,
+    "Weekly Athlete Summary": 0,
+    "Zoom Attendance": 0,
+    "Email Handoff Queue": 0
+  },
+  "curriculum_transactional_counts": {
+    "Submission Outbox": 0,
+    "Homework Draft Responses": 0,
+    "Homework Draft Attempts": 0
+  },
+  "comms_transactional_counts": {
+    "Delivery Attempts": 0,
+    "Audit Events": 0,
+    "Deliveries": 0,
+    "Delivery Keys": 0,
+    "Messages": 0,
+    "Integration Events": 0,
+    "Contact Methods": 0,
+    "Communication Identities": 0
+  },
+  "zoom_meeting_ids": [
+    "recMFP2x5LDqea9ax",
+    "recb9EjQIJVzaRpZa"
+  ],
+  "zoom_catalog_only": true,
+  "active_pha_count": 20,
+  "week9_pha_count": 2,
+  "residuals": {
+    "Submissions": {
+      "by_run_marker": 0,
+      "by_enrollment": 0
+    },
+    "XP Events": {
+      "by_run_marker": 0,
+      "by_enrollment": 1
+    },
+    "Email Handoff Queue": {
+      "by_run_marker": 0,
+      "by_enrollment": 0
+    },
+    "Athletes": {
+      "by_run_marker": 0,
+      "by_enrollment": 0,
+      "record_still_exists": false
+    },
+    "Enrollments": {
+      "by_run_marker": 0,
+      "by_enrollment": 0,
+      "record_still_exists": false
+    }
+  },
+  "formula_hash_check": {
+    "Activity Date Is Future?": {
+      "sha256": "d14642bb2f82abc43709c825bd80986f36c302c1451e14c26fe8c87ae75c1088",
+      "matches_bundle": true,
+      "gated": false,
+      "has_season_sim_text": false
+    },
+    "Submitted Same Day?": {
+      "sha256": "084d2e2f71db854b7eb2fd8e1bc017bce5b381572d6dd6b97091ce24cb772658",
+      "matches_bundle": true,
+      "gated": false,
+      "has_season_sim_text": false
+    },
+    "Perfect Week Grace Eligible?": {
+      "sha256": "8484fe440c76ea4157d3b9ba1058741e239b47fe52af99e319b7e4393813a526",
+      "matches_bundle": true,
+      "gated": false,
+      "has_season_sim_text": false
+    }
+  },
+  "season_sim_formula_hits": [],
+  "lock_released": false,
+  "lock_after": null,
+  "ehq_pre_cleanup": 98,
+  "ehq_post_cleanup": 0,
+  "no_new_ehq_during_cleanup": true,
+  "allowlist_email": "schmidt@fairfieldbasketballclub.com"
+}

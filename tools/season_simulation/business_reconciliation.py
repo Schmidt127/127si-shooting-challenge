@@ -460,6 +460,105 @@ def stage_e2_business_success_hook(
     return payload
 
 
+def _enrollment_ids_from_xp_fields(fields: dict[str, Any]) -> list[str]:
+    """Collect enrollment record ids from XP Event Enrollment / Enrollment Record ID."""
+    flat: list[str] = []
+    for key in ("Enrollment Record ID", "Enrollment"):
+        linked = fields.get(key)
+        if linked is None:
+            continue
+        items = linked if isinstance(linked, list) else [linked]
+        for item in items:
+            if isinstance(item, dict):
+                flat.append(str(item.get("id") or ""))
+            else:
+                flat.append(str(item or ""))
+    return [x for x in flat if x]
+
+
+def list_xp_events_for_enrollment(
+    client: Any,
+    enrollment_id: str,
+    *,
+    source_key_prefix: str | None = None,
+    fields: Sequence[str] | None = None,
+    max_records: int | None = None,
+) -> list[dict[str, Any]]:
+    """List XP Events for an enrollment using Production-safe filters.
+
+    ``ARRAYJOIN({Enrollment})`` / ``FIND`` on the linked Enrollment field returns
+    **zero** rows in this base. Prefer ``{Enrollment Record ID}='rec…'``. Never
+    request a non-existent ``Status`` field (422). Falls back to list-all +
+    client-side filter when the formula path fails.
+    """
+    if client is None or not enrollment_id:
+        return []
+    list_fn = getattr(client, "list_records", None) or getattr(client, "select", None)
+    if list_fn is None:
+        return []
+
+    eid = enrollment_id.strip()
+    field_list = list(
+        fields
+        or (
+            "Source Key",
+            "XP Points",
+            "Active XP Points",
+            "Active?",
+            "Enrollment",
+            "Enrollment Record ID",
+            "XP Bucket",
+        )
+    )
+    base = f"{{Enrollment Record ID}}='{eid}'"
+    if source_key_prefix:
+        formula = (
+            f"AND({base}, FIND('{source_key_prefix}', {{Source Key}} & ''))"
+        )
+    else:
+        formula = base
+
+    rows: list[dict[str, Any]] = []
+    try:
+        kwargs: dict[str, Any] = {"formula": formula, "fields": field_list}
+        if max_records is not None:
+            kwargs["max_records"] = max_records
+        try:
+            rows = list(list_fn("XP Events", **kwargs) or [])
+        except TypeError:
+            rows = list(list_fn("XP Events", formula=formula) or [])
+    except Exception:  # noqa: BLE001
+        rows = []
+
+    if not rows:
+        try:
+            all_rows = list(list_fn("XP Events") or [])
+        except Exception:  # noqa: BLE001
+            all_rows = []
+        filtered: list[dict[str, Any]] = []
+        for row in all_rows:
+            f = row.get("fields") or row
+            if eid in _enrollment_ids_from_xp_fields(f) or eid in str(
+                f.get("Enrollment") or ""
+            ):
+                if source_key_prefix and source_key_prefix not in str(
+                    f.get("Source Key") or ""
+                ):
+                    continue
+                filtered.append(
+                    row if "fields" in row else {"id": row.get("id"), "fields": f}
+                )
+        rows = filtered
+
+    out: list[dict[str, Any]] = []
+    for row in rows:
+        f = row.get("fields") or row
+        ids = _enrollment_ids_from_xp_fields(f)
+        if eid in ids or eid in str(f.get("Enrollment") or ""):
+            out.append(row if "fields" in row else {"id": row.get("id"), "fields": f})
+    return out
+
+
 def try_load_enrollment_xp_for_reconcile(
     client: Any,
     enrollment_id: str,
@@ -483,51 +582,42 @@ def try_load_enrollment_xp_for_reconcile(
                     break
                 except (TypeError, ValueError):
                     pass
-        for key in ("Current Level", "Level", "Athlete Level"):
-            if fields.get(key):
-                out["level"] = str(fields[key])
+        # Prefer public display text; linked Current Level is a rec id list.
+        for key in (
+            "Current Level - Public Facing Display",
+            "Current Level Name",
+            "Level Name",
+        ):
+            val = fields.get(key)
+            if not val:
+                continue
+            if isinstance(val, list):
+                out["level"] = str(val[0] if val else "")
+            else:
+                out["level"] = str(val)
+            if out["level"]:
                 break
+        if not out["level"]:
+            for key in ("Current Level", "Level", "Athlete Level"):
+                val = fields.get(key)
+                if not val:
+                    continue
+                if isinstance(val, list):
+                    if val and all(str(x).startswith("rec") for x in val):
+                        continue
+                    out["level"] = str(val[0] if len(val) == 1 else val)
+                else:
+                    text = str(val)
+                    if text.startswith("rec"):
+                        continue
+                    out["level"] = text
+                if out["level"]:
+                    break
     except Exception:  # noqa: BLE001
         pass
 
-    events: list[dict[str, Any]] = []
-    try:
-        list_fn = getattr(client, "list_records", None) or getattr(client, "select", None)
-        if list_fn is None:
-            return out
-        formula = f"FIND('{enrollment_id}', ARRAYJOIN({{Enrollment}})&'')"
-        try:
-            rows = list_fn(
-                "XP Events",
-                fields=[
-                    "Source Key",
-                    "XP Points",
-                    "Active XP Points",
-                    "Active?",
-                    "Status",
-                    "Enrollment",
-                ],
-                formula=formula,
-            )
-        except TypeError:
-            rows = list_fn("XP Events") or []
-        for row in rows or []:
-            f = row.get("fields") or row
-            linked = f.get("Enrollment") or []
-            ids = linked if isinstance(linked, list) else [linked]
-            flat = []
-            for item in ids:
-                if isinstance(item, dict):
-                    flat.append(str(item.get("id") or ""))
-                else:
-                    flat.append(str(item or ""))
-            if enrollment_id in flat or enrollment_id in str(f.get("Enrollment") or ""):
-                events.append(row if "fields" in row else {"id": row.get("id"), "fields": f})
-    except Exception:  # noqa: BLE001
-        events = []
-    out["events"] = events
+    out["events"] = list_xp_events_for_enrollment(client, enrollment_id)
     return out
-
 
 def count_duplicate_keys(keys: Sequence[str]) -> dict[str, int]:
     """Count duplicate non-empty keys (legacy helper for pre-extracted keys).
@@ -546,6 +636,7 @@ __all__ = [
     "actual_xp_buckets_from_events",
     "event_is_active",
     "expected_points_from_matrix",
+    "list_xp_events_for_enrollment",
     "reconcile_business_success",
     "reconcile_with_live_events",
     "stage_e2_business_success_hook",
