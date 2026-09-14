@@ -1,5 +1,8 @@
 # Tier-1 email closeout — 2026-09-13
 
+> **HISTORICAL EVIDENCE — DO NOT USE AS CURRENT OPERATING OR PASTE INSTRUCTIONS.**
+> This record preserves the state and versions observed on 2026-09-13. For current published-editor versions and operator guidance, use [`TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md`](../../../deploy-checklists/TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md).
+
 **Production base:** `appn84sqPw03zEbTT`  
 **Allowlisted recipient:** `schmidt@fairfieldbasketballclub.com` only  
 **GitHub branch:** `cursor/tier1-email-closeout-e05f`
