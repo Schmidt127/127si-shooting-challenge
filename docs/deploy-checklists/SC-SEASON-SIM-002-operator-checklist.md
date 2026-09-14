@@ -1,5 +1,7 @@
 # SC-SEASON-SIM-002 — Operator checklist (gated clock override)
 
+> **HISTORICAL — DO NOT USE FOR CURRENT OPERATIONS.** This checklist describes the 2026-09 SC-002 mixed-path package, including an obsolete 18-PHA / Week-9-zero assumption and an immediate-restore instruction. It is retained as evidence only. For a future Perfect Mike run, use [`SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md`](./SC-SEASON-SIM-PERFECT-OPERATOR-GUIDE.md).
+
 > **Current Production (2026-09-05 preflight):** Season Simulation execute is **NOT currently authorized** until Mike says exactly `RUN SEASON SIMULATION`. Live formulas are normal **`NOW()` / `TODAY()`** (Season Sim gates **off**). Season Sim Submissions fields exist but are unused. Live automations **010 v10.13 / 114 v6.2 / 073 v4.6** already include Season Sim date-gate helpers. Full ready-to-run path: [`SC-SEASON-SIM-002-EXECUTION-MANIFEST.md`](./SC-SEASON-SIM-002-EXECUTION-MANIFEST.md).
 
 | | |
@@ -39,7 +41,7 @@ Also:
 - Do **not** modify SC-147, Automation 101, or Zoom credit logic
 - Do **not** delete Weeks / schema / automations
 - Cleanup deletes **only** registry-tagged simulation records
-- Restore Production formulas immediately after the run
+- Historical instruction only: do not restore Production formulas on writer completion. Current lifecycle requires the pre-restore 4,980 / 170 acceptance gate first.
 
 ---
 
