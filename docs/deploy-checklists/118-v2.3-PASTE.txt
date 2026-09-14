@@ -1,24 +1,3 @@
-/*
-Automation: 118 - Email - Schedule Weekly Summary Email Build
-System: 127 SI Shooting Challenge
-Source: Airtable Automation
-Status: GitHub Source of Truth
-Last Synced From Airtable: (new - not yet deployed)
-Last GitHub Update: 2026-08-13
-
-Purpose:
-Sunday 5:00 AM America/Denver batch: ensure Weekly Athlete Summary rows for the
-prior ended week and arm Build Weekly Email Now? so automation 072 builds packages.
-Does not call Make. PROD schedule verified ON 2026-07-24.
-
-Trigger:
-At a scheduled time — Weekly — Sunday 05:00 — America/Denver
-
-Notes:
-Never commit webhook secrets. Exclude Schmidt test enrollment.
-PROD season: dryRun=false + sendMode=Live (never Live+includeSchmidt).
-*/
-
 /************************************************************
  * 118 - Email - Schedule Weekly Summary Email Build
  *

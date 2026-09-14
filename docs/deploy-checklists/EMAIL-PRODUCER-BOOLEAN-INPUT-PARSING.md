@@ -1,7 +1,8 @@
 # Email producer Airtable boolean input parsing
 
-**Status:** PENDING Production paste (GitHub PR first)  
+**Status:** PENDING Mike approval → merge → Production paste  
 **Date:** 2026-09-14  
+**Merged baseline:** PR #542 (`1ac4cea7`) introduced the parser; this follow-up bumps paste versions.  
 **Scope:** Strict parsing of automation inputs `testMode`, `sendMode`, `dryRun`, `includeSchmidt`  
 **Does not change:** automation triggers, recipient routing, Hub templates, Make webhooks  
 
@@ -37,29 +38,31 @@ Text `"false"` / `"0"` / `0` → false; `"true"` / `"1"` / `1` → true; `"Live"
 
 | # | Step | Owner | Done |
 |---|------|-------|------|
-| 1 | Merge GitHub PR for this change | Mike | [ ] |
-| 2 | Paste each script below (docblock → end; skip GitHub header) | Mike | [ ] |
-| 3 | Confirm automation **inputs and triggers unchanged** in UI | Mike | [ ] |
-| 4 | Spot-check one producer with UI `testMode = false` (allowlisted only) | Mike | [ ] |
+| 1 | Mike approves version bump list | Mike | [ ] |
+| 2 | Merge follow-up PR to `master` | Mike / Cursor | [ ] |
+| 3 | Paste each script below (docblock → end; skip GitHub header) | Cursor (authorized) | [ ] |
+| 4 | Confirm automation **inputs and triggers unchanged** in UI | Cursor / Mike | [ ] |
+| 5 | Retain UI values: producers `testMode=false`; 072 `sendModeInput=live`; 118/119 season Live + dryRun=false | Cursor / Mike | [ ] |
 
-## Airtable paste sources
+## Airtable paste sources (this deploy)
 
-| Automation | GitHub file | Version |
-|---|---|---|
-| 071 | `071-email-notifications-and-external-handoffs-send-homework-feedback-email-webhook.js` | v4.6 |
-| 072 | `072-email-notifications-and-external-handoffs-build-weekly-summary-email-package.js` | v4.9.3 |
-| 073 | `073-email-notifications-and-external-handoffs-send-video-feedback-parent-email-webhook.js` | v4.10 |
-| 074 | `074-email-notifications-and-external-handoffs-send-weekly-summary-email-package-to-make.js` | v3.7 |
-| 076 | `076-email-notifications-and-external-handoffs-build-daily-submission-email-package.js` | v8.16 |
-| 078A | `078A-email-notifications-and-external-handoffs-enrollment-create-welcome-email-handoff.js` | v1.8 |
-| 117 | `117-zoom-send-recording-approval-email-to-make.js` | v2.3 |
-| 118 | `118-email-notifications-and-external-handoffs-schedule-weekly-summary-email-build.js` | v2.2 |
-| 119 | `119-email-notifications-and-external-handoffs-schedule-weekly-summary-email-send.js` | v1.9 |
+| Automation | Live today (Automations table) | New GitHub / paste | Paste bundle |
+|---|---:|---:|---|
+| 071 | v4.5 | **v4.7** | [`071-v4.7-PASTE.txt`](./071-v4.7-PASTE.txt) |
+| 072 | v4.9.2 | **v4.9.4** | [`072-v4.9.4-PASTE.txt`](./072-v4.9.4-PASTE.txt) |
+| 073 | v4.9 | **v4.11** | [`073-v4.11-PASTE.txt`](./073-v4.11-PASTE.txt) |
+| 074 | v3.6 | **v3.8** | [`074-v3.8-PASTE.txt`](./074-v3.8-PASTE.txt) |
+| 076 | v8.15 | **v8.17** | [`076-v8.17-PASTE.txt`](./076-v8.17-PASTE.txt) |
+| 078A | v1.7 | **v1.9** | [`078A-v1.9-PASTE.txt`](./078A-v1.9-PASTE.txt) |
+| 117 | v2.2 | **v2.4** | [`117-v2.4-PASTE.txt`](./117-v2.4-PASTE.txt) |
+| 118 | v2.1 | **v2.3** | [`118-v2.3-PASTE.txt`](./118-v2.3-PASTE.txt) |
+| 119 | v1.8 | **v1.10** | [`119-v1.10-PASTE.txt`](./119-v1.10-PASTE.txt) |
 
-Paste path: `airtable/automations/shooting-challenge/` in the repo tip after merge.
+Source path: `airtable/automations/shooting-challenge/` on `master` after merge.
 
 ## Explicit non-goals
 
 - Do **not** change triggers, filters, or recipient allowlists.
 - Do **not** re-run season simulation as part of this paste.
 - Do **not** alter Communications Hub or Make scenarios for this fix.
+- Do **not** run producers or create EHQ/Hub rows during paste verification.

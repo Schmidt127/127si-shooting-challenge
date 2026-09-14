@@ -1,109 +1,63 @@
-/*
-Automation: 118 - Email - Schedule Weekly Summary Email Build
-System: 127 SI Shooting Challenge
-Source: Airtable Automation
-Status: GitHub Source of Truth
-Last Synced From Airtable: (new - not yet deployed)
-Last GitHub Update: 2026-08-13
-
-Purpose:
-Sunday 5:00 AM America/Denver batch: ensure Weekly Athlete Summary rows for the
-prior ended week and arm Build Weekly Email Now? so automation 072 builds packages.
-Does not call Make. PROD schedule verified ON 2026-07-24.
-
-Trigger:
-At a scheduled time — Weekly — Sunday 05:00 — America/Denver
-
-Notes:
-Never commit webhook secrets. Exclude Schmidt test enrollment.
-PROD season: dryRun=false + sendMode=Live (never Live+includeSchmidt).
-*/
-
 /************************************************************
- * 118 - Email - Schedule Weekly Summary Email Build
+ * 119 - Email - Schedule Weekly Summary Email Send
  *
- * Version: v2.3
+ * Version: v1.10
  * Date Written: 2026-07-16
  * Last Updated: 2026-09-14
  *
  * VERSION HISTORY
- * - v2.3 (2026-09-14): Airtable text values such as "false" are now parsed correctly instead of being treated as truthy.
- * - v2.1 (2026-09-08 / SC-121): Target the latest active non-Post-Challenge Week that has actually ended in America/Denver, instead of assuming every Week ends Saturday. This preserves normal Sunday behavior and correctly selects partial terminal Week 9 (Jun 27-Jun 30, 2027) on the Jul 4 scheduler run.
- * - v2.2 (2026-09-14): Strict parseAutomationBoolean for Airtable text inputs ("false" is false; missing keeps safe default).
- * - v2.0 (2026-08-13): Requires a settled exact Summary Key as well as exact
- *   Enrollment + Week before arming an eligible WAS; formula lag now stops
- *   safely instead of permitting an email handoff.
- * - v1.9 (2026-08-13): 031 is the sole Weekly Athlete Summary creator.
- *   This scheduler filters excluded/inactive enrollments before strict
- *   validation and only resolves one existing canonical WAS; it never creates
- *   a summary. Missing or ambiguous eligible identities stop safely.
- * - v1.8 (2026-08-13): Exact WAS owner identity hardening.
+ * - v1.10 (2026-09-14): Airtable text values such as "false" are now parsed correctly instead of being treated as truthy.
+ * - v1.8 (2026-09-08 / SC-121): Match 118 v2.1 by targeting the latest active non-Post-Challenge Week that has actually ended in America/Denver, so partial terminal Week 9 is not skipped.
+ * - v1.9 (2026-09-14): Strict parseAutomationBoolean for Airtable text inputs ("false" is false; missing keeps safe default).
  * - v1.7 (2026-08-06): Program Instance isolation — Week End Date match rejects
- *   multi-PI collisions; enrollments armed only when Enrollment.Program Instance
- *   matches the target Week. Exclude both Schmidt test enrollment RIDs.
+ *   multi-PI collisions; exclude both Schmidt test enrollment RIDs.
  * - v1.6 (2026-08-05): Airtable runtime compatibility — guard optional
  *   QueryResult.unloadData() cleanup so unsupported cleanup cannot fail an
  *   otherwise successful automation run.
- * - v1.5 (2026-07-24): PROD schedules verified ON. Read sendMode from input
- *   (Test|Live) when arming WAS — do not hardcode Test. Allow dryRun=false
- *   with sendMode=Live for parent season. Refuse Live + includeSchmidt.
- *   Remove stale "refuse Live when dryRun=false" hard stop (blocked PROD Live).
+ * - v1.5 (2026-07-24): PROD schedule verified ON (Sunday 10:00 AM Denver).
+ *   Docs only for ownership clarity — 119 still only arms Send to Make?.
  * - v1.4 (2026-07-24): SC-035 approved — default emptyWeekPolicy = send_short.
- *   Package branching is enforced in automation **072 v4.0** (short / full /
- *   suppress). 118 still arms Build for empty weeks; 072 applies the policy.
- * - v1.3 (2026-07-24): Correct Summary Key documentation — live PROD shape
- *   verified 2026-07-23 is {Enrollment Key}|{Week Key} =
- *   ATH-{athleteRecId}|{schoolYear}|{weekRecId}, matching expectedSummaryKey.
- *   Enrollment+Week matching remains the fallback. Add emptyWeekPolicy input
- *   (default send_short). Older "schedules OFF" notes are historical.
+ *   Empty-week package shape is enforced in **072 v4.0**; 119 only arms Send
+ *   when Weekly Email Ready? (suppress empty weeks never become Ready).
+ * - v1.3 (2026-07-24): Add emptyWeekPolicy input (default send_short).
+ *   Keep blank-subject/recipients/html as notReady (no send).
  * - v1.2 (2026-07-23): Fix week End Date matching — Weeks End Date is a
  *   dateTime stored as Denver 23:59 (next-day UTC); date keys now convert to
- *   the America/Denver calendar date instead of UTC, so the Sunday run can
- *   actually find the prior-Saturday week. Add includeSchmidt input
- *   (default false) so the Schmidt test enrollment can be armed for
- *   controlled Test-mode email verification.
- * - v1.1 (2026-07-18): Emit scheduledWeekEndKeyOut; prefer Summary Key for WAS
- *   lookup; skip duplicate WAS arms; keep dryRun default true.
+ *   the America/Denver calendar date instead of UTC (same fix as 118 v1.2).
+ *   Add includeSchmidt input (default false) for controlled Test-mode
+ *   verification with the Schmidt test enrollment.
+ * - v1.1 (2026-07-18): Emit scheduledWeekEndKeyOut; document ready-only send gate.
  * - v1.0 (2026-07-16): Initial schedule-arm script.
  *
  * PURPOSE
- * - Resolve the latest active non-Post-Challenge Week whose End Date is before today in Denver.
- * - For each Active? enrollment (excluding Schmidt), resolve one existing WAS.
- * - Skip if Weekly Email Sent? or no cleaned email.
- * - Set Build Weekly Email Now? = true and WAS sendMode from input when dryRun=false.
+ * - Resolve the latest active non-Post-Challenge Week whose End Date is before today in Denver (same rule as 118).
+ * - For WAS rows on that Week: if Ready? and package present and !Sent?
+ *   and enrollment Active? (not Schmidt) → set Send to Make? = true.
  *
  * IMPORTANT DESIGN RULES
- * - Does not POST Make.
- * - Does not clear Weekly Email Sent?.
- * - dryRun=true (default) only counts; no writes.
- * - PROD season: dryRun=false and sendMode=Live (verified ON 2026-07-24).
- * - Schmidt enrollment excluded by default: recgP9qZYjAhE7NXm
- *   (override only via includeSchmidt=true for controlled Test-mode runs)
- * - Never combine includeSchmidt=true with sendMode=Live.
+ * - Does not POST Make (074 does).
+ * - Skips Sent?, inactive, Schmidt, empty package.
+ * - dryRun=true (default) counts only.
+ * - eventId for Make: WEEKLY_EMAIL|{enrollmentId}|{weekId} (074 payload).
  * - Scheduled Week End key = latest completed active non-Post-Challenge Week (America/Denver).
- * - Automation 031 is the sole create-capable Weekly Athlete Summary owner.
- * - Idempotent only when exactly one canonical WAS identity is provable;
- *   ambiguity or absence fails closed rather than selecting or creating one.
  *
  * FOLDER
  * - 07 - Email, Notifications, and External Handoffs
  *
  * TRIGGER TYPE
- * - At a scheduled time (Weekly Sunday 05:00 America/Denver)
+ * - At a scheduled time (Weekly Sunday 10:00 America/Denver)
  *
  * INPUT VARIABLES
  * - dryRun = "true" | "false" (default true)
- * - sendMode = "Test" | "Live" (default Test; PROD season uses Live)
- * - excludedEnrollmentIds = comma-separated (default includes Schmidt)
+ * - excludedEnrollmentIds = comma-separated
  * - includeSchmidt = "true" | "false" (default false). When true, the Schmidt
- *   test enrollment is NOT hard-excluded (Test-mode verification only).
- *   Never combine with sendMode=Live.
+ *   test enrollment is NOT hard-excluded (controlled Test-mode runs only).
  * - emptyWeekPolicy = "send_short" | "send_normal" | "suppress" (default
- *   send_short). Operator record of SC-035; **072 enforces** package shape.
+ *   send_short). Operator record; **072 enforces** empty-week package shape.
  *
  * OUTPUTS
  * - statusOut, actionOut, errorOut, debugStep
- * - armedCountOut, skippedCountOut, createdWasCountOut, errorCountOut
+ * - armedCountOut, skippedCountOut, notReadyCountOut, errorCountOut
  * - emptyWeekPolicyOut
  *
  * AUTHORITY
@@ -113,10 +67,11 @@ PROD season: dryRun=false + sendMode=Live (never Live+includeSchmidt).
 // @ts-nocheck
 
 const CONFIG = {
-  scriptName: "118 - Email - Schedule Weekly Summary Email Build",
-  version: "v2.3",
+  scriptName: "119 - Email - Schedule Weekly Summary Email Send",
+  version: "v1.10",
+  versionDate: "2026-09-14",
+  lastUpdated: "2026-09-14",
   timeZone: "America/Denver",
-  // Exclude both historical and current Schmidt test enrollments by default.
   schmidtEnrollmentId: "recCyFEPeATOVNlr9",
   schmidtEnrollmentIds: ["recCyFEPeATOVNlr9", "recgP9qZYjAhE7NXm"],
 
@@ -128,9 +83,6 @@ const CONFIG = {
 
   enrollments: {
     active: "Active?",
-    enrollmentKey: "Enrollment Key",
-    parentEmail: "Parent Email - Cleaned",
-    athleteEmail: "Athlete Email - Cleaned",
     programInstance: "Program Instance",
   },
 
@@ -147,10 +99,12 @@ const CONFIG = {
   was: {
     enrollment: "Enrollment",
     week: "Week",
-    summaryKey: "Summary Key",
-    buildNow: "Build Weekly Email Now?",
+    ready: "Weekly Email Ready?",
     sent: "Weekly Email Sent?",
-    sendMode: "sendMode",
+    sendToMake: "Send to Make?",
+    subject: "Weekly Email Subject",
+    recipients: "Weekly Email Recipients",
+    html: "Weekly Email HTML",
   },
 };
 
@@ -221,11 +175,6 @@ function linkedIds(record, fieldName) {
   return v.map((x) => x?.id).filter(Boolean);
 }
 
-function exactlyOneLinkedId(record, fieldName) {
-  const ids = [...new Set(linkedIds(record, fieldName))];
-  return ids.length === 1 ? ids[0] : "";
-}
-
 function parseAutomationBoolean(raw, defaultWhenMissing) {
   if (raw === undefined || raw === null || raw === "") {
     return defaultWhenMissing === true;
@@ -240,18 +189,6 @@ function parseAutomationBoolean(raw, defaultWhenMissing) {
   if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
   if (s === "false" || s === "0" || s === "no" || s === "n") return false;
   return defaultWhenMissing === true;
-}
-
-function parseAutomationSendMode(raw, defaultWhenMissing) {
-  const fallback =
-    String(defaultWhenMissing || "test").trim().toLowerCase() === "live"
-      ? "live"
-      : "test";
-  if (raw === undefined || raw === null || raw === "") return fallback;
-  const s = String(raw).trim().toLowerCase();
-  if (["live", "l", "real", "send", "parent"].includes(s)) return "live";
-  if (["test", "t", "preview", "practice", "draft"].includes(s)) return "test";
-  return fallback;
 }
 
 function denverDateParts(date = new Date()) {
@@ -273,8 +210,7 @@ function denverDateParts(date = new Date()) {
 
 /**
  * Most recently completed Week End (Saturday) in America/Denver.
- * Sunday schedule → yesterday Saturday. Manual Mon–Sat rerun → prior Saturday
- * (never "today" when today is Saturday — week still in progress until Sunday run).
+ * Matches 118 — Sunday run and Mon–Sat manual reruns target the same prior Saturday.
  */
 function priorSaturdayKeyDenver(now = new Date()) {
   const p = denverDateParts(now);
@@ -283,8 +219,7 @@ function priorSaturdayKeyDenver(now = new Date()) {
   if (dow === undefined) {
     throw new Error(`Unable to resolve Denver weekday: ${p.weekday}`);
   }
-  const daysBack = dow === 6 ? 7 : dow + 1; // Sun→1 … Fri→6, Sat→7
-  // Build UTC noon on Denver calendar day, then step back (avoids DST hour math).
+  const daysBack = dow === 6 ? 7 : dow + 1;
   const utcNoon = new Date(Date.UTC(p.y, p.m - 1, p.d, 12, 0, 0));
   utcNoon.setUTCDate(utcNoon.getUTCDate() - daysBack);
   const y = utcNoon.getUTCFullYear();
@@ -332,14 +267,16 @@ function isPostChallengeWeek(record) {
   return /post[\s_-]*challenge/i.test(identity) || /^post\b/i.test(identity);
 }
 
+function weeklyEmailEventId(enrollmentId, weekId) {
+  return `WEEKLY_EMAIL|${enrollmentId}|${weekId}`;
+}
+
 async function main() {
   let debugStep = "1 - Start";
   setOutputSafe("debugStep", debugStep);
 
   const inputConfig = input.config();
   const dryRun = parseAutomationBoolean(inputConfig.dryRun, true);
-  const sendMode =
-    parseAutomationSendMode(inputConfig.sendMode, "test") === "live" ? "Live" : "Test";
   const includeSchmidt = parseAutomationBoolean(inputConfig.includeSchmidt, false);
   const emptyWeekPolicyRaw = String(inputConfig.emptyWeekPolicy || "send_short")
     .trim()
@@ -348,7 +285,6 @@ async function main() {
     ? emptyWeekPolicyRaw
     : "send_short";
   setOutputSafe("emptyWeekPolicyOut", emptyWeekPolicy);
-  setOutputSafe("sendModeOut", sendMode);
   const excluded = new Set(
     String(inputConfig.excludedEnrollmentIds || "")
       .split(",")
@@ -361,11 +297,6 @@ async function main() {
     }
   }
 
-  // Never Live-send to Schmidt test enrollment via schedule.
-  if (sendMode === "Live" && includeSchmidt) {
-    throw new Error("118 refuses sendMode=Live when includeSchmidt=true.");
-  }
-
   const enrollmentsTable = base.getTable(CONFIG.tables.enrollments);
   const weeksTable = base.getTable(CONFIG.tables.weeks);
   const wasTable = base.getTable(CONFIG.tables.was);
@@ -373,13 +304,14 @@ async function main() {
   debugStep = "2 - Resolve target week";
   setOutputSafe("debugStep", debugStep);
 
-  const weekFields = safeFields(weeksTable, Object.values(CONFIG.weeks));
   let weeksQuery = null;
-  let enrollmentsQuery = null;
+  let enrQuery = null;
   let wasQuery = null;
 
   try {
-  weeksQuery = await weeksTable.selectRecordsAsync({ fields: weekFields });
+  weeksQuery = await weeksTable.selectRecordsAsync({
+    fields: safeFields(weeksTable, Object.values(CONFIG.weeks)),
+  });
 
   function weekIsActive(w) {
     if (fieldExists(weeksTable, CONFIG.weeks.activeWeek) && booleanish(w, CONFIG.weeks.activeWeek)) {
@@ -388,7 +320,6 @@ async function main() {
     if (fieldExists(weeksTable, CONFIG.weeks.active) && booleanish(w, CONFIG.weeks.active)) {
       return true;
     }
-    // If neither Active field exists, treat as eligible.
     if (
       !fieldExists(weeksTable, CONFIG.weeks.activeWeek) &&
       !fieldExists(weeksTable, CONFIG.weeks.active)
@@ -431,150 +362,96 @@ async function main() {
     setOutputSafe("errorOut", `No Week with End Date/Key ${targetEndKey}`);
     setOutputSafe("armedCountOut", "0");
     setOutputSafe("skippedCountOut", "0");
-    setOutputSafe("createdWasCountOut", "0");
+    setOutputSafe("notReadyCountOut", "0");
     setOutputSafe("errorCountOut", "0");
     setOutputSafe("debugStep", "skipped_no_target_week");
-    console.log(JSON.stringify({ automation: CONFIG.scriptName, version: CONFIG.version, targetEndKey, dryRun }));
     return;
   }
 
-  const targetWeekProgramInstanceId = fieldExists(weeksTable, CONFIG.weeks.programInstance)
-    ? exactlyOneLinkedId(targetWeek, CONFIG.weeks.programInstance)
-    : "";
-
-  if (fieldExists(weeksTable, CONFIG.weeks.programInstance) && !targetWeekProgramInstanceId) {
-    throw new Error(`Target Week ${targetWeek.id} must have exactly one Program Instance.`);
-  }
-
-  debugStep = "3 - Load enrollments + WAS";
+  debugStep = "3 - Load WAS + enrollments";
   setOutputSafe("debugStep", debugStep);
 
-  const enrFields = safeFields(enrollmentsTable, Object.values(CONFIG.enrollments));
-  enrollmentsQuery = await enrollmentsTable.selectRecordsAsync({ fields: enrFields });
+  enrQuery = await enrollmentsTable.selectRecordsAsync({
+    fields: safeFields(enrollmentsTable, Object.values(CONFIG.enrollments)),
+  });
+  const enrById = new Map(enrQuery.records.map((r) => [r.id, r]));
 
-  const wasFields = safeFields(wasTable, Object.values(CONFIG.was));
-  wasQuery = await wasTable.selectRecordsAsync({ fields: wasFields });
+  wasQuery = await wasTable.selectRecordsAsync({
+    fields: safeFields(wasTable, Object.values(CONFIG.was)),
+  });
 
-  const wasByEnrollment = new Map();
-  const wasBySummaryKey = new Map();
-  let duplicateWasSkipped = 0;
-  for (const row of wasQuery.records) {
-    const eId = exactlyOneLinkedId(row, CONFIG.was.enrollment);
-    const wId = exactlyOneLinkedId(row, CONFIG.was.week);
-    if (!(eId && wId === targetWeek.id)) continue;
-    const summaryKey = fieldExists(wasTable, CONFIG.was.summaryKey)
-      ? text(row, CONFIG.was.summaryKey)
-      : "";
-    if (summaryKey) {
-      wasBySummaryKey.set(summaryKey, [...(wasBySummaryKey.get(summaryKey) || []), row]);
-    }
-    wasByEnrollment.set(eId, [...(wasByEnrollment.get(eId) || []), row]);
-  }
   let armed = 0;
   let skipped = 0;
-  let createdWas = 0;
+  let notReady = 0;
   let errors = 0;
 
-  debugStep = "4 - Arm builds";
+  debugStep = "4 - Arm sends";
   setOutputSafe("debugStep", debugStep);
 
-  const weekKey = fieldExists(weeksTable, CONFIG.weeks.weekKey)
-    ? text(targetWeek, CONFIG.weeks.weekKey)
-    : "";
-
-  for (const enr of enrollmentsQuery.records) {
+  for (const row of wasQuery.records) {
     try {
-      if (excluded.has(enr.id)) {
-        skipped += 1;
-        continue;
-      }
-      if (fieldExists(enrollmentsTable, CONFIG.enrollments.active) && !booleanish(enr, CONFIG.enrollments.active)) {
-        skipped += 1;
-        continue;
-      }
-      if (targetWeekProgramInstanceId && fieldExists(enrollmentsTable, CONFIG.enrollments.programInstance)) {
-        const enrPi = exactlyOneLinkedId(enr, CONFIG.enrollments.programInstance);
-        if (enrPi !== targetWeekProgramInstanceId) {
-          skipped += 1;
-          continue;
-        }
-      }
+      const weekId = linkedIds(row, CONFIG.was.week)[0];
+      if (weekId !== targetWeek.id) continue;
 
-      const parent = text(enr, CONFIG.enrollments.parentEmail);
-      const athlete = text(enr, CONFIG.enrollments.athleteEmail);
-      if (!parent && !athlete) {
+      const enrollmentId = linkedIds(row, CONFIG.was.enrollment)[0];
+      if (!enrollmentId || excluded.has(enrollmentId)) {
         skipped += 1;
         continue;
       }
 
-      const enrollmentKey = fieldExists(enrollmentsTable, CONFIG.enrollments.enrollmentKey)
-        ? text(enr, CONFIG.enrollments.enrollmentKey)
-        : "";
-      const expectedSummaryKey =
-        enrollmentKey && weekKey ? `${enrollmentKey}|${weekKey}` : "";
-      if (!expectedSummaryKey) {
+      const enr = enrById.get(enrollmentId);
+      if (
+        enr &&
+        fieldExists(enrollmentsTable, CONFIG.enrollments.active) &&
+        !booleanish(enr, CONFIG.enrollments.active)
+      ) {
         skipped += 1;
-        console.log(
-          `118 skipped unsettled canonical Summary Key for eligible Enrollment ${enr.id} + Week ${targetWeek.id}.`
-        );
         continue;
       }
 
-      const candidates = (wasBySummaryKey.get(expectedSummaryKey) || []).filter(
-        row =>
-          exactlyOneLinkedId(row, CONFIG.was.enrollment) === enr.id
-          && exactlyOneLinkedId(row, CONFIG.was.week) === targetWeek.id
-      );
-      if (candidates.length > 1) {
-        duplicateWasSkipped += 1;
-        skipped += 1;
-        console.log(`118 skipped ambiguous WAS identity for Enrollment ${enr.id} + Week ${targetWeek.id}: ${candidates.map(row => row.id).join(", ")}`);
-        continue;
-      }
-      let wasRow = candidates[0];
-      if (!wasRow) {
-        skipped += 1;
-        console.log(
-          `118 skipped missing canonical WAS for eligible Enrollment ${enr.id} + Week ${targetWeek.id}; 031 is the sole WAS creator.`
-        );
-        continue;
-      } else if (booleanish(wasRow, CONFIG.was.sent)) {
+      if (booleanish(row, CONFIG.was.sent)) {
         skipped += 1;
         continue;
       }
+
+      const ready = booleanish(row, CONFIG.was.ready);
+      const subject = text(row, CONFIG.was.subject);
+      const recipients = text(row, CONFIG.was.recipients);
+      const html = text(row, CONFIG.was.html);
+      if (!ready || !subject || !recipients || !html) {
+        notReady += 1;
+        continue;
+      }
+
+      const eventId = weeklyEmailEventId(enrollmentId, targetWeek.id);
+      console.log(`119 candidate ${row.id} eventId=${eventId}`);
 
       if (dryRun) {
         armed += 1;
         continue;
       }
 
-      const update = {};
-      if (fieldExists(wasTable, CONFIG.was.buildNow)) update[CONFIG.was.buildNow] = true;
-      if (fieldExists(wasTable, CONFIG.was.sendMode)) update[CONFIG.was.sendMode] = { name: sendMode };
-      if (Object.keys(update).length > 0) {
-        await wasTable.updateRecordAsync(wasRow.id, update);
+      if (fieldExists(wasTable, CONFIG.was.sendToMake)) {
+        await wasTable.updateRecordAsync(row.id, {
+          [CONFIG.was.sendToMake]: true,
+        });
       }
       armed += 1;
     } catch (e) {
       errors += 1;
-      console.log(`118 error enrollment ${enr.id}: ${e instanceof Error ? e.message : String(e)}`);
-      // A run that cannot prove a single owner must stop before it can arm
-      // further email builds. Any prior write remains visible for controlled
-      // retry; this script never attempts destructive cleanup.
-      throw e;
+      console.log(`119 error WAS ${row.id}: ${e instanceof Error ? e.message : String(e)}`);
     }
   }
 
   setOutputSafe("statusOut", "success");
-  setOutputSafe("actionOut", dryRun ? "dry_run_complete" : "build_armed");
-  setOutputSafe("errorOut", errors > 0 ? `${errors} enrollment errors` : "");
+  setOutputSafe("actionOut", dryRun ? "dry_run_complete" : "send_armed");
+  setOutputSafe("errorOut", errors > 0 ? `${errors} row errors` : "");
   setOutputSafe("armedCountOut", String(armed));
   setOutputSafe("skippedCountOut", String(skipped));
-  setOutputSafe("createdWasCountOut", String(createdWas));
+  setOutputSafe("notReadyCountOut", String(notReady));
   setOutputSafe("errorCountOut", String(errors));
   setOutputSafe("scheduledWeekEndKeyOut", targetEndKey);
   setOutputSafe("targetWeekIdOut", targetWeek.id);
-  setOutputSafe("duplicateWasSkippedOut", String(duplicateWasSkipped));
   setOutputSafe("debugStep", "complete");
 
   console.log(
@@ -587,13 +464,12 @@ async function main() {
       scheduledWeekEndKey: targetEndKey,
       armed,
       skipped,
-      createdWas,
-      duplicateWasSkipped,
+      notReady,
       errors,
     })
   );
   } finally {
-    unloadQuerySafe(enrollmentsQuery);
+    unloadQuerySafe(enrQuery);
     unloadQuerySafe(weeksQuery);
     unloadQuerySafe(wasQuery);
   }

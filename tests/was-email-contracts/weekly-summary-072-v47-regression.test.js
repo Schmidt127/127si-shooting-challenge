@@ -37,8 +37,8 @@ test("072 source fixes days.size bug — uses shootingDayKeys.size", () => {
   assert.doesNotMatch(s072, /const shootingDaysLogged = days\.size/);
 });
 
-test("072 v4.9.3 writes videosSubmittedThisWeek Hub payload fields", () => {
-  assert.match(s072, /Version:\s*v4\.9\.3/);
+test("072 v4.9.4 writes videosSubmittedThisWeek Hub payload fields", () => {
+  assert.match(s072, /Version:\s*v4\.9\.4/);
   assert.match(s072, /videosSubmittedThisWeek/);
   assert.match(s072, /Custom Video File Name/);
   assert.match(s072, /Activity Date - Lkp/);

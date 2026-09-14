@@ -1,33 +1,3 @@
-/*
-Automation: 078A - Enrollment -> Create WELCOME Email Handoff
-System: 127 SI Shooting Challenge
-Source: Airtable Automation
-Status: GitHub Source of Truth
-Last Synced From Airtable: 2026-08-11
-Last GitHub Update: 2026-09-08
-
-Purpose:
-Creates one Ready WELCOME handoff row for an eligible Enrollment.
-
-Trigger:
-Enrollments when Athlete, Parent Email - Cleaned, and Program Instance are populated
-after Automation 001 has linked the Athlete.
-
-Important Tables:
-Enrollments, Athletes, Email Handoff Queue
-
-Important Fields:
-Athlete, Parent Email - Cleaned, Program Instance, Handoff Key, Status,
-Event Type, Source Table, Source Record ID, Enrollment Record ID,
-Program Instance Record ID, Recipients JSON, Template Key, Payload JSON,
-Test Mode?, Attempt Count
-
-Notes:
-GitHub is the source-of-truth copy. Mike must paste into Airtable.
-This script creates a queue row only. It does not call the Communications Hub,
-send email, render subject/HTML, modify Automation 079, or restore 075.
-*/
-
 /************************************************************
  * 078A - EMAIL, NOTIFICATIONS, AND EXTERNAL HANDOFFS
  * Enrollment -> Create WELCOME Email Handoff

@@ -1,35 +1,3 @@
-/*
-Automation: 076 - Daily Submission Communications Hub Handoff
-System: 127 SI Shooting Challenge
-Source: Airtable Automation
-Status: GitHub Source of Truth
-Last Synced From Airtable: 2026-08-13
-Last GitHub Update: 2026-09-12 (v8.15 concurrent handoff collapse)
-
-Purpose:
-Validate a fully processed Submission and create exactly one Ready
-Email Handoff Queue row for Communications Hub (079 → Resend).
-
-Trigger:
-Automation 031 is the sole upstream owner that checks Build Daily Email Now?,
-only after the 023 → 005 → 007 → 010 → 031 chain has settled
-(confirm exact conditions in Airtable UI); pass the dynamic recordId.
-
-Important Tables:
-Submissions, Enrollments, Weekly Athlete Summary, Target Goal Shots, Weeks,
-Program Instance - Sync, XP Events, Program Homework Assignments,
-Homework Library, Email Handoff Queue
-
-Important Fields:
-Build Daily Email Now?, Count This Submission?, Submission Stat Mode,
-Parent Email - Cleaned, Athlete Email - Cleaned, Handoff Key, Status
-
-Notes:
-GitHub is the source-of-truth copy. Airtable is the deployed/running copy.
-Filename may still say email package; current path is Hub queue create only.
-Paste target for this release: v8.15.
-*/
-
 /************************************************************
  * 076 - EMAIL, NOTIFICATIONS, AND EXTERNAL HANDOFFS
  * Daily Submission Communications Hub Handoff

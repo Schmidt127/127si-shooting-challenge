@@ -1,10 +1,4 @@
 /*
-GitHub header
-Automation: 117 - Zoom - Create Zoom Recording Approval Communications Hub Handoff
-System: 127 SI Shooting Challenge
-Source: Airtable Automation
-Status: GitHub Source of Truth
-
 Version: v2.4
 Date Written: 2026-07-20
 Last Updated: 2026-09-14

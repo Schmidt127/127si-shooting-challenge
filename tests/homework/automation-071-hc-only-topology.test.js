@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Automation 071 v4.6 — Structured Curriculum HC-only vs Submission-backed topology.
+ * Automation 071 v4.7 — Structured Curriculum HC-only vs Submission-backed topology.
  * Pure oracle mirrors the asset Submission ownership gates in 071 (no Airtable runtime).
  */
 "use strict";
@@ -123,7 +123,7 @@ test("syntax", () => {
   assert.strictEqual(r.status, 0, r.stderr);
 });
 
-test("version is exactly v4.6", () => {
+test("version is exactly v4.7", () => {
   assert.match(source, /^Version: v4\.5$/m);
   assert.match(source, /version:\s*"v4\.5"/);
   assert.match(source, /Last Updated: 2026-09-08/);
