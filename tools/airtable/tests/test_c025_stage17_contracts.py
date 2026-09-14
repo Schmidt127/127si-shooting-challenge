@@ -94,7 +94,7 @@ class TestStage17Contracts(unittest.TestCase):
         self.assertIn("grace_period", s57)
         self.assertIn("Zoom Attendance", s57)
         self.assertIn("Perfect Week Credit Applied?", s57)
-        self.assertIn('version: "4.1.2"', s42)
+        self.assertIn('version: "4.1.3"', s42)
         self.assertIn("computeEffectiveZoomAttendanceCount", s42)
         self.assertIn("Gate Credit Applied?", s42)
 
