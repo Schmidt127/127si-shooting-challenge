@@ -1,5 +1,7 @@
 # Weekly Email Retry SOP (SC-041)
 
+> **HISTORICAL / DO NOT USE FOR CURRENT OPERATIONS.** This SOP assumes the former Make/Gmail sender. Current email routing is documented in [`../../integrations/email-send-plane.md`](../../integrations/email-send-plane.md).
+
 **Status:** Built in Repository  
 **Date:** 2026-07-25  
 **Owning automations:** `072` (build) → `119` (arm Send) → `074` (Make webhook) → Make `Weekly Athlete Summary - Bulk Email - May 18`  
