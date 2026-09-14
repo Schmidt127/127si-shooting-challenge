@@ -1,0 +1,64 @@
+{
+  "run_id": "SEASON-SIM-PERFECT-20260914T161924Z-mike-schmidt",
+  "started_at": "2026-09-14T16:28:39.893262+00:00",
+  "finished_at": "2026-09-14T16:28:50.857807+00:00",
+  "deleted": {
+    "Comms::Audit Events": [
+      "recSI7KFBH0GLWwD3",
+      "recixvD0DVzMZCjc6"
+    ],
+    "Comms::Delivery Attempts": [
+      "rec68AqNImEqYOufM"
+    ],
+    "Comms::Deliveries": [
+      "rec7RkyCJ5hfjZJ6m"
+    ],
+    "Comms::Delivery Keys": [
+      "recdMOKbzTTCLRCoN"
+    ],
+    "Comms::Messages": [
+      "recppllSOdIbaRjip"
+    ],
+    "Comms::Integration Events": [
+      "recQB03ziVQC7roiR"
+    ],
+    "Comms::Contact Methods": [
+      "recXJxC4PsfQm9BLx"
+    ],
+    "Comms::Communication Identities": [
+      "recyCY9Zk11gY48Gp"
+    ],
+    "SC::Email Handoff Queue": [
+      "rec1nMkhu4GT2KL86"
+    ],
+    "SC::Weekly Athlete Summary": [
+      "rec5bMiyzSMjzEAVQ",
+      "recG5WZ4sezNU6hlk",
+      "reckZSBoFhrGSnVtO",
+      "recyZPS6lw6pWjoLV"
+    ],
+    "SC::Enrollments": [
+      "rec2aiMPy6WcOtZqm"
+    ],
+    "SC::Athletes": [
+      "recllqqjU3ZzgqRg8"
+    ]
+  },
+  "deleted_total": 16,
+  "errors": [],
+  "verify_still_present": {
+    "Comms::Audit Events": [],
+    "Comms::Delivery Attempts": [],
+    "Comms::Deliveries": [],
+    "Comms::Delivery Keys": [],
+    "Comms::Messages": [],
+    "Comms::Integration Events": [],
+    "Comms::Contact Methods": [],
+    "Comms::Communication Identities": [],
+    "SC::Email Handoff Queue": [],
+    "SC::Weekly Athlete Summary": [],
+    "SC::Enrollments": [],
+    "SC::Athletes": []
+  },
+  "ok": true
+}

@@ -1,0 +1,192 @@
+{
+  "command": "prove-perfect-launch",
+  "run_id": "SEASON-SIM-PERFECT-20260914T163317Z-mike-schmidt",
+  "ok": true,
+  "client_writes": 0,
+  "checks": [
+    {
+      "name": "weekinfo_perfect_scenario",
+      "ok": true,
+      "detail": "week9_hw=2 athlete=Mike Schmidt"
+    },
+    {
+      "name": "execute_perfect_offline_dry",
+      "ok": true,
+      "detail": "errors=[] client_writes=0"
+    },
+    {
+      "name": "stage_h_perfect_run_id",
+      "ok": true,
+      "detail": "path=perfect_or_single status=ok errors=[]"
+    },
+    {
+      "name": "exclusive_process_lock",
+      "ok": true,
+      "detail": "second acquire blocked"
+    },
+    {
+      "name": "active_xp_source_key_integrity",
+      "ok": true,
+      "detail": "issues=0"
+    },
+    {
+      "name": "pha_week9_x2",
+      "ok": true,
+      "detail": "hw=20 week9=2"
+    },
+    {
+      "name": "zoom_live_and_recording_plan",
+      "ok": true,
+      "detail": "live=1 recording=1"
+    },
+    {
+      "name": "active_xp_oracle_4980",
+      "ok": true,
+      "detail": "EXPECTED_PERFECT_SEASON_XP=4980"
+    },
+    {
+      "name": "settlement_timeout_900s",
+      "ok": true,
+      "detail": "profile=900.0 downstream=900.0"
+    },
+    {
+      "name": "production_normal_formula_bundle",
+      "ok": true,
+      "detail": "fields=['Activity Date Is Future?', 'Submitted Same Day?', 'Perfect Week Grace Eligible?']"
+    },
+    {
+      "name": "recipient_hard_stop",
+      "ok": true,
+      "detail": "allowlist=schmidt@fairfieldbasketballclub.com"
+    },
+    {
+      "name": "contract_validation_requires_run_id",
+      "ok": true,
+      "detail": "params=['client', 'run_id', 'offline_fixture', 'acknowledge_clock_override', 'registry_dir']"
+    }
+  ],
+  "errors": [],
+  "email_producer_modes": {
+    "ok_for_documentation": true,
+    "api_readable": false,
+    "producers": [
+      {
+        "automation_code": "078A",
+        "automation_name": "078A - Enrollment -> Create WELCOME Email Handoff",
+        "input_variable": "testMode",
+        "script_default_when_absent": "true",
+        "required_for_live_normal": "false (boolean)",
+        "ui_field_location": "Airtable Automations \u2192 078A \u2192 Script configuration \u2192 input variable `testMode` (must be present and set to boolean false; do not leave blank)",
+        "notes": "Writes Email Handoff Queue.Test Mode? from input. JS uses Boolean(cfg.testMode); string 'false' would incorrectly become true.",
+        "hub_effect": "079 forwards Test Mode? \u2192 Hub testMode \u2192 Msg Send Mode Test|Live"
+      },
+      {
+        "automation_code": "071",
+        "automation_name": "071 - Homework feedback email handoff",
+        "input_variable": "testMode",
+        "script_default_when_absent": "true",
+        "required_for_live_normal": "false (boolean)",
+        "ui_field_location": "Airtable Automations \u2192 071 \u2192 input `testMode` = false",
+        "notes": "Default true when input absent.",
+        "hub_effect": "EHQ Test Mode? \u2192 079 \u2192 Hub"
+      },
+      {
+        "automation_code": "073",
+        "automation_name": "073 - Video feedback parent email handoff",
+        "input_variable": "testMode",
+        "script_default_when_absent": "true",
+        "required_for_live_normal": "false (boolean)",
+        "ui_field_location": "Airtable Automations \u2192 073 \u2192 input `testMode` = false",
+        "notes": "Default true when input absent.",
+        "hub_effect": "EHQ Test Mode? \u2192 079 \u2192 Hub"
+      },
+      {
+        "automation_code": "074",
+        "automation_name": "074 - Weekly email Make/Hub handoff",
+        "input_variable": "testMode",
+        "script_default_when_absent": "true",
+        "required_for_live_normal": "false (boolean)",
+        "ui_field_location": "Airtable Automations \u2192 074 \u2192 input `testMode` = false",
+        "notes": "Default true when input absent.",
+        "hub_effect": "EHQ Test Mode? \u2192 079 \u2192 Hub"
+      },
+      {
+        "automation_code": "076",
+        "automation_name": "076 - Daily submission Hub handoff",
+        "input_variable": "testMode",
+        "script_default_when_absent": "true",
+        "required_for_live_normal": "false (boolean)",
+        "ui_field_location": "Airtable Automations \u2192 076 \u2192 input `testMode` = false",
+        "notes": "Default true when input absent.",
+        "hub_effect": "EHQ Test Mode? \u2192 079 \u2192 Hub"
+      },
+      {
+        "automation_code": "117",
+        "automation_name": "117 - Zoom recording approval email",
+        "input_variable": "testMode",
+        "script_default_when_absent": "true",
+        "required_for_live_normal": "false (boolean)",
+        "ui_field_location": "Airtable Automations \u2192 117 \u2192 input `testMode` = false",
+        "notes": "Default true when input absent.",
+        "hub_effect": "EHQ Test Mode? \u2192 079 \u2192 Hub"
+      },
+      {
+        "automation_code": "072",
+        "automation_name": "072 - Build weekly email package",
+        "input_variable": "sendModeInput",
+        "script_default_when_absent": "(script-defined; verify live)",
+        "required_for_live_normal": "live",
+        "ui_field_location": "Airtable Automations \u2192 072 \u2192 input `sendModeInput` = live",
+        "notes": "Not a testMode checkbox; separate send-mode input.",
+        "hub_effect": "Controls weekly package send plane"
+      },
+      {
+        "automation_code": "118",
+        "automation_name": "118 - Weekly email batch",
+        "input_variable": "dryRun / sendMode / includeSchmidt",
+        "script_default_when_absent": "(script-defined; verify live)",
+        "required_for_live_normal": "dryRun=false, sendMode=Live, includeSchmidt=false",
+        "ui_field_location": "Airtable Automations \u2192 118 \u2192 inputs dryRun=false, sendMode=Live, includeSchmidt=false",
+        "notes": "UI-only; API cannot read.",
+        "hub_effect": "Batch weekly Hub handoffs"
+      },
+      {
+        "automation_code": "119",
+        "automation_name": "119 - Weekly email stage helper",
+        "input_variable": "dryRun / includeSchmidt",
+        "script_default_when_absent": "(script-defined; verify live)",
+        "required_for_live_normal": "dryRun=false, includeSchmidt=false",
+        "ui_field_location": "Airtable Automations \u2192 119 \u2192 inputs dryRun=false, includeSchmidt=false",
+        "notes": "UI-only; API cannot read.",
+        "hub_effect": "Stage helper for weekly path"
+      },
+      {
+        "automation_code": "079",
+        "automation_name": "079 - Send queue handoff to Communications Hub",
+        "input_variable": "ingressSecret (only)",
+        "script_default_when_absent": "n/a \u2014 required secret",
+        "required_for_live_normal": "ingressSecret present; does not own testMode",
+        "ui_field_location": "Airtable Automations \u2192 079 \u2192 input `ingressSecret` present; leave unchanged. Test/Live comes from queue row Test Mode?.",
+        "notes": "Reads EHQ Test Mode? checkbox; forwards as Hub testMode.",
+        "hub_effect": "Dispatcher only \u2014 mirrors producer Test Mode?"
+      }
+    ],
+    "welcome_root_cause": "T161924Z WELCOME used Test Mode because 078A script defaults input.config().testMode to true when the UI input is absent/undefined (or non-boolean). 079 then forwarded Test Mode?=true to the Hub, which set Msg Send Mode=Test. Not a second athlete, not Hub allowlist policy, and not a silent harness override.",
+    "mike_verify_checklist": [
+      "078A: set testMode \u2192 false (boolean)",
+      "071: set testMode \u2192 false (boolean)",
+      "073: set testMode \u2192 false (boolean)",
+      "074: set testMode \u2192 false (boolean)",
+      "076: set testMode \u2192 false (boolean)",
+      "117: set testMode \u2192 false (boolean)",
+      "072: set sendModeInput \u2192 live",
+      "118: set dryRun / sendMode / includeSchmidt \u2192 dryRun=false, sendMode=Live, includeSchmidt=false",
+      "119: set dryRun / includeSchmidt \u2192 dryRun=false, includeSchmidt=false",
+      "079: confirm ingressSecret present; do not change it; re-open 078A after save and confirm testMode persisted as boolean false"
+    ],
+    "stop_reasons": []
+  },
+  "settlement_timeout_s": 900.0,
+  "expected_perfect_season_xp": 4980,
+  "generated_at": "2026-09-14T16:33:17.474247+00:00"
+}

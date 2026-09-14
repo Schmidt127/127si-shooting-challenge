@@ -134,11 +134,22 @@ def _dedupe_key(run_id: str, kind: str, day_number: int, extra: str = "") -> str
     return "|".join(parts)
 
 
-def _week_id_to_label(weeks: Sequence[dict[str, Any]]) -> dict[str, str]:
+def _week_id_to_label(weeks: Sequence[Any]) -> dict[str, str]:
+    """Map Week record id → display label.
+
+    Accepts plain dicts or ``WeekInfo``-like objects (``.record_id`` / ``.name``).
+    Live ``execute-perfect`` historically passed ``WeekInfo`` instances here.
+    """
     out: dict[str, str] = {}
     for w in weeks:
-        rid = str(w.get("record_id") or "")
-        name = str(w.get("name") or w.get("display") or "").strip()
+        if isinstance(w, dict):
+            rid = str(w.get("record_id") or "")
+            name = str(w.get("name") or w.get("display") or "").strip()
+        else:
+            rid = str(getattr(w, "record_id", "") or "")
+            name = str(
+                getattr(w, "name", None) or getattr(w, "display", "") or ""
+            ).strip()
         if rid and name:
             out[rid] = name
     return out

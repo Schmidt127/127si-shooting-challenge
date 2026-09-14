@@ -245,24 +245,58 @@ def stage_h_post_cascade_hooks(
     profile: str | None = None,
 ) -> dict[str, Any]:
     """Stage H — post-cascade hooks (read-only preview; not Production cleanup)."""
-    preview = cleanup_preview_three(
-        run_id=run_id,
-        registry_dir=registry_dir,
-        client=client,
+    note = (
+        "Read-only preview only — does NOT delete Production records, "
+        "does NOT restore formula gates. Cleanup and formula restoration "
+        "remain explicit authorized stages (cleanup CLI / Stage Z)."
     )
+    if THREE_ATHLETE_RUN_SUFFIX in (run_id or ""):
+        preview = cleanup_preview_three(
+            run_id=run_id,
+            registry_dir=registry_dir,
+            client=client,
+        )
+        return {
+            "stage": "H_post_cascade_hooks",
+            "note": note,
+            "profile": profile,
+            "status": "ok" if not preview.errors else "failed",
+            "writes": False,
+            "dry_run": True,
+            "plan_total": preview.plan.get("total_records", 0),
+            "errors": list(preview.errors),
+            "path": "threeathlete",
+        }
+
+    # Perfect / single-athlete path — registry-scoped preview only.
+    registry_keys = [run_id]
+    if profile:
+        from .execute_three import profile_registry_run_id
+
+        registry_keys.append(profile_registry_run_id(run_id, profile))
+    errors: list[str] = []
+    plan_total = 0
+    for key in dict.fromkeys(registry_keys):
+        plan = build_cleanup_plan(
+            run_id=key,
+            registry_dir=registry_dir,
+            client=client,
+        )
+        plan_total += int(plan.total_records())
+        for err in plan.errors or []:
+            if "No local registry for run_id=" in err:
+                continue
+            errors.append(err)
     return {
         "stage": "H_post_cascade_hooks",
-        "note": (
-            "Read-only preview only — does NOT delete Production records, "
-            "does NOT restore formula gates. Cleanup and formula restoration "
-            "remain explicit authorized stages (cleanup CLI / Stage Z)."
-        ),
+        "note": note,
         "profile": profile,
-        "status": "ok" if not preview.errors else "failed",
+        "status": "ok" if not errors else "failed",
         "writes": False,
         "dry_run": True,
-        "plan_total": preview.plan.get("total_records", 0),
-        "errors": list(preview.errors),
+        "plan_total": plan_total,
+        "errors": errors,
+        "path": "perfect_or_single",
     }
 
 
