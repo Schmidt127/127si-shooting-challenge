@@ -173,14 +173,14 @@ def compare_codes(codes: tuple[str, ...] | list[str]) -> dict[str, Any]:
             item["notes"].append("missing_github_script")
         if live_id and gh_id and not body_match:
             item["notes"].append("live_table_code_differs_from_github_body")
-        if code == "035" and gh_id and gh_id.get("script_version") == "v1.6":
-            if live_id and live_id.get("script_version") == "v1.6" and body_match:
+        if code == "035" and gh_id and gh_id.get("script_version") == "v1.7":
+            if live_id and live_id.get("script_version") == "v1.7" and body_match:
                 item["notes"].append(
-                    "automations_table_mirror_aligned_v1.6_with_github_and_live_ui"
+                    "automations_table_mirror_aligned_v1.7_ascii_hash_consistency"
                 )
-            elif live_id and live_id.get("script_version") != "v1.6":
+            elif live_id and live_id.get("script_version") != "v1.7":
                 item["notes"].append(
-                    "github_matches_mike_attested_live_ui_v1.6;_automations_table_Automation_Code_still_older"
+                    "github_v1.7_ascii_ready;_live_or_automations_table_not_yet_pasted"
                 )
         if code == "065" and gh_path and gh_path.exists():
             raw = gh_path.read_bytes()
@@ -211,9 +211,9 @@ def compare_codes(codes: tuple[str, ...] | list[str]) -> dict[str, Any]:
             ),
             "expected_baselines": {
                 "035": {
-                    "version": "v1.6",
-                    "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913C",
-                    "full_sha256": "c7c1cf1330689f1f7336e36615af62eb232bc5a104df165448818f9252250677",
+                    "version": "v1.7",
+                    "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260914D",
+                    "full_sha256": "0dcbde8a6137face62711297477cc5bcc44a85b42d1bec995f39921a23a7ccf2",
                 },
                 "053": {
                     "version": "5.8",

@@ -1,0 +1,4 @@
+# Keep 035 ASCII hash-consistency artifacts on LF so SHA-256 stays stable on Windows.
+airtable/automations/shooting-challenge/035-weekly-summary-and-goal-logic-create-weekly-threshold-xp-events.js text eol=lf
+docs/deploy-checklists/035-v1.7-PASTE.txt text eol=lf
+docs/audits/readiness-20260914/035-v1.7-AUTOMATIONS-TABLE-MIRROR.txt text eol=lf

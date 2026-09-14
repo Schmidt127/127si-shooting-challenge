@@ -71,10 +71,10 @@ CRITICAL_CODES = ("010", "020", "022", "034", "035", "041", "042", "053", "054",
 
 EXPECTED_HASHES = {
     "035": {
-        "version": "v1.6",
-        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260913C",
-        "full_sha256": "c7c1cf1330689f1f7336e36615af62eb232bc5a104df165448818f9252250677",
-        "body_sha256": "6ddaf1bd8803289efbb2cef32114717002eef98ba7771fab0aa4c3d26f3e4e71",
+        "version": "v1.7",
+        "deploy_marker": "SC-SEASON-SIM-001-DEPLOY-20260914D",
+        "full_sha256": "0dcbde8a6137face62711297477cc5bcc44a85b42d1bec995f39921a23a7ccf2",
+        "body_sha256": "0dcbde8a6137face62711297477cc5bcc44a85b42d1bec995f39921a23a7ccf2",
     },
     "053": {
         "version": "5.8",

@@ -6,6 +6,11 @@ Notable changes to scripts, schema documentation, Make.com blueprints, audit too
 
 ## [Unreleased]
 
+### Airtable
+
+#### Changed
+- **035 Weekly Threshold XP v1.7 (2026-09-14)** — ASCII/comment normalization and live-hash consistency only. Replaced non-ASCII comment/header punctuation (em dash, en dash, arrow) with ASCII (`-`, `->`). Executable logic unchanged from v1.6 progressive Settled Through % state machine. Marker `SC-SEASON-SIM-001-DEPLOY-20260914D`. Paste bundle + Automations-table mirror are byte-identical to GitHub. **Production paste pending Mike approval — no simulation executed.** [`035-v1.7-PASTE.txt`](./docs/deploy-checklists/035-v1.7-PASTE.txt)
+
 ### Tools
 
 #### Changed

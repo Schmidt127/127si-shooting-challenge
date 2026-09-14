@@ -1,6 +1,6 @@
 /**
- * Contract: Automation 035 v1.6 progressive threshold tier / re-entry path.
- * Static source checks only — no live writes.
+ * Contract: Automation 035 progressive threshold tier / re-entry path.
+ * Static source checks only - no live writes.
  */
 const fs = require("fs");
 const path = require("path");
@@ -16,10 +16,10 @@ const source = fs.readFileSync(
   "utf8"
 );
 
-test("035 SCRIPT.version is v1.6 with DEPLOY-20260913C marker", () => {
-  assert.match(source, /version:\s*"v1\.6"/);
-  assert.match(source, /deployMarker:\s*"SC-SEASON-SIM-001-DEPLOY-20260913C"/);
-  assert.match(source, /\*\s*Version:\s*v1\.6/);
+test("035 SCRIPT.version is v1.7 with DEPLOY-20260914D marker", () => {
+  assert.match(source, /version:\s*"v1\.7"/);
+  assert.match(source, /deployMarker:\s*"SC-SEASON-SIM-001-DEPLOY-20260914D"/);
+  assert.match(source, /\*\s*Version:\s*v1\.7/);
 });
 
 test("035 progressive Settled Through % owns Ready? re-entry", () => {

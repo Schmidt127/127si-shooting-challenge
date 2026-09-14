@@ -376,7 +376,7 @@ test("legacy key risk notes are documented for Mike", () => {
   assert.ok(notes.some((n) => n.includes("XP Source")));
 });
 
-test("035 automation script v1.6 preserves v1.1/v1.2 behavior + unloadData compat", () => {
+test("035 automation script v1.7 preserves v1.1/v1.2 behavior + unloadData compat", () => {
   const scriptPath = path.join(
     __dirname,
     "..",
@@ -384,8 +384,8 @@ test("035 automation script v1.6 preserves v1.1/v1.2 behavior + unloadData compa
   );
   assert.ok(fs.existsSync(scriptPath), "035 script missing");
   const body = fs.readFileSync(scriptPath, "utf8");
-  assert.ok(body.includes('version: "v1.6"'));
-  assert.ok(body.includes('versionDate: "2026-09-13"'));
+  assert.ok(body.includes('version: "v1.7"'));
+  assert.ok(body.includes('versionDate: "2026-09-14"'));
   assert.ok(body.includes("WEEKLY_THRESHOLD|"));
   assert.ok(body.includes("function unloadQuerySafe("));
   assert.ok(body.includes("createRecordAsync"));
