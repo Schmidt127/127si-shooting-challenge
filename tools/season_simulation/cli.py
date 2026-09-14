@@ -69,6 +69,7 @@ def _parser() -> argparse.ArgumentParser:
             "execute",
             "execute-three",
             "execute-perfect",
+            "prove-perfect-launch",
             "recover-formula-restore",
             "cleanup",
             "cleanup-preview-three",
@@ -82,6 +83,7 @@ def _parser() -> argparse.ArgumentParser:
             "preflight=read-only checks; dry-run/dry-run-three=plan; "
             "execute/execute-three/execute-perfect/cleanup require confirm gates; "
             "execute-perfect=single Mike Schmidt Perfect path; "
+            "prove-perfect-launch=zero-write Perfect launch proof; "
             "recover-formula-restore=restore Production-normal formulas after "
             "interrupted run (registry formula_restore_pending); "
             "cleanup-preview-three/cleanup-three=SC-001 three-athlete (preview read-only); "
@@ -577,6 +579,21 @@ def cmd_execute_perfect(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_prove_perfect_launch(args: argparse.Namespace) -> int:
+    """Zero-write Perfect launch proof (never mutates Airtable)."""
+    from .perfect_launch_proof import run_perfect_launch_proof
+
+    result = run_perfect_launch_proof(
+        out_dir=Path(args.out_dir),
+        registry_dir=Path(args.registry_dir),
+        client=None,
+    )
+    print(json.dumps(result, indent=2, default=str))
+    if result.get("report_path"):
+        print(f"Wrote {result['report_path']}")
+    return 0 if result.get("ok") and int(result.get("client_writes") or 0) == 0 else 2
+
+
 def cmd_recover_formula_restore(args: argparse.Namespace) -> int:
     """Restore Production-normal formulas after interrupted/force-killed run."""
     from .formula_lifecycle import recover_pending_formula_restore
@@ -887,6 +904,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_execute_three(args)
     if args.command == "execute-perfect":
         return cmd_execute_perfect(args)
+    if args.command == "prove-perfect-launch":
+        return cmd_prove_perfect_launch(args)
     if args.command == "recover-formula-restore":
         return cmd_recover_formula_restore(args)
     if args.command == "cleanup":

@@ -1,0 +1,180 @@
+{
+  "run_id": "SEASON-SIM-PERFECT-20260914T161924Z-mike-schmidt",
+  "athlete_id": "recllqqjU3ZzgqRg8",
+  "enrollment_id": "rec2aiMPy6WcOtZqm",
+  "delete_order": [
+    [
+      "Comms",
+      "Audit Events",
+      [
+        "recSI7KFBH0GLWwD3",
+        "recixvD0DVzMZCjc6"
+      ]
+    ],
+    [
+      "Comms",
+      "Delivery Attempts",
+      [
+        "rec68AqNImEqYOufM"
+      ]
+    ],
+    [
+      "Comms",
+      "Deliveries",
+      [
+        "rec7RkyCJ5hfjZJ6m"
+      ]
+    ],
+    [
+      "Comms",
+      "Delivery Keys",
+      [
+        "recdMOKbzTTCLRCoN"
+      ]
+    ],
+    [
+      "Comms",
+      "Messages",
+      [
+        "recppllSOdIbaRjip"
+      ]
+    ],
+    [
+      "Comms",
+      "Integration Events",
+      [
+        "recQB03ziVQC7roiR"
+      ]
+    ],
+    [
+      "Comms",
+      "Contact Methods",
+      [
+        "recXJxC4PsfQm9BLx"
+      ]
+    ],
+    [
+      "Comms",
+      "Communication Identities",
+      [
+        "recyCY9Zk11gY48Gp"
+      ]
+    ],
+    [
+      "SC",
+      "Email Handoff Queue",
+      [
+        "rec1nMkhu4GT2KL86"
+      ]
+    ],
+    [
+      "SC",
+      "Weekly Athlete Summary",
+      [
+        "rec5bMiyzSMjzEAVQ",
+        "recG5WZ4sezNU6hlk",
+        "reckZSBoFhrGSnVtO",
+        "recyZPS6lw6pWjoLV"
+      ]
+    ],
+    [
+      "SC",
+      "Enrollments",
+      [
+        "rec2aiMPy6WcOtZqm"
+      ]
+    ],
+    [
+      "SC",
+      "Athletes",
+      [
+        "recllqqjU3ZzgqRg8"
+      ]
+    ]
+  ],
+  "evidence": {
+    "was_ids": [
+      "rec5bMiyzSMjzEAVQ",
+      "recG5WZ4sezNU6hlk",
+      "reckZSBoFhrGSnVtO",
+      "recyZPS6lw6pWjoLV"
+    ],
+    "was_weeks": [
+      "Week 2",
+      "Week 3",
+      "Early Bird",
+      "Week 1"
+    ],
+    "ehq_test_mode": true,
+    "ehq_recipients": "[{\"role\":\"PARENT\",\"email\":\"schmidt@fairfieldbasketballclub.com\"},{\"role\":\"ATHLETE\",\"email\":\"schmidt@fairfieldbasketballclub.com\"}]",
+    "msg_send_mode": "Test",
+    "delivery_recipient": "schmidt@fairfieldbasketballclub.com",
+    "curr_counts": {
+      "Submission Outbox": 0,
+      "Homework Draft Attempts": 0,
+      "Homework Draft Responses": 0
+    },
+    "attempt_ids": [
+      "rec68AqNImEqYOufM"
+    ],
+    "key_ids": [
+      "recdMOKbzTTCLRCoN"
+    ],
+    "ident_ids": [
+      "recyCY9Zk11gY48Gp"
+    ],
+    "cm_ids": [
+      "recXJxC4PsfQm9BLx"
+    ],
+    "audit_ids": [
+      "recSI7KFBH0GLWwD3",
+      "recixvD0DVzMZCjc6"
+    ],
+    "integ_ids": [
+      "recQB03ziVQC7roiR"
+    ]
+  },
+  "flat_targets": {
+    "Comms::Audit Events": [
+      "recSI7KFBH0GLWwD3",
+      "recixvD0DVzMZCjc6"
+    ],
+    "Comms::Delivery Attempts": [
+      "rec68AqNImEqYOufM"
+    ],
+    "Comms::Deliveries": [
+      "rec7RkyCJ5hfjZJ6m"
+    ],
+    "Comms::Delivery Keys": [
+      "recdMOKbzTTCLRCoN"
+    ],
+    "Comms::Messages": [
+      "recppllSOdIbaRjip"
+    ],
+    "Comms::Integration Events": [
+      "recQB03ziVQC7roiR"
+    ],
+    "Comms::Contact Methods": [
+      "recXJxC4PsfQm9BLx"
+    ],
+    "Comms::Communication Identities": [
+      "recyCY9Zk11gY48Gp"
+    ],
+    "SC::Email Handoff Queue": [
+      "rec1nMkhu4GT2KL86"
+    ],
+    "SC::Weekly Athlete Summary": [
+      "rec5bMiyzSMjzEAVQ",
+      "recG5WZ4sezNU6hlk",
+      "reckZSBoFhrGSnVtO",
+      "recyZPS6lw6pWjoLV"
+    ],
+    "SC::Enrollments": [
+      "rec2aiMPy6WcOtZqm"
+    ],
+    "SC::Athletes": [
+      "recllqqjU3ZzgqRg8"
+    ]
+  },
+  "total_ids": 16
+}

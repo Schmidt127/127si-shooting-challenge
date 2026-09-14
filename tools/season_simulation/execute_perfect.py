@@ -310,8 +310,17 @@ def run_execute_perfect(
                 "Stage-0 snapshot is evidence only; Stage Z restores from "
                 "production_normal_formulas.json"
             )
-            contract = build_contract_validation_for_client(client)
+            contract = build_contract_validation_for_client(
+                client,
+                run_id=rid,
+                offline_fixture=False,
+                acknowledge_clock_override=acknowledge_clock_override,
+                registry_dir=registry_dir,
+            )
             assert_live_write_contract_pass(contract)
+            profile_payload["0_live_write_contract"] = (
+                contract.to_dict() if hasattr(contract, "to_dict") else {"ok": True}
+            )
 
         execute_context = None
         if snap is not None:
