@@ -39,7 +39,9 @@ Older files (`docs/v2-change-backlog.md`, `docs/CHATGPT-MASTER-PLAN-BRIEF.md`, c
 ---
 
 
-## 0Z. Authoritative current-state overlay — 2026-09-08
+## 0Z. Historical current-state overlay — 2026-09-08
+
+> **Historical reference only.** This dated overlay records the 2026-09-08 cutover position. It is superseded for current operations by [`CURRENT-TRUTH.md`](./CURRENT-TRUTH.md) and [`MASTER_REMAINING_WORK_LIST.md`](../MASTER_REMAINING_WORK_LIST.md): Perfect Mike Schmidt passed pre-restore **4,980 active XP / 170 events** and was cleaned; PHA is **20** including Week 9 ×2; published Airtable Automation editor / workflow deployment is the script-version and code authority.
 
 > **2026-09-12 doc sync:** Git tip **`94429042`** (Production deploy match). Curriculum Hub Homework **COMPLETE / PRODUCTION VERIFIED** (52 structured-enabled; private SEO; Assignment Key Sync). **Required before close:** SC-SEASON-SIM-001 execution + reconciliation only — infrastructure (SC-SEASON-SIM-002) is package-complete, **not** executed. **FUT-043** (#516) + Tier 1 runbook (#517) remain; Mike paste queue **076 v8.14 / 071 v4.5 / 072 v4.9.2 / 073 v4.7 / 074 v3.6 / 117 v2.2** per [`deploy-checklists/TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md`](./deploy-checklists/TIER-1-LAUNCH-OPS-RUNBOOK-20260911.md). SC-172 health live; **`ADMIN_DIAGNOSTICS_TOKEN`** still pending.
 
