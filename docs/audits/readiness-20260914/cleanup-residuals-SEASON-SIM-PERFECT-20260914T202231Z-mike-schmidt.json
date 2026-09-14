@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-09-14T21:21:05.296835+00:00",
+  "run": "SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt",
+  "deleted_xp_events": [
+    "recBL85Z4M4cO7MgI",
+    "recDJXD4rIwr980rF",
+    "reccV1pqFepuX5xRb",
+    "reclayWSqBotvWksu"
+  ],
+  "ownership": {
+    "recBL85Z4M4cO7MgI": "HOMEWORK_XP|recvgJYHzO5UpsTEV registry HC",
+    "recDJXD4rIwr980rF": "HOMEWORK_XP|rec1Pun9qH6EfqNTr registry HC",
+    "reclayWSqBotvWksu": "HOMEWORK_XP|recNSaddATnBrUJac registry HC",
+    "reccV1pqFepuX5xRb": "ZOOM_ATTEND_BASE|...|recrQNLC7wX3oqbmm enrollment in Source Key"
+  },
+  "xp_remaining_after": 0
+}

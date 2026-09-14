@@ -288,33 +288,52 @@ def main() -> int:
             except Exception as exc:  # noqa: BLE001
                 warnings.append(f"Curriculum {table}: {exc}")
 
-    comms_targets: dict[str, set[str]] = {}
-    if hub_event_ids:
-        add(
-            comms_targets,
-            "Integration Events",
-            hub_event_ids,
-            reason="ehq_hub_event_id",
-            ownership=ownership,
-        )
+    # Communications Hub — Integration Events owned by this enrollment in Payload JSON.
+    # EHQ has no Hub Event ID on this run; Hub writebacks failed TEST_MODE_REQUIRED.
+    try:
+        ies = comms.list_records("Integration Events")
+        for r in ies:
+            f = r.get("fields") or {}
+            blob = json.dumps(f, default=str)
+            emails = extract_emails(blob)
+            unsafe_ie = [e for e in emails if e and e != ALLOW]
+            if unsafe_ie:
+                blockers.append(f"comms_ie_unsafe:{r['id']}:{unsafe_ie[:3]}")
+                continue
+            if ENROLLMENT in blob or RUN in blob:
+                add(
+                    targets,
+                    "Comms::Integration Events",
+                    [r["id"]],
+                    reason="payload_enrollment_or_run_marker",
+                    ownership=ownership,
+                )
+    except Exception as exc:  # noqa: BLE001
+        warnings.append(f"Integration Events scan: {exc}")
 
     try:
-        identities = comms.list_records(
-            "Communication Identities",
-            formula=f"FIND('{ALLOW}', {{Email}} & '')",
-        )
+        identities = comms.list_records("Communication Identities")
         for r in identities:
             f = r.get("fields") or {}
-            emails = extract_emails(f.get("Email")) + extract_emails(f)
+            emails = extract_emails(f) + extract_emails(f.get("Email"))
+            if not emails:
+                continue
             if any(e != ALLOW for e in emails if e):
-                blockers.append(f"comms_identity_unsafe:{r['id']}:{emails}")
                 continue
             if f.get("Is Test Identity?") is True:
                 add(
-                    comms_targets,
-                    "Communication Identities",
+                    targets,
+                    "Comms::Communication Identities",
                     [r["id"]],
                     reason="allowlisted_test_identity",
+                    ownership=ownership,
+                )
+                cms = link_ids(f.get("Contact Methods"))
+                add(
+                    targets,
+                    "Comms::Contact Methods",
+                    cms,
+                    reason=f"test_identity_contact_methods:{r['id']}",
                     ownership=ownership,
                 )
             else:
@@ -322,53 +341,28 @@ def main() -> int:
     except Exception as exc:  # noqa: BLE001
         warnings.append(f"Communication Identities scan: {exc}")
 
-    for ie_id in list(comms_targets.get("Integration Events") or []):
+    # Curriculum Hub — tables currently empty; keep best-effort list-all ownership scan
+    for table in (
+        "Submission Outbox",
+        "Homework Draft Responses",
+        "Homework Draft Attempts",
+    ):
         try:
-            ie = comms.get_record("Integration Events", ie_id)
-            f = ie.get("fields") or {}
-            for table, field in (
-                ("Messages", "Messages"),
-                ("Deliveries", "Deliveries"),
-                ("Delivery Attempts", "Delivery Attempts"),
-                ("Delivery Keys", "Delivery Keys"),
-                ("Audit Events", "Audit Events"),
-            ):
-                linked = link_ids(f.get(field))
-                if linked:
-                    add(
-                        comms_targets,
-                        table,
-                        linked,
-                        reason=f"integration_event_link:{ie_id}",
-                        ownership=ownership,
-                    )
-        except Exception as exc:  # noqa: BLE001
-            warnings.append(f"Integration Event expand {ie_id}: {exc}")
-
-    # Contact methods for test identities
-    for ident in list(comms_targets.get("Communication Identities") or []):
-        try:
-            rec = comms.get_record("Communication Identities", ident)
-            f = rec.get("fields") or {}
-            cms = link_ids(f.get("Contact Methods"))
+            rows = curr.list_records(table)
+            owned_ids = []
+            for r in rows:
+                blob = json.dumps(r.get("fields") or {}, default=str)
+                if ENROLLMENT in blob or ATHLETE in blob or RUN in blob:
+                    owned_ids.append(r["id"])
             add(
-                comms_targets,
-                "Contact Methods",
-                cms,
-                reason=f"test_identity_contact_methods:{ident}",
+                targets,
+                f"Hub::{table}",
+                owned_ids,
+                reason="curriculum_payload_enrollment_or_athlete",
                 ownership=ownership,
             )
         except Exception as exc:  # noqa: BLE001
-            warnings.append(f"Contact Methods for {ident}: {exc}")
-
-    for table, ids in comms_targets.items():
-        add(
-            targets,
-            f"Comms::{table}",
-            ids,
-            reason="comms_hub_owned",
-            ownership=ownership,
-        )
+            warnings.append(f"Curriculum {table} scan: {exc}")
 
     # Validate no catalog zoom in delete set
     zoom_del = targets.get("Zoom Meetings") or set()

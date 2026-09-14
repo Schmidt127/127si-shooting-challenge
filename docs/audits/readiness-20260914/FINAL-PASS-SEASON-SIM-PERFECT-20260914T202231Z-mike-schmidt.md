@@ -55,8 +55,9 @@ Regression: `tools/season_simulation/tests/test_xp_enrollment_loader.py`
 - Registry copy: [`SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt__athlete1-perfect.json`](./SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt__athlete1-perfect.json)
 - Pre-restore evidence: [`pre-restore-acceptance-evidence-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.json`](./pre-restore-acceptance-evidence-SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt.json)
 
-## Notes
+## Cleanup (exact-ID)
 
-- Email delivery was allowlist-only (`schmidt@fairfieldbasketballclub.com`).  
-- Enrollment `Level Status` may show Error while public display is G.O.A.T. — separate from XP oracle pass.  
-- Cleanup uses exact-ID manifest only; catalog Zoom, 20 PHA, Weeks, rules, automations, and formulas are preserved.
+- Manifest + ownership: `cleanup-manifest-…202231Z….json` / `cleanup-ownership-…`
+- Deleted **580** owned transactional IDs (576 primary + 4 residual XP Events proven via Source Key → registry HC / enrollment)
+- Verify: `cleanup-verify-…202231Z….json` → **SIMULATION CLOSED — READY FOR REAL-SEASON OPERATION**
+- Preserved: 2 catalog Zoom Meetings, 20 active PHA (Week 9 ×2), Production-normal formulas, Weeks/rules/automations/config

@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-09-14T21:21:36.108790+00:00",
+  "run": "SEASON-SIM-PERFECT-20260914T202231Z-mike-schmidt",
+  "verdict": "SIMULATION CLOSED \u2014 READY FOR REAL-SEASON OPERATION",
+  "ok": true,
+  "sc_transactional_counts": {
+    "Athletes": 0,
+    "Enrollments": 0,
+    "Submissions": 0,
+    "Submission Assets": 0,
+    "Homework Completions": 0,
+    "Video Feedback": 0,
+    "XP Events": 0,
+    "Athlete Achievement Unlocks": 0,
+    "Streak Occurrences": 0,
+    "Weekly Athlete Summary": 0,
+    "Zoom Attendance": 0,
+    "Email Handoff Queue": 0
+  },
+  "curriculum_transactional_counts": {
+    "Submission Outbox": 0,
+    "Homework Draft Responses": 0,
+    "Homework Draft Attempts": 0
+  },
+  "comms_transactional_counts": {
+    "Delivery Attempts": 0,
+    "Audit Events": 0,
+    "Deliveries": 0,
+    "Delivery Keys": 0,
+    "Messages": 0,
+    "Integration Events": 0,
+    "Contact Methods": 0,
+    "Communication Identities": 0
+  },
+  "zoom_meeting_ids": [
+    "recMFP2x5LDqea9ax",
+    "recb9EjQIJVzaRpZa"
+  ],
+  "zoom_catalog_only": true,
+  "active_pha_count": 20,
+  "week9_pha_hits": 2,
+  "residuals": {
+    "XP Events": 0,
+    "Email Handoff Queue": 0,
+    "Submissions": 0,
+    "Enrollments_exists": false,
+    "Athletes_exists": false
+  },
+  "formulas": {
+    "Activity Date Is Future?": {
+      "matches_bundle": true,
+      "has_season_sim_text": false,
+      "gated": false,
+      "sha256": "d14642bb2f82abc43709c825bd80986f36c302c1451e14c26fe8c87ae75c1088"
+    },
+    "Submitted Same Day?": {
+      "matches_bundle": true,
+      "has_season_sim_text": false,
+      "gated": false,
+      "sha256": "084d2e2f71db854b7eb2fd8e1bc017bce5b381572d6dd6b97091ce24cb772658"
+    },
+    "Perfect Week Grace Eligible?": {
+      "matches_bundle": true,
+      "has_season_sim_text": false,
+      "gated": false,
+      "sha256": "8484fe440c76ea4157d3b9ba1058741e239b47fe52af99e319b7e4393813a526"
+    }
+  },
+  "simulation_lock": null,
+  "no_new_ehq": true,
+  "no_new_hub_deliveries": true
+}
