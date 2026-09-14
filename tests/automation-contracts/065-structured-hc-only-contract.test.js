@@ -12,7 +12,7 @@ const submit = fs.readFileSync(
   "utf8",
 );
 
-assert.match(source065, /version:\s*"v10\.8"/);
+assert.match(source065, /version:\s*"v10\.11"/);
 assert.doesNotMatch(source065, /At least one Submission link is required/);
 assert.doesNotMatch(source065, /New Homework XP requires exactly one canonical Submission/);
 assert.match(source065, /Homework Completion may link at most one Submission/);
