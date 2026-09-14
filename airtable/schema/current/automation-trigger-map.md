@@ -115,7 +115,7 @@ Do **not** treat Make/Gmail as the homework parent-email sender.
 | # | Table | Trigger | Script | Downstream |
 |---|-------|---------|--------|------------|
 | **041** | Enrollments / Levels / Level Gate Rules | Scheduled every **15 minutes**; optional `recordId` only for a controlled single-Enrollment proof; scheduled mapping blank | `041-...-mark-enrollment-for-level-recalculation.js` (**v5.1** — installed and verified in Production 2026-08-16) | Queue only: `Level Recalc Needed?`, `Progression Last Queued Signature` |
-| **042** | Enrollments | When record enters view `042 - Needs Level Assignment` (`viwm9OgwkPKI2bii3`); filters `Level Recalc Needed?` checked + `Active?` checked; dynamic `recordId` from triggering Enrollment | `042-...-assign-current-and-next-level-with-gate-blocking.js` (**v4.1.2** — installed and verified) | Current/Next Level, Gate Rule, Status, reconciled signature |
+| **042** | Enrollments | When record enters view `042 - Needs Level Assignment` (`viwm9OgwkPKI2bii3`); filters `Level Recalc Needed?` checked + `Active?` checked; dynamic `recordId` from triggering Enrollment | `042-...-assign-current-and-next-level-with-gate-blocking.js` (**v4.1.3** — installed and verified) | Current/Next Level, Gate Rule, Status, reconciled signature |
 | 043 | Levels | **Retired — do not enable or recreate** | `043-...-set-level-gate-rule-from-next-level.js` (historical source only) | No downstream writer; `042` owns `Level Gate Rule` |
 
 ### Email packages (072, 074, 076, 078A, 079, 118–119)
@@ -126,16 +126,16 @@ Do **not** treat Make/Gmail as the homework parent-email sender.
 | 074 | Weekly Athlete Summary | *confirm* | `074-...-send-weekly-summary-email-package-to-make.js` | Hub queue (filename historical “Make”) |
 | **078A** | Enrollments | Athlete + Parent Email - Cleaned + Program Instance | `078A-...-enrollment-create-welcome-email-handoff.js` | Email Handoff Queue `WELCOME` row |
 | 075 | Enrollments | **LEGACY RETIRED — do not enable** | `075-...-build-challenge-welcome-email.js` (archive only) | Formerly Enrollment subject/HTML; superseded by **078A → 079 → Hub** |
-| 076 | Submissions / Enrollments | *confirm* | `076-...-build-daily-submission-email-package.js` (**v8.14**) | Daily email package |
+| 076 | Submissions / Enrollments | *confirm* | `076-...-build-daily-submission-email-package.js` (**v8.15**) | Daily email package |
 | **079** | Email Handoff Queue | Status = Ready — *confirm in Airtable* | `079-...-send-queue-handoff-to-communications-hub.js` (**v2.5**) | Communications Hub WELCOME / DAILY_SUBMISSION handoff |
-| **118** | Weeks / Enrollments | Scheduled Sunday 05:00 America/Denver | `118-...-schedule-weekly-summary-email-build.js` (**v2.0**) | Arms Weekly Athlete Summary email build |
+| **118** | Weeks / Enrollments | Scheduled Sunday 05:00 America/Denver | `118-...-schedule-weekly-summary-email-build.js` (**v2.1**) | Arms Weekly Athlete Summary email build |
 | 077 | — | **Retired / deleted from Airtable — do not recreate** | `077-...-send-daily-submission-email-package-to-make.js` (GitHub historical source only) | No active native automation; daily-email Hub boundary is 076 → 079 |
 
 ### Zoom (101)
 
 | # | Table | Trigger | Script | Downstream |
 |---|-------|---------|--------|------------|
-| **101** | Zoom Meetings | **When record matches conditions:** sole condition `Zoom XP Reconciliation Needed? = 1`; dynamic triggering Zoom Meeting `recordId` | `101-zoom-attendance-xp-award-meeting-xp.js` (**v6.8** Live — SC-147 recording half-XP in same reconciliation pass; no slot 121). Do **not** use `Create XP Events` as the primary trigger condition. | **XP Events** (live attendance base + cumulative bonuses + SC-147 recording half-XP). Source Keys: live `ZOOM_ATTEND_BASE\|{Zoom Meeting Key}\|{Enrollment RID}`; recording `ZOOM_RECORDING_CREDIT\|{Enrollment RID}\|{Zoom Meeting RID}` |
+| **101** | Zoom Meetings | **When record matches conditions:** sole condition `Zoom XP Reconciliation Needed? = 1`; dynamic triggering Zoom Meeting `recordId` | `101-zoom-attendance-xp-award-meeting-xp.js` (**v6.9** Live — SC-147 recording half-XP in same reconciliation pass; no slot 121). Do **not** use `Create XP Events` as the primary trigger condition. | **XP Events** (live attendance base + cumulative bonuses + SC-147 recording half-XP). Source Keys: live `ZOOM_ATTEND_BASE\|{Zoom Meeting Key}\|{Enrollment RID}`; recording `ZOOM_RECORDING_CREDIT\|{Enrollment RID}\|{Zoom Meeting RID}` |
 
 ### PKG-034 Production evidence (Mike-supplied, 2026-08-13)
 

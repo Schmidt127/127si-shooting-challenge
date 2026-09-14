@@ -308,14 +308,14 @@ test("117 email path does NOT write XP (scope boundary)", () => {
   assert.ok(!/Attendees.*updateRecordAsync/.test(text));
 });
 
-test("Automation 101 v6.8 implements SC-147 recording phase (not slot 121)", () => {
+test("Automation 101 v6.9 implements SC-147 recording phase (not slot 121)", () => {
   const scriptPath = path.join(
     __dirname,
     "..",
     "101-zoom-attendance-xp-award-meeting-xp.js",
   );
   const text = fs.readFileSync(scriptPath, "utf8");
-  assert.ok(/Version: v6\.8/.test(text));
+  assert.ok(/Version: v6\.9/.test(text));
   assert.ok(/processRecordingCreditsForMeeting/.test(text));
   assert.ok(text.includes("ZOOM_RECORDING_CREDIT|"));
   assert.ok(text.includes("ZOOM_RECORDING"));
