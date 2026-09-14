@@ -1,0 +1,673 @@
+{
+  "generated_at": "2026-09-14T12:44:28.468917+00:00",
+  "allowlist_email": "schmidt@fairfieldbasketballclub.com",
+  "shooting_challenge": {
+    "label": "shooting_challenge",
+    "base_id": "appn84sqPw03zEbTT",
+    "audited_at": "2026-09-14T12:44:24.812697+00:00",
+    "table_names": [
+      "Automations",
+      "Enrollments",
+      "Athletes",
+      "Submissions",
+      "Submission Assets",
+      "XP Events",
+      "Athlete Achievement Unlocks",
+      "Streak Occurrences",
+      "Weekly Athlete Summary",
+      "Target Goal Shots",
+      "Grade Bands",
+      "Achievements",
+      "Homework Completions",
+      "Weeks",
+      "Program Instance - Sync",
+      "School - Synced",
+      "Level Gate Rules",
+      "Levels",
+      "Shot Milestones",
+      "Homework Library",
+      "Program Homework Assignments",
+      "Video Feedback",
+      "Tutorials & Assets",
+      "XP Reward Rules",
+      "Config",
+      "Email Handoff Queue",
+      "Awards",
+      "Award Recipients",
+      "Final Reflection Quiz Submissions",
+      "Zoom Meetings",
+      "Zoom Attendance",
+      "Testing Scenarios",
+      "Payment Transactions",
+      "Countries",
+      "State",
+      "Homework Attempts",
+      "Homework Responses"
+    ],
+    "formula_audit": {
+      "sim_formula_branches": [],
+      "sample_now_today": [
+        {
+          "table": "Submissions",
+          "field": "Activity Date Is Future?",
+          "snippet": "IF(\n  {fldpkkSBsx8kQRZos},\n  IF({fldpkkSBsx8kQRZos} > NOW(), 1, 0),\n  BLANK()\n)"
+        },
+        {
+          "table": "Submissions",
+          "field": "Perfect Week Grace Eligible?",
+          "snippet": "IF(\n  OR(\n    {fldIb6nJu5TBkUUrD},\n    AND(\n      {fld1gQ2c04pndnTKe} = 1,\n      {fldpkkSBsx8kQRZos},\n      {fld7JJ7neI0"
+        },
+        {
+          "table": "Zoom Attendance",
+          "field": "Zoom Recording Quiz \u2014 Past Deadline (view marker)",
+          "snippet": "AND(\n  {fldVLhbecKJEVuK69} = 'Recording Quiz',\n  {flddty7qXtOU9Xp9y} < TODAY(),\n  NOT({fldKqYetPbSwuPQLl})\n)"
+        }
+      ]
+    },
+    "transactional_counts": {
+      "Athletes": {
+        "count": 0
+      },
+      "Enrollments": {
+        "count": 0
+      },
+      "Submissions": {
+        "count": 0
+      },
+      "Submission Assets": {
+        "count": 0
+      },
+      "Homework Completions": {
+        "count": 0
+      },
+      "Video Feedback": {
+        "count": 0
+      },
+      "XP Events": {
+        "count": 0
+      },
+      "Athlete Achievement Unlocks": {
+        "count": 0
+      },
+      "Streak Occurrences": {
+        "count": 0
+      },
+      "Weekly Athlete Summary": {
+        "count": 0
+      },
+      "Zoom Attendance": {
+        "count": 0
+      },
+      "Zoom Meetings": {
+        "count": 2
+      },
+      "Email Handoff Queue": {
+        "count": 0
+      },
+      "Award Recipients": {
+        "count": 0
+      },
+      "Final Reflection Quiz Submissions": {
+        "count": 0
+      },
+      "Homework Attempts": {
+        "count": 0
+      },
+      "Homework Responses": {
+        "count": 0
+      }
+    },
+    "reference_counts": {
+      "Weeks": {
+        "table": "Weeks",
+        "count": 12,
+        "ids": [
+          "rec2Rewxt21z7dI9f",
+          "rec7RpUMVLbcrmn4h",
+          "recBrZ1sV8byWEHZU",
+          "recCCpyqPKA580sdk",
+          "recEapVpi6u0oxuPy",
+          "recKJMGYbEzGHyXfd",
+          "recMyIFHUKNmkbnE8",
+          "recRp4y42EpLvtwk5",
+          "recW3irij491AIPrl",
+          "recfu3dpVJAnVBvCB",
+          "rech8lgJkNMStWh9A",
+          "recsWuPMbRH0W5aRU"
+        ]
+      },
+      "Program Homework Assignments": {
+        "table": "Program Homework Assignments",
+        "count": 20,
+        "ids": [
+          "rec7Fc5xTIz0pflAs",
+          "recBm8vAMrXG3q9sz",
+          "recFUgqHDfFhEkQAt",
+          "recLH2gubtRVCAtUE",
+          "recM1QEbSjQyX2kws",
+          "recNKakIewpjTX9Ux",
+          "recPbT6jPBmJAEnIi",
+          "recSt7E96JP4YYoM4",
+          "recWDg6AekmbKu47u",
+          "recWvRatrjmjwjcMq",
+          "recXgTrjNH4GERzm9",
+          "recb4kgYWnqRz0vFd",
+          "recceFsPC41CIJPfY",
+          "recfgmuOOe1MPEt9j",
+          "recjxR5J57YLqJFlW",
+          "recnnnTOqj9J2PQ6G",
+          "recoVOW5aZS14j4wd",
+          "recuASvOHCcDmHRXn",
+          "reczhSyu0Zxz5SBSR",
+          "reczku4c9ZUaLXl9B"
+        ]
+      },
+      "Homework Library": {
+        "table": "Homework Library",
+        "count": 132
+      },
+      "XP Reward Rules": {
+        "table": "XP Reward Rules",
+        "count": 31
+      },
+      "Levels": {
+        "table": "Levels",
+        "count": 12,
+        "ids": [
+          "rec1EJLJLmfdJLtoF",
+          "rec1iGy92ZC0jwzD4",
+          "rec6aCLn33lcoUqED",
+          "recAtRF5dh5bY1fo4",
+          "recOdLPbf4Vl43kP7",
+          "recRQXN5tWtsfaIBo",
+          "recSYgWZotdwFxCLI",
+          "recfUQ3eh9ckexYov",
+          "recgGmpBrsfX9t4UE",
+          "reck4S1JJ6fBSlzcq",
+          "recsKHKSi4imjZaYG",
+          "recxIKcUXZQHraaCf"
+        ]
+      },
+      "Achievements": {
+        "table": "Achievements",
+        "count": 15,
+        "ids": [
+          "rec1QFKxJ8XW9Z8x1",
+          "recJ2caP3qBUfqzEp",
+          "recP8QP4uhEXaiZAX",
+          "recQuAtXyT2wKJNGI",
+          "recd2jEIVPskiRTSu",
+          "recditY5KzlQNtqbA",
+          "recewTtymiSN7Hkhw",
+          "recgaun3HjV7EB2kN",
+          "rechOec7g8LBLcdgl",
+          "rechvtS1pfT086cwW",
+          "reclgScxpCba3m1Mo",
+          "recmry8CfbjU3PIfj",
+          "recxzySdFFaAOqNNG",
+          "recz5At8CvV5f4iFg",
+          "reczI7eluBvuQOYNL"
+        ]
+      },
+      "Countries": {
+        "table": "Countries",
+        "count": 194
+      },
+      "States": {
+        "missing": true
+      },
+      "Automations": {
+        "table": "Automations",
+        "count": 50
+      }
+    },
+    "discovered_tx_like": [
+      "Submissions",
+      "Submission Assets",
+      "Email Handoff Queue",
+      "Final Reflection Quiz Submissions",
+      "Homework Attempts",
+      "Homework Responses"
+    ],
+    "missing_configured_tables": [
+      "Payments"
+    ],
+    "automations": [
+      {
+        "id": "rec0qiy0iXVqrU3c2",
+        "name": "114 - Video Review and XP - Create or Update Video XP Event",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 114 - Video Review and XP - Create or Update Video XP Event\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source o",
+        "version_guess": "v6.3"
+      },
+      {
+        "id": "rec1nBt85M0EiFpUO",
+        "name": "101 - Zoom / Attendance XP - Award Meeting XP",
+        "status": "Live",
+        "code_preview": "File too large:  It is up to version 6.9",
+        "version_guess": "6.9"
+      },
+      {
+        "id": "rec225JiTrNmomB4G",
+        "name": "073 - Email, Notifications, and External Handoffs - Create Video Feedback Communications Hub Handoff",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 073 - Email, Notifications, and External Handoffs - Create Video Feedback Communications Hub Handoff\nSystem: 127 SI Shooting Challenge\nSource: Ai",
+        "version_guess": "v4.9"
+      },
+      {
+        "id": "rec76tTSgevtnY4pO",
+        "name": "078A - Enrollment - Create WELCOME Email Handoff",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 078A - Enrollment -> Create WELCOME Email Handoff\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source of Truth\nLa",
+        "version_guess": "v1.7"
+      },
+      {
+        "id": "rec7VaJ1aP9tN4n2e",
+        "name": "054 - Achievements and Milestones, Streak Occurrences - Create or Repair Streak XP Event",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 054 - Achievements and Milestones - Streak Occurrences - Create or Repair Streak XP Event\nSystem: 127 SI Shooting Challenge\nSource: Airtable Auto",
+        "version_guess": "v5.8"
+      },
+      {
+        "id": "recA7fDceZZnfn9XN",
+        "name": "072 - Email, Notifications, and External Handoffs - Build Weekly Summary Email Package",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 072 - Email, Notifications, and External Handoffs - Build Weekly Summary Email Package\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automat",
+        "version_guess": "v4.9.2"
+      },
+      {
+        "id": "recAA5iKxyr98msbi",
+        "name": "021 - Submission Intake and Asset Creation - Set Attachment Upload Status",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 021 - Submission Intake and Asset Creation - Set Attachment Upload Status\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: P",
+        "version_guess": "v2.0"
+      },
+      {
+        "id": "recAOT36UXEgv96cy",
+        "name": "078 - Email, Notifications, and External Handoffs - Mark Homework Parent Feedback Ready",
+        "status": "Live",
+        "code_preview": "NO SCRIPT - UPDATE RECORD is all.",
+        "version_guess": null
+      },
+      {
+        "id": "recDiyVUvVIaee6Lf",
+        "name": "066 - Achievements and Milestones - Create Shot Milestone Unlocks",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 066 - Achievements and Milestones - Create Shot Milestone Unlocks\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub So",
+        "version_guess": "v4.1"
+      },
+      {
+        "id": "recEDmrytsoCyfoFB",
+        "name": "117 - Zoom - Create Zoom Recording Approval Communications Hub Handoff",
+        "status": "Live",
+        "code_preview": "/*\nGitHub header\nAutomation: 117 - Zoom - Create Zoom Recording Approval Communications Hub Handoff\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automatio",
+        "version_guess": "v2.2"
+      },
+      {
+        "id": "recFTk9CJM6J8sMrB",
+        "name": "022 - Submission Intake - Sync Child Upload Writeback from Submission Asset",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 022 - Submission Intake - Sync Child Upload Writeback from Submission Asset\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus:",
+        "version_guess": "v2.0"
+      },
+      {
+        "id": "recFpmZOqUaeUtFJQ",
+        "name": "053 - Achievements and Milestones - Streak Occurrences - Rebuild and Upsert From Submissions",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 053 - Achievements and Milestones - Streak Occurrences - Rebuild and Upsert From Submissions\nSystem: 127 SI Shooting Challenge\nSource: Airtable A",
+        "version_guess": "5.8"
+      },
+      {
+        "id": "recG5HO86DbCPjr8T",
+        "name": "042 - Levels and Progression - Assign Current and Next Level",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 042 - Levels and Progression - Assign Current and Next Level with Gate Blocking\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nSta",
+        "version_guess": "4.1.3"
+      },
+      {
+        "id": "recGZKmAHjkU2LCs3",
+        "name": "118 - Email - Schedule Weekly Summary Email Build",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 118 - Email - Schedule Weekly Summary Email Build\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source of Truth\nLa",
+        "version_guess": "v2.1"
+      },
+      {
+        "id": "recIiu9B03aL3NVDC",
+        "name": "065 - Homework Review and XP - Create or Update Homework XP Event",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 065 - Homework Review and XP - Create or Reconcile Homework XP Event\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub",
+        "version_guess": "v10.11"
+      },
+      {
+        "id": "recIkAzMDMOYzSrox",
+        "name": "035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Events",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 035 - Weekly Summary and Goal Logic - Create Weekly Threshold XP Events\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: Git",
+        "version_guess": "v1.5"
+      },
+      {
+        "id": "recKdkmlHNBrC5Xsm",
+        "name": "003 - Enrollment Intake and Setup - Assign Grade Band - If Grade Changes",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 003 - Enrollment Intake and Setup - Assign Grade Band - If Grade Changes\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: Pr",
+        "version_guess": "v2.0"
+      },
+      {
+        "id": "recLaT9ykniiSw2cJ",
+        "name": "002 - Enrollment Intake and Setup - Assign Grade Band - Initial",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 002 - Enrollment Intake and Setup - Assign Grade Band - Initial\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: Production ",
+        "version_guess": "v8.2"
+      },
+      {
+        "id": "recM0EuOxc9ydtM5S",
+        "name": "032 - Weekly Summary and Goal Logic - Link Challenge Goal Record to Weekly Athlete Summary",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 032 - Weekly Summary and Goal Logic - Link Challenge Goal Record to Weekly Athlete Summary\nSystem: 127 SI Shooting Challenge\nSource: Airtable Aut",
+        "version_guess": "v3.4"
+      },
+      {
+        "id": "recNUvkyi3dABPX9f",
+        "name": "057 - Achievements and Milestones - Calculate Perfect Week Eligibility",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 057 - Achievements and Milestones - Calculate Perfect Week Eligibility\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: Prod",
+        "version_guess": "2.7"
+      },
+      {
+        "id": "recRvFLcDIez37YUp",
+        "name": "034 - Weekly Summary and Goal Logic - Set Previous Week Helper Values",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 034 - Weekly Summary and Goal Logic - Set Previous Week Helper Values\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: Produ",
+        "version_guess": "v3.4"
+      },
+      {
+        "id": "recTuUvV1XUi9cM7p",
+        "name": "058 - Achievements and Milestones - Create Perfect Week Unlock",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 058 - Achievements and Milestones - Create Perfect Week Unlock\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: Production C",
+        "version_guess": "1.7"
+      },
+      {
+        "id": "recUkhGPzQvh8VcGb",
+        "name": "056 - Achievements and Milestones - Refresh Current Shooting Streaks Daily",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 056 - Achievements and Milestones - Refresh Current Shooting Streaks Daily\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: ",
+        "version_guess": "v1.2"
+      },
+      {
+        "id": "recUu0el5XmtmLTX0",
+        "name": "116 - Submission Assets - Apply Asset Reuse Decision Consequences",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 116 - Submission Assets - Apply Asset Reuse Decision Consequences\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub So",
+        "version_guess": "v1.0.1"
+      },
+      {
+        "id": "recVdiwO2B9maOk6s",
+        "name": "033 - Weekly Summary and Goal Logic - Assign Homework to Weekly Athlete Summary",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 033 - Weekly Summary and Goal Logic - Assign Homework to Weekly Athlete Summary\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nSta",
+        "version_guess": "v4.4"
+      },
+      {
+        "id": "recW72AyCvn3dos9f",
+        "name": "067 - Homework - Link Reflection Quiz to Homework Completion",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 067 - Homework - Link or Create Completion from Reflection Quiz\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Sour",
+        "version_guess": "v3.5"
+      },
+      {
+        "id": "recWBENzSbwKnJV6F",
+        "name": "064 - Homework Review and XP - Assign Base Homework XP",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 064 - Homework Review and XP - Prepare Homework XP Award\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: Production Copy\nLa",
+        "version_guess": "v12.2"
+      },
+      {
+        "id": "recXbsqr0GkuseZZT",
+        "name": "071 - Email, Notifications, and External Handoffs - Create Homework Feedback Communications Hub Handoff",
+        "status": "Live",
+        "code_preview": "/*\nGitHub header\nAutomation: 071 - Email, Notifications, and External Handoffs - Create Homework Feedback Communications Hub Handoff\nSystem: 127 SI Shooting Cha",
+        "version_guess": "v4.5"
+      },
+      {
+        "id": "recXe0fCpXweqIwFs",
+        "name": "010 - Submission Intake and Asset Creation - Create XP Event from Submission",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 010 - Submission Intake and Asset Creation - Create XP Event from Submission\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus",
+        "version_guess": "v10.14"
+      },
+      {
+        "id": "recY2BtVINqo1MP7X",
+        "name": "020 - Submission Intake and Asset Creation - Link or Create Homework Completion from Submission Asset",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 020 - Homework - Link or Create Homework Completion\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source of Truth\n",
+        "version_guess": "v4.1"
+      },
+      {
+        "id": "recZWrVJTi2ovc3uM",
+        "name": "031 - Weekly Summary and Goal Logic - Find or Create Weekly Athlete Summary from Submission",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 031 - Weekly Summary and Goal Logic - Find or Create Weekly Athlete Summary from Submission\nSystem: 127 SI Shooting Challenge\nSource: Airtable Au",
+        "version_guess": "v4.1"
+      },
+      {
+        "id": "reca0djOUrylR0Nn6",
+        "name": "070a - Email, Notifications, and External Handoffs - Send Homework Asset Payload to Make",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 070a - Email, Notifications, and External Handoffs - Send Homework Asset Payload to Make\nSystem: 127 SI Shooting Challenge\nSource: Airtable Autom",
+        "version_guess": "v4.8"
+      },
+      {
+        "id": "recb8cKBqAPjh1A2J",
+        "name": "076 - Daily Submission Communications Hub Handoff",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 076 - Daily Submission Communications Hub Handoff\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source of Truth\nLa",
+        "version_guess": "v8.15"
+      },
+      {
+        "id": "receLtoo7MsDOWCMw",
+        "name": "059 - Achievements and Milestones - Create XP Event from Achievement Unlock",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 059 - Achievements and Milestones - Create XP Event from Achievement Unlock\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus:",
+        "version_guess": "v3.8"
+      },
+      {
+        "id": "reced7TrUiVjIA97q",
+        "name": "070c - Email, Notifications, and External Handoffs - Verify Async Video Asset Upload",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 070c - Email, Notifications, and External Handoffs - Verify Async Video Asset Upload\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automatio",
+        "version_guess": "v4.4"
+      },
+      {
+        "id": "recfxxUD50a5rbIRr",
+        "name": "030 - Weekly Summary and Goal Logic - Copy Enrollment Grade Band to Weekly Summary",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 030 - Weekly Summary and Goal Logic - Copy Enrollment Grade Band to Weekly Summary\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\n",
+        "version_guess": "v3.0"
+      },
+      {
+        "id": "recgH5hQgJA9IfLQE",
+        "name": "074 - Email, Notifications, and External Handoffs - Create Weekly Summary Hub Handoff",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 074 - Email, Notifications, and External Handoffs - Create Weekly Athlete Summary Communications Hub Handoff\nSystem: 127 SI Shooting Challenge\nSo",
+        "version_guess": "v3.6"
+      },
+      {
+        "id": "recieNXUCjhOMm1RT",
+        "name": "005 - Submission Intake and Asset Creation - Assign Week to Submission - Homework First",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 005 - Submission Intake and Asset Creation - Assign Week to Submission - Homework First\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automa",
+        "version_guess": "v5.5"
+      },
+      {
+        "id": "reckVKM5E4CwZe8xJ",
+        "name": "120 - Video Review and XP - Apply FUT-009 S3 Video Rename",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 120 - Video Review and XP - Apply FUT-009 S3 Video Rename\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source of ",
+        "version_guess": "v1.0"
+      },
+      {
+        "id": "recl5DLUTHPnsccls",
+        "name": "119 - Email - Schedule Weekly Summary Email Send",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 119 - Email - Schedule Weekly Summary Email Send\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source of Truth\nLas",
+        "version_guess": "v1.8"
+      },
+      {
+        "id": "reclLJs0th8P5Z1Kj",
+        "name": "055 - Achievements and Milestones - Recalculate Current Shooting Streak from Submission",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 055 - Achievements and Milestones - Recalculate Current Shooting Streak from Submission\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automa",
+        "version_guess": "v3.2"
+      },
+      {
+        "id": "recmT8Ye7TIhmmn7X",
+        "name": "001 - Enrollment Intake and Setup - Find or Create Athlete and Link Enrollment",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 001 -  Enrollment Intake and Setup - Find or Create Athlete and Link Enrollment\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nSta",
+        "version_guess": "v5.4"
+      },
+      {
+        "id": "recnGzS8CLuBthtNM",
+        "name": "079 - Send to Communications Hub - NEW",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 079 \u2013 Send to Communications Hub - NEW\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source of Truth\nLast Synced F",
+        "version_guess": "v2.5"
+      },
+      {
+        "id": "recpa0O3XPxkEP9IG",
+        "name": "009 - Submission Intake and Asset Creation - Create Submission Assets from Submission",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 009 - Submission Intake - Create Submission Assets\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source of Truth\nL",
+        "version_guess": "v1.3"
+      },
+      {
+        "id": "recto9WHVNTs2OBr8",
+        "name": "070b - Email, Notifications, and External Handoffs - Send Video Asset Payload to Make",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 070b - Email, Notifications, and External Handoffs - Send Video Asset Payload to Make\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automati",
+        "version_guess": "v4.8"
+      },
+      {
+        "id": "recuXhBl6WGImtwo8",
+        "name": "023 - Submission Intake and Asset Creation - Assign Enrollment to Submission",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 023 - Submission Intake and Asset Creation - Assign Enrollment to Submission\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus",
+        "version_guess": "v3.1"
+      },
+      {
+        "id": "recvAefnPtnWHrnIb",
+        "name": "041 - Levels and Progression - Mark Enrollment for Level Recalculation",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 041 - Levels and Progression - Mark Enrollment for Level Recalculation\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitH",
+        "version_guess": "v5.1"
+      },
+      {
+        "id": "recvBjw910MFTsPgT",
+        "name": "007 - Submission Intake and Asset Creation - Duplicate Checker for Submissions",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 007 - Submission Intake and Asset Creation - Duplicate Checker for Submissions\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStat",
+        "version_guess": "v2.0"
+      },
+      {
+        "id": "recxDRvpiuvCeeAhC",
+        "name": "113 - Video Review and XP - Assign Base Video XP by Grade Band",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 113 - Video Review and XP - Assign Base Video XP\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source of Truth\nLas",
+        "version_guess": "v6.5"
+      },
+      {
+        "id": "recz5ITpBbCl0xAve",
+        "name": "013 - Submission Intake - Create or Link Video Feedback",
+        "status": "Live",
+        "code_preview": "/*\nAutomation: 013 - Submission Intake - Create or Link Video Feedback\nSystem: 127 SI Shooting Challenge\nSource: Airtable Automation\nStatus: GitHub Source of Tr",
+        "version_guess": "v3.2.0"
+      }
+    ],
+    "classifications": "(2 rows omitted from committed artifact; see post-cleanup-verification.json)",
+    "summary": {
+      "disposable": 0,
+      "uncertain": 2,
+      "reference_like": 0,
+      "email_violations": 0
+    },
+    "disposable_ids_by_table": {},
+    "uncertain_ids_by_table": {
+      "Zoom Meetings": [
+        "recMFP2x5LDqea9ax",
+        "recb9EjQIJVzaRpZa"
+      ]
+    },
+    "email_violations": []
+  },
+  "curriculum_hub": {
+    "label": "curriculum_hub",
+    "base_id": "appnrW8pPpzq8Nhov",
+    "audited_at": "2026-09-14T12:44:28.468857+00:00",
+    "table_names": [
+      "Lessons",
+      "Aesop Fables",
+      "Import Notes",
+      "Lesson Content",
+      "Lesson Questions",
+      "Settings",
+      "__schema_probe_delete_me",
+      "Homework Draft Attempts",
+      "Homework Draft Responses",
+      "Submission Outbox"
+    ],
+    "formula_audit": {
+      "sim_formula_branches": [],
+      "sample_now_today": []
+    },
+    "transactional_counts": {
+      "Submission Outbox": {
+        "count": 0
+      },
+      "Homework Draft Attempts": {
+        "count": 0
+      },
+      "Homework Draft Responses": {
+        "count": 0
+      }
+    },
+    "reference_counts": {
+      "Lessons": {
+        "table": "Lessons",
+        "count": 132
+      },
+      "Questions": {
+        "missing": true
+      },
+      "Standards": {
+        "missing": true
+      },
+      "Assignments": {
+        "missing": true
+      }
+    },
+    "discovered_tx_like": [
+      "Homework Draft Attempts",
+      "Homework Draft Responses",
+      "Submission Outbox"
+    ],
+    "missing_configured_tables": [
+      "Attempts",
+      "Responses",
+      "Outbox",
+      "Homework Attempts",
+      "Athlete Attempts"
+    ],
+    "automations": [],
+    "classifications": "(0 rows omitted from committed artifact; see post-cleanup-verification.json)",
+    "summary": {
+      "disposable": 0,
+      "uncertain": 0,
+      "reference_like": 0,
+      "email_violations": 0
+    },
+    "disposable_ids_by_table": {},
+    "uncertain_ids_by_table": {},
+    "email_violations": []
+  }
+}

@@ -13,7 +13,7 @@ from typing import Any, Callable, Sequence
 from .run_registry import RunRegistry, run_marker
 
 DEFAULT_POLL_INTERVAL_S = 5.0
-DEFAULT_TIMEOUT_S = 300.0
+DEFAULT_TIMEOUT_S = 900.0
 
 STREAK_XP_THRESHOLDS = (3, 5, 7, 10, 20, 30, 40, 50, 60)
 HOMEWORK_XP_PREFIX = "HOMEWORK_XP|"

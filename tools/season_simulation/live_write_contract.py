@@ -100,7 +100,7 @@ SEASON_SIM_REQUIRED_SUBMISSION_FIELDS: dict[str, set[str]] = {
     PERFECT_WEEK_MANUAL_EXCEPTION_FIELD: {"checkbox"},
 }
 
-EXPECTED_PERFECT_SEASON_XP = 4910
+EXPECTED_PERFECT_SEASON_XP = 4980
 EXPECTED_FINAL_LEVEL = "G.O.A.T."
 EXPECTED_PRODUCTION_ZOOM_COUNT = 2
 EXPECTED_WEEKS_COUNT = 10
@@ -693,7 +693,7 @@ def _oracle_source_expected_xp(oracle: dict[str, Any], source: str) -> int | Non
 def validate_oracle_zoom_model(
     oracle: dict[str, Any] | None = None,
 ) -> tuple[dict[str, Any], list[ContractViolation]]:
-    """Perfect season Zoom model: 60 live + 30 recording = 90; no Bonus 2/3; season 4910."""
+    """Perfect season Zoom model: 60 live + 30 recording = 90; no Bonus 2/3; season 4980."""
     violations: list[ContractViolation] = []
     oracle = oracle if oracle is not None else load_oracle_expectations()
     live = _oracle_source_expected_xp(oracle, "ZOOM_ATTEND_BASE")

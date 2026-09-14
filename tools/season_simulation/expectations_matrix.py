@@ -124,21 +124,35 @@ def _milestone_defs(grade_band_id: str = "recSIMGB912") -> list[ShotMilestoneDef
 def _streaks_from_submit_days(
     submit_day_numbers: Sequence[int],
     *,
-    thresholds: Sequence[int] = DEFAULT_STREAK_GATE_THRESHOLDS,
+    thresholds: Sequence[int] = DEFAULT_STREAK_XP_THRESHOLDS,
 ) -> list[int]:
-    """Streak thresholds crossed by longest contiguous submit-day run."""
+    """Streak thresholds crossed via 053 multi-segment contiguous blocks.
+
+    Mirrors automation 053 ``buildStreakBlocks``: split submit days into
+    contiguous day blocks; for each block award each threshold when
+    ``block.length >= threshold``. Returns sorted unique thresholds (Perfect
+    continuous season awards every XP threshold 3→60 once).
+    """
     if not submit_day_numbers:
         return []
-    days = sorted(submit_day_numbers)
-    best = cur = 1
+    days = sorted(set(int(d) for d in submit_day_numbers))
+    blocks: list[list[int]] = []
+    current = [days[0]]
     for i in range(1, len(days)):
         if days[i] == days[i - 1] + 1:
-            cur += 1
+            current.append(days[i])
         else:
-            best = max(best, cur)
-            cur = 1
-    best = max(best, cur)
-    return [t for t in thresholds if best >= t]
+            blocks.append(current)
+            current = [days[i]]
+    blocks.append(current)
+
+    awarded: set[int] = set()
+    for block in blocks:
+        length = len(block)
+        for t in thresholds:
+            if length >= int(t):
+                awarded.add(int(t))
+    return sorted(awarded)
 
 
 def _homework_summary(scenario: AthleteScenario, week_label: str) -> tuple[str, str]:
@@ -148,8 +162,6 @@ def _homework_summary(scenario: AthleteScenario, week_label: str) -> tuple[str, 
             continue
         items.extend(d.homework)
     if not items:
-        if week_label == "Week 9":
-            return "none", "n/a"
         return "skipped", "skipped"
     outcomes = {str(i.get("outcome") or "") for i in items}
     timing = str(items[0].get("timing_note") or items[0].get("late_status") or "on_time")
@@ -181,7 +193,9 @@ def _format_goal_met_expectation(
 def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpectationMatrix:
     weekly_agg = aggregate_weekly_shots(scenario.days)
     submit_nums = [d.day_number for d in scenario.days if d.action == "submit"]
-    streak_gates = _streaks_from_submit_days(submit_nums)
+    streak_gates = _streaks_from_submit_days(
+        submit_nums, thresholds=DEFAULT_STREAK_GATE_THRESHOLDS
+    )
     streak_xp = _streaks_from_submit_days(
         submit_nums, thresholds=DEFAULT_STREAK_XP_THRESHOLDS
     )
@@ -260,7 +274,7 @@ def build_athlete_expectation_matrix(scenario: AthleteScenario) -> AthleteExpect
                 homework_timing=hw_timing,
                 video_count=int(bucket.get("video_count") or 0),
                 zoom_state=zoom_state,
-                streak_state=f"longest_run≥{max(streak_xp) if streak_xp else 0}",
+                streak_state=f"053_blocks≥{max(streak_xp) if streak_xp else 0}",
                 milestone_crossings=week_crossings,
                 perfect_week=pw,
                 xp_categories=sorted(set(xp_cats)),

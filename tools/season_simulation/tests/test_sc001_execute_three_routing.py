@@ -233,7 +233,7 @@ class TestExecuteThreeProfileNamespace(unittest.TestCase):
                 "library_id": f"recLIB{i:02d}",
                 "display": f"HW{i}",
             }
-            for i in range(1, 19)
+            for i in range(1, 21)
         ]
         scenarios = build_all_sc001_scenarios(
             run_id=RUN_ID,

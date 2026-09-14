@@ -1,8 +1,8 @@
 """Week 9 partial-week Perfect Week regression tests.
 
 Named Week 9 (Jun 27–30) is the 10th challenge-week ordinal: official, 4 days,
-4/7 shooting target, normal daily minimum, video min still 3, homework vacuously
-satisfied when Production has 0 Week-9 PHAs.
+4/7 shooting target, normal daily minimum, video min still 3, homework required
+(2 PHA slots; Production active PHA count = 20).
 """
 
 from __future__ import annotations
@@ -28,10 +28,10 @@ from season_simulation.season_policy import (
 
 
 def _perfect_fixture() -> AthleteScenario:
-    labels = ("Early Bird",) + tuple(f"Week {i}" for i in range(1, 9))
+    labels = ("Early Bird",) + tuple(f"Week {i}" for i in range(1, 10))
     weeks = [{"record_id": f"recW{i}", "name": labels[i]} for i in range(len(labels))]
     homework = []
-    for i in range(1, 19):
+    for i in range(1, 21):
         label = labels[(i - 1) // 2]
         homework.append(
             {
@@ -103,10 +103,11 @@ class TestWeek9PartialPerfectWeek(unittest.TestCase):
         self.assertTrue(all(d.action == "submit" for d in week9))
         video_count = sum(1 for d in week9 if d.video_feedback or d.video_count)
         self.assertGreaterEqual(video_count, PERFECT_WEEK_VIDEO_MINIMUM)
-        self.assertEqual(
-            [hw for d in week9 for hw in d.homework if hw.get("week_label") == "Week 9"],
-            [],
-        )
+        week9_hw = [
+            hw for d in week9 for hw in d.homework if hw.get("week_label") == "Week 9"
+        ]
+        self.assertEqual(len(week9_hw), 2)
+        self.assertTrue(all(h.get("outcome") == "Satisfactory" for h in week9_hw))
         ev = evaluate_perfect_week(scenario, "Week 9")
         self.assertTrue(ev.passes, ev)
         self.assertIn(ev.outcome, {"pass", "pass_partial_window"})
@@ -191,7 +192,7 @@ class TestWeek9PartialPerfectWeek(unittest.TestCase):
         self.assertEqual(sum(1 for d in scenario.days if d.action == "miss"), 0)
         self.assertEqual(sum(1 for d in scenario.days if d.action == "submit"), 67)
         hw = [h for d in scenario.days for h in d.homework]
-        self.assertEqual(len(hw), 18)
+        self.assertEqual(len(hw), 20)
         self.assertTrue(all(h.get("outcome") == "Satisfactory" for h in hw))
         self.assertTrue(all(h.get("perfect_week_homework_eligible") for h in hw))
 

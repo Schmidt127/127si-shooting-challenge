@@ -184,6 +184,49 @@ def actual_xp_buckets_from_events(events: Sequence[dict[str, Any]]) -> dict[str,
     return buckets
 
 
+def sum_active_xp_points(events: Sequence[dict[str, Any]]) -> int:
+    """Sum Active XP Points from active XP Event rows (fallback to XP Points)."""
+    total = 0
+    for ev in events:
+        f = ev.get("fields") or ev
+        status = str(f.get("Status") or "").lower()
+        if status in {"void", "inactive", "duplicate", "superseded"}:
+            continue
+        if f.get("Active?") is False:
+            continue
+        pts = f.get("Active XP Points")
+        if pts is None:
+            pts = f.get("XP Points")
+        if pts is None:
+            pts = f.get("Points")
+        try:
+            total += int(float(pts or 0))
+        except (TypeError, ValueError):
+            continue
+    return total
+
+
+def assert_lifetime_matches_active_xp(
+    lifetime: int | None,
+    events: Sequence[dict[str, Any]],
+) -> list[str]:
+    """Hard-fail gate: Lifetime XP Earned must equal sum(Active XP Points).
+
+    When ``lifetime`` is None, no check is performed (caller has not supplied
+    Enrollment Lifetime XP). When events are empty and lifetime is 0, that is OK.
+    Does not invent XP — only compares provided lifetime vs provided events.
+    """
+    if lifetime is None:
+        return []
+    active_sum = sum_active_xp_points(events)
+    if int(lifetime) != active_sum:
+        return [
+            f"Lifetime XP Earned ({int(lifetime)}) != sum(Active XP Points) "
+            f"from active events ({active_sum})"
+        ]
+    return []
+
+
 def reconcile_business_success(
     *,
     profile: str,
@@ -198,6 +241,13 @@ def reconcile_business_success(
     level_gate_ok: bool | None = None,
     email_report: dict[str, Any] | None = None,
 ) -> BusinessReconciliationResult:
+    """Reconcile expected matrix XP vs live events / enrollment lifetime.
+
+    **Lifetime XP hard rule:** when ``actual_lifetime_xp`` is provided, it must
+    equal the sum of ``Active XP Points`` (falling back to ``XP Points``) across
+    active events. Mismatch is always a hard fail — Enrollment Lifetime XP Earned
+    is not authoritative if it disagrees with the active event ledger.
+    """
     expected_pts = expected_points_from_matrix(matrix)
     actual_pts = actual_xp_buckets_from_events(actual_events)
     expected_total = sum_points(expected_pts)
@@ -223,6 +273,10 @@ def reconcile_business_success(
 
     if expected_total != actual_total:
         errors.append(f"total XP: expected {expected_total} actual {actual_total}")
+
+    errors.extend(
+        assert_lifetime_matches_active_xp(actual_lifetime_xp, actual_events)
+    )
 
     if actual_level_s and actual_level_s != expected_level:
         errors.append(f"level: expected {expected_level} actual {actual_level_s}")
@@ -288,6 +342,44 @@ def reconcile_business_success(
     )
 
 
+def reconcile_with_live_events(
+    *,
+    profile: str,
+    matrix: AthleteExpectationMatrix,
+    cascade_complete: bool,
+    actual_events: Sequence[dict[str, Any]],
+    actual_lifetime_xp: int | None,
+    actual_level: str | None = None,
+    actual_perfect_week_count: int | None = None,
+    duplicate_streak_keys: dict[str, int] | None = None,
+    duplicate_xp_keys: dict[str, int] | None = None,
+    pending_reconciliation_fields: Sequence[str] | None = None,
+    level_gate_ok: bool | None = None,
+    email_report: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Named Stage E2 entry when live XP events + lifetime are available.
+
+    Prefer this over ``stage_e2_business_success_hook`` when the execute path
+    has fetched Enrollment Lifetime XP and XP Event rows — enables the
+    Lifetime === Active XP sum hard gate. Does not invent events or XP.
+    """
+    return stage_e2_business_success_hook(
+        profile=profile,
+        matrix=matrix,
+        cascade_complete=cascade_complete,
+        actual_events=actual_events,
+        actual_lifetime_xp=actual_lifetime_xp,
+        actual_level=actual_level,
+        actual_perfect_week_count=actual_perfect_week_count,
+        duplicate_streak_keys=duplicate_streak_keys,
+        duplicate_xp_keys=duplicate_xp_keys,
+        pending_reconciliation_fields=pending_reconciliation_fields,
+        level_gate_ok=level_gate_ok,
+        email_report=email_report,
+        planned=False,
+    )
+
+
 def stage_e2_business_success_hook(
     *,
     profile: str,
@@ -350,6 +442,75 @@ def stage_e2_business_success_hook(
     return payload
 
 
+def try_load_enrollment_xp_for_reconcile(
+    client: Any,
+    enrollment_id: str,
+) -> dict[str, Any]:
+    """Best-effort load of Enrollment lifetime + linked XP Events for Stage E2.
+
+    Returns ``{events, lifetime_xp, level}``. Never invents XP — missing data
+    yields ``lifetime_xp=None`` and/or empty events so callers can skip the
+    lifetime hard gate until live rows are available.
+    """
+    out: dict[str, Any] = {"events": [], "lifetime_xp": None, "level": None}
+    if client is None or not enrollment_id:
+        return out
+    try:
+        enr = client.get_record("Enrollments", enrollment_id)
+        fields = (enr or {}).get("fields") or {}
+        for key in ("Lifetime XP Earned", "Lifetime XP Total", "Total XP"):
+            if fields.get(key) is not None:
+                try:
+                    out["lifetime_xp"] = int(float(fields[key]))
+                    break
+                except (TypeError, ValueError):
+                    pass
+        for key in ("Current Level", "Level", "Athlete Level"):
+            if fields.get(key):
+                out["level"] = str(fields[key])
+                break
+    except Exception:  # noqa: BLE001
+        pass
+
+    events: list[dict[str, Any]] = []
+    try:
+        list_fn = getattr(client, "list_records", None) or getattr(client, "select", None)
+        if list_fn is None:
+            return out
+        formula = f"FIND('{enrollment_id}', ARRAYJOIN({{Enrollment}})&'')"
+        try:
+            rows = list_fn(
+                "XP Events",
+                fields=[
+                    "Source Key",
+                    "XP Points",
+                    "Active XP Points",
+                    "Active?",
+                    "Status",
+                    "Enrollment",
+                ],
+                formula=formula,
+            )
+        except TypeError:
+            rows = list_fn("XP Events") or []
+        for row in rows or []:
+            f = row.get("fields") or row
+            linked = f.get("Enrollment") or []
+            ids = linked if isinstance(linked, list) else [linked]
+            flat = []
+            for item in ids:
+                if isinstance(item, dict):
+                    flat.append(str(item.get("id") or ""))
+                else:
+                    flat.append(str(item or ""))
+            if enrollment_id in flat or enrollment_id in str(f.get("Enrollment") or ""):
+                events.append(row if "fields" in row else {"id": row.get("id"), "fields": f})
+    except Exception:  # noqa: BLE001
+        events = []
+    out["events"] = events
+    return out
+
+
 def count_duplicate_keys(keys: Sequence[str]) -> dict[str, int]:
     c = Counter(k for k in keys if k)
     return {k: n for k, n in c.items() if n > 1}
@@ -358,9 +519,13 @@ def count_duplicate_keys(keys: Sequence[str]) -> dict[str, int]:
 __all__ = [
     "SAFE_ALLOWLIST",
     "BusinessReconciliationResult",
+    "assert_lifetime_matches_active_xp",
     "expected_points_from_matrix",
     "reconcile_business_success",
+    "reconcile_with_live_events",
     "stage_e2_business_success_hook",
+    "sum_active_xp_points",
+    "try_load_enrollment_xp_for_reconcile",
     "threshold_xp_from_awards",
     "xp_points_from_event_buckets",
     "count_duplicate_keys",
