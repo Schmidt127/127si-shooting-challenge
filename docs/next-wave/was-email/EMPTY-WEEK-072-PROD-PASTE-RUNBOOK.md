@@ -1,5 +1,7 @@
 # Empty-week policy — 072 v4.0 PROD paste + Schmidt proof (CLOSED)
 
+> **HISTORICAL / REFERENCE ONLY.** This records the retired Make/Gmail email route. Use [`../../integrations/email-send-plane.md`](../../integrations/email-send-plane.md) for current Communications Hub → Resend delivery.
+
 **Date:** 2026-07-24  
 **Status:** **PROD verified** — Schmidt empty-week `send_short` E2E PASS  
 **Canonical architecture:** [`WAS-WEEKLY-EMAIL-ARCHITECTURE.md`](./WAS-WEEKLY-EMAIL-ARCHITECTURE.md)
