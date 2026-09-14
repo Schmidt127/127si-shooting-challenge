@@ -239,19 +239,19 @@ Do **not** treat other Automations-table columns (trigger/conditions) as authori
 | **066** | **v4.1** | v4.1 | Live / **SC-163 COMPLETE / Live Tested** | Goal Met Date date-only + milestones; Athlete1 stamped **8/30/2026**; may remain ON — [`audits/SC-163-LIVE-VERIFICATION-CLOSEOUT-20260905.md`](./audits/SC-163-LIVE-VERIFICATION-CLOSEOUT-20260905.md) |
 | **013** | **v3.2.0** | v3.2.0 | Live / **aligned** (no paste needed) | VF create path. Live body matches GitHub **v3.2.0** (Agent 3 MCP 2026-09-05). Prior decline note historical — [`audits/VERSION-AUDIT-CORRECTION-021-013-067-20260905.md`](./audits/VERSION-AUDIT-CORRECTION-021-013-067-20260905.md) |
 | **021** | **v2.0** | v2.0 | **Live / ALIGNED** | Attachment Upload Status only; exact byte match GitHub; Phase A combined paste never installed — same correction audit |
-| **072** | **v4.9.3** | v4.9.2 | **GitHub ahead / paste pending** | Boolean input parse (`parseAutomationSendMode`); checklist [`deploy-checklists/EMAIL-PRODUCER-BOOLEAN-INPUT-PARSING.md`](./deploy-checklists/EMAIL-PRODUCER-BOOLEAN-INPUT-PARSING.md) |
-| **073** | **v4.10** | v4.9 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
-| **071** | **v4.6** | v4.5 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
-| **076** | **v8.16** | v8.15 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
-| **074** | **v3.7** | v3.6 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
+| **072** | **v4.9.4** | v4.9.2 | **GitHub ahead / paste pending** | Boolean/send-mode parse paste deploy; checklist [`deploy-checklists/EMAIL-PRODUCER-BOOLEAN-INPUT-PARSING.md`](./deploy-checklists/EMAIL-PRODUCER-BOOLEAN-INPUT-PARSING.md) |
+| **073** | **v4.11** | v4.9 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
+| **071** | **v4.7** | v4.5 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
+| **076** | **v8.17** | v8.15 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
+| **074** | **v3.8** | v3.6 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
 | **070a** | **v4.7** | **v4.7 Live** | Script-only graph (SC-156); trigger clears via script | Homework upload Make path |
 | **070b** | **v4.7** | v4.7 | Live | |
 | **070c** | **current live (repo v1.1)** | v1.1 | Live/enabled | Do not invent a new version |
 | **101** | **v6.8** | v6.8 | Live / **SC-147 COMPLETE** | Recording half-XP Live Tested; GitHub synced PR **#398**. Optional: re-paste GitHub year-aware Config percent hardening for byte-match |
-| **117** | **v2.3** | v2.2 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
-| **078A** | **v1.8** | v1.7 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
-| **118** | **v2.2** | v2.1 | **GitHub ahead / paste pending** | Strict boolean/sendMode input parse for schedule arming |
-| **119** | **v1.9** | v1.8 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `dryRun` / `includeSchmidt` |
+| **117** | **v2.4** | v2.2 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
+| **078A** | **v1.9** | v1.7 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `testMode` text `"false"` |
+| **118** | **v2.3** | v2.1 | **GitHub ahead / paste pending** | Strict boolean/sendMode input parse for schedule arming |
+| **119** | **v1.10** | v1.8 | **GitHub ahead / paste pending** | Strict `parseAutomationBoolean` for `dryRun` / `includeSchmidt` |
 
 **Record-ID classification (Mike final):** Dynamic for all record-based automations; optional on **041** only; intentionally blank on **056 / 078 / 118 / 119**. **065** and **066** use triggering-record `recordId` in Production. Closeout: [`deploy-checklists/2026-08-24-065-066-dynamic-trigger-closeout.md`](./deploy-checklists/2026-08-24-065-066-dynamic-trigger-closeout.md).
 

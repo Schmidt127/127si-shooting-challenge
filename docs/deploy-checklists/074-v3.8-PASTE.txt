@@ -1,32 +1,3 @@
-/*
-Automation: 074 - Email, Notifications, and External Handoffs - Create Weekly Athlete Summary Communications Hub Handoff
-System: 127 SI Shooting Challenge
-Source: Airtable Automation
-Status: GitHub Source of Truth
-Last Synced From Airtable: 2026-08-17
-Last GitHub Update: 2026-09-06 (v3.6 athleteFirstName payload)
-
-Purpose:
-Validate one Weekly Athlete Summary ready for parent email and create exactly
-one Ready Email Handoff Queue row for Communications Hub (079 → Resend).
-
-Trigger:
-Weekly Athlete Summary when Weekly Email Ready?, Send to Make? checked,
-and Sent? unchecked (confirm exact conditions in Airtable UI).
-
-Important Tables:
-Weekly Athlete Summary, Enrollments, Weeks, Program Instance - Sync,
-Email Handoff Queue
-
-Important Fields:
-Weekly Email Ready?, Weekly Email Sent?, Send to Make?, Weekly Email Payload JSON,
-Handoff Key, Status
-
-Notes:
-GitHub is the source-of-truth copy. Airtable is the deployed/running copy.
-Filename may still say Make; current path is Hub queue create only.
-*/
-
 /************************************************************
  * 074 - EMAIL, NOTIFICATIONS, AND EXTERNAL HANDOFFS
  * Create Weekly Athlete Summary Communications Hub Handoff

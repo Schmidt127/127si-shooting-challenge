@@ -1,10 +1,4 @@
 /*
-GitHub header
-Automation: 071 - Email, Notifications, and External Handoffs - Create Homework Feedback Communications Hub Handoff
-System: 127 SI Shooting Challenge
-Source: Airtable Automation
-Status: GitHub Source of Truth
-
 Version: v4.7
 Date Written: 2026-06-17
 Last Updated: 2026-09-14

@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT_DIR = ROOT / "docs" / "deploy-checklists"
 AUTOMATIONS = ROOT / "airtable" / "automations" / "shooting-challenge"
 
-PRODUCTION_DOCBLOCK = "/************************************************************\n * 0"
+PRODUCTION_DOCBLOCK = "/************************************************************\n *"
 
 
 def extract_from_production_docblock(text: str, version_token: str) -> str:
@@ -57,39 +57,57 @@ def _assert_airtable_safe(body: str) -> None:
 SPECS: list[tuple[str, str, str, str]] = [
     (
         "071-email-notifications-and-external-handoffs-send-homework-feedback-email-webhook.js",
-        "071-v4.5-PASTE.txt",
-        "v4.5",
+        "071-v4.7-PASTE.txt",
+        "v4.7",
         "single",
     ),
     (
         "072-email-notifications-and-external-handoffs-build-weekly-summary-email-package.js",
-        "072-v4.9.2-PASTE.txt",
-        "v4.9.2",
+        "072-v4.9.4-PASTE.txt",
+        "v4.9.4",
         "docblock",
     ),
     (
         "073-email-notifications-and-external-handoffs-send-video-feedback-parent-email-webhook.js",
-        "073-v4.9-PASTE.txt",
-        "v4.9",
+        "073-v4.11-PASTE.txt",
+        "v4.11",
         "docblock",
     ),
     (
         "074-email-notifications-and-external-handoffs-send-weekly-summary-email-package-to-make.js",
-        "074-v3.6-PASTE.txt",
-        "v3.6",
+        "074-v3.8-PASTE.txt",
+        "v3.8",
         "docblock",
     ),
     (
         "076-email-notifications-and-external-handoffs-build-daily-submission-email-package.js",
-        "076-v8.15-PASTE.txt",
-        "v8.15",
+        "076-v8.17-PASTE.txt",
+        "v8.17",
+        "docblock",
+    ),
+    (
+        "078A-email-notifications-and-external-handoffs-enrollment-create-welcome-email-handoff.js",
+        "078A-v1.9-PASTE.txt",
+        "v1.9",
         "docblock",
     ),
     (
         "117-zoom-send-recording-approval-email-to-make.js",
-        "117-v2.2-PASTE.txt",
-        "v2.2",
+        "117-v2.4-PASTE.txt",
+        "v2.4",
         "single",
+    ),
+    (
+        "118-email-notifications-and-external-handoffs-schedule-weekly-summary-email-build.js",
+        "118-v2.3-PASTE.txt",
+        "v2.3",
+        "docblock",
+    ),
+    (
+        "119-email-notifications-and-external-handoffs-schedule-weekly-summary-email-send.js",
+        "119-v1.10-PASTE.txt",
+        "v1.10",
+        "docblock",
     ),
 ]
 

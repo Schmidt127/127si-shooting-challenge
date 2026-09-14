@@ -72,9 +72,9 @@ test("075 archive is labeled LEGACY/RETIRED and is not Zoom XP", () => {
   assert.doesNotMatch(body, /Zoom\s*\/\s*Attendance XP is Automation 075/i);
 });
 
-test("078A v1.8 supports optional testMode input and canonical Welcome key", () => {
+test("078A v1.9 supports optional testMode input and canonical Welcome key", () => {
   const a078 = script("078A-");
-  assert.match(a078.body, /version:\s*"v1\.8"/);
+  assert.match(a078.body, /version:\s*"v1\.9"/);
   assert.match(a078.body, /parseAutomationBoolean\(\s*cfg\.testMode\s*,\s*true\s*\)/);
   assert.match(a078.body, /Parent Email - Cleaned/);
   assert.match(a078.body, /WELCOME\|SHOOTING_CHALLENGE\|/);

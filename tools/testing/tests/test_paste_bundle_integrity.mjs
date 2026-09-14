@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../..");
 
-const PRODUCTION_DOCBLOCK = "/************************************************************\n * 0";
+const PRODUCTION_DOCBLOCK = "/************************************************************\n *";
 
 function extractFromProductionDocblock(text) {
   const idx = text.indexOf(PRODUCTION_DOCBLOCK);
@@ -83,84 +83,88 @@ const BUNDLES = [
   },
   {
     id: "071",
-    version: "v4.5",
+    version: "v4.7",
     source:
       "airtable/automations/shooting-challenge/071-email-notifications-and-external-handoffs-send-homework-feedback-email-webhook.js",
-    paste: "docs/deploy-checklists/071-v4.5-PASTE.txt",
+    paste: "docs/deploy-checklists/071-v4.7-PASTE.txt",
     extract: extractFromSingleCommentBlock,
-    mustInclude: ['version: "v4.5"', "athleteProfileUrl", "Structured Curriculum HC-only"],
+    mustInclude: ['version: "v4.7"', "athleteProfileUrl", "Structured Curriculum HC-only", "parseAutomationBoolean"],
     mustExclude: ["fetch(", "makeWebhookUrl"],
   },
   {
     id: "072",
-    version: "v4.9.2",
+    version: "v4.9.4",
     source:
       "airtable/automations/shooting-challenge/072-email-notifications-and-external-handoffs-build-weekly-summary-email-package.js",
-    paste: "docs/deploy-checklists/072-v4.9.2-PASTE.txt",
+    paste: "docs/deploy-checklists/072-v4.9.4-PASTE.txt",
     extract: extractFromProductionDocblock,
     mustInclude: [
-      'version: "v4.9.2"',
+      'version: "v4.9.4"',
       "athleteFirstName",
       "Unlinked canonical XP",
       "WAS-linked active XP",
       "orphanXp",
       "America/Denver",
+      "parseAutomationSendMode",
     ],
     mustExclude: ["fetch(", "makeWebhookUrl"],
   },
   {
     id: "073",
-    version: "v4.9",
+    version: "v4.11",
     source:
       "airtable/automations/shooting-challenge/073-email-notifications-and-external-handoffs-send-video-feedback-parent-email-webhook.js",
-    paste: "docs/deploy-checklists/073-v4.9-PASTE.txt",
+    paste: "docs/deploy-checklists/073-v4.11-PASTE.txt",
     extract: extractFromProductionDocblock,
     mustInclude: [
-      'version: "v4.9"',
+      'version: "v4.11"',
       "athleteFirstName",
       "valid_lambda_viewer",
       "hasCanonicalVideo",
       "No canonical video evidence",
+      "parseAutomationBoolean",
     ],
     mustExclude: ["fetch(", "makeWebhookUrl"],
   },
   {
     id: "074",
-    version: "v3.6",
+    version: "v3.8",
     source:
       "airtable/automations/shooting-challenge/074-email-notifications-and-external-handoffs-send-weekly-summary-email-package-to-make.js",
-    paste: "docs/deploy-checklists/074-v3.6-PASTE.txt",
+    paste: "docs/deploy-checklists/074-v3.8-PASTE.txt",
     extract: extractFromProductionDocblock,
-    mustInclude: ['version: "v3.6"', "athleteFirstName", "WEEKLY_ATHLETE_SUMMARY"],
+    mustInclude: ['version: "v3.8"', "athleteFirstName", "WEEKLY_ATHLETE_SUMMARY", "parseAutomationBoolean"],
     mustExclude: ["fetch(", "makeWebhookUrl"],
   },
   {
     id: "076",
-    version: "v8.15",
+    version: "v8.17",
     source:
       "airtable/automations/shooting-challenge/076-email-notifications-and-external-handoffs-build-daily-submission-email-package.js",
-    paste: "docs/deploy-checklists/076-v8.15-PASTE.txt",
+    paste: "docs/deploy-checklists/076-v8.17-PASTE.txt",
     extract: extractFromProductionDocblock,
     mustInclude: [
-      'version: "v8.15"',
+      'version: "v8.17"',
       "athleteFirstName",
       "currentStreak",
       "DAILY_SUBMISSION",
       "duplicate Handoff Keys",
+      "parseAutomationBoolean",
     ],
   },
   {
     id: "117",
-    version: "v2.2",
+    version: "v2.4",
     source:
       "airtable/automations/shooting-challenge/117-zoom-send-recording-approval-email-to-make.js",
-    paste: "docs/deploy-checklists/117-v2.2-PASTE.txt",
+    paste: "docs/deploy-checklists/117-v2.4-PASTE.txt",
     extract: extractFromSingleCommentBlock,
     mustInclude: [
-      'version: "v2.2"',
+      'version: "v2.4"',
       "athleteFirstName",
       "ZOOM_RECORDING_APPROVAL",
       "meetingDisplayName",
+      "parseAutomationBoolean",
     ],
     mustExclude: ["makeWebhookUrl", 'automationNumber: "117f"'],
   },

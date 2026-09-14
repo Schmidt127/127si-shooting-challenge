@@ -28,12 +28,12 @@ function script(slotPrefix) {
 }
 
 const PRODUCERS = [
-  { slot: "071", version: "v4.6" },
-  { slot: "073", version: "v4.10" },
-  { slot: "074", version: "v3.7" },
-  { slot: "076", version: "v8.16" },
-  { slot: "078A", version: "v1.8" },
-  { slot: "117", version: "v2.3" },
+  { slot: "071", version: "v4.7" },
+  { slot: "073", version: "v4.11" },
+  { slot: "074", version: "v3.8" },
+  { slot: "076", version: "v8.17" },
+  { slot: "078A", version: "v1.9" },
+  { slot: "117", version: "v2.4" },
 ];
 
 test("queue producers default testMode to safe true", () => {
@@ -48,9 +48,9 @@ test("queue producers default testMode to safe true", () => {
   }
 });
 
-test("078A v1.8 exposes optional testMode automation input without hardcoded recipient", () => {
+test("078A v1.9 exposes optional testMode automation input without hardcoded recipient", () => {
   const { body } = script("078A");
-  assert.match(body, /version:\s*"v1\.8"/);
+  assert.match(body, /version:\s*"v1\.9"/);
   assert.match(body, /testMode/);
   assert.match(body, /Parent Email - Cleaned/);
   assert.match(body, /WELCOME\|SHOOTING_CHALLENGE\|/);

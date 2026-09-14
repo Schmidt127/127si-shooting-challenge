@@ -19,11 +19,12 @@ At a scheduled time — Weekly — Sunday 10:00 — America/Denver
 /************************************************************
  * 119 - Email - Schedule Weekly Summary Email Send
  *
- * Version: v1.9
+ * Version: v1.10
  * Date Written: 2026-07-16
  * Last Updated: 2026-09-14
  *
  * VERSION HISTORY
+ * - v1.10 (2026-09-14): Airtable text values such as "false" are now parsed correctly instead of being treated as truthy.
  * - v1.8 (2026-09-08 / SC-121): Match 118 v2.1 by targeting the latest active non-Post-Challenge Week that has actually ended in America/Denver, so partial terminal Week 9 is not skipped.
  * - v1.9 (2026-09-14): Strict parseAutomationBoolean for Airtable text inputs ("false" is false; missing keeps safe default).
  * - v1.7 (2026-08-06): Program Instance isolation — Week End Date match rejects
@@ -85,7 +86,7 @@ At a scheduled time — Weekly — Sunday 10:00 — America/Denver
 
 const CONFIG = {
   scriptName: "119 - Email - Schedule Weekly Summary Email Send",
-  version: "v1.9",
+  version: "v1.10",
   versionDate: "2026-09-14",
   lastUpdated: "2026-09-14",
   timeZone: "America/Denver",

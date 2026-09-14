@@ -35,8 +35,8 @@ test("118/119 default dryRun true; 118 allows Live input and refuses Live+Schmid
   );
   assert.ok(/refuses sendMode=Live when includeSchmidt=true/.test(s118));
   assert.ok(/update\[CONFIG\.was\.sendMode\]\s*=\s*\{\s*name:\s*sendMode\s*\}/.test(s118));
-  assert.ok(/version:\s*"v2\.2"/.test(s118));
-  assert.ok(/version:\s*"v1\.9"/.test(s119));
+  assert.ok(/version:\s*"v2\.3"/.test(s118));
+  assert.ok(/version:\s*"v1\.10"/.test(s119));
   assert.ok(/Program Instance/.test(s118));
   assert.ok(/Program Instance/.test(s119));
   assert.ok(/schmidtEnrollmentIds/.test(s118));
@@ -66,7 +66,7 @@ test("074 creates the canonical Hub handoff and never writes Weekly Email Sent?"
   assert.ok(/WEEKLY_ATHLETE_SUMMARY\|WEEKLY_ATHLETE_SUMMARY/.test(s074));
   assert.ok(/Do not write Weekly Email Sent\?/.test(s074));
   assert.ok(/Do not write Weekly Email Sent\? or Weekly Email Sent At/.test(s074));
-  assert.ok(/Version:\s*v3\.7/.test(s074));
+  assert.ok(/Version:\s*v3\.8/.test(s074));
 });
 
 test("legacy priorSaturdayKeyDenver Sunday→Saturday helper remains stable", () => {

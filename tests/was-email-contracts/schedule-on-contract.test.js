@@ -51,8 +51,8 @@ test("PROJECT_STATE does not instruct keeping schedules OFF", () => {
   assert.ok(/118\/119 schedules ON|118.*ON.*119.*ON/s.test(projectState) || /schedules ON/i.test(projectState));
 });
 
-test("118 v2.2 Live season: no Live+!dryRun hard-stop; writes input sendMode", () => {
-  assert.ok(/version:\s*"v2\.2"/.test(s118));
+test("118 v2.3 Live season: no Live+!dryRun hard-stop; writes input sendMode", () => {
+  assert.ok(/version:\s*"v2\.3"/.test(s118));
   assert.ok(!/refuses sendMode=Live when dryRun=false/.test(s118));
   assert.ok(/refuses sendMode=Live when includeSchmidt=true/.test(s118));
   assert.ok(/\{ name: sendMode \}/.test(s118));
@@ -60,8 +60,8 @@ test("118 v2.2 Live season: no Live+!dryRun hard-stop; writes input sendMode", (
   assert.ok(/!isPostChallengeWeek/.test(s118));
 });
 
-test("119 v1.9 current source preserves Sunday send arming contract", () => {
-  assert.ok(/version:\s*"v1\.9"/.test(s119));
+test("119 v1.10 current source preserves Sunday send arming contract", () => {
+  assert.ok(/version:\s*"v1\.10"/.test(s119));
   assert.ok(/Send to Make\?/.test(s119));
   assert.ok(/scheduledWeekEndKeyOut/.test(s119));
   assert.ok(!/\bfetch\s*\(/.test(s119));
