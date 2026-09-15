@@ -23,7 +23,7 @@
 
 **Superseded claims (do not revive):** “season simulation unexecuted” as applied to the Perfect Mike path; “18 PHA” as current calendar truth (now **20**, Week 9 ×2); Automations tracking table as script-version authority.
 
-Curriculum Hub Homework lifecycle, private SEO, 52 structured-enabled lessons, SC Assignment Key Sync, and lesson hero are **COMPLETE** — remove from active future work; reopen Hub only for Production defects. New planning IDs **FUT-049 … FUT-057** live under [`roadmap/planning/`](./roadmap/planning/).
+Curriculum Hub Homework lifecycle, private SEO, 52 structured-enabled lessons, SC Assignment Key Sync, and lesson hero are **COMPLETE** — remove from active future work; reopen Hub only for Production defects. New planning IDs **FUT-049 … FUT-058** live under [`roadmap/planning/`](./roadmap/planning/) (FUT-058 audit pack under [`production-architecture/`](./production-architecture/README.md)).
 
 ## Optional / deferred (not close blockers)
 
@@ -2179,6 +2179,14 @@ oadmap/planning/FUT-056-WELCOME-EMAIL-REACT-EMAIL.md](./roadmap/planning/FUT-056
 **Status:** Post-launch (spec only — do not build UI) · **Mike approval before ship:** Yes  
 **Plan:** [
 oadmap/planning/FUT-057-FAMILY-PRIVATE-PROFILE.md](./roadmap/planning/FUT-057-FAMILY-PRIVATE-PROFILE.md)
+
+### FUT-058 — Final system cleanup, documentation & reconciliation audit
+
+**Status:** Docs complete / PR pending (2026-09-15) · **009:** Mike confirmed deployed **v1.3 / SC-160** (not a launch risk)  
+**Systems:** SC repo · SC Airtable · Communications repo · Communications Airtable  
+**Deliverables:** [`production-architecture/`](./production-architecture/README.md) · [`audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md`](./audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md)  
+**Scope:** Inventory, reconcile workflows, automation presence audit, schema/repo cleanup *candidates* (no unsafe deletes), authoritative cold-start docs, source-of-truth matrix.  
+**Closeout:** Production automations **50/50 deployed**. **Open follow-ups (non-SC-launch):** Hub Completion Master refresh (comms repo); field cleanup under **FUT-051**; parent-email Live cutover when Mike authorizes.
 
 
 ### SC-ATHLETE-WF-001 ? Individual athlete workflow QA (pre?season simulation)

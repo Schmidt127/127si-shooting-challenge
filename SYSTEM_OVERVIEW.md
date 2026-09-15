@@ -1,79 +1,56 @@
 # System Overview
 
-The **127 Sports Intensity Shooting Challenge** is an Airtable-based youth basketball shooting challenge system. It manages the full athlete lifecycle from enrollment through submissions, progression, communication, and reporting.
+The **127 Sports Intensity Shooting Challenge** is a youth basketball shooting challenge system. Athletes enroll, submit shooting results, earn XP, advance levels, complete homework, receive video feedback, attend Zoom sessions, and get weekly summaries — with parents notified through automated email.
 
-## Main Purpose
+**Authoritative architecture pack (cold start):** [`docs/production-architecture/README.md`](./docs/production-architecture/README.md)  
+**Live ops overlays:** [`docs/CURRENT-TRUTH.md`](./docs/CURRENT-TRUTH.md)  
+**Final system audit:** [`docs/audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md`](./docs/audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md)
 
-Give youth athletes a structured shooting challenge experience: enroll, submit shooting results, earn XP, advance through levels, maintain streaks, complete homework, receive video feedback, attend Zoom sessions, and receive weekly summaries — with parents and coaches kept in the loop via automated communication.
+## Four production components
 
-## Core Modules
+| Component | Identity |
+|-----------|----------|
+| Shooting Challenge repository | `Schmidt127/127-si-shooting-challenge` |
+| Shooting Challenge Airtable | `appn84sqPw03zEbTT` |
+| Communications repository | `Schmidt127/communications` |
+| Communications Airtable | `appYG1t5DBRimHBCT` |
 
-| Module | Responsibility |
-|--------|----------------|
-| **Enrollment Intake** | Onboard athletes into the challenge; capture enrollment data and status |
-| **Submission Intake** | Record shooting submissions (makes, attempts, challenge type, timestamps) |
-| **XP Events** | Award experience points from qualifying activity; link back to source records |
-| **Levels** | Derive athlete level from accumulated XP |
-| **Achievements** | Track milestone badges and one-time accomplishments |
-| **Streaks** | Track consecutive participation or submission streaks |
-| **Homework** | Assign, track, and complete off-court homework tasks |
-| **Video Feedback** | Store and associate coach video feedback with athletes or submissions |
-| **Zoom Attendance** | Record attendance for Zoom sessions |
-| **Weekly Athlete Summary** | Generate per-athlete weekly rollups for progress and communication |
-| **Parent/Coach Communication** | Email and notification flows to parents and coaches |
-| **Make.com Workflows** | External automation (Google Drive, Gmail, webhooks, and related scenarios) |
-| **Audit and Recovery Scripts** | Dry-run audits, integrity checks, and recovery procedures |
-| **Public Website (`web/`)** | Hoop Challenges hub — leaderboard, catalogs, public display (Next.js / Vercel) |
+## Core modules
 
-## Main Data Flow
+Enrollment · Submissions · Submission Assets · XP Events · Levels · Achievements / Streaks · Homework · Video Feedback · Zoom Attendance · Weekly Athlete Summary · Email Handoff Queue · Public website (`web/` at **`/shoot`**)
+
+## Main data flow
 
 ```
-Enrollment
-    │
-    ▼
-Submission
-    │
-    ▼
-XP Event
-    │
-    ▼
-Weekly Athlete Summary
-    │
-    ├──► Levels
-    ├──► Emails (parent/coach communication via Make.com)
-    └──► Public website (`web/` on Vercel — replaces Softr.io over time)
+Enrollment → Submission → XP Event → Weekly Athlete Summary
+                              ↓
+                    Levels / Achievements
+                              ↓
+              Email Handoff Queue → Automation 079
+                              ↓
+              Communications Hub → Resend (parent/athlete email)
 ```
 
-Supporting modules (Achievements, Streaks, Homework, Video Feedback, Zoom Attendance) attach to athletes and/or submissions and feed into summaries, XP, and communication where applicable.
+Asset uploads (homework/video) use Make + AWS Lambda/S3 — **not** the email path.
 
-## Development Tools
+## Development tools
 
 | Tool | Use |
 |------|-----|
-| **Airtable** | Production database, automations, extensions, and live app runtime |
-| **GitHub** | Version control for scripts, schema notes, blueprints, docs, and recovery procedures |
-| **Cursor** | Local editing of scripts and documentation |
-| **ChatGPT** | Architecture review, script review, debugging, audit design, documentation support |
-| **Make.com** | External workflow execution (Drive, Gmail, webhooks) |
-| **Next.js / Vercel** | Public participant website (`web/` — Hoop Challenges hub) |
+| **Airtable** | System of record + automations |
+| **GitHub** | Source for scripts, web, docs |
+| **Cursor / ChatGPT / OMNI** | Implementation / planning / in-base ops |
+| **Next.js / Vercel** | Public app at `/shoot` |
+| **Communications Hub / Resend** | Parent and athlete transactional email |
+| **Make.com** | Upload engine and non-email integrations only |
 
-## Documentation
+## Sources of truth
 
-Start at [docs/README.md](./docs/README.md) for the full index (Airtable pipeline, web routes, Make, recovery).
+- **GitHub** — what should be deployed (scripts, web)  
+- **Airtable Automation editor** — which script body is running  
+- **SC Airtable records** — live athlete / XP / summary data  
+- **Communications Hub** — delivery records and Resend sends  
 
-## Architecture Goals
+Softr is **obsolete**. Make/Gmail parent email is **historical**. DEV base is **retired**.
 
-- **Prevent duplicate XP Events** — Each qualifying action should produce at most one XP Event; automations and audits must enforce idempotency.
-- **Document schema changes** — Field, table, and relationship changes are recorded in this repo before or alongside production updates.
-- **Version automation scripts** — Airtable scripts and extension code are stored in GitHub with meaningful commit history.
-- **Preserve Make.com blueprints** — Workflow definitions are exported and kept here so scenarios can be rebuilt or compared.
-- **Build dry-run audit scripts** — Audits report issues without modifying data unless explicitly run in apply mode.
-- **Improve recovery speed** — When something breaks, documented recovery procedures and versioned scripts reduce time to restore correct behavior.
-
-## Repository vs. Production
-
-- **GitHub** — Source of truth for *what should be deployed*.
-- **Airtable** — Source of truth for *live athlete data and running automations*.
-- **Make.com** — Source of truth for *running external integrations*, with blueprints mirrored in GitHub.
-
-When investigating incidents, compare production state against GitHub and use audit scripts to identify drift or duplicate records.
+Start at [`docs/README.md`](./docs/README.md) for the full index.
