@@ -10,7 +10,7 @@ This folder is the **single entry point** for a developer or AI agent with no pr
 
 | Document | Purpose |
 |----------|---------|
-| [2027-SEASON-PRODUCTION-CONFIGURATION.md](./2027-SEASON-PRODUCTION-CONFIGURATION.md) | **2027 season** Live production configuration; registration CLOSED until 2027-03-01 |
+| [2027-SEASON-PRODUCTION-CONFIGURATION.md](./2027-SEASON-PRODUCTION-CONFIGURATION.md) | **2027 PRODUCTION LIVE** — registration CLOSED until 2027-03-01 |
 | [FROZEN_BASELINE_AND_FUTURE_WORK.md](./FROZEN_BASELINE_AND_FUTURE_WORK.md) | **Frozen SHAs**, work categories Aâ€“F, migration boundary, shared Shooting+Dribble requirement |
 | [SYSTEM_OVERVIEW.md](./SYSTEM_OVERVIEW.md) | What the product is; repos; bases; hosting |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | End-to-end data flows |
