@@ -1,11 +1,22 @@
 # Shooting Challenge Final System Audit Report
 
 **Date:** 2026-09-15  
-**Backlog:** **FUT-058**  
+**Backlog:** **FUT-058** — **COMPLETE — CLOSED**  
 **Mode:** Cleanup / reconciliation / documentation (no feature development; no production field deletes)  
-**Git tip audited:** `origin/master` @ `4c3074a7`  
-**Branch for deliverables:** `docs/final-system-audit-20260915`  
-**Closeout update:** Automation **009** Mike-confirmed deployed (**v1.3 / SC-160**); MCP re-read **50/50 deployed**
+**Git tip audited (pack):** `origin/master` @ `4c3074a7` (pack creation)  
+**Frozen SC baseline (ecosystem close):** `c0a7eba0d62e9582a259eb6ec180745e7d58251c`  
+**Frozen Hub baseline:** `4485af3b6d89c80f2166eab09df38cc1c788b87f`  
+**Governance:** [`../production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md`](../production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md)
+
+### Closure addendum (2026-09-15)
+
+| Item | Value |
+|------|--------|
+| Ecosystem verdict | `ECOSYSTEM PRODUCTION CLEAN — CURRENT ARCHITECTURE CLOSED` |
+| Required remaining production work | `NONE` |
+| Hub Completion Master refresh | **Done** (Hub PR #53) |
+| Reopen FUT-058 for optional cleanup? | **No** |
+| Platform migration | Separate; **not started** |
 
 ---
 
@@ -106,13 +117,13 @@ The Shooting Challenge ecosystem is **production-capable and documentation-recon
 
 | Issue | Class |
 |-------|-------|
-| Parent email Live cutover still gated | **IMPORTANT** (ops, intentional — not a defect) |
-| SC-SEASON-SIM-001 three-athlete not executed | **IMPORTANT** (readiness), not a docs blocker |
-| Hub Completion Master / some Hub docs stale | **IMPORTANT** (comms repo) |
-| Tremendous prod API pending | **OPTIONAL** / gated |
-| Schema `current/` stale; field cleanup FUT-051 | **OPTIONAL** / post-launch |
-| 070c / producer Airtable names cosmetic | **COSMETIC** |
-| Automation 120 ON vs older “pending test” wording in some checklists | **REVIEW** (FUT-009 already Live Tested) |
+| Parent email Live cutover still gated | **OPERATIONAL / POLICY** (intentional — not a defect) |
+| SC-SEASON-SIM-001 three-athlete not executed | **FUTURE / readiness** (not a closeout blocker) |
+| Hub Completion Master / some Hub docs stale | **RESOLVED** (Hub PR #53 @ `4485af3`) |
+| Tremendous prod API pending | **FUTURE / gated** |
+| Schema `current/` stale; field cleanup FUT-051 | **FUTURE DATA CLEANUP** / post-launch |
+| 070c / producer Airtable names cosmetic | **OPTIONAL** |
+| Automation 120 ON vs older “pending test” wording in some checklists | **OPTIONAL** (FUT-009 already Live Tested) |
 
 ### J. Review Before Delete
 
@@ -132,6 +143,6 @@ Athletes act through Fillout and `/shoot`; **SC Airtable** is the operational So
 
 ### M. Final Status
 
-**PRODUCTION CLEAN — Minor optional improvements remain**
+**FUT-058 COMPLETE — CLOSED** · Ecosystem: `ECOSYSTEM PRODUCTION CLEAN — CURRENT ARCHITECTURE CLOSED`
 
-Rationale: SC Production automations are **50/50 deployed** with **009** confirmed; cold-start architecture docs match production reality. Remaining items are intentional Live-email cutover gates, Hub-repo doc refresh, deferred field cleanup (**FUT-051**), and optional readiness work — not unresolved SC launch defects from this audit.
+Rationale: SC Production automations are **50/50 deployed** with **009** confirmed; cold-start architecture docs match production reality; Hub Completion Master refreshed; cross-system baselines frozen. Remaining items are intentional Live-email cutover (**policy**), deferred field cleanup (**FUT-051**), optional hygiene, and separate future migration planning — **not** unresolved production-correctness defects. Do not reopen FUT-058 for optional cleanup.
