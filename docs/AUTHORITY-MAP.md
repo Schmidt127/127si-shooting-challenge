@@ -2,10 +2,19 @@
 
 **Status:** Active
 **Backlog:** `SCV2-SEASON-LAUNCH-CONSOLIDATION-001`
-**Last updated:** 2026-09-14 (Automation **editor** = script-version authority; roadmap reconcile)
+**Last updated:** 2026-09-15 (FUT-058 **COMPLETE — CLOSED**; frozen production baselines)
 
 This map defines ownership. It does not assert that a repository document proves
 current live configuration.
+
+## Frozen pre-migration production baseline (2026-09-15)
+
+| System | Repository | SHA |
+|--------|------------|-----|
+| Shooting Challenge | `Schmidt127/127-si-shooting-challenge` | `c0a7eba0d62e9582a259eb6ec180745e7d58251c` |
+| Communications Hub | `Schmidt127/127-communication-hub` | `4485af3b6d89c80f2166eab09df38cc1c788b87f` |
+
+Authority detail: [`production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md`](./production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md). Do not reopen **FUT-058** for optional cleanup. Future platform migration is separate and **not started**.
 
 ## Automation version authority (2026-09-14)
 
@@ -30,6 +39,8 @@ current live configuration.
 | Concern | Authority | Owner / update trigger |
 |---|---|---|
 | **Primary current-state document** | [`CURRENT-TRUTH.md`](./CURRENT-TRUTH.md) | Cursor; update on git tip changes, Mike overlays, or integrity audits |
+| **Frozen production baselines (pre-migration)** | [`production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md`](./production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md) | FUT-058 close 2026-09-15; change only if Mike authorizes a new freeze |
+| **Cold-start architecture pack** | [`production-architecture/README.md`](./production-architecture/README.md) | Cursor; prefer over older overview drafts |
 | **Active roadmap** | [`MASTER_REMAINING_WORK_LIST.md`](../MASTER_REMAINING_WORK_LIST.md) | Cursor; roadmap reconcile 2026-09-14 |
 | Source code and automation source | GitHub `master` and the committed repository paths | Cursor; update on approved code changes |
 | Human-readable release status | [`SHOOTING_CHALLENGE_COMPLETION_MASTER.md`](./SHOOTING_CHALLENGE_COMPLETION_MASTER.md) | Cursor; update when release evidence or blockers change |

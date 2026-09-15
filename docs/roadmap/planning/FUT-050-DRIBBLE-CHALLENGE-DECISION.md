@@ -43,3 +43,7 @@ Constraint: track **dribbling minutes**, not shooting XP.
 
 - Mike accepts A or B (or hybrid portal + separate base).  
 - No schema/app build until a separate implementation ID is opened.
+
+## Future platform migration constraint (not this item)
+
+Independent of near-term packaging (A vs B), **future platform migration** planning must support **both** Shooting Challenge and Dribble Challenge on shared challenge infrastructure (athlete identity, enrollment, challenge/session model, XP events/buckets, levels, achievements, progression, rewards, communications, reporting, administration), with primary metrics **shots** vs **dribble minutes**. See [`../../production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md`](../../production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md). Do not implement from FUT-050 or FUT-058.

@@ -1,15 +1,16 @@
 # Production architecture pack — Shooting Challenge
 
-**Status:** Authoritative cold-start documentation (FUT-058)  
-**Audit date:** 2026-09-15  
+**Status:** Authoritative cold-start documentation · **FUT-058 COMPLETE — CLOSED** (2026-09-15)  
+**Ecosystem verdict:** `ECOSYSTEM PRODUCTION CLEAN — CURRENT ARCHITECTURE CLOSED`  
 **Live evidence:** Airtable MCP against Production SC `appn84sqPw03zEbTT` and Communications Hub `appYG1t5DBRimHBCT`  
-**Git tip at audit:** `origin/master` @ `4c3074a7`  
+**Frozen baselines:** SC `c0a7eba0d62e9582a259eb6ec180745e7d58251c` · Hub `4485af3b6d89c80f2166eab09df38cc1c788b87f` — see [FROZEN_BASELINE_AND_FUTURE_WORK.md](./FROZEN_BASELINE_AND_FUTURE_WORK.md)  
 **Automation presence (closeout):** **50/50 deployed** — **009 v1.3 / SC-160** Mike-confirmed production-required
 
 This folder is the **single entry point** for a developer or AI agent with no prior conversation history. Prefer these files over older root/overview drafts when they disagree.
 
 | Document | Purpose |
 |----------|---------|
+| [FROZEN_BASELINE_AND_FUTURE_WORK.md](./FROZEN_BASELINE_AND_FUTURE_WORK.md) | **Frozen SHAs**, work categories A–F, migration boundary, shared Shooting+Dribble requirement |
 | [SYSTEM_OVERVIEW.md](./SYSTEM_OVERVIEW.md) | What the product is; repos; bases; hosting |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | End-to-end data flows |
 | [AIRTABLE_SCHEMA.md](./AIRTABLE_SCHEMA.md) | Important tables, IDs, relationships |
