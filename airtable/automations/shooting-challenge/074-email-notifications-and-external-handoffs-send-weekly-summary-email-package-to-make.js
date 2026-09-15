@@ -65,7 +65,7 @@ Filename may still say Make; current path is Hub queue create only.
  * - Idempotent: reuse an existing matching Handoff Key; conflicting payload → Needs Review.
  * - Do not write Weekly Email Sent? or Weekly Email Sent At (Hub/downstream writeback).
  * - Clear Send to Make? on successful handoff; clear Weekly Email Error.
- * - testMode defaults true for controlled Hub sends.
+ * - testMode defaults false (Live) for 2027 production; set true for intentional Test + allowlist.
  *
  * THIS IS NOT
  * - Weekly email package builder (072).
@@ -91,7 +91,7 @@ Filename may still say Make; current path is Hub queue create only.
  * - recordId = Weekly Athlete Summary record ID
  *
  * OPTIONAL INPUT VARIABLES
- * - testMode = optional; default true for controlled Hub sends
+ * - testMode = optional; default false Live; set true only for intentional Test + allowlist
  *
  * OUTPUTS (automation script action outputs)
  * - statusOut = success | skipped | error

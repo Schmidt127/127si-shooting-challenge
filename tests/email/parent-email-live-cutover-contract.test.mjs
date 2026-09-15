@@ -36,14 +36,14 @@ const PRODUCERS = [
   { slot: "117", version: "v2.4" },
 ];
 
-test("queue producers default testMode to safe true", () => {
+test("queue producers default testMode to Live false (2027 production)", () => {
   for (const { slot, version } of PRODUCERS) {
     const { body } = script(slot);
     assert.match(body, new RegExp(`version:\\s*"${version.replace(".", "\\.")}"`));
     assert.match(
       body,
-      /parseAutomationBoolean\(\s*cfg\.testMode\s*,\s*true\s*\)|testMode[\s\S]{0,400}default\s+true/i,
-      `${slot} must default testMode true via parseAutomationBoolean`,
+      /parseAutomationBoolean\(\s*cfg\.testMode\s*,\s*false\s*\)/,
+      `${slot} must default testMode false (Live) via parseAutomationBoolean`,
     );
   }
 });

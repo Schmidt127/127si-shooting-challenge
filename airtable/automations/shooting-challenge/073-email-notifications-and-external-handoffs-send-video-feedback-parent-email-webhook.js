@@ -115,7 +115,7 @@ Filename may still say webhook; current path is Hub queue create only.
  * - recordId = Video Feedback record ID
  *
  * OPTIONAL INPUT VARIABLES
- * - testMode = optional; default true for controlled Hub sends
+ * - testMode = optional; default false Live; set true only for intentional Test + allowlist
  *
  * OUTPUTS (automation script action outputs)
  * - statusOut = success | skipped | error

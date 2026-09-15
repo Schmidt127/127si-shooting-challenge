@@ -136,7 +136,7 @@ Paste target for this release: v8.15.
  * - recordId = Submission record ID
  *
  * OPTIONAL INPUT VARIABLES
- * - testMode = optional; default true for controlled Hub sends
+ * - testMode = optional; default false Live; set true only for intentional Test + allowlist
  *
  * OUTPUTS (automation script action outputs)
  * - statusOut = success | skipped | error

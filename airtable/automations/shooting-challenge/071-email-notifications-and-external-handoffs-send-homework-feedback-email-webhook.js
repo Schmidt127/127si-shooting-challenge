@@ -42,7 +42,7 @@ IMPORTANT DESIGN RULES
 - Homework asset URL uses Reviewer File URL only (no Google Drive fallback).
 - Quiz-only path without assets must still work.
 - Enrollment Parent Email - Cleaned is the authoritative recipient.
-- testMode defaults true for controlled Hub sends.
+- testMode defaults false (Live) for 2027 production; set true for intentional Test + allowlist.
 
 TRIGGER (Airtable UI — keep unless Mike revises)
 - Homework Completions when record matches conditions:
@@ -55,7 +55,7 @@ TRIGGER (Airtable UI — keep unless Mike revises)
 
 INPUT
 - recordId (required Homework Completion record ID)
-- testMode (optional; default true for controlled Hub sends)
+- testMode (optional; default false Live; set true only for intentional Test + allowlist)
 
 OUTPUTS
 - statusOut: success | skipped | error
