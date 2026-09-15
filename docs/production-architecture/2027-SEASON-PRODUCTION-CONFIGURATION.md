@@ -1,13 +1,13 @@
 # 2027 Season Production Configuration
 
-**Status:** **PRODUCTION LIVE** (email plane) — registration CLOSED until **2027-03-01**  
+**Status:** **PRODUCTION LIVE** (email plane) — Registration and Daily Submissions **CLOSED**  
 **Activation completed:** 2026-09-15  
 **Registration opening date:** **2027-03-01**  
-**Registration status:** **CLOSED** (Fillout; do not auto-open)
+**Participant entry points:** Registration **OFF** · Daily Submissions **OFF** (Fillout; do not auto-open)
 
 ## Final verdict
 
-`2027 PRODUCTION LIVE — REGISTRATION CLOSED UNTIL MARCH 1`
+`2027 PRODUCTION LIVE — REGISTRATION AND DAILY SUBMISSIONS CLOSED`
 
 ## Deployed production SHAs (2026-09-15 cutover)
 
@@ -16,6 +16,7 @@
 | Shooting Challenge | `Schmidt127/127si-shooting-challenge` | `a9ea96ae6409cb4c36e56aa026697866c2ba579f` | PR #550 + PR #551 merged |
 | Communications Hub | `Schmidt127/127-communication-hub` | `20da3d610fa3075ee41cf4c597d3f7d59e0926c8` | PR #54 merged |
 | Hub Vercel Production | `communications` / `communications-two-blue.vercel.app` | deploy `dpl_BhjPM3p892emDCvv5yiifKUffoyS` | READY; env `HUB_LIVE_DELIVERY_ENABLED=true` |
+| Docs closeout | SC `master` | `5ca824352bbb54595e07f30a09bed0e99bad9bcc` | PR #552 |
 
 ## Rollback / pre-cutover reference (do not alter)
 
@@ -26,13 +27,14 @@
 
 Freeze date: `2026-09-15` · Prior verdict: `ECOSYSTEM PRODUCTION CLEAN — CURRENT ARCHITECTURE CLOSED`
 
-## Pre-activation + post-activation queue safety (2026-09-15)
+## Queue safety (rechecked 2026-09-15 post-Live)
 
 | Check | Result |
 |-------|--------|
 | SC Email Handoff Queue Ready/Draft/Sending | **0** |
 | Hub Deliveries Queued/Sending/Needs Review | **0** |
-| Unintended emails releasable by cutover | **0** |
+| Production Enrollments | **0** |
+| Unintended emails releasable | **0** |
 
 ## Production email architecture (unchanged)
 
@@ -41,6 +43,8 @@ SC producers → Email Handoff Queue → Automation **079** → Hub `/api/events
 Make/Gmail email: **OFF / retired** · Hub scheduler: **off** · No new cron.
 
 ## Live vs Test controls (final)
+
+Underlying workflows are configured for **2027 season Live** operation. Participant protection is **Fillout Registration + Daily Submissions OFF**, not `testMode`.
 
 | Control | Production value |
 |---------|------------------|
@@ -51,32 +55,33 @@ Make/Gmail email: **OFF / retired** · Hub scheduler: **off** · No new cron.
 | Weekly 118 | `dryRun=false`, `sendMode=live`, `includeSchmidt=false` |
 | Weekly 119 | `dryRun=false`, `includeSchmidt=false` |
 | SC `ATHLETE_AUTH_TEST_MODE` | **false** |
-| Test Allowlist | **Retained** (3 active Email rows) for intentional Test events |
+| Test Allowlist | **Retained** for intentional Test events only |
 | Make email scheduling | **OFF** |
 
-GitHub producer script defaults now also default `testMode` to **false** (Live). Production Airtable inputs already force Live; script paste is optional alignment only (requires Airtable UI Update to publish draft pastes).
+GitHub producer script defaults also default `testMode` to **false** (Live). Production Airtable inputs already force Live. Re-pasting script bodies into Airtable is optional alignment only (requires Airtable UI Update to publish).
 
-## Registration
+## Registration and Daily Submissions (participant protection)
 
 | Item | Value |
 |------|--------|
-| Public registration URL | `https://forms.fairfieldbasketballclub.com/shoot-playerregistration` (Fillout) |
+| Registration URL | `https://forms.fairfieldbasketballclub.com/shoot-playerregistration` |
+| Daily Submissions URL | `https://forms.fairfieldbasketballclub.com/shoot-dailysubmissions` |
 | Availability control | **Fillout form open/closed** (Mike UI) — not automatic in this repo |
-| Opening date | **2027-03-01** |
+| Current posture | **Both OFF / inaccessible to participants** |
+| Registration opening date | **2027-03-01** |
 | Program Instance | `Shooting Challenge \| 2026-2027` (`rec5mEM0YPqPqq0hZ`) Status **Registering** |
-| PI registration date field | **2027-03-01** |
 | Challenge window | 2027-05-01 → 2027-06-30 |
 
-**Do not** set Program Instance Status away from Registering solely to “close” registration — that breaks `/shoot` public season resolution. Keep **Fillout registration CLOSED** until 2027-03-01.
+**Do not** set Program Instance Status away from Registering solely to “close” registration — that breaks `/shoot` public season resolution. Keep **Fillout Registration and Daily Submissions CLOSED** until Mike intentionally opens them.
 
 ## Controlled Live smoke (2026-09-15)
 
-**Not executed:** Production Enrollments table currently has **0** records, so no Mike-controlled enrollment exists for the SC → 079 → Hub → Resend path.
+**Not executed:** Production Enrollments table has **0** records, so no Mike-controlled enrollment exists for the SC → 079 → Hub → Resend path.
 
 When Mike restores an Athlete1 / operator enrollment:
 
 1. Confirm queues still **0** unintended Ready rows.
-2. Trigger one producer event with `testMode=false` (or rely on Live input default).
+2. Trigger one producer event with Live `testMode=false` (production input default).
 3. Verify queue Accepted → Hub Message/Delivery → Resend → webhook → SC writeback + idempotent replay.
 
 ## Intentional Test after Live
