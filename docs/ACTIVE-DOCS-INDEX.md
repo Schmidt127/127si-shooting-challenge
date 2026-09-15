@@ -7,6 +7,8 @@ Use this page to choose the right document before planning, operating, or changi
 | Topic | Current source | Notes |
 |---|---|---|
 | Project state and verified live overlays | [CURRENT-TRUTH.md](./CURRENT-TRUTH.md) | Repository-backed current truth; label live claims that need a new read. |
+| Cold-start architecture pack | [production-architecture/README.md](./production-architecture/README.md) | Prefer over older overview drafts. |
+| Frozen pre-migration baselines + work categories | [production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md](./production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md) | FUT-058 **COMPLETE — CLOSED**; do not reopen for optional cleanup. |
 | Future work and implementation priority | [MASTER_REMAINING_WORK_LIST.md](../MASTER_REMAINING_WORK_LIST.md) | Canonical planning backlog. |
 | Engineering rules and release discipline | [ENGINEERING_CONSTITUTION.md](./ENGINEERING_CONSTITUTION.md) | Highest-level engineering rules. |
 | System ownership and source authority | [AUTHORITY-MAP.md](./AUTHORITY-MAP.md) | Use before changing a cross-system workflow. |

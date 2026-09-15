@@ -1,7 +1,8 @@
 # Roadmap planning index
 
-**Reconciled:** 2026-09-14  
+**Reconciled:** 2026-09-14 · **FUT-058 closed:** 2026-09-15  
 **Active roadmap:** [`../../MASTER_REMAINING_WORK_LIST.md`](../../MASTER_REMAINING_WORK_LIST.md)  
+**Frozen baselines:** [`../production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md`](../production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md)  
 **Archive (pre-reconcile list):** [`_archive/MASTER_REMAINING_WORK_LIST-pre-20260914.md`](_archive/MASTER_REMAINING_WORK_LIST-pre-20260914.md)
 
 ## Planning packs (plan only — no implementation)
@@ -17,3 +18,5 @@
 | FUT-055 | [planning/FUT-055-INTERACTIVE-CURRICULUM-HUB.md](planning/FUT-055-INTERACTIVE-CURRICULUM-HUB.md) |
 | FUT-056 | [planning/FUT-056-WELCOME-EMAIL-REACT-EMAIL.md](planning/FUT-056-WELCOME-EMAIL-REACT-EMAIL.md) |
 | FUT-057 | [planning/FUT-057-FAMILY-PRIVATE-PROFILE.md](planning/FUT-057-FAMILY-PRIVATE-PROFILE.md) |
+
+**FUT-058** — **COMPLETE — CLOSED** (not a planning pack). Audit + freeze: [`../production-architecture/`](../production-architecture/README.md) · [`../audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md`](../audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md).

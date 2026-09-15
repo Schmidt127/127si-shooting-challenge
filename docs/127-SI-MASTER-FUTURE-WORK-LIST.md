@@ -23,7 +23,7 @@
 
 **Superseded claims (do not revive):** “season simulation unexecuted” as applied to the Perfect Mike path; “18 PHA” as current calendar truth (now **20**, Week 9 ×2); Automations tracking table as script-version authority.
 
-Curriculum Hub Homework lifecycle, private SEO, 52 structured-enabled lessons, SC Assignment Key Sync, and lesson hero are **COMPLETE** — remove from active future work; reopen Hub only for Production defects. New planning IDs **FUT-049 … FUT-058** live under [`roadmap/planning/`](./roadmap/planning/) (FUT-058 audit pack under [`production-architecture/`](./production-architecture/README.md)).
+Curriculum Hub Homework lifecycle, private SEO, 52 structured-enabled lessons, SC Assignment Key Sync, and lesson hero are **COMPLETE** — remove from active future work; reopen Hub only for Production defects. Planning IDs **FUT-049 … FUT-057** live under [`roadmap/planning/`](./roadmap/planning/). **FUT-058** is **COMPLETE — CLOSED** (2026-09-15) — freeze pack [`production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md`](./production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md); do not reopen for optional cleanup.
 
 ## Optional / deferred (not close blockers)
 
@@ -2182,11 +2182,21 @@ oadmap/planning/FUT-057-FAMILY-PRIVATE-PROFILE.md](./roadmap/planning/FUT-057-FA
 
 ### FUT-058 — Final system cleanup, documentation & reconciliation audit
 
-**Status:** Docs complete / PR pending (2026-09-15) · **009:** Mike confirmed deployed **v1.3 / SC-160** (not a launch risk)  
-**Systems:** SC repo · SC Airtable · Communications repo · Communications Airtable  
-**Deliverables:** [`production-architecture/`](./production-architecture/README.md) · [`audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md`](./audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md)  
-**Scope:** Inventory, reconcile workflows, automation presence audit, schema/repo cleanup *candidates* (no unsafe deletes), authoritative cold-start docs, source-of-truth matrix.  
-**Closeout:** Production automations **50/50 deployed**. **Open follow-ups (non-SC-launch):** Hub Completion Master refresh (comms repo); field cleanup under **FUT-051**; parent-email Live cutover when Mike authorizes.
+**Status:** **COMPLETE — CLOSED** (2026-09-15)  
+**Ecosystem verdict:** `ECOSYSTEM PRODUCTION CLEAN — CURRENT ARCHITECTURE CLOSED`  
+**Required remaining production work:** `NONE`  
+**Do not reopen** for optional cleanup, tip-SHA hygiene, nested Hub cleanup, or future migration planning.
+
+| Freeze | Value |
+|--------|--------|
+| Close date | `2026-09-15` |
+| SC baseline | `Schmidt127/127-si-shooting-challenge` @ `c0a7eba0d62e9582a259eb6ec180745e7d58251c` |
+| Hub baseline | `Schmidt127/127-communication-hub` @ `4485af3b6d89c80f2166eab09df38cc1c788b87f` |
+
+**Systems:** SC repo · SC Airtable · Communications Hub · Hub Airtable  
+**Deliverables:** [`production-architecture/`](./production-architecture/README.md) · [`production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md`](./production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md) · [`audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md`](./audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md)  
+**Scope completed:** Inventory, reconcile workflows, automation presence audit, schema/repo cleanup *candidates* (no unsafe deletes), cold-start docs, SoT matrix, cross-system verification, Hub Completion Master refresh (Hub PR #53), formal close + baseline freeze.  
+**Follow-ups (NOT FUT-058):** Live email cutover = **ops/policy**; field cleanup = **FUT-051**; optional hygiene = non-blocking; platform migration = **separate future work (not started)**.
 
 
 ### SC-ATHLETE-WF-001 ? Individual athlete workflow QA (pre?season simulation)
@@ -3103,6 +3113,8 @@ Sorted by priority (P0?P3), then ID. Historical Sections A?F above remain for na
 
 
 | **FUT-048** | **DEFERRED** (Optional / low) | CloudFront custom domain for homework resources (`homework.fairfieldbasketballclub.com`); keep `d21ixrrrqpqz29.cloudfront.net`; not FUT-029; do not delay resource migration |
+
+| **FUT-058** | **COMPLETE — CLOSED** (2026-09-15) | Ecosystem baseline freeze — SC `c0a7eba0` · Hub `4485af3` · required prod work **NONE** · do not reopen for optional cleanup |
 
 | **FUT-029** | **Deferred â€” DO NOT IMPLEMENT** | Grade-band homework platform + intake adapter; do not implement until separately authorized; not required for current app completion; wave 2026-09-05 out of scope |
 

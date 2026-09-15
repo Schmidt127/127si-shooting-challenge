@@ -7,7 +7,8 @@ This is the navigation entry point for the 127 SI Shooting Challenge repository.
 | Need | Open |
 |---|---|
 | **Cold-start architecture pack** | [production-architecture/README.md](./production-architecture/README.md) |
-| Final system audit (FUT-058) | [audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md](./audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md) |
+| **Frozen production baselines + future-work categories** | [production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md](./production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md) |
+| FUT-058 final system audit (closed) | [audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md](./audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md) |
 | Current verified project state | [CURRENT-TRUTH.md](./CURRENT-TRUTH.md) |
 | Active implementation roadmap | [MASTER_REMAINING_WORK_LIST.md](../MASTER_REMAINING_WORK_LIST.md) |
 | Engineering and operating rules | [ENGINEERING_CONSTITUTION.md](./ENGINEERING_CONSTITUTION.md) |
@@ -16,6 +17,18 @@ This is the navigation entry point for the 127 SI Shooting Challenge repository.
 | Current email delivery plane | [integrations/email-send-plane.md](./integrations/email-send-plane.md) |
 | Automation lookup | [automation-index.md](./automation-index.md) |
 | Active-document routing | [ACTIVE-DOCS-INDEX.md](./ACTIVE-DOCS-INDEX.md) |
+
+### Documentation hierarchy (do not confuse)
+
+| Layer | Meaning |
+|---|---|
+| Current production truth | What is running now — CURRENT-TRUTH + architecture pack |
+| Frozen production baseline | Exact SC + Hub SHAs in FROZEN_BASELINE_AND_FUTURE_WORK |
+| Operations | How to operate current prod — OPERATIONS / DEPLOYMENT / email-send-plane |
+| Optional cleanup | Non-blocking hygiene — does **not** reopen FUT-058 |
+| Future product work | MASTER_REMAINING_WORK_LIST + Master Future Work List |
+| Future migration | Separate; **not started** — FROZEN_BASELINE § F |
+| Legacy / historical | Make/Gmail diagrams and retired scripts — labeled only |
 
 ## Important authority rules
 

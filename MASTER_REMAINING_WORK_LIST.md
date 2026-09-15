@@ -2,11 +2,14 @@
 
 **Project:** 127 Sports Intensity Shooting Challenge  
 **Repository:** `Schmidt127/127-si-shooting-challenge`  
-**Reconciled:** 2026-09-14  
+**Reconciled:** 2026-09-14 · **FUT-058 closed:** 2026-09-15  
 **Authority SHA (docs branch base):** `origin/master` at reconcile time — re-verify after merge  
+**Frozen production baselines:** SC `c0a7eba0d62e9582a259eb6ec180745e7d58251c` · Hub `4485af3b6d89c80f2166eab09df38cc1c788b87f` — [`docs/production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md`](docs/production-architecture/FROZEN_BASELINE_AND_FUTURE_WORK.md)  
 **Status vocabulary (this document):** `Launch-critical` · `Post-launch` · `Future` · `Deferred` · `Complete / historical`
 
 **Related living docs:** [`docs/CURRENT-TRUTH.md`](docs/CURRENT-TRUTH.md) · [`docs/127-SI-MASTER-FUTURE-WORK-LIST.md`](docs/127-SI-MASTER-FUTURE-WORK-LIST.md) · [`docs/SHOOTING_CHALLENGE_COMPLETION_MASTER.md`](docs/SHOOTING_CHALLENGE_COMPLETION_MASTER.md) · planning packs under [`docs/roadmap/planning/`](docs/roadmap/planning/)
+
+**FUT-058:** **COMPLETE — CLOSED** — required current production work **NONE**. Do not treat Live email cutover, optional cleanup, or future platform migration as reopen triggers for FUT-058.
 
 **Historical prior list (superseded as the active roadmap):** [`docs/roadmap/_archive/MASTER_REMAINING_WORK_LIST-pre-20260914.md`](docs/roadmap/_archive/MASTER_REMAINING_WORK_LIST-pre-20260914.md)
 
@@ -96,6 +99,7 @@ Evidence: [`docs/audits/readiness-20260914/FINAL-PASS-SEASON-SIM-PERFECT-2026091
 | **SC-065 calendar (18 PHA era)** | Early Bird + Weeks 1–8 only | **Superseded** — live PHA is **20** including Week 9 ×2 |
 | **“Season sim NOT EXECUTED” (pre-20260914 Perfect)** | Prior roadmap claim | **Superseded** for Perfect Mike path; three-athlete remains not executed |
 | **Automations table as version authority** | Pre-editor-authority claims | **Superseded** — editor is version authority |
+| **FUT-058** | Final system cleanup / ecosystem baseline freeze | **COMPLETE — CLOSED** (2026-09-15) — do not reopen for optional cleanup |
 
 Full historical detail: archive file above + Master Future Work List narrative entries.
 
