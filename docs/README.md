@@ -6,6 +6,8 @@ This is the navigation entry point for the 127 SI Shooting Challenge repository.
 
 | Need | Open |
 |---|---|
+| **Cold-start architecture pack** | [production-architecture/README.md](./production-architecture/README.md) |
+| Final system audit (FUT-058) | [audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md](./audits/FINAL-SYSTEM-AUDIT-REPORT-20260915.md) |
 | Current verified project state | [CURRENT-TRUTH.md](./CURRENT-TRUTH.md) |
 | Active implementation roadmap | [MASTER_REMAINING_WORK_LIST.md](../MASTER_REMAINING_WORK_LIST.md) |
 | Engineering and operating rules | [ENGINEERING_CONSTITUTION.md](./ENGINEERING_CONSTITUTION.md) |

@@ -81,3 +81,6 @@ docs/audits/readiness-*/_scratch*/
 docs/audits/readiness-*/*-live.log
 
 node_modules/
+
+# Local Cursor/agent git worktrees (never commit)
+.worktrees/

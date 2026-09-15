@@ -2,17 +2,19 @@
 
 Production scripts: `airtable/automations/shooting-challenge/` (numbered `001`–`119`, plus `070a/b/c`, `117a–f`).
 
-## Live MCP inventory overlay (2026-09-12)
+## Live MCP inventory overlay (2026-09-15 · FUT-058)
 
-Base **`appn84sqPw03zEbTT`** — Airtable MCP `list_automations`: **50** automations · **48 deployed** · **2 undeployed**. Full packet: [`audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md`](./audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md).
+Base **`appn84sqPw03zEbTT`** — Airtable MCP `list_automations`: **50** automations · **50 deployed** · **0 undeployed**. Authoritative summary: [`production-architecture/AUTOMATIONS.md`](./production-architecture/AUTOMATIONS.md). Prior 2026-09-12 packet: [`audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md`](./audits/SOURCE-OF-TRUTH-RECONCILIATION-20260912.md) (superseded for 005/009 presence).
 
-**Deployed:** 001, 002, 003, 007a, 010, 013, 020–023, 030–035, 041, 042, 053–059, 064–067, 070a/b/c, 071–074, 076, 078, 078A, 079, 101, 113, 114, 116–120.
+**Deployed:** 001, 002, 003, **005**, **009** (v1.3 / SC-160 — Mike-confirmed production-required), 007a, 010, 013, 020–023, 030–035, 041, 042, 053–059, 064–067, 070a/b/c, 071–074, 076, 078, 078A, 079, 101, 113, 114, 116–120.
 
-**Undeployed (present, OFF — confirm in UI; do not reopen/paste from docs alone):** **005**, **009**.
+**Undeployed:** **None.**
+
+**Correction history:** 2026-09-12 overlay listed **005** and **009** as undeployed. Mid-audit MCP showed **005 deployed** / **009 undeployed**. Mike then confirmed **009** deployed at **v1.3 / SC-160** — closeout MCP re-read **50/50**. **009 is not a launch risk.**
 
 **Legacy / absent (do not restore):** 006, 007 (replaced by 007a), 008, 012, 043, 063, 068, 075, 077, 111, 112, 115.
 
-This overlay documents live presence only. Historical Live Tested version claims below remain evidence; they do not authorize script changes when MCP shows undeployed/absent.
+This overlay documents live presence only. Historical Live Tested version claims below remain evidence; they do not authorize script changes when MCP shows undeployed/absent. Script **version** authority = Automation editor.
 
 **Reliability audit (2026-07-24):** [next-wave/reliability-audit-2026-07-24/REPORT.md](./next-wave/reliability-audit-2026-07-24/REPORT.md) — trust bands, input/dedupe/ownership audits, ranked repairs, Mike actions. **Do not create a second index.**
 
