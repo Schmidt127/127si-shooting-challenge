@@ -10,6 +10,7 @@ This folder is the **single entry point** for a developer or AI agent with no pr
 
 | Document | Purpose |
 |----------|---------|
+| [2027-SEASON-PRODUCTION-CONFIGURATION.md](./2027-SEASON-PRODUCTION-CONFIGURATION.md) | **2027 preseason** Live cutover status; registration CLOSED until 2027-03-01 |
 | [SYSTEM_OVERVIEW.md](./SYSTEM_OVERVIEW.md) | What the product is; repos; bases; hosting |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | End-to-end data flows |
 | [AIRTABLE_SCHEMA.md](./AIRTABLE_SCHEMA.md) | Important tables, IDs, relationships |

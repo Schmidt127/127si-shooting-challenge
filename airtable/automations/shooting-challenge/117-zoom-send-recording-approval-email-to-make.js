@@ -284,7 +284,7 @@ async function main() {
   const zoomAttendanceId = requireRecId("recordId", cfg.recordId);
   const enrollmentRid = requireRecId("enrollmentRid", cfg.enrollmentRid);
   const zoomMeetingRid = requireRecId("zoomMeetingRid", cfg.zoomMeetingRid);
-  const testMode = parseAutomationBoolean(cfg.testMode, true);
+  const testMode = parseAutomationBoolean(cfg.testMode, false);
   setOutput("zoomAttendanceId", zoomAttendanceId);
 
   const zaT = base.getTable(CONFIG.tables.za);

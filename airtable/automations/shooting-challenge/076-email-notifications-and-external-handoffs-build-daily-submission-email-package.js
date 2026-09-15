@@ -1080,7 +1080,7 @@ async function main() {
     [CONFIG.fields.queue.pi]: programId,
     [CONFIG.fields.queue.recipients]: JSON.stringify(recipients),
     [CONFIG.fields.queue.payload]: JSON.stringify(payload),
-    [CONFIG.fields.queue.testMode]: parseAutomationBoolean(cfg.testMode, true),
+    [CONFIG.fields.queue.testMode]: parseAutomationBoolean(cfg.testMode, false),
     [CONFIG.fields.queue.attempts]: 0,
   });
 

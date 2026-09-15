@@ -427,7 +427,7 @@ async function main() {
   if (!/^rec[A-Za-z0-9]{14}$/.test(recordId)) {
     throw new Error("recordId must be a valid Airtable record ID.");
   }
-  const testMode = parseAutomationBoolean(cfg.testMode, true);
+  const testMode = parseAutomationBoolean(cfg.testMode, false);
 
   step("2 - Load tables");
   const wasTable = base.getTable(CONFIG.tables.was);

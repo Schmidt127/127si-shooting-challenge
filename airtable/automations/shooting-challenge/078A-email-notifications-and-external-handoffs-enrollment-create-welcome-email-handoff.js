@@ -448,7 +448,7 @@ async function main() {
         setOutputSafe("debugStep", debugStep);
         const cfg = input.config();
         context.enrollmentRecordId = requireRecordId(cfg.recordId, "Enrollment");
-        const testMode = parseAutomationBoolean(cfg.testMode, true);
+        const testMode = parseAutomationBoolean(cfg.testMode, false);
 
         debugStep = "2 - Load tables and validate schema";
         setOutputSafe("debugStep", debugStep);
