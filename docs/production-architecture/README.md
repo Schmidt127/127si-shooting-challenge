@@ -1,23 +1,23 @@
-# Production architecture pack — Shooting Challenge
+﻿# Production architecture pack â Shooting Challenge
 
-**Status:** Authoritative cold-start documentation · **FUT-058 COMPLETE — CLOSED** (2026-09-15)  
-**Ecosystem verdict:** `ECOSYSTEM PRODUCTION CLEAN — CURRENT ARCHITECTURE CLOSED`  
+**Status:** Authoritative cold-start documentation Â· **FUT-058 COMPLETE â CLOSED** (2026-09-15)  
+**Ecosystem verdict:** `ECOSYSTEM PRODUCTION CLEAN â CURRENT ARCHITECTURE CLOSED`  
 **Live evidence:** Airtable MCP against Production SC `appn84sqPw03zEbTT` and Communications Hub `appYG1t5DBRimHBCT`  
-**Frozen baselines:** SC `c0a7eba0d62e9582a259eb6ec180745e7d58251c` · Hub `4485af3b6d89c80f2166eab09df38cc1c788b87f` — see [FROZEN_BASELINE_AND_FUTURE_WORK.md](./FROZEN_BASELINE_AND_FUTURE_WORK.md)  
-**Automation presence (closeout):** **50/50 deployed** — **009 v1.3 / SC-160** Mike-confirmed production-required
+**Frozen baselines:** SC `c0a7eba0d62e9582a259eb6ec180745e7d58251c` Â· Hub `4485af3b6d89c80f2166eab09df38cc1c788b87f` â see [FROZEN_BASELINE_AND_FUTURE_WORK.md](./FROZEN_BASELINE_AND_FUTURE_WORK.md)  
+**Automation presence (closeout):** **50/50 deployed** â **009 v1.3 / SC-160** Mike-confirmed production-required
 
 This folder is the **single entry point** for a developer or AI agent with no prior conversation history. Prefer these files over older root/overview drafts when they disagree.
 
 | Document | Purpose |
 |----------|---------|
-| [2027-SEASON-PRODUCTION-CONFIGURATION.md](./2027-SEASON-PRODUCTION-CONFIGURATION.md) | **2027 PRODUCTION LIVE** � registration CLOSED until 2027-03-01 |
-| [FROZEN_BASELINE_AND_FUTURE_WORK.md](./FROZEN_BASELINE_AND_FUTURE_WORK.md) | **Frozen SHAs**, work categories A–F, migration boundary, shared Shooting+Dribble requirement |
+| [2027-SEASON-PRODUCTION-CONFIGURATION.md](./2027-SEASON-PRODUCTION-CONFIGURATION.md) | **2027 PRODUCTION LIVE** — Registration and Daily Submissions CLOSED |
+| [FROZEN_BASELINE_AND_FUTURE_WORK.md](./FROZEN_BASELINE_AND_FUTURE_WORK.md) | **Frozen SHAs**, work categories AâF, migration boundary, shared Shooting+Dribble requirement |
 | [SYSTEM_OVERVIEW.md](./SYSTEM_OVERVIEW.md) | What the product is; repos; bases; hosting |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | End-to-end data flows |
 | [AIRTABLE_SCHEMA.md](./AIRTABLE_SCHEMA.md) | Important tables, IDs, relationships |
 | [AUTOMATIONS.md](./AUTOMATIONS.md) | Live automation inventory (ACTIVE / UNDEPLOYED / LEGACY) |
 | [XP_AND_PROGRESSION.md](./XP_AND_PROGRESSION.md) | XP Sources, Source Keys, levels, achievements |
-| [COMMUNICATIONS.md](./COMMUNICATIONS.md) | SC ↔ Communications Hub boundary |
+| [COMMUNICATIONS.md](./COMMUNICATIONS.md) | SC â Communications Hub boundary |
 | [OPERATIONS.md](./OPERATIONS.md) | Troubleshooting first-looks |
 | [ENVIRONMENT.md](./ENVIRONMENT.md) | Env var names and purpose (no secrets) |
 | [DEPLOYMENT.md](./DEPLOYMENT.md) | How each surface ships |
@@ -40,4 +40,4 @@ This folder is the **single entry point** for a developer or AI agent with no pr
 
 - Do not delete fields, automations, or historical XP without dependency review + Mike approval.
 - Script version authority = **Airtable Automation editor**, not the Automations tracking table.
-- Parent email delivery = Communications Hub → **Resend** (Make.com is not the email sender).
+- Parent email delivery = Communications Hub â **Resend** (Make.com is not the email sender).
