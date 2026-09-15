@@ -46,7 +46,7 @@ send email, render subject/HTML, modify Automation 079, or restore 075.
  * - v1.6 (2026-09-06): WELCOME payload adds athleteFirstName from Enrollment
  *   Athlete First Name (or Athlete.First Name) when present.
  * - v1.5 (2026-09-02): Make Test Mode? configurable via automation input
- *   `testMode` (optional; default true for safe Production until Live cutover).
+ *   `testMode` (optional; default false Live for 2027 production).
  * - v1.4 (2026-08-22): Enrich WELCOME Payload JSON with enrollment and Program
  *   Instance fields required by the redesigned Hub welcome template.
  * - v1.3 (2026-08-11): Use the verified Hub recipient contract with explicit
@@ -85,7 +85,7 @@ send email, render subject/HTML, modify Automation 079, or restore 075.
  * - recordId = triggering Enrollments record ID.
  *
  * OPTIONAL INPUT VARIABLES
- * - testMode = optional; default true for controlled Hub sends until Live cutover
+ * - testMode = optional; default false Live; set true only for intentional Test + allowlist
  *
  * REQUIRED OUTPUTS
  * - statusOut = success | skipped | error
@@ -111,7 +111,7 @@ send email, render subject/HTML, modify Automation 079, or restore 075.
  * - Recipients JSON = role-qualified PARENT and ATHLETE objects
  * - Template Key = WELCOME
  * - Payload JSON = athleteName, programName, message
- * - Test Mode? = automation input testMode (default true)
+ * - Test Mode? = automation input testMode (default false Live)
  * - Attempt Count = 0
  *
  * INSTALLATION / TESTING
@@ -448,7 +448,7 @@ async function main() {
         setOutputSafe("debugStep", debugStep);
         const cfg = input.config();
         context.enrollmentRecordId = requireRecordId(cfg.recordId, "Enrollment");
-        const testMode = parseAutomationBoolean(cfg.testMode, true);
+        const testMode = parseAutomationBoolean(cfg.testMode, false);
 
         debugStep = "2 - Load tables and validate schema";
         setOutputSafe("debugStep", debugStep);

@@ -136,7 +136,7 @@ Paste target for this release: v8.15.
  * - recordId = Submission record ID
  *
  * OPTIONAL INPUT VARIABLES
- * - testMode = optional; default true for controlled Hub sends
+ * - testMode = optional; default false Live; set true only for intentional Test + allowlist
  *
  * OUTPUTS (automation script action outputs)
  * - statusOut = success | skipped | error
@@ -1080,7 +1080,7 @@ async function main() {
     [CONFIG.fields.queue.pi]: programId,
     [CONFIG.fields.queue.recipients]: JSON.stringify(recipients),
     [CONFIG.fields.queue.payload]: JSON.stringify(payload),
-    [CONFIG.fields.queue.testMode]: parseAutomationBoolean(cfg.testMode, true),
+    [CONFIG.fields.queue.testMode]: parseAutomationBoolean(cfg.testMode, false),
     [CONFIG.fields.queue.attempts]: 0,
   });
 

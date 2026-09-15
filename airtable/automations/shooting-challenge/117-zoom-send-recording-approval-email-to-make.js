@@ -27,7 +27,7 @@ IMPORTANT DESIGN RULES
 - Do not write Airtable "sent" fields (none historically on this path).
 - Validate enrollmentRid and zoomMeetingRid match linked records when links exist.
 - Never mention Make route 117f in runtime payload.
-- testMode defaults true for controlled Hub sends.
+- testMode defaults false (Live) for 2027 production; set true for intentional Test + allowlist.
 - meetingName prefers Zoom Meetings.Meeting Name only; never silently substitute Meeting Display Name.
 - meetingDisplayName is optional and only included when present and different from meetingName.
 - Date display fields use America/Denver via dateText.
@@ -53,7 +53,7 @@ INPUT
 - recordId (required Zoom Attendance record ID)
 - enrollmentRid (required Enrollment record ID)
 - zoomMeetingRid (required Zoom Meeting record ID)
-- testMode (optional; default true)
+- testMode (optional; default false Live; set true only for intentional Test + allowlist)
 
 OUTPUTS
 - statusOut: success | skipped | error
@@ -284,7 +284,7 @@ async function main() {
   const zoomAttendanceId = requireRecId("recordId", cfg.recordId);
   const enrollmentRid = requireRecId("enrollmentRid", cfg.enrollmentRid);
   const zoomMeetingRid = requireRecId("zoomMeetingRid", cfg.zoomMeetingRid);
-  const testMode = parseAutomationBoolean(cfg.testMode, true);
+  const testMode = parseAutomationBoolean(cfg.testMode, false);
   setOutput("zoomAttendanceId", zoomAttendanceId);
 
   const zaT = base.getTable(CONFIG.tables.za);

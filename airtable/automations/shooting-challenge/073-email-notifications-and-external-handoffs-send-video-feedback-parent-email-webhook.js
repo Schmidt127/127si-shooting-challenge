@@ -115,7 +115,7 @@ Filename may still say webhook; current path is Hub queue create only.
  * - recordId = Video Feedback record ID
  *
  * OPTIONAL INPUT VARIABLES
- * - testMode = optional; default true for controlled Hub sends
+ * - testMode = optional; default false Live; set true only for intentional Test + allowlist
  *
  * OUTPUTS (automation script action outputs)
  * - statusOut = success | skipped | error
@@ -553,7 +553,7 @@ async function main() {
   if (!/^rec[A-Za-z0-9]{14}$/.test(recordId)) {
     throw new Error("recordId must be a valid Airtable record ID.");
   }
-  const testMode = parseAutomationBoolean(cfg.testMode, true);
+  const testMode = parseAutomationBoolean(cfg.testMode, false);
 
   step("2 - Load tables");
   const vfTable = base.getTable(CONFIG.tables.videoFeedback);
