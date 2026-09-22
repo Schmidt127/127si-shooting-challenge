@@ -36,6 +36,26 @@ describe("validateSubmittedGradeBandSnapshot", () => {
     ).toBe(true);
   });
 
+  it("accepts each of the five SC enrollment bands at their primary snapshot", () => {
+    const cases = [
+      { enrollment: "K-2", authorized: "1-2", submitted: "1-2" as const },
+      { enrollment: "3-4", authorized: "3-4", submitted: "3-4" as const },
+      { enrollment: "5-6", authorized: "5-6", submitted: "5-6" as const },
+      { enrollment: "7-8", authorized: "7-8", submitted: "7-8" as const },
+      { enrollment: "9-12", authorized: "9-12", submitted: "9-12" as const },
+    ];
+
+    for (const { enrollment, authorized, submitted } of cases) {
+      expect(
+        validateSubmittedGradeBandSnapshot({
+          enrollmentGradeBandName: enrollment,
+          authorizedGradeBand: authorized,
+          submittedGradeBand: submitted,
+        }).ok,
+      ).toBe(true);
+    }
+  });
+
   it("accepts Curriculum question set 4-6 when authorized program band is 5-6", () => {
     expect(
       validateSubmittedGradeBandSnapshot({
