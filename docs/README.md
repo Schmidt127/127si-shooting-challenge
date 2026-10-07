@@ -27,7 +27,7 @@ This is the navigation entry point for the 127 SI Shooting Challenge repository.
 | Operations | How to operate current prod — OPERATIONS / DEPLOYMENT / email-send-plane |
 | Optional cleanup | Non-blocking hygiene — does **not** reopen FUT-058 |
 | Future product work | MASTER_REMAINING_WORK_LIST + Master Future Work List |
-| Future migration | Separate; **not started** — FROZEN_BASELINE § F |
+| Future migration | Separate; **not started** — FROZEN_BASELINE § F; legacy capability parity checklist in [legacy-inventory/README.md](./legacy-inventory/README.md) |
 | Legacy / historical | Make/Gmail diagrams and retired scripts — labeled only |
 
 ## Important authority rules
