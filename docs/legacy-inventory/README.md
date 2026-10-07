@@ -17,6 +17,7 @@
 | [04-communications-zoom-integrations.md](./04-communications-zoom-integrations.md) | Email Handoff Queue → 079 → Communications Hub → Resend architecture, all six email types with payloads/subjects/gating, copy decisions, Zoom meetings and manual attendance capture, recording-quiz makeup policy, integrations inventory (live vs retired) |
 | [05-web-app-brand.md](./05-web-app-brand.md) | Every public and API route, Family Dashboard magic-link auth, Curriculum Hub SSO, data layer and env vars, public-data privacy contract, SEO, brand/design system, QA suites, deployment, media kits |
 | [06-operations-ideas-backlog.md](./06-operations-ideas-backlog.md) | All 35 tables with roles, season lifecycle runbooks, audits and safe-backfills, Airtable Interfaces, governance, the complete categorized ideas backlog (planned / deferred / rejected), lessons learned |
+| [07-new-platform-gap-comparison.md](./07-new-platform-gap-comparison.md) | Plain-language comparison of the old app (00–06) against the live new Challenge Platform (`challenge.fairfieldbasketballclub.com`, 2026-10-07): every XP bucket and module labelled ADD / CHANGE / CHECK / SAME / NEW, with a short fix-first list and a numbers appendix |
 
 ## Cross-domain "must not miss" list
 
